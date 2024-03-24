@@ -8,13 +8,17 @@ import { RegisterComponent } from './pages/register/register.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { HomeComponent } from './pages/home/home.component';
+import { EditProfilePageComponent } from './edit-profile-page/edit-profile-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    HomeComponent,
+    EditProfilePageComponent
   ],
   imports: [
     BrowserModule,

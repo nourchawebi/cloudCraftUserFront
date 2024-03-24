@@ -20,6 +20,7 @@ export class LoginComponent {
   ) {
   }
 
+  error:string='';
   authenticate(){
  this.authService.login(this. authRequest).
  subscribe(
@@ -31,7 +32,15 @@ export class LoginComponent {
     this.router.navigate(['welcome'])
 
   }
+     },
+     error: (error) => { if (error.status === 403) {
+       this.error = 'User disabled';
+     } else {
+       this.error = 'bad credentials';
      }
+       console.error(error);
+     }
+
    }
  )
   }

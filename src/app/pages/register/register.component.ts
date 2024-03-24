@@ -16,6 +16,7 @@ export class RegisterComponent {
   registerRequest: RegisterRequest= {}; // empty object
   authResponse: AuthenticationResponse={};
   message:string ='';
+  error:string='';
   otpCode:string='';
   constructor(private authService: AuthenticationService,
               private router:Router
@@ -36,6 +37,13 @@ export class RegisterComponent {
 this.router.navigate(['login'])
               },3000)
             }
+        },
+        error: (error) => { if (error.status === 409) {
+          this.error = 'User already exists';
+        } else {
+          this.error = 'Error occurred during registration';
+        }
+          console.error(error);
         }
       });
   }
