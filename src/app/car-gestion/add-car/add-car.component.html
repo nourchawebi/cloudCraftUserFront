@@ -1,0 +1,43 @@
+<section class="page-content course-sec">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+            <div class="widget-content multistep-form">
+               <fieldset id="first" name="first">
+                  <div class="add-course-info">
+                    <br/>
+                    <div class="add-course-inner-header">
+                      <h4>Specify Your Car</h4>
+                    </div>
+                    <div class="add-course-form">
+                      <form action="#">
+
+                        <div class="input-block">
+                          <label class="add-course-label">Manufacturer</label>
+                          <input type="text" [(ngModel)]="car.manufacturer" name="manufacturer" class="form-control" placeholder="Manufacturer">
+                        </div>
+
+                        <div class="input-block">
+                          <label class="add-course-label">Car Model</label>
+                          <input type="text" [(ngModel)]="car.model" name="car model" class="form-control" placeholder="Available places">
+                        </div>
+
+                        <div class="input-block">
+                          <label class="add-course-label">Car Year</label>
+                          <input type="time" type="date" [(ngModel)]="car.year" name="car year"  class="form-control " placeholder="Available places">
+                        </div>
+
+                        <div class="cs-form">
+                          <label class="add-course-label">Capacity</label>
+                          <input type="time" type="number" [(ngModel)]="car.capacity" name="capacity" name="returnTime" class="form-control" placeholder="Available places" value="10:05 AM">
+                        </div>
+
+                      </form>
+                    </div>
+                    <div class="widget-btn">
+                      <a class="btn btn-info-light btn-block" (click)="addCar()">Add Car</a>
+                    </div>
+                  </div>
+                </fieldset>
+            </div></div></div></div></div></section>
