@@ -16,7 +16,6 @@ export class AddCarComponent {
   constructor(private http:HttpClient) {
   }
   addCar(){
-    console.log(this.car)
     this.http.post("http://localhost:8081/car", this.car).subscribe()
   }
 }

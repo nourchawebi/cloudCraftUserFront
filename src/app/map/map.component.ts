@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { Output, EventEmitter } from '@angular/core';
+import {DataService} from "../data.service";
 
 @Component({
   selector: 'app-map',
@@ -20,9 +21,13 @@ export class MapComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<any>();
 
-  constructor() {
+  location={
+    latitude : 0,
+    longitude : 0,
+    nameLocation : ""
+  }
 
-    console.log(this.state)
+  constructor(private dataService: DataService) {
     this.state ?
     this.draw = new MapboxDraw({
       displayControlsDefault: false,
@@ -51,7 +56,14 @@ export class MapComponent implements OnInit {
 
   fun(){
     //console.log(this.draw.getAll().features[0].geometry.coordinates)
-    this.newItemEvent.emit(this.draw.getAll().features[0].geometry.coordinates);
+    if(!this.state) {
+      this.location.latitude = this.draw.getAll().features[0].geometry.coordinates[1]
+      this.location.longitude = this.draw.getAll().features[0].geometry.coordinates[0]
+      this.dataService.getAddress(this.location.longitude,this.location.latitude).subscribe(value =>
+      this.location.nameLocation = value.features[0].place_name)
+      console.log(this.location.nameLocation)
+    } else
+      this.newItemEvent.emit(this.draw.getAll().features[0].geometry.coordinates);
   }
 
 

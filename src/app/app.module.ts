@@ -13,6 +13,7 @@ import { JourneyComponent } from './journey/journey.component';
 import { ListJourneyComponent } from './journey/list-journey/list-journey.component';
 import {DataService} from "./data.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LocationComponent } from './location/location.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AddCarComponent,
     MapComponent,
     JourneyComponent,
-    ListJourneyComponent
+    ListJourneyComponent,
+    LocationComponent
   ],
   imports: [
     BrowserModule,
