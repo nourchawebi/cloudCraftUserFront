@@ -5,7 +5,9 @@ import {RegisterComponent} from "./pages/register/register.component";
 import {WelcomeComponent} from "./pages/welcome/welcome.component";
 import {authGuard} from "./services/auth/auth.guard";
 import {HomeComponent} from "./pages/home/home.component";
-import {EditProfilePageComponent} from "./edit-profile-page/edit-profile-page.component";
+import {EditProfilePageComponent} from "./pages/edit-profile-page/edit-profile-page.component";
+import {ForgotPasswordComponent} from "./pages/forgot-password/forgot-password.component";
+import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
 
 
 const routes: Routes = [
@@ -16,15 +18,25 @@ const routes: Routes = [
     component : RegisterComponent},
   { path:'welcome',
     component : WelcomeComponent,
-    //canActivate:[authGuard]
+    canActivate:[authGuard]
   },
   {
     path:'home',
     component:HomeComponent
   },
   {
-    path:'editprofile',
-    component:EditProfilePageComponent
+    path:'profile',
+    component:EditProfilePageComponent,
+    canActivate:[authGuard]
+  },
+
+  { path:'forgotpassword',
+    component:ForgotPasswordComponent
+
+  },
+  {
+    path:'resetpassword',
+    component:ResetPasswordComponent
   }
 
 ];

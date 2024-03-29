@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RegisterRequest} from "../../models/register-request";
 import {AuthenticationResponse} from "../../models/authentication-response";
-import {AuthenticationService} from "../../services/authentication.service";
+import {AuthenticationService} from "../../services/auth/authentication.service";
 import {Router} from "@angular/router";
 import {VerificationRequest} from "../../models/verification-request";
 
@@ -23,15 +23,16 @@ export class RegisterComponent {
   ) {
   }
   registerUser()
-  { this.message='';
+  { this.message='wait we are sending a verif email';
     this.authService.register(this.registerRequest)
       .subscribe({
         next:(response)=>{ // next will have the response
             if(response)
-            {
+            { this.error = '';
               this.authResponse=response;
             }
             else {
+              this.error = '';
               this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
               setTimeout(()=>{
 this.router.navigate(['login'])
@@ -39,8 +40,10 @@ this.router.navigate(['login'])
             }
         },
         error: (error) => { if (error.status === 409) {
+          this.message='';
           this.error = 'User already exists';
         } else {
+          this.message='';
           this.error = 'Error occurred during registration';
         }
           console.error(error);
