@@ -28,7 +28,6 @@ export class MapComponent implements OnInit {
   }
 
   constructor(private dataService: DataService) {
-    this.state ?
     this.draw = new MapboxDraw({
       displayControlsDefault: false,
       // Select which mapbox-gl-draw control buttons to add to the map.
@@ -40,29 +39,10 @@ export class MapComponent implements OnInit {
       // Set mapbox-gl-draw to draw by default.
       // The user does not have to click the polygon control button first.
       defaultMode: 'draw_line_string',
-    }):
-      this.draw = new MapboxDraw({
-        displayControlsDefault: false,
-        // Select which mapbox-gl-draw control buttons to add to the map.
-        controls: {
-          point:true,
-          trash:true,
-        },
-        // Set mapbox-gl-draw to draw by default.
-        // The user does not have to click the polygon control button first.
-        defaultMode: 'draw_point',
-      });
+    });
   }
 
   fun(){
-    //console.log(this.draw.getAll().features[0].geometry.coordinates)
-    if(!this.state) {
-      this.location.latitude = this.draw.getAll().features[0].geometry.coordinates[1]
-      this.location.longitude = this.draw.getAll().features[0].geometry.coordinates[0]
-      this.dataService.getAddress(this.location.longitude,this.location.latitude).subscribe(value =>
-      this.location.nameLocation = value.features[0].place_name)
-      console.log(this.location.nameLocation)
-    } else
       this.newItemEvent.emit(this.draw.getAll().features[0].geometry.coordinates);
   }
 

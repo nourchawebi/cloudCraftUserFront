@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as mapboxgl from "mapbox-gl";
 import {DataService} from "../data.service";
 import * as MapboxDraw from "@mapbox/mapbox-gl-draw";
+import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-location',
@@ -40,16 +41,18 @@ export class LocationComponent implements OnInit{
       });
   }
 
-  saveLocation(){
-    //console.log(this.draw.getAll().features[0].geometry.coordinates)
+  async fg(){
+
+  }
+  update(){
     this.location.latitude = this.draw.getAll().features[0].geometry.coordinates[1]
     this.location.longitude = this.draw.getAll().features[0].geometry.coordinates[0]
     this.dataService.getAddress(this.location.longitude,this.location.latitude).subscribe(value =>
       this.location.nameLocation = value.features[0].place_name)
+  }
+  saveLocation(){
     this.dataService.saveLocation(this.location)
   }
-
-
   ngOnInit(): void {
     this.map = new mapboxgl.Map({
       accessToken: 'pk.eyJ1IjoiYWNocmVmczkiLCJhIjoiY2xrOHZhbHFtMDdpbjNlbzVib3EzNWZ4MSJ9.cS91fXGH_gJUcL_XNx8mxw',

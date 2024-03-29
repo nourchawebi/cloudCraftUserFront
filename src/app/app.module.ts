@@ -24,7 +24,7 @@ import { LocationComponent } from './location/location.component';
     MapComponent,
     JourneyComponent,
     ListJourneyComponent,
-    LocationComponent
+    LocationComponent,
   ],
   imports: [
     BrowserModule,

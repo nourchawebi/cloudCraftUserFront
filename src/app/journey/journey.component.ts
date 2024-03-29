@@ -12,10 +12,11 @@ import {Car} from "../car";
 export class JourneyComponent {
 
   journey = {
-    day:new Date(),
-    leavingTime:new Date(),
-    returnTime:new Date(),
+    day:"",
+    leavingTime:"",
+    returnTime:"",
     availablePlaces:0,
+    car: {},
     traject: {}
   };
 
@@ -29,6 +30,7 @@ export class JourneyComponent {
 
     this.dataService.getCarsByMotorized().subscribe((data:Car[])=>
     {
+      console.log(data)
       this.cars = data
     } )
   }
@@ -47,12 +49,21 @@ export class JourneyComponent {
 
   currentFieldsetIndex: number = 0;
 
+  onCarChange(car:Car){
+    this.journey.car=car;
+  }
+
   nextFieldset() {
-    console.log("aa"+this.currentFieldsetIndex)
-    this.currentFieldsetIndex++;
+    if(this.currentFieldsetIndex==1)
+      this.currentFieldsetIndex++;
+    if(this.currentFieldsetIndex==0)
+      if(this.journey.returnTime!=""&&this.journey.leavingTime!=""&&this.journey.day!=""&&this.journey.availablePlaces!=0)
+      this.currentFieldsetIndex++;
   }
 
   prevFieldset() {
     this.currentFieldsetIndex--;
   }
+
+  protected readonly onprogress = onprogress;
 }
