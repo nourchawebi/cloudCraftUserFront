@@ -1,18 +1,3 @@
-<p>list-journey works!</p>
-<ul class="heroes">
-  {{motorized}}
-  <li *ngFor="let motorize of motorized">
-    <button type="button">
-      <span class="badge">{{ motorize.userId }}</span>
-      <li *ngFor="let journey of motorize.journeys">
-        <h3>{{journey.leavingTime}}</h3>
-        <h3 *ngIf="journey.returnTime!=null">{{journey.returnTime}}</h3>
-      </li>
-    </button>
-  </li>
-</ul>
-
-
 <section class="course-content">
   <div class="container">
     <div class="row">
@@ -69,14 +54,14 @@
                     <img class="img-fluid" alt src="assets/img/course/course-10.jpg">
                   </a>
                   <div class="price">
-                    <h3>5dt </h3>
+                    <h3>{{journey.price}}dt </h3>
                   </div>
                 </div>
                 <div class="product-content">
                   <div class="head-course-title">
                     <h3 class="title"><a href="course-details.html">Esprit</a></h3>
                     <div class="all-btn all-category d-flex align-items-center">
-                      <a href="checkout.html" class="btn btn-primary">PARTICIPATE</a>
+                      <button (click)="participate(journey.journeyId)" class="btn btn-primary">PARTICIPATE</button>
                     </div>
                   </div>
                   <div class="course-info border-bottom-0 pb-0 d-flex align-items-center">

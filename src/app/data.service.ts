@@ -26,7 +26,10 @@ export class DataService {
   }
 
   saveLocation(location:any){
-    console.log(location)
     this.http.post("http://localhost:8081/location/1",location).subscribe();
+  }
+
+  addParticipation(idCarpooled:Number,idJourney:Number){
+    this.http.post("http://localhost:8081/participation/"+idCarpooled+"/"+idJourney,null).subscribe();
   }
 }

@@ -11,13 +11,16 @@ export class ListJourneyComponent {
   constructor(private dataService: DataService) {
   }
 
+  participate(journeyId:Number){
+    this.dataService.addParticipation(1,journeyId);
+  }
+
   motorized:Motorized[] = [];
   ngOnInit(){
 
       this.dataService.getMotorized().subscribe((data:Motorized[])=>
     {
-      console.log(data[0].userId)
       this.motorized = data
-    } )
+    } );
   }
 }

@@ -13,6 +13,7 @@ export class JourneyComponent {
 
   journey = {
     day:"",
+    price:0,
     leavingTime:"",
     returnTime:"",
     availablePlaces:0,
@@ -57,7 +58,7 @@ export class JourneyComponent {
     if(this.currentFieldsetIndex==1)
       this.currentFieldsetIndex++;
     if(this.currentFieldsetIndex==0)
-      if(this.journey.returnTime!=""&&this.journey.leavingTime!=""&&this.journey.day!=""&&this.journey.availablePlaces!=0)
+      if(this.journey.returnTime!=""&&this.journey.leavingTime!=""&&this.journey.day!=""&&this.journey.price!=0)
       this.currentFieldsetIndex++;
   }
 

@@ -50,8 +50,8 @@
                                                 <form action="#">
 
                                                   <div class="input-block">
-                                                    <label class="add-course-label">Available Places</label>
-                                                    <input type="number" [(ngModel)]="journey.availablePlaces" name="availablePlaces" class="form-control" placeholder="Available places">
+                                                    <label class="add-course-label">Price</label>
+                                                    <input type="number" [(ngModel)]="journey.price" name="availablePlaces" class="form-control" placeholder="Available places">
                                                   </div>
 
                                                   <div class="input-block">
@@ -113,6 +113,11 @@
                                                       <a href="javascript:void(0);" class="edit-btn-blk "><i class="feather-edit"></i></a>
                                                     </div>
                                                   </div>
+                                                  </div>
+
+                                                  <div class="input-block">
+                                                    <label class="add-course-label">Available Places</label>
+                                                    <input type="number" max="5" [(ngModel)]="journey.availablePlaces" name="availablePlaces" class="form-control" placeholder="Available places">
                                                   </div>
                                               </div>
                                             </div>
