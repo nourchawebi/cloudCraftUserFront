@@ -61,17 +61,37 @@
         [(ngModel)]="registerRequest.email"
       >
     </div>
-
     <div class="input-block">
-        <label for="classtype" class="form-control-label">classtype</label>
-        <input
-          id="classtype"
-          name="classtype"
-          required type="text"
-          class="form-control" placeholder="Enter your class type"
-          [(ngModel)]="registerRequest.classType"
-        >
+      <label for="birthdate" class="form-control-label">Date of Birth</label>
+      <input
+        id="birthdate"
+        name="birthdate"
+        required
+        type="date"
+      class="form-control"
+      placeholder="Select your Date of Birth"
+     [(ngModel)]="registerRequest.birthDate"
+      >
     </div>
+    <div class="input-block">
+      <label for="classtype" class="form-control-label">classtype</label>
+      <select
+        id="classtype"
+        name="classtype"
+        required
+        class="form-control"
+        [(ngModel)]="registerRequest.classType"
+      >
+      <option value="" disabled selected>Select your classe type</option>
+      <option value="FIRSTYEAR">FIRSTYEAR</option>
+      <option value="FIRSTYEAR">SECONDYEAR</option>
+      <option value="FIRSTYEAR">THIRDYEAR</option>
+
+      </select>
+    </div>
+
+
+
     <div class="input-block">
       <label for="password" class="form-control-label">Password</label>
       <div class="pass-group" id="passwordInput">

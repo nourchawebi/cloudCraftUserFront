@@ -5,7 +5,7 @@ export interface RegisterRequest{
   password?:string,
   mfaEnabled?:string,
   role?: string,
-  birthdate?:string,
+  birthDate?: Date,
   classType?:string,
 
 

@@ -50,9 +50,16 @@
     <button  class="btn btn-primary btn-start"  type="submit">Sign In</button>
 
     </div>
+    <div class="success-message-panel" *ngIf="sendveriftoken">
+     <button type="button" (click)="sendverifmail()"> send verification email</button>
+    </div>
     <div class="success-message-panel" *ngIf="error">
       <div class="error-icon">&#10008;</div>
       <div class="error-message">{{ error }}</div>
+    </div>
+    <div class="success-message-panel" *ngIf="message">
+      <div class="error-icon">&#10008;</div>
+      <div class="error-message">{{ message }}</div>
     </div>
     <a routerLink="/register" style="text-decoration: none; color: #007bff; font-weight: bold;">Register</a>
 

@@ -26,7 +26,8 @@ export class RegisterComponent {
   { this.message='wait we are sending a verif email';
     this.authService.register(this.registerRequest)
       .subscribe({
-        next:(response)=>{ // next will have the response
+        next:(response)=>{
+        // next will have the response
             if(response)
             { this.error = '';
               this.authResponse=response;

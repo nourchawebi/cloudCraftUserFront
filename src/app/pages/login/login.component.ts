@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 import {VerificationRequest} from "../../models/verification-request";
 import {ForgotPasswordRequest} from "../../models/forgot-password-request";
 import {UserstoreService} from "../../services/uerstore/userstore.service";
-//import { NgToastService } from 'ng-angular-popup';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +23,7 @@ export class LoginComponent {
               private userStore: UserstoreService
   ) {
   }
-
+  sendveriftoken:boolean=false;
   error:string='';
   message:any='';
   forgotpassword:boolean=false;
@@ -35,6 +35,7 @@ export class LoginComponent {
   this.authResponse=response;
   if(!this.authResponse.mfaEnabled)
   {   localStorage.setItem('token',response.accessToken as string);
+    this.error ="";
     const tokenPayload = this.authService.decodedToken();
     this.userStore.setFirstNameForStore(tokenPayload.name);
     this.userStore.setRoleForStore(tokenPayload.role);
@@ -47,11 +48,24 @@ export class LoginComponent {
 
   }
      },
-     error: (error) => { if (error.status === 403) {
-       this.error = 'User disabled';
-     } else {
-       this.error = 'bad credentials';
-     }
+     error: (error) => {
+       if (error.status === 403) {
+         if (error.error === 'User disabled and token expired') {
+           this.message="";
+           this.error = 'User disabled and token expired';
+           this.sendveriftoken=true;
+
+         } else if (error.error === 'User disabled') {
+           this.message="";
+           this.error = 'User disabled';
+         } else {
+           this.message="";
+           this.error = 'Unknown error';
+         }
+       } else {
+         this.message="";
+         this.error = 'Bad credentials';
+       }
        console.error(error);
      }
 
@@ -110,6 +124,32 @@ export class LoginComponent {
       }
     )
 
+  }
+  sendverifmail() {
+    if (this.authRequest.email) {
+      this.error="";
+      this.message="we're sending an email pls wait ..."
+      this.authService.sendverifmail(this.authRequest.email).subscribe(
+        {
+          next:(response)=>{
+            this.error="";
+         this.message="email sent with success! please verify your emails ^^"
+          },
+          error: (error) => {
+            if (error.status === 400) {
+              console.error('Email already sent and token not expired');
+              // Handle the specific error message or display it to the user
+            } else {
+              console.error('An error occurred:', error);
+              // Handle other error cases here
+            }
+          }
+        }
+      );
+    } else {
+      console.error('Email is undefined or null.');
+      // Handle the case where email is undefined or null
+    }
   }
 
 }

@@ -41,7 +41,10 @@ export class AuthenticationService {
      return this.http.post<AuthenticationResponse>
      (`${this.baseUrl2}/verify`, verificationRequest)
    }
-
+  sendverifmail(email: string) {
+    const params = new HttpParams().set('email', email);
+    return this.http.get<any>(`${this.baseUrl}/resendToken`, { params });
+  }
    forgotPassword(forgotPwdRequest:ForgotPasswordRequest)
    {    if (forgotPwdRequest.email) {
      const params = new HttpParams().set('email', forgotPwdRequest.email);
