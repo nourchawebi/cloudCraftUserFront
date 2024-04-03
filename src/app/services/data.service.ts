@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Motorized} from "./motorized";
-import {Car} from "./car";
+import {Motorized} from "../motorized";
+import {Car} from "../car";
 import {Observable} from "rxjs";
 
 
@@ -18,7 +18,7 @@ export class DataService {
   }
 
   getCarsByMotorized() {
-    return this.http.get<[Car]>("http://localhost:8081/motorized_cars")
+    return this.http.get<[Car]>("http://localhost:8081/car")
   }
 
   getAddress(longitude:Number,latitude:Number):Observable<any>{

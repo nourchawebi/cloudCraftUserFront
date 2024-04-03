@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import * as mapboxgl from "mapbox-gl";
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 import * as MapboxDraw from "@mapbox/mapbox-gl-draw";
 import {waitForAsync} from "@angular/core/testing";
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 import {Motorized} from "../motorized";
 import {Car} from "../car";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,7 @@ export class JourneyComponent {
 
   state =true;
 
-  constructor(private http:HttpClient, private dataService: DataService) {
+  constructor(private http:HttpClient, private dataService: DataService,private router:Router) {
   }
 
   cars:Car[] = [];
@@ -31,7 +32,6 @@ export class JourneyComponent {
 
     this.dataService.getCarsByMotorized().subscribe((data:Car[])=>
     {
-      console.log(data)
       this.cars = data
     } )
   }
@@ -46,6 +46,7 @@ export class JourneyComponent {
 
   addJourney(){
     this.http.post("http://localhost:8081/journey",this.journey).subscribe();
+    this.router.navigate(["/list_journey"])
   }
 
   currentFieldsetIndex: number = 0;

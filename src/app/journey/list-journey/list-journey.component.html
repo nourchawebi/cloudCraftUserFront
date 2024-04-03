@@ -51,7 +51,7 @@
               <div class="product">
                 <div class="product-img">
                   <a href="course-details.html">
-                    <img class="img-fluid" alt src="assets/img/course/course-10.jpg">
+                    <img src="/assets/img/bg/map.png"/>
                   </a>
                   <div class="price">
                     <h3>{{journey.price}}dt </h3>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="product-content">
                   <div class="head-course-title">
-                    <h3 class="title"><a href="course-details.html">Esprit</a></h3>
+                    <h3 class="title"><a href="course-details.html">Esprit  on {{journey.day}}</a></h3>
                     <div class="all-btn all-category d-flex align-items-center">
                       <button (click)="participate(journey.journeyId)" class="btn btn-primary">PARTICIPATE</button>
                     </div>
@@ -67,28 +67,32 @@
                   <div class="course-info border-bottom-0 pb-0 d-flex align-items-center">
                     <div class="rating-img d-flex align-items-center">
                       <img src="assets/img/icon/icon-02.svg" alt>
-                      <p>{{journey.leavingTime}}</p>
+                      <p> leaving at {{journey.leavingTime}} o'clock</p>
                     </div>
                     <div class="course-view d-flex align-items-center">
                       <img src="assets/img/icon/icon-02.svg" alt>
-                      <p>{{journey.returnTime}}</p>
+                      <p> return at {{journey.returnTime}} o'clock</p>
+                    </div>
+                    <div class="course-view d-flex align-items-center">
+                      <img src="assets/img/icon/users.svg" alt>
+                      <p>{{journey.availablePlaces}} available places</p>
                     </div>
 
                   </div>
-                  <div class="rating">
+                  <!--<div class="rating">
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star filled"></i>
                     <i class="fas fa-star"></i>
                     <span class="d-inline-block average-rating"><span>4.0</span> (15)</span>
-                  </div>
+                  </div>-->
                   <div class="course-group d-flex mb-0">
                     <div class="course-group-img d-flex">
                       <a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt class="img-fluid"></a>
                       <div class="course-name">
                         <h4><a href="instructor-profile.html">Rolands R</a></h4>
-                        <p>Instructor</p>
+                        <p>motorized</p>
                       </div>
                     </div>
                     <div class="course-share d-flex align-items-center justify-content-center">

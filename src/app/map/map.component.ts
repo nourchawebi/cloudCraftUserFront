@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { Output, EventEmitter } from '@angular/core';
-import {DataService} from "../data.service";
+import {DataService} from "../services/data.service";
 
 @Component({
   selector: 'app-map',

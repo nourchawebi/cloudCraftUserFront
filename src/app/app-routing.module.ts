@@ -6,6 +6,7 @@ import {MapComponent} from "./map/map.component";
 import {JourneyComponent} from "./journey/journey.component";
 import {ListJourneyComponent} from "./journey/list-journey/list-journey.component";
 import {LocationComponent} from "./location/location.component";
+import {ListCarComponent} from "./car-gestion/list-car/list-car.component";
 
 const routes: Routes = [
   { path: 'car_gestion', component:CarGestionComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'map', component: MapComponent},
   {path: 'add_journey', component: JourneyComponent},
   {path: 'location', component: LocationComponent},
-  {path: 'list_journey', component: ListJourneyComponent}
+  {path: 'list_journey', component: ListJourneyComponent},
+  {path: 'cars', component:ListCarComponent}
 ];
 
 @NgModule({

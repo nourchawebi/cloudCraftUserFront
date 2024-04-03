@@ -6,14 +6,15 @@ import { AppComponent } from './app.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
 import { CarGestionComponent } from './car-gestion/car-gestion.component';
 import {HttpClientModule} from "@angular/common/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AddCarComponent } from './car-gestion/add-car/add-car.component';
 import { MapComponent } from './map/map.component';
 import { JourneyComponent } from './journey/journey.component';
 import { ListJourneyComponent } from './journey/list-journey/list-journey.component';
-import {DataService} from "./data.service";
+import {DataService} from "./services/data.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LocationComponent } from './location/location.component';
+import { ListCarComponent } from './car-gestion/list-car/list-car.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +26,15 @@ import { LocationComponent } from './location/location.component';
     JourneyComponent,
     ListJourneyComponent,
     LocationComponent,
+    ListCarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [
     DataService
