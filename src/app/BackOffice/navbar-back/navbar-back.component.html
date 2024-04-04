@@ -1,133 +1,101 @@
-
-<!-- Page Header Start-->
-<div class="page-header">
-  <div class="header-wrapper m-0">
-    <div class="header-logo-wrapper p-0">
-      <div class="logo-wrapper">
-        <a href="index.html">
-          <img class="img-fluid main-logo" src="assets/BackOffice/assets/images/logo/1.png" alt="logo">
-          <img class="img-fluid white-logo" src="assets/BackOffice/assets/images/logo/1-white.png" alt="logo">
-        </a>
-      </div>
-      <div class="toggle-sidebar">
-        <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-        <a href="index.html">
-          <img src="assets/BackOffice/assets/images/logo/1.png" class="img-fluid" alt="">
-        </a>
-      </div>
-    </div>
-
-    <form class="form-inline search-full" action="javascript:void(0)" method="get">
-      <div class="form-group w-100">
-        <div class="Typeahead Typeahead--twitterUsers">
-          <div class="u-posRelative">
-            <input class="demo-input Typeahead-input form-control-plaintext w-100" type="text"
-                   placeholder="Search Fastkart .." name="q" title="" autofocus>
-            <i class="close-search" data-feather="x"></i>
-            <div class="spinner-border Typeahead-spinner" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </div>
-          <div class="Typeahead-menu"></div>
-        </div>
-      </div>
-    </form>
-    <div class="nav-right col-6 pull-right right-header p-0">
-      <ul class="nav-menus">
-        <li>
-                            <span class="header-search">
-                                <i class="ri-search-line"></i>
-                            </span>
-        </li>
-        <li class="onhover-dropdown">
-          <div class="notification-box">
-            <i class="ri-notification-line"></i>
-            <span class="badge rounded-pill badge-theme">4</span>
-          </div>
-          <ul class="notification-dropdown onhover-show-div">
-            <li>
-              <i class="ri-notification-line"></i>
-              <h6 class="f-18 mb-0">Notitications</h6>
-            </li>
-            <li>
-              <p>
-                <i class="fa fa-circle me-2 font-primary"></i>Delivery processing <span
-                class="pull-right">10 min.</span>
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fa fa-circle me-2 font-success"></i>Order Complete<span
-                class="pull-right">1 hr</span>
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fa fa-circle me-2 font-info"></i>Tickets Generated<span
-                class="pull-right">3 hr</span>
-              </p>
-            </li>
-            <li>
-              <p>
-                <i class="fa fa-circle me-2 font-danger"></i>Delivery Complete<span
-                class="pull-right">6 hr</span>
-              </p>
-            </li>
-            <li>
-              <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>
-            </li>
-          </ul>
-        </li>
-
-        <li>
-          <div class="mode">
-            <i class="ri-moon-line"></i>
-          </div>
-        </li>
-        <li class="profile-nav onhover-dropdown pe-0 me-0">
-          <div class="media profile-media">
-            <img class="user-profile rounded-circle" src="assets/BackOffice/assets/images/users/4.jpg" alt="">
-            <div class="user-name-hide media-body">
-              <span>Emay Walter</span>
-              <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
-            </div>
-          </div>
-          <ul class="profile-dropdown onhover-show-div">
-            <li>
-              <a href="all-users.html">
-                <i data-feather="users"></i>
-                <span>Users</span>
-              </a>
-            </li>
-            <li>
-              <a href="order-list.html">
-                <i data-feather="archive"></i>
-                <span>Orders</span>
-              </a>
-            </li>
-            <li>
-              <a href="support-ticket.html">
-                <i data-feather="phone"></i>
-                <span>Spports Tickets</span>
-              </a>
-            </li>
-            <li>
-              <a href="profile-setting.html">
-                <i data-feather="settings"></i>
-                <span>Settings</span>
-              </a>
-            </li>
-            <li>
-              <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                 href="javascript:void(0)">
-                <i data-feather="log-out"></i>
-                <span>Log out</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+<nav
+  class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+  id="layout-navbar"
+>
+  <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+      <i class="bx bx-menu bx-sm"></i>
+    </a>
   </div>
-</div>
-<!-- Page Header Ends-->
+
+  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+    <!-- Search -->
+    <div class="navbar-nav align-items-center">
+      <div class="nav-item d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i>
+        <input
+          type="text"
+          class="form-control border-0 shadow-none"
+          placeholder="Search..."
+          aria-label="Search..."
+        />
+      </div>
+    </div>
+    <!-- /Search -->
+
+    <ul class="navbar-nav flex-row align-items-center ms-auto">
+      <!-- Place this tag where you want the button to render. -->
+      <li class="nav-item lh-1 me-3">
+        <a
+          class="github-button"
+          href="https://github.com/themeselection/sneat-html-admin-template-free"
+          data-icon="octicon-star"
+          data-size="large"
+          data-show-count="true"
+          aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+        >Star</a
+        >
+      </li>
+
+      <!-- User -->
+      <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+          <div class="avatar avatar-online">
+            <img src="/assets/BackOffice/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+          </div>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="#">
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <img src="/assets/BackOffice/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <span class="fw-semibold d-block">John Doe</span>
+                  <small class="text-muted">Admin</small>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="bx bx-user me-2"></i>
+              <span class="align-middle">My Profile</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="bx bx-cog me-2"></i>
+              <span class="align-middle">Settings</span>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+            </a>
+          </li>
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="auth-login-basic.html">
+              <i class="bx bx-power-off me-2"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <!--/ User -->
+    </ul>
+  </div>
+</nav>
