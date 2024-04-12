@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+  <title>EduHub</title>
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/FrontOffice/img/favicon.svg">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/fontawesome/css/all.min.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/FrontOffice/css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/slick/slick.css">
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/slick/slick-theme.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/select2/css/select2.min.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/plugins/aos/aos.css">
+
+  <link rel="stylesheet" href="/assets/FrontOffice/css/style.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+  <div class="component-space">
+  <app-header-front ></app-header-front></div>
+
+
+
+
+
+
+
+  <div class="page-content">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xl-3 col-lg-4 col-md-12 theiaStickySidebar">
+          <div class="settings-widget dash-profile">
+            <div class="settings-menu p-0">
+              <div class="profile-bg">
+
+                <img src="assets/img/instructor-profile-bg.jpg" alt>
+                <div class="profile-img">
+                  <img src="assets/FrontOffice/img/user/user11.jpg" alt>
+                </div>
+              </div>
+              <div class="profile-group">
+                <div class="profile-name text-center">
+                  <h4><a href="instructor-profile.html">{{loggedUser.firstName}}   {{loggedUser.lastName}}</a></h4>
+                  <p>{{loggedUser.classeType}}</p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="settings-widget account-settings">
+            <div class="settings-menu">
+
+
+              <div class="instructor-title">
+                <h3>ACCOUNT SETTINGS</h3>
+              </div>
+              <ul>
+                <li class="nav-item active">
+                  <a (click)="activatePersonalInfos()" class="nav-link ">
+                    <i class="feather-settings"></i> Edit Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a (click)="acrivateSecurityPassword()" class="nav-link">
+                    <i class="feather-user"></i> Security:password
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a (click)="activateEmail()" class="nav-link">
+                    <i class="feather-refresh-cw"></i>Email Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="instructor-notification.html" class="nav-link">
+                    <i class="feather-bell"></i> Notifications
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="instructor-profile-privacy.html" class="nav-link">
+                    <i class="feather-lock"></i> Profile Privacy
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="instructor-delete-profile.html" class="nav-link">
+                    <i class="feather-trash-2"></i> Delete Profile
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="instructor-linked-account.html" class="nav-link">
+                    <i class="feather-user"></i> Linked Accounts
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">
+                    <i class="feather-power"></i> Sign Out
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="col-xl-9 col-md-8"   *ngIf="personalInfos">
+          <div class="settings-widget profile-details">
+            <div class="settings-menu p-0">
+              <div class="profile-heading">
+                <h3>Profile Details</h3>
+                <p>You have full control to manage your own account setting.</p>
+              </div>
+              <div class="course-group mb-0 d-flex">
+                <div class="course-group-img d-flex align-items-center">
+                  <a><img src="assets/img/user/user11.jpg" alt class="img-fluid"></a>
+                  <div class="course-name">
+                    <h4><a >Your avatar</a></h4>
+                    <p>PNG or JPG no bigger than 800px wide and tall.</p>
+                  </div>
+                </div>
+                <div class="profile-share d-flex align-items-center justify-content-center">
+                  <a href="javascript:void(0);" class="btn btn-success">Update</a>
+                  <a href="javascript:void(0);" class="btn btn-danger">Delete</a>
+                </div>
+              </div>
+              <div class="checkout-form personal-address add-course-info">
+                <div class="personal-info-head">
+                  <h4>Personal Details</h4>
+                  <p>Edit your personal information and address.</p>
+                </div>
+
+                <!-- Inside the form for editing personal details -->
+                <form  [formGroup]="personaldata"  >
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="input-block">
+                        <label class="form-control-label">First Name </label>
+                        <input type="text" class="form-control" placeholder="Enter your first Name"
+
+                               [style.color]="editMode ? 'black' : 'grey'"
+                               [style.background-color]="editMode ? 'white' : '#f0f0f0'"
+                               formControlName="firstName"
+                        >
+                      </div>
+                      <div
+                        *ngIf="personaldata.controls['firstName'].invalid && (personaldata.controls['firstName'].dirty || personaldata.controls['firstName'].touched)"
+                      >
+                        <div *ngIf="personaldata.controls['firstName'].errors?.['required']">
+                          Name is required.
+                        </div>
+                        <div *ngIf="personaldata.controls['firstName'].errors?.['min']">
+                          Name must be at least 5 characters long.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="input-block">
+                        <label class="form-control-label">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter your last Name"
+
+                               formControlName="lastName"
+                               [style.color]="editMode ? 'black' : 'grey'"
+                               [style.background-color]="editMode ? 'white' : '#f0f0f0'"
+
+                        >
+                      </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                      <div class="input-block">
+                        <div class="col-sm-3 self-center">
+                          <input type="date" formControlName="birthDate" />
+                        </div>
+
+                      </div>
+                    </div>
+
+
+                    <div class="col-lg-6">
+                      <div class="input-block">
+                        <label class="form-label">classe year</label>
+                        <select class="form-select select country-select" name="sellist1"
+                                formControlName="classType"
+                        >
+                          <option disabled>Select class year</option>
+                          <option value="FIRSTYEAR">First Year</option>
+                          <option value="SECONDYEAR">Second Year</option>
+                          <option value="THIRDYEAR">Third Year</option>
+                        </select>
+                      </div>
+                    </div>
+
+
+
+                    <div class="update-profile">
+                      <button type="button" class="btn btn-primary" (click)="toggleEditMode()">{{ editMode ? 'Cancel' : 'Edit' }}</button>
+                      <button type="button" class="btn btn-primary" (click)="updateProfile()" *ngIf="editMode">Save Changes</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+       <div class="col-xl-9 col-md-8" *ngIf="securityPassword" >
+        <div class="settings-widget profile-details">
+          <div class="settings-menu p-0">
+            <div class="profile-heading">
+              <h3>Security</h3>
+              <p>Edit your account settings and change your password here.</p>
+            </div>
+
+            <div class="checkout-form personal-address">
+              <div class="personal-info-head">
+                <h4>Change Password</h4>
+
+              </div>
+              <div class="row">
+                <div class="col-lg-6">
+                  <form [formGroup]="passwordForm">
+
+                    <div class="input-block">
+                      <label class="form-control-label">Current Password</label>
+                      <input type="password" class="form-control" formControlName="currentPassword">
+                    </div>
+                    <div class="input-block">
+                      <label class="form-control-label"> New Password</label>
+                      <div class="pass-group" id="passwordInput">
+                        <input type="password" class="form-control pass-input"
+                               placeholder="Enter your password" formControlName="newPassword">
+                      </div>
+                      <div class="password-strength" id="passwordStrength">
+                        <span id="poor"></span>
+                        <span id="weak"></span>
+                        <span id="strong"></span>
+                        <span id="heavy"></span>
+                      </div>
+                      <div id="passwordInfo"></div>
+                    </div>
+                    <div class="input-block">
+                      <label class="form-control-label">Confirm New Password</label>
+                      <input type="password" class="form-control" formControlName="confirmPassword">
+                    </div>
+                    <div class="update-profile save-password">
+                      <button type="button" class="btn btn-primary" (click)="changePassword()">Save Password</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+
+</div>
+
+
+
+
+
+
+
+        <div class="col-xl-9 col-md-8" *ngIf="email" >
+          <div class="settings-widget profile-details">
+            <div class="settings-menu p-0">
+              <div class="profile-heading">
+                <h3>Email</h3>
+                <p>Edit your account settings and change your email here.</p>
+              </div>
+              <div class="checkout-form personal-address border-line">
+                <div class="personal-info-head">
+                  <h4>Email Address</h4>
+                  <p>Your current email address is <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dab7bba2adbfb6b69abfa2bbb7aab6bff4b9b5b7">[email&#160;protected]</a></span></p>
+                </div>
+                <form [formGroup]="emailForm">
+                  <div class="new-address">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <div class="input-block">
+                          <label class="form-control-label">Curent email address</label>
+                          <input type="text" class="form-control" placeholder="Enter your New email address"
+                                 formControlName="email"
+                          >
+                        </div>
+                        <div class="input-block">
+                          <label class="form-control-label">New email address</label>
+                          <input type="text" class="form-control" placeholder="Enter your New email address" >
+                        </div>
+                      </div>
+                      <div class="profile-share d-flex ">
+                        <button type="button" class="btn btn-success">Update</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <app-footer-front class="component-space"></app-footer-front>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../../../assets/FrontOffice/js/jquery-3.7.1.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="assets/FrontOffice/js/bootstrap.bundle.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/js/jquery.waypoints.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+<script src="/assets/FrontOffice/js/jquery.counterup.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/plugins/select2/js/select2.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/js/owl.carousel.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/plugins/slick/slick.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/plugins/aos/aos.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+
+<script src="/assets/FrontOffice/js/script.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="18ff9ee43dff0a85569f8a89-|49" defer></script>
+</body>
+</html>
+
+
