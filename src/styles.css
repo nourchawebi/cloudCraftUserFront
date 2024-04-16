@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+input.ng-invalid.ng-invalid.ng-touched{
+    border:red 2px solid;
+    
+}
+
+/* small{
+    display: none;
+} */
+
+small{
+color: red;
+font-weight: bold;
+/* display: block; */
+}

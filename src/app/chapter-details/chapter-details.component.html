@@ -1,0 +1,75 @@
+<div class="card content-sec">
+    <section class="page-content course-sec">
+        <div class="container">
+            <app-error [errorMessage]="error"></app-error>
+            <div class="row" *ngIf="chapter">
+                <div class="col">
+                    <div class="blog-content blog-read mb-3 text-end">
+
+                        <a href="javascript:void(0)" (click)="navigateToCourse()"
+                            class="read-more btn btn-primary">Back to Course</a>
+                    </div>
+                    <div class="card overview-sec">
+                        <div class="card-body">
+                            <h5 class="subs-title">{{chapter.title}}</h5>
+                            <h6>Chapter Description</h6>
+                            <p>
+                                {{chapter.description}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 600px;overflow-y: scroll;">
+                        <div class="course-card col">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="subs-title">Chapter Content</h5>
+                                </div>
+                                <div class="blog-content blog-read">
+
+                                    <a href="javascript:void(0)" (click)="navigateToAddContent(chapter.id)"
+                                        class="read-more btn btn-primary">Add Content</a>
+                                </div>
+                            </div>
+                            <div *ngFor="let content of chapter.chapterContent" class="content-item">
+                                <h5 class="content-title">{{content.title}} <span *ngIf="content.category"
+                                        class="badge bg-primary">{{content.category}}</span></h5>
+                                <div *ngFor="let file of content.files" class="file-item">
+                                    <h6 class="file-title">
+                                        <a class="pdf-link" data-bs-toggle="collapse" href={{file.url}}
+                                            aria-expanded="false">{{file.fileName}}</a>
+                                    </h6>
+
+                                </div>
+                                <button class="btn btn-danger" (click)="deleteContent(content.id)">Delete</button>
+                            </div>
+
+                        </div>
+                        <div class="course-card col">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="subs-title">Chapter Summaries</h5>
+                                </div>
+                                <div class="blog-content blog-read">
+
+                                    <a href="javascript:void(0)" (click)="navigateToAddSummaryToChapter(chapter.id)"
+                                        class="read-more btn btn-primary">Add Summary</a>
+                                </div>
+                            </div>
+                            <div *ngFor="let summary of chapter.summaries" class="content-item card-item">
+                                <h5 class="content-title">{{summary.title}}</h5>
+                                <div *ngFor="let file of summary.files" class="file-item">
+                                    <h6 class="file-title">
+                                        <a class="pdf-link"  href={{file.url}}
+                                            aria-expanded="false">{{file.fileName}}</a>
+                                    </h6>
+                                </div>
+                                <button class="btn btn-danger" (click)="deleteSummary(summary.id)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

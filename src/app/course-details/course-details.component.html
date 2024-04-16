@@ -1,0 +1,78 @@
+<section *ngIf="course" class="page-content course-sec course-lesson">
+    <div class="container">
+        <app-error [errorMessage]="error"></app-error>
+        <div class="blog-content blog-read mb-3 text-end">
+
+            <a href="javascript:void(0)" (click)="navigateToCoursesList()"
+                class="read-more btn btn-primary">Courses List</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="lesson-group ">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="blog-content blog-read">
+                            <a href="javascript:void(0)" (click)="navigateToAddChapter(course.id)"
+                                class="read-more btn btn-primary ">Add Chapter</a>
+                               
+                        </div>
+                        <span class="badge text-bg-warning">Chapters</span>
+                    </div>
+                    <div class="mt-3" *ngIf="course?.chapters?.length&&course.chapters.length > 0">
+                    <div class="course-card d-flex justify-content-between align-items-center" *ngFor="let chapter of course.chapters;let i=index">
+                        <h6 class="cour-title">
+                            <a href="javascript:void(0)" (click)="navigateToChapterDetail(chapter.id)"
+                               >{{chapter.title}} </a>
+                        </h6>
+                        <span class="icon-container" (click)="deleteChapterFromCourse(chapter.id)"><img class="icon" src="assets/img/delete.png"/></span>
+                    </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="lesson-group">
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="blog-content blog-read">
+                        <a href="javascript:void(0)" (click)="navigateToAddSummary(course.id)"
+                            class="read-more btn btn-primary ">Add Summary</a>
+                           
+                    </div>
+                    <span class="badge text-bg-warning">Summaries</span>
+                </div>
+                    <div class="mt-3" *ngIf="course?.summaries?.length&&course.summaries.length > 0">
+                    <div class="course-card d-flex justify-content-between align-items-center" *ngFor="let summary of course.summaries">
+                        <h6 class="cour-title">
+                            <a  data-bs-toggle="collapse"href="javascript:void(0)" (click)="navigateToSummaryDetail(summary.id)"
+                                aria-expanded="false">{{summary.title}} </a>
+                        </h6>
+                        <span class="icon-container" (click)="deleteSummaryFromCourse(summary.id)"><img class="icon" src="assets/img/delete.png"/></span>
+                        
+                    </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-lg-8">
+
+                <div class="student-widget lesson-introduction">
+                    <div class="lesson-widget-group">
+                        <h4 class="tittle">{{course.name}}</h4>
+                        <div class="introduct-video">
+                            <a>
+                                <div>
+                                    <!-- <i class="fa-solid fa-play"></i> -->
+                                </div>
+                                <img class src={{course.imageUrl}} alt>
+                            </a>
+                        </div>
+                        <p class="p-4 description text-muted fs-5">{{course.description}} </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
