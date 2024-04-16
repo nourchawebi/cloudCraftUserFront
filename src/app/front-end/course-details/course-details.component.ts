@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseDetails } from '../services/api/models/course-details-representation';
-import { CourseService } from '../services/api/courses/course.service';
+import { CourseDetails } from '../../services/api/models/course-details-representation';
+import { CourseService } from '../../services/api/courses/course.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChapterRepresentation } from '../services/api/models/chapter-representation';
-import { PayloadSerialization } from '../services/api/models/payload-serialization';
-import { NavigationService } from '../services/navigation/navigation.service';
-import { ContentService } from '../services/api/content/content.service';
-import { SummaryService } from '../services/api/summary/summary.service';
-import { ChapterService } from '../services/api/chapter/chapter.service';
+import { ChapterRepresentation } from '../../services/api/models/chapter-representation';
+import { PayloadSerialization } from '../../services/api/models/payload-serialization';
+import { NavigationService } from '../../services/navigation/navigation.service';
+import { ContentService } from '../../services/api/content/content.service';
+import { SummaryService } from '../../services/api/summary/summary.service';
+import { ChapterService } from '../../services/api/chapter/chapter.service';
 
 @Component({
   selector: 'app-course-details',

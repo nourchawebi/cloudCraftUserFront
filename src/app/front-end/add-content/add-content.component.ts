@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ContentCategory } from '../services/api/models/enums/content-category';
-import { ChapterService } from '../services/api/chapter/chapter.service';
+import { ContentCategory } from '../../services/api/models/enums/content-category';
+import { ChapterService } from '../../services/api/chapter/chapter.service';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-content',

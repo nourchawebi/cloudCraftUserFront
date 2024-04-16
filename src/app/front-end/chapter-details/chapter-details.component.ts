@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ChapterRepresentation } from '../services/api/models/chapter-representation';
+import { ChapterRepresentation } from '../../services/api/models/chapter-representation';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChapterService } from '../services/api/chapter/chapter.service';
-import { PayloadSerialization } from '../services/api/models/payload-serialization';
-import { ContentService } from '../services/api/content/content.service';
-import { SummaryService } from '../services/api/summary/summary.service';
-import { NavigationService } from '../services/navigation/navigation.service';
+import { ChapterService } from '../../services/api/chapter/chapter.service';
+import { PayloadSerialization } from '../../services/api/models/payload-serialization';
+import { ContentService } from '../../services/api/content/content.service';
+import { SummaryService } from '../../services/api/summary/summary.service';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 @Component({
   selector: 'app-chapter-details',
@@ -55,20 +55,18 @@ export class ChapterDetailsComponent implements OnInit{
       });
 }
 
-deleteSummary(summaryId: number) {
+
+deleteSummary(summaryId:number)
+{ 
   const result = window.confirm('Are you sure you want to delete this entity?');
-  if (!result) return;
-  
-  this.summaryService.deleteSummaryFromChapter(summaryId, this.chapterId).subscribe(
-    (response) => {
-      if (response) {
-        this.chapter.summaries = this.chapter.summaries.filter(summary => summary.id !== summaryId);
-      }
-    },
-    (error) => {
-      this.error = error?.error?.message || "Something went wrong :(";
-    }
-  );
+  if(!result) return;
+  this.summaryService.deleteSummaryFromChapter(summaryId,this.chapterId).subscribe( {next:result=>{
+    if(result) this.chapter.summaries = this.chapter.summaries.filter(summary => summary.id !== summaryId);
+  },
+  error:err=>{
+    this.error=err?.error?.message||"Something went Wrong :(";;
+  }
+})
 }
 
 

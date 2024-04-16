@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CourseService } from '../services/api/courses/course.service';
-import { ChapterRequestRepresentation } from '../services/api/models/chapter-request-representation';
+import { CourseService } from '../../services/api/courses/course.service';
+import { ChapterRequestRepresentation } from '../../services/api/models/chapter-request-representation';
 
 @Component({
   selector: 'app-add-chapter',

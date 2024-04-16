@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { SummaryRepresentation } from '../services/api/models/summary-representation';
-import { SummaryService } from '../services/api/summary/summary.service';
+import { SummaryRepresentation } from '../../services/api/models/summary-representation';
+import { SummaryService } from '../../services/api/summary/summary.service';
 import { ActivatedRoute } from '@angular/router';
-import { PayloadSerialization } from '../services/api/models/payload-serialization';
-import { NavigationService } from '../services/navigation/navigation.service';
+import { PayloadSerialization } from '../../services/api/models/payload-serialization';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 @Component({
   selector: 'app-summary-details',

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { ChapterService } from '../services/api/chapter/chapter.service';
+import { ChapterService } from '../../services/api/chapter/chapter.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CourseService } from '../services/api/courses/course.service';
+import { CourseService } from '../../services/api/courses/course.service';
 
 @Component({
   selector: 'app-add-summary',

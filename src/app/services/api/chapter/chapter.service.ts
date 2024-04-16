@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ChapterDetailsComponent } from 'src/app/chapter-details/chapter-details.component';
+import { ChapterDetailsComponent } from 'src/app/front-end/chapter-details/chapter-details.component';
 import { ChapterRepresentation } from '../models/chapter-representation';
 import { ApiConstants } from '../apiConstants';
 

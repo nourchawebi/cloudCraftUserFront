@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseService } from '../services/api/courses/course.service';
+import { CourseService } from '../../services/api/courses/course.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CourseRepresentation } from '../services/api/models/course-representation';
+import { CourseRepresentation } from '../../services/api/models/course-representation';
 import { Router } from '@angular/router';
-import { PayloadSerialization } from '../services/api/models/payload-serialization';
+import { PayloadSerialization } from '../../services/api/models/payload-serialization';
 
 @Component({
   selector: 'app-courses-list',

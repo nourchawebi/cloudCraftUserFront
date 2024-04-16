@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, MinLengthValidator, Validators } from '@angular/forms';
-import { CourseService } from '../services/api/courses/course.service';
+import { CourseService } from '../../services/api/courses/course.service';
 import { Router } from '@angular/router';
 
 @Component({

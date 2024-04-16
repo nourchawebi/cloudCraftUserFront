@@ -4,11 +4,14 @@
             <app-error [errorMessage]="error"></app-error>
             <div class="row" *ngIf="chapter">
                 <div class="col">
-                    <div class="blog-content blog-read mb-3 text-end">
+                    <div class="blog-content blog-read mb-3 d-flex justify-content-between px-3">
 
                         <a href="javascript:void(0)" (click)="navigateToCourse()"
+                            class="read-more btn btn-primary">Update Chapter</a>
+                            <a href="javascript:void(0)" (click)="navigateToCourse()"
                             class="read-more btn btn-primary">Back to Course</a>
                     </div>
+
                     <div class="card overview-sec">
                         <div class="card-body">
                             <h5 class="subs-title">{{chapter.title}}</h5>
