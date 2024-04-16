@@ -4,4 +4,5 @@ export interface Car {
   model : String
   year: String
   capacity: Number
+  registrationNumber:String
 }

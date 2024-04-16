@@ -3,6 +3,8 @@ import * as mapboxgl from "mapbox-gl";
 import {DataService} from "../services/data.service";
 import * as MapboxDraw from "@mapbox/mapbox-gl-draw";
 import {waitForAsync} from "@angular/core/testing";
+import {Location} from "@angular/common";
+import {LocationService} from "../services/location.service";
 
 @Component({
   selector: 'app-location',
@@ -27,7 +29,7 @@ export class LocationComponent implements OnInit{
     nameLocation : ""
   }
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, protected locationService: LocationService) {
       this.draw = new MapboxDraw({
         displayControlsDefault: false,
         // Select which mapbox-gl-draw control buttons to add to the map.
@@ -49,10 +51,24 @@ export class LocationComponent implements OnInit{
     this.location.longitude = this.draw.getAll().features[0].geometry.coordinates[0]
     this.dataService.getAddress(this.location.longitude,this.location.latitude).subscribe(value =>
       this.location.nameLocation = value.features[0].place_name)
+    console.log(this.location.longitude,this.location.latitude)
   }
   saveLocation(){
-    this.dataService.saveLocation(this.location)
+    if (this.locationService.choixmenu=="A")
+      this.locationService.createData(this.location).subscribe();
+    else
+      this.locationService.updateData(1,this.location).subscribe();
   }
+
+  getLocation() {
+    this.dataService.getLocation().subscribe(location => {
+      if(location!=null){
+        this.locationService.choixmenu="M"
+      }
+      this.draw.add({ type: 'Point', coordinates: [location.longitude,location.latitude] });
+    });
+  }
+
   ngOnInit(): void {
     this.map = new mapboxgl.Map({
       accessToken: 'pk.eyJ1IjoiYWNocmVmczkiLCJhIjoiY2xrOHZhbHFtMDdpbjNlbzVib3EzNWZ4MSJ9.cS91fXGH_gJUcL_XNx8mxw',
@@ -64,7 +80,7 @@ export class LocationComponent implements OnInit{
     });
     this.map.addControl(this.draw, "top-right");
     //this.map.addImage("", new Image(50, 50),)
-
+    this.getLocation()
   }
 
 }

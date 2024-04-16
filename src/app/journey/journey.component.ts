@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {DataService} from "../services/data.service";
-import {Motorized} from "../motorized";
-import {Car} from "../car";
+import {Motorized} from "../entities/motorized";
+import {Car} from "../entities/car";
 import {Router} from "@angular/router";
 
 @Component({

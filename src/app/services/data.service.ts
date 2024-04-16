@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Motorized} from "../motorized";
-import {Car} from "../car";
+import {Motorized} from "../entities/motorized";
+import {Car} from "../entities/car";
 import {Observable} from "rxjs";
+import {LocationComponent} from "../location/location.component";
+import {Location} from "../entities/location";
 
 
 @Injectable({
@@ -15,6 +17,7 @@ export class DataService {
 
   getMotorized(){
     return this.http.get<[Motorized]>("http://localhost:8081/motorized");
+
   }
 
   getCarsByMotorized() {
@@ -29,7 +32,16 @@ export class DataService {
     this.http.post("http://localhost:8081/location/1",location).subscribe();
   }
 
+
+  getLocation():Observable<Location>{
+    return this.http.get<Location>("http://localhost:8081/location/1");
+  }
+
   addParticipation(idCarpooled:Number,idJourney:Number){
-    this.http.post("http://localhost:8081/participation/"+idCarpooled+"/"+idJourney,null).subscribe();
+    return this.http.post("http://localhost:8081/participation/"+idCarpooled+"/"+idJourney,null);
+  }
+
+  checkParticipation(journeyId: number) {
+    this.http.post(`http://localhost:8081/journey/${journeyId}`,null).subscribe();
   }
 }

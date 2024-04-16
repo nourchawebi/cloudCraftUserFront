@@ -23,7 +23,7 @@
                     <div class="col-md-6 col-item">
                       <div class=" search-group">
                         <i class="feather-search"></i>
-                        <input type="text" class="form-control" placeholder="Search our courses">
+                        <input type="text" class="form-control" placeholder="Search our Journeys">
                       </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-item">
@@ -50,7 +50,7 @@
             <div class="course-box course-design list-course d-flex">
               <div class="product">
                 <div class="product-img">
-                  <a href="course-details.html">
+                  <a (click)="showTraject(journey)">
                     <img src="/assets/img/bg/map.png"/>
                   </a>
                   <div class="price">
@@ -61,7 +61,7 @@
                   <div class="head-course-title">
                     <h3 class="title"><a href="course-details.html">Esprit  on {{journey.day}}</a></h3>
                     <div class="all-btn all-category d-flex align-items-center">
-                      <button (click)="participate(journey.journeyId)" class="btn btn-primary">PARTICIPATE</button>
+                      <button  (click)="participate(journey.journeyId)" class="btn btn-primary">PARTICIPATE</button>
                     </div>
                   </div>
                   <div class="course-info border-bottom-0 pb-0 d-flex align-items-center">
@@ -92,7 +92,7 @@
                       <a href="instructor-profile.html"><img src="assets/img/user/user1.jpg" alt class="img-fluid"></a>
                       <div class="course-name">
                         <h4><a href="instructor-profile.html">Rolands R</a></h4>
-                        <p>motorized</p>
+                        <p>{{ journey.participations.length }}</p>
                       </div>
                     </div>
                     <div class="course-share d-flex align-items-center justify-content-center">
@@ -149,7 +149,7 @@
             <div class="card-body">
               <div class="filter-widget mb-0">
                 <div class="categories-head d-flex align-items-center">
-                  <h4>Course categories</h4>
+                  <h4>Locations</h4>
                   <i class="fas fa-angle-down"></i>
                 </div>
                 <div>
@@ -209,33 +209,17 @@
             <div class="card-body">
               <div class="filter-widget mb-0">
                 <div class="categories-head d-flex align-items-center">
-                  <h4>Instructors</h4>
+                  <h4>Drivers</h4>
                   <i class="fas fa-angle-down"></i>
                 </div>
+                <ng-container *ngFor="let motorize of motorized">
                 <div>
                   <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Keny White (10)
+                    <input type="checkbox" [(ngModel)]="userchecked[0]" name="select_specialist">
+                    <span class="checkmark"></span> {{motorize.userId}} ({{motorize.journeys.length}})
                   </label>
                 </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Hinata Hyuga (5)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> John Doe (3)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check mb-0">
-                    <input type="checkbox" name="select_specialist" checked>
-                    <span class="checkmark"></span> Nicole Brown
-                  </label>
-                </div>
+                </ng-container>
               </div>
             </div>
           </div>
@@ -274,7 +258,7 @@
           <div class="card post-widget ">
             <div class="card-body">
               <div class="latest-head">
-                <h4 class="card-title">Latest Courses</h4>
+                <h4 class="card-title">Latest Journeys</h4>
               </div>
               <ul class="latest-posts">
                 <li>

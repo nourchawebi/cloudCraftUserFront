@@ -1,6 +1,6 @@
 export interface Location {
   locationId:Number
   latitude:Number
-  longtitude:Number
+  longitude:Number
   name:String
 }

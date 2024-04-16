@@ -18,7 +18,7 @@
                 <br/><br/>
                 <div class="input-block mb-0">
                   <label class="add-course-label">Address</label>
-                  <input [(ngModel)]="location.nameLocation" name="name_location" type="text" class="form-control" placeholder="10.00">
+                  <input [(ngModel)]="location.nameLocation" name="name_location" type="text" class="form-control" placeholder="address">
                 </div>
               </div>
             </div>
@@ -26,7 +26,10 @@
         </form></div>
       <div class="widget-btn">
         <a class="btn btn-black" >decline</a>
-        <a class="btn btn-info-light next_btn" (click)="saveLocation()">Save</a>
+        <a class="btn btn-info-light next_btn" *ngIf="locationService.choixmenu=='A'" (click)="saveLocation()">Save</a>
+        <a class="btn btn-info-light next_btn" *ngIf="locationService.choixmenu=='M'" (click)="saveLocation()">Modify</a>
+
+
       </div>
     </div>
   </fieldset></div>

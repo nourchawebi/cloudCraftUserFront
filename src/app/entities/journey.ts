@@ -1,3 +1,4 @@
+import {Participation} from "./participation";
 
 export interface Journey {
   journeyId : number,
@@ -6,4 +7,5 @@ export interface Journey {
   leavingTime: string
   returnTime: string
   availablePlaces: number
+  participations: [Participation]
 }

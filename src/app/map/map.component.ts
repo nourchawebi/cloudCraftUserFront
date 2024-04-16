@@ -3,6 +3,9 @@ import * as mapboxgl from 'mapbox-gl';
 import * as MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { Output, EventEmitter } from '@angular/core';
 import {DataService} from "../services/data.service";
+import {Router} from "@angular/router";
+import {JourneyService} from "../services/journey.service";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-map',
@@ -17,7 +20,7 @@ export class MapComponent implements OnInit {
   lng: number = 10.183798348069377;
   draw: any;
 
-  @Input() state = false;
+  @Input() traject = [];
 
   @Output() newItemEvent = new EventEmitter<any>();
 
@@ -26,8 +29,15 @@ export class MapComponent implements OnInit {
     longitude : 0,
     nameLocation : ""
   }
+  @Input() state!: boolean;
+  fields:any = [];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService,private router:Router,private crudApi:JourneyService, private formBuilder:FormBuilder) {
+
+    for(let i in this.router.getCurrentNavigation()?.extras.state?.['example'].traject){
+      this.fields.push([this.router.getCurrentNavigation()?.extras.state?.['example'].traject[i].latitude,this.router.getCurrentNavigation()?.extras.state?.['example'].traject[i].longitude])
+    }
+
     this.draw = new MapboxDraw({
       displayControlsDefault: false,
       // Select which mapbox-gl-draw control buttons to add to the map.
@@ -54,12 +64,67 @@ export class MapComponent implements OnInit {
       container: 'map',
       style: this.style,
       zoom: 11,
-      center: [this.lng, this.lat]
+      center: [this.lng, this.lat],
     });
 
-    this.map.addControl(this.draw);
-    this.draw.add({ type: 'LineString', coordinates: [[0, 0],[5,5]] });
+    this.dataService.getLocation().subscribe(location => {
+      this.addIcon('https://upload.wikimedia.org/wikipedia/commons/e/e6/Home_icon_black.png',location.longitude,location.latitude,'home')
+      this.addIcon('https://upload.wikimedia.org/wikipedia/commons/f/ff/Logo_ESPRIT_Ariana.jpg',10.189594038169787 ,36.89885213762284,"esprit")
 
+    });
+    this.map.addControl(this.draw);
+    this.map.addLayer({
+      'id': 'points',
+      'type': 'symbol',
+      'source': 'point', // reference the data source
+      'layout': {
+        'icon-image': 'icon', // reference the image
+        'icon-size': 0.25
+      }
+    });
+    this.draw.add({ type: 'LineString', coordinates: this.fields});
   }
+
+
+  addIcon(url:any,longitude:any,latitude:any,nameImg:any){
+    this.map?.loadImage(
+        url,
+        (error, image) => {
+          if (error) throw error;
+
+          // Add the image to the map style.
+          this.map?.addImage(nameImg, image!);
+
+          // Add a data source containing one point feature.
+          this.map?.addSource('point', {
+            'type': 'geojson',
+            'data': {
+              'type': 'FeatureCollection',
+              'features': <any>[
+                {
+                  'type': 'Feature',
+                  'geometry': {
+                    'type': 'MultiPoint',
+                    'coordinates': [[longitude, latitude],[longitude+0.01, latitude+1]]
+                  }
+                }
+              ]
+            }
+          });
+
+          // Add a layer to use the image to represent the data.
+          this.map?.addLayer({
+            'id': 'points',
+            'type': 'symbol',
+            'source': 'point', // reference the data source
+            'layout': {
+              'icon-image': nameImg, // reference the image
+              'icon-size': 0.25
+            }
+          });}
+      );
+  }
+
+
 
 }
