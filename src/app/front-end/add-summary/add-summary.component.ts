@@ -3,6 +3,7 @@ import { ChapterService } from '../../services/api/chapter/chapter.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../services/api/courses/course.service';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-add-summary',
@@ -13,8 +14,8 @@ export class AddSummaryComponent {
   error:string|null=null;
   resource=this.activeRoute.snapshot.params["chapterId"]==null?"courses":"chapters";
   resourceId=this.resource=="chapters"? this.activeRoute.snapshot.params["chapterId"]:this.activeRoute.snapshot.params["courseId"];
-  backrUrl=this.resource=="chapters"?`/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}`:
-  `/courses/${this.activeRoute.snapshot.params["courseId"]}`;
+  backrUrl=this.resource=="chapters"?`/user/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}`:
+  `/user/courses/${this.activeRoute.snapshot.params["courseId"]}`;
   
   addSummaryForm:FormGroup=new FormGroup({
     title:new FormControl("",[Validators.required,Validators.minLength(3)]),
@@ -23,7 +24,7 @@ export class AddSummaryComponent {
   })
   selectedFiles:Array<File>=[];
   
-  constructor(private chapterService:ChapterService,private coursesService:CourseService, private activeRoute:ActivatedRoute,private router:Router){
+  constructor(private chapterService:ChapterService,private coursesService:CourseService, private activeRoute:ActivatedRoute,private navigationService:NavigationService){
 
   }
 
@@ -43,7 +44,7 @@ export class AddSummaryComponent {
   }
   navigateToResource(){
     console.log()
-    this.router.navigate([this.backrUrl])
+    this.navigationService.navigate(this.backrUrl)
   }
   onSubmit(){
     if(this.addSummaryForm.invalid){
@@ -64,7 +65,7 @@ export class AddSummaryComponent {
   this.coursesService.addSummaryToCourse(this.resourceId,formData).subscribe({
     next:result=>{
       console.log(result);
-      this.router.navigate([this.backrUrl])
+      this.navigationService.navigate(this.backrUrl)
     },
     error:err=>this.error=err?.error?.message||"Something went Wrong :("
   })
@@ -72,7 +73,7 @@ export class AddSummaryComponent {
   this.chapterService.addSummaryToChapter(this.resourceId,formData).subscribe({
     next:result=>{
       console.log(result);
-      this.router.navigate([this.backrUrl])
+      this.navigationService.navigate(this.backrUrl)
     },
     error:err=>{this.error=err?.error?.message||"Something went Wrong :(";}
   })

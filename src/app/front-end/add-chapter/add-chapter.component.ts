@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../../services/api/courses/course.service';
 import { ChapterRequestRepresentation } from '../../services/api/models/chapter-request-representation';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-add-chapter',
@@ -18,13 +19,13 @@ export class AddChapterComponent {
 courseId:number=this.route.snapshot.params["courseId"];
 error:string|null=null;
 
-  constructor(private router:Router,private route: ActivatedRoute,private coursesService:CourseService){
+  constructor(private navigationService:NavigationService,private route: ActivatedRoute,private coursesService:CourseService){
 
   }
 
 
   public navigateToCourse(){
-    this.router.navigate([`courses/${this.courseId}`])
+    this.navigationService.navigateToCourseDetails(this.courseId);
   }
   onSubmit() {
     

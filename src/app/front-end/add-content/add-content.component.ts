@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContentCategory } from '../../services/api/models/enums/content-category';
 import { ChapterService } from '../../services/api/chapter/chapter.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 @Component({
   selector: 'app-add-content',
   templateUrl: './add-content.component.html',
@@ -13,7 +14,7 @@ export class AddContentComponent {
   defaultOption=this.categories[0];
   chapterId=this.activeRoute.snapshot.params["chapterId"];
   courseId=this.activeRoute.snapshot.params["courseId"];
-  chapterUrl=`/courses/${this.courseId}/chapters/${this.chapterId}`;
+  chapterUrl=`/user/courses/${this.courseId}/chapters/${this.chapterId}`;
   
   addContentForm:FormGroup=new FormGroup({
     title:new FormControl("",[Validators.required,Validators.minLength(3)]),
@@ -25,7 +26,7 @@ export class AddContentComponent {
   error:string|null=null;
  
  
-  constructor(private chapterService:ChapterService,private activeRoute:ActivatedRoute,private router:Router){
+  constructor(private chapterService:ChapterService,private activeRoute:ActivatedRoute,private navigationService:NavigationService){
 
   }
 
@@ -44,7 +45,7 @@ export class AddContentComponent {
     }
   }
   navigateToChapter(){
-    this.router.navigate([this.chapterUrl])
+    this.navigationService.navigate(this.chapterUrl)
   }
   onSubmit(){
 
@@ -69,7 +70,7 @@ export class AddContentComponent {
     this.chapterService.addContentToChapter(this.chapterId,formData).subscribe({
       next:result=>{
         console.log(result);
-        this.router.navigate([this.chapterUrl])
+        this.navigationService.navigate(this.chapterUrl)
       },
       error:err=>{this.error=err?.error?.message||"Something went Wrong :("}
     })

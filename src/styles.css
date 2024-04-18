@@ -13,3 +13,24 @@ color: red;
 font-weight: bold;
 /* display: block; */
 }
+
+.back-link{
+    cursor: pointer
+    ;
+}
+
+.back-link:hover{
+    color:#696cff;
+}
+
+.badge-special{
+    border: gray solid 1px ; 
+    padding: 3px 4px;
+    border-radius: 5px;
+}
+
+.badge-special:hover{
+background-color:#ff3e1d ;
+color: #fff !important;
+}
+

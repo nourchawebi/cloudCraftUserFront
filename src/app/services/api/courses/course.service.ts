@@ -43,4 +43,9 @@ addSummaryToCourse(courseId:number,summaryData:FormData):Observable<any>{
   return this.http.post<any>(addSummaryUrl,summaryData);
 }
 
+deleteCourse(courseId:number){
+  let deleteCourseUrl:string=`${ApiConstants.BASE_URL}/courses/${courseId}`
+  return this.http.delete<any>( deleteCourseUrl);
+}
+
 }

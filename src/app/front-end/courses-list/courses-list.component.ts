@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CourseRepresentation } from '../../services/api/models/course-representation';
 import { Router } from '@angular/router';
 import { PayloadSerialization } from '../../services/api/models/payload-serialization';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-courses-list',
@@ -14,7 +15,7 @@ export class CoursesListComponent implements OnInit{
 
   courses:Array<CourseRepresentation>=[];
   error:string|null=null;
-  constructor(private coursesService:CourseService,private router:Router ){
+  constructor(private coursesService:CourseService,private navigationService:NavigationService ){
 
   }
 
@@ -39,10 +40,10 @@ export class CoursesListComponent implements OnInit{
   }
   navigateToCourseDetails(courseId:number|undefined){
     console.log(courseId);
-      this.router.navigate([`courses/${courseId}`])
+      this.navigationService.navigateToCourseDetails(courseId);
   }
   navigateToAddCourse(){
-    this.router.navigate([`courses/add`])
+    this.navigationService.navigateToCoursesList();
   }
 
 
