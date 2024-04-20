@@ -31,6 +31,7 @@ import {SidebarBackComponent} from "./BackOffice/sidebar-back/sidebar-back.compo
 import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.component";
 import {HeaderFrontComponent} from "./FrontOffice/header-front/header-front.component";
 import {AllTemplateFrontComponent} from "./FrontOffice/all-template-front/all-template-front.component";
+import { LockusersComponent } from './BackOffice/user/lockusers/lockusers.component';
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
@@ -53,7 +54,8 @@ const Validators = () => {
     SidebarBackComponent,
     AllTemplateFrontComponent,
     FooterFrontComponent,
-    HeaderFrontComponent
+    HeaderFrontComponent,
+    LockusersComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import {HomeComponent} from "./FrontOffice/pages/home/home.component";
 import {EditProfilePageComponent} from "./FrontOffice/pages/edit-profile-page/edit-profile-page.component";
 import {ForgotPasswordComponent} from "./FrontOffice/pages/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./FrontOffice/pages/reset-password/reset-password.component";
+import {LockusersComponent} from "./BackOffice/user/lockusers/lockusers.component";
 
 
 const routes: Routes = [
@@ -43,11 +44,26 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AllTemplateBackComponent
+    component: AllTemplateBackComponent,
+    children:[
+      {
+        path:'lockuser',
+        component:LockusersComponent,
+        canActivate:[authGuard]
+      } ]
+
+
   },
   {
     path: 'user',
-    component: AllTemplateFrontComponent
+    component: AllTemplateFrontComponent,
+    children:[
+      {
+        path:'profile',
+        component:EditProfilePageComponent,
+        canActivate:[authGuard]
+      }
+    ]
 
   }
 

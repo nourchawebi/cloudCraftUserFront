@@ -102,19 +102,14 @@
                     <div class="input-block">
                       <mat-form-field class="custom-input-width">
                         <mat-label>class year</mat-label>
-                        <mat-select formControlName="classType" id="classtype"
-                                    [errorStateMatcher]="matcher"
-                                     placeholder="Select your class type">
-                          <mat-option value="FIRSTYEAR">First Year</mat-option>
-                          <mat-option value="SECONDYEAR">Second Year</mat-option>
-                          <mat-option value="THIRDYEAR">Third Year</mat-option>
+                        <mat-select formControlName="classType" id="classtype" [errorStateMatcher]="matcher" placeholder="Select your class type">
+                          <option disabled>Select class year</option>
+                          <mat-option *ngFor="let type of classeType" [value]="type">{{ type }}</mat-option>
                         </mat-select>
-                        <mat-error *ngIf="stepOneForm.controls['classType'].hasError('required')">
-                          class year <strong>required</strong>
-                        </mat-error>
-
+                        <mat-error *ngIf="stepOneForm.controls['classType'].hasError('required')">class year <strong>required</strong></mat-error>
                       </mat-form-field>
                     </div>
+
 
                     <div class="input-block">
                       <mat-form-field class="custom-input-width">

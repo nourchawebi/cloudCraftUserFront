@@ -26,8 +26,7 @@
 <body>
 
 <div class="main-wrapper">
-  <div class="component-space">
-  <app-header-front ></app-header-front></div>
+
 
 
 
@@ -36,28 +35,51 @@
 
 
   <div class="page-content">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-xl-3 col-lg-4 col-md-12 theiaStickySidebar">
-          <div class="settings-widget dash-profile">
-            <div class="settings-menu p-0">
-              <div class="profile-bg">
-
-                <img src="assets/img/instructor-profile-bg.jpg" alt>
-                <div class="profile-img">
-                  <img src="assets/FrontOffice/img/user/user11.jpg" alt>
-                </div>
-              </div>
-              <div class="profile-group">
-                <div class="profile-name text-center">
-                  <h4><a href="instructor-profile.html">{{loggedUser.firstName}}   {{loggedUser.lastName}}</a></h4>
-                  <p>{{loggedUser.classeType}}</p>
-                </div>
-
-              </div>
+    <div class="page-banner student-bg-blk" style="margin-bottom: 40px;margin-top: -30px">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-12  ">
+            <div class="profile-info-blk  ">
+              <a href="javascript:void(0);" class="profile-info-img">
+                <img src="assets/FrontOffice/img/user/nour.jpg"  alt="Profile Avatar" class="img-fluid" style="height: 90px;width:150px">
+              </a>
+              <h4><a href="javascript:void(0);">{{loggedUser.firstName}} </a></h4>
+              <h4><span>{{loggedUser.classeType}}</span></h4>
+              <ul class="list-unstyled inline-inline profile-info-social">
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);">
+                    <i class="fa-brands fa-facebook"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);">
+                    <i class="fa-brands fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);">
+                    <i class="fa-brands fa-instagram"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="javascript:void(0);">
+                    <i class="fa-brands fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+
+      <div class="row">
+
+
+        <div class="col-xl-3 col-lg-4 col-md-12 theiaStickySidebar">
+
+
           <div class="settings-widget account-settings">
             <div class="settings-menu">
 
@@ -78,34 +100,10 @@
                 </li>
                 <li class="nav-item">
                   <a (click)="activateEmail()" class="nav-link">
-                    <i class="feather-refresh-cw"></i>Email Profile
+                    <i class="feather-refresh-cw"></i> Edit Email
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="instructor-notification.html" class="nav-link">
-                    <i class="feather-bell"></i> Notifications
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="instructor-profile-privacy.html" class="nav-link">
-                    <i class="feather-lock"></i> Profile Privacy
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="instructor-delete-profile.html" class="nav-link">
-                    <i class="feather-trash-2"></i> Delete Profile
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="instructor-linked-account.html" class="nav-link">
-                    <i class="feather-user"></i> Linked Accounts
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="index.html" class="nav-link">
-                    <i class="feather-power"></i> Sign Out
-                  </a>
-                </li>
+
               </ul>
             </div>
           </div>
@@ -113,8 +111,9 @@
 
 
 
-
         <div class="col-xl-9 col-md-8"   *ngIf="personalInfos">
+
+
           <div class="settings-widget profile-details">
             <div class="settings-menu p-0">
               <div class="profile-heading">
@@ -156,12 +155,11 @@
                       <div
                         *ngIf="personaldata.controls['firstName'].invalid && (personaldata.controls['firstName'].dirty || personaldata.controls['firstName'].touched)"
                       >
-                        <div *ngIf="personaldata.controls['firstName'].errors?.['required']">
-                          Name is required.
-                        </div>
-                        <div *ngIf="personaldata.controls['firstName'].errors?.['min']">
-                          Name must be at least 5 characters long.
-                        </div>
+                        <mat-error *ngIf="personaldata.controls['firstName'].errors?.['required']">first name <strong>required</strong></mat-error>
+
+                        <mat-error  *ngIf="personaldata.controls['firstName'].errors?.['min']">
+                          Name must be at least 5 characters long
+                        </mat-error>
                       </div>
                     </div>
                     <div class="col-lg-6">
@@ -175,6 +173,13 @@
 
                         >
                       </div>
+                      <div
+                        *ngIf="personaldata.controls['lastName'].invalid && (personaldata.controls['lastName'].dirty || personaldata.controls['lastName'].touched)"
+                      >
+                        <mat-error *ngIf="personaldata.controls['lastName'].errors?.['required']">first name <strong>required</strong></mat-error>
+
+
+                      </div>
                     </div>
 
                     <div class="col-lg-6">
@@ -187,6 +192,11 @@
                     </div>
 
 
+
+
+
+
+
                     <div class="col-lg-6">
                       <div class="input-block">
                         <label class="form-label">classe year</label>
@@ -194,9 +204,7 @@
                                 formControlName="classType"
                         >
                           <option disabled>Select class year</option>
-                          <option value="FIRSTYEAR">First Year</option>
-                          <option value="SECONDYEAR">Second Year</option>
-                          <option value="THIRDYEAR">Third Year</option>
+                          <option *ngFor="let type of classeType" [value]="type">{{ type }}</option>
                         </select>
                       </div>
                     </div>
@@ -205,8 +213,14 @@
 
                     <div class="update-profile">
                       <button type="button" class="btn btn-primary" (click)="toggleEditMode()">{{ editMode ? 'Cancel' : 'Edit' }}</button>
-                      <button type="button" class="btn btn-primary" (click)="updateProfile()" *ngIf="editMode">Save Changes</button>
+                      <button type="button" class="btn btn-primary" (click)="changeInfos()" *ngIf="editMode" [disabled]="!personaldata.valid">Save Changes</button>
                     </div>
+                  </div>
+                  <div class="alert alert-primary" role="alert" *ngIf="message">
+                    <div class="success-message">{{ message }}</div>
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="error">
+                    <div class="error-message">{{ error }}</div>
                   </div>
                 </form>
               </div>
@@ -244,20 +258,20 @@
                         <input type="password" class="form-control pass-input"
                                placeholder="Enter your password" formControlName="newPassword">
                       </div>
-                      <div class="password-strength" id="passwordStrength">
-                        <span id="poor"></span>
-                        <span id="weak"></span>
-                        <span id="strong"></span>
-                        <span id="heavy"></span>
-                      </div>
-                      <div id="passwordInfo"></div>
+
                     </div>
                     <div class="input-block">
                       <label class="form-control-label">Confirm New Password</label>
-                      <input type="password" class="form-control" formControlName="confirmPassword">
+                      <input type="password" class="form-control" formControlName="confirmationPassword">
                     </div>
                     <div class="update-profile save-password">
                       <button type="button" class="btn btn-primary" (click)="changePassword()">Save Password</button>
+                    </div>
+                    <div class="alert alert-primary" role="alert" *ngIf="message">
+                      <div class="success-message">{{ message }}</div>
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="error">
+                      <div class="error-message">{{ error }}</div>
                     </div>
                   </form>
                 </div>
@@ -298,11 +312,25 @@
                         </div>
                         <div class="input-block">
                           <label class="form-control-label">New email address</label>
-                          <input type="text" class="form-control" placeholder="Enter your New email address" >
+                          <input type="text" class="form-control" placeholder="Enter your New email address"
+                                 formControlName="newEmail"
+                          >
                         </div>
                       </div>
-                      <div class="profile-share d-flex ">
-                        <button type="button" class="btn btn-success">Update</button>
+                      <div class="update-profile save-password">
+                        <button type="button" class="btn btn-primary" (click)="changeEmail()">Save </button>
+                      </div>
+                      <div class="alert alert-primary" role="alert" *ngIf="message">
+
+                        <div class="input-block" *ngIf="message!='ur email is updated  u have to sign in again !' && error==''">
+
+                        <mat-progress-spinner diameter="32" mode="indeterminate"></mat-progress-spinner>
+                        </div>
+
+                        <div class="success-message">{{ message }}</div>
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf="error">
+                        <div class="error-message">{{ error }}</div>
                       </div>
                     </div>
                   </div>
@@ -331,18 +359,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  <app-footer-front class="component-space"></app-footer-front>
 
 </div>
 

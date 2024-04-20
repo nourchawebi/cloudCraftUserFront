@@ -13727,7 +13727,7 @@ input[type=password]::-ms-clear
 .page-banner.student-bg-blk {
     padding: 14px 0;
     text-align: center;
-    background: url(../img/students/student-bg-banner.png) #FFB54A;
+    background: url(../img/students/student-bg-banner.png) royalblue;
     background-repeat: no-repeat;
     background-size: cover;
 }

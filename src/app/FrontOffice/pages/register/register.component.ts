@@ -53,9 +53,19 @@ export class RegisterComponent implements OnInit{
       mfaEnabled: [false]
     });
   }
+  classeType: string[] = [];
 
+  getClasseType()
+  {
+    this.authService.getClasseType().subscribe(
+      {
+        next:(response)=>{
+          this.classeType=response;
+  }}
+    )
+  }
   ngOnInit(): void {
-
+    this.getClasseType();
 
   }
   registerUser()

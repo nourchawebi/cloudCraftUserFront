@@ -8,6 +8,10 @@ import {AuthenticationRequest} from "../../models/authentication-request";
 import {ResetPasswordRequest} from "../../models/reset-password-request";
 import {ChangePasswordRequest} from "../../models/change-password-request";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ChangeEmailRequest} from "../../models/change-email-request";
+import {ChangeInfosRequest} from "../../models/change-infos-request";
+import {formatDate} from "@angular/common";
+
 
 @Component({
   selector: 'app-edit-profile-page',
@@ -22,6 +26,7 @@ export class EditProfilePageComponent  implements OnInit  {
               private  authService:AuthenticationService,private formBuilder: FormBuilder
 
   ) {
+    this.changePasswordRequest = {};
     this.personaldata= this.formBuilder.group({
       firstName: ['', [Validators.required,  Validators.min(5),
         Validators.max(12),]],
@@ -30,9 +35,11 @@ export class EditProfilePageComponent  implements OnInit  {
       classType: [{ value: this.loggedUser.classeType, disabled: !this.editMode }, Validators.required],
 
       birthDate: [{ value: this.loggedUser.birthDate, disabled: !this.editMode },, Validators.required],
+
     });
     this.emailForm= this.formBuilder.group({
-      email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]]
+      email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]],
+      newEmail: ['', [Validators.required, Validators.email]]
 
     });
 
@@ -41,11 +48,14 @@ export class EditProfilePageComponent  implements OnInit  {
       {
         currentPassword:['',Validators.required],
         newPassword:['',Validators.required],
-        confirmPassword:['',Validators.required],
+        confirmationPassword:['',Validators.required],
 
       })
   }
+
   changePasswordRequest: ChangePasswordRequest= {};
+  changeEmailRequest: ChangeEmailRequest= {};
+  changeInfosRequest: ChangeInfosRequest= {};
   editMode:boolean = false;
 personaldata: FormGroup;
   emailForm: FormGroup;
@@ -77,8 +87,23 @@ public fullName:string='';
    this.securityPassword=false;
    this.email=true;
 }
-
+  classeType: string[] = [];
+  getClasseType()
+  {
+    this.authService.getClasseType().subscribe(
+      {
+        next:(response)=>{
+          this.classeType=response;
+        }}
+    )
+  }
+  parseDate(dateString: string): Date {
+    const parts = dateString.split('/');
+    return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
+  }
   ngOnInit() {
+    this. getClasseType();
+
 
 this.userStore.getUser()
   .subscribe(
@@ -86,25 +111,34 @@ this.userStore.getUser()
       const user = this.authService.getLogedUser()
       this.loggedUser = val || user  as TokenInfos
       console.log(this.loggedUser.birthDate)
+
+      const birthDateValue = this.loggedUser.birthDate
+        ? this.parseDate(this.loggedUser.birthDate)
+        : new Date();
       this.personaldata= this.formBuilder.group({
         firstName: [{ value: this.loggedUser.firstName, disabled: !this.editMode }, [Validators.required,  Validators.min(5),
           Validators.max(12),]],
         lastName:  [{ value: this.loggedUser.lastName, disabled: !this.editMode }, Validators.required],
 
         classType: [{ value: this.loggedUser.classeType, disabled: !this.editMode }, Validators.required],
+        birthDate: [
+          { value: formatDate(birthDateValue, 'yyyy-MM-dd', 'en'),
+          disabled: !this.editMode},  Validators.required
+        ],
 
-        birthDate: [{ value: this.loggedUser.birthDate, disabled: !this.editMode }, Validators.required],
+
 
       });
       this.emailForm= this.formBuilder.group({
-        email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]]
+        email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]],
+        newEmail: ['', [Validators.required, Validators.email]]
 
       });
  this.passwordForm=this.formBuilder.group(
    {
      currentPassword:['',Validators.required],
      newPassword:['',Validators.required],
-     confirmPassword:['',Validators.required],
+     confirmationPassword:['',Validators.required],
 
    }
  )
@@ -136,18 +170,88 @@ this.userStore.getUser()
   changePassword()
   { this.changePasswordRequest.currentPassword=this.passwordForm.get('currentPassword')?.value;
     this.changePasswordRequest.newPassword=this.passwordForm.get('newPassword')?.value;
-    this.changePasswordRequest.confirmPassword=this.passwordForm.get('confirmPassword')?.value;
+    this.changePasswordRequest.confirmationPassword=this.passwordForm.get('confirmationPassword')?.value;
+    this.changePasswordRequest.email=this.loggedUser.email;
+    console.log(this.changePasswordRequest.currentPassword);
+    console.log(this.changePasswordRequest.newPassword);
+    console.log(this.changePasswordRequest.confirmationPassword);
+    console.log(this.changePasswordRequest.email);
+
     this.userProfileService.changePassword(this.changePasswordRequest).subscribe(
       {
         next:(response)=>{
-          this.message="password changed successfully"
+          this.message="password changed successfully";
+          this.error=""
         },
         error:(error)=>{
-          this.error=error.error;
+          this.error=error.error.detail;
+          this.message="";
 
         }
 
-  }
+      }
+    )
+  };
+
+ changeEmail()
+ { this.changeEmailRequest.currentEmail=this.emailForm.get('email')?.value;
+   this.changeEmailRequest.newEmail=this.emailForm.get("newEmail")?.value;
+   this.changeEmailRequest.confirmationEmail=this.emailForm.get("newEmail")?.value;
+   this.error="";
+   this.message="plase wait we are sending an email"
+   this.userProfileService.changeEmail(this.changeEmailRequest).subscribe(
+     {
+       next:(response)=>{
+         this.error="";
+
+         this.message="ur email is updated  u have to sign in again !"
+
+
+         if(this.changeEmailRequest.newEmail!=null)
+         {
+
+         this.authService.signOut();}
+         else {
+           this.message="problem";
+         }
+       },
+       error:(error)=>{
+         this.error=error.error;
+         this.message="";
+
+       }
+
+     }
+   )
+ };
+
+  changeInfos()
+  {
+    this.changeInfosRequest.firstName=this.personaldata.get("firstName")?.value;
+    this.changeInfosRequest.lastName=this.personaldata.get("lastName")?.value;
+    this.changeInfosRequest.birthDate=this.personaldata.get("birthDate")?.value;
+    this.changeInfosRequest.classType=this.personaldata.get("classType")?.value;
+    this.userProfileService.changeinfos(this.changeInfosRequest).subscribe(
+      {
+        next:(response)=>{
+          this.error="";
+
+          this.message="personal infos changed success !"
+          localStorage.setItem('token',response.accessToken as string);
+          const tokenPayload = this.authService.decodedToken();
+          this.userStore.setFirstNameForStore(tokenPayload.name);
+          this.userStore.setRoleForStore(tokenPayload.role);
+          this.userStore.setUser(tokenPayload);
+          this.userStore.setEmailForStore(tokenPayload.email);
+          this.editMode = false;
+        },
+        error:(error)=>{
+          this.error=error.error;
+          this.message="";
+
+        }
+
+      }
     )
   };
   toggleEditMode(): void {
@@ -214,10 +318,11 @@ this.userStore.getUser()
     }
   }
 
-  updateProfile(): void {
+  enableupdateProfile(): void {
     // Logic to save changes to the model (loggedUser) goes here
     console.log('Profile updated:', this.loggedUser);
     this.editMode = false; // Disable edit mode after saving changes
   }
+
 
 }
