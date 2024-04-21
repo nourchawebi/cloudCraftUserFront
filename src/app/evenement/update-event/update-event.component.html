@@ -1,0 +1,37 @@
+<!-- update-event.component.html -->
+<div class="container mt-5">
+  <h2>Mettre à jour un événement</h2>
+  <form [formGroup]="updateForm" (ngSubmit)="updateEvent()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" formControlName="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="dateBegin" class="form-label">Date de début</label>
+      <input type="date" class="form-control" id="dateBegin" formControlName="dateBegin" required>
+    </div>
+    <div class="mb-3">
+      <label for="dateEnd" class="form-label">Date de fin</label>
+      <input type="date" class="form-control" id="dateEnd" formControlName="dateEnd" required>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Lieu</label>
+      <input type="text" class="form-control" id="location" formControlName="location" required>
+    </div>
+    <div class="mb-3">
+      <label for="details" class="form-label">Détails</label>
+      <textarea class="form-control" id="details" formControlName="details" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" formControlName="description" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="capacity" class="form-label">Capacité</label>
+      <input type="number" class="form-control" id="capacity" formControlName="capacity" required>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </div>
+  </form>
+</div>

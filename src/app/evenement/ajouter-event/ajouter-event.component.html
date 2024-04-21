@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h2>Créer un événement</h2>
+  <form (ngSubmit)="createEvent()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Titre</label>
+      <input type="text" class="form-control" id="title" [(ngModel)]="newEvent.title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="dateBegin" class="form-label">Date de début</label>
+      <input type="date" class="form-control" id="dateBegin" [(ngModel)]="newEvent.dateBegin" name="dateBegin" required>
+    </div>
+    <div class="mb-3">
+      <label for="dateEnd" class="form-label">Date de fin</label>
+      <input type="date" class="form-control" id="dateEnd" [(ngModel)]="newEvent.dateEnd" name="dateEnd" required>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Lieu</label>
+      <input type="text" class="form-control" id="location" [(ngModel)]="newEvent.location" name="location" required>
+    </div>
+    <div class="mb-3">
+      <label for="details" class="form-label">Détails</label>
+      <textarea class="form-control" id="details" [(ngModel)]="newEvent.details" name="details" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" [(ngModel)]="newEvent.description" name="description" required></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="capacity" class="form-label">Capacité</label>
+      <input type="number" class="form-control" id="capacity" [(ngModel)]="newEvent.capacity" name="capacity" required>
+    </div>
+    <div class="mb-3">
+      <button type="submit" class="btn btn-success btn-space">Create</button>
+      <button type="button" class="btn btn-secondary" routerLink="/Home">Retour</button>
+
+
+    </div>
+
+  </form>
+</div>
+
