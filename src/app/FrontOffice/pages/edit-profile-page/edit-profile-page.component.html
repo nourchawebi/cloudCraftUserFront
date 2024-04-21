@@ -29,7 +29,14 @@
 
 
 
+<div *ngIf="emailVerif==false&& loggedUser.birthDate==undefined">
+  <div class="alert alert-warning" role="alert">
+    <h5 class="alert-heading">Warning!</h5>
+    <p>Complete your registration</p>
+    <hr>
 
+  </div>
+</div>
 
 
 
@@ -87,24 +94,28 @@
               <div class="instructor-title">
                 <h3>ACCOUNT SETTINGS</h3>
               </div>
-              <ul>
-                <li class="nav-item active">
-                  <a (click)="activatePersonalInfos()" class="nav-link ">
-                    <i class="feather-settings"></i> Edit Profile
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="acrivateSecurityPassword()" class="nav-link">
-                    <i class="feather-user"></i> Security:password
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a (click)="activateEmail()" class="nav-link">
-                    <i class="feather-refresh-cw"></i> Edit Email
-                  </a>
-                </li>
-
-              </ul>
+              <div class="settings-menu">
+                <div class="instructor-title">
+                  <h3>ACCOUNT SETTINGS</h3>
+                </div>
+                <ul>
+                  <li [class.active]="activeTab === 'personalInfos'" class="nav-item">
+                    <a (click)="activateTab('personalInfos')" class="nav-link">
+                      <i class="feather-settings"></i> Edit Profile
+                    </a>
+                  </li>
+                  <li [class.active]="activeTab === 'securityPassword'" class="nav-item">
+                    <a (click)="activateTab('securityPassword')" class="nav-link">
+                      <i class="feather-user"></i> Security:password
+                    </a>
+                  </li>
+                  <li   *ngIf="emailVerif" [class.active]="activeTab === 'editEmail'" class="nav-item">
+                    <a (click)="activateTab('editEmail')" class="nav-link">
+                      <i class="feather-refresh-cw"></i> Edit Email
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

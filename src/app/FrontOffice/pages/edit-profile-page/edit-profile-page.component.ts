@@ -19,7 +19,21 @@ import {formatDate} from "@angular/common";
   styleUrls: ['./edit-profile-page.component.css']
 })
 export class EditProfilePageComponent  implements OnInit  {
-  defaultDate: string = '01-01-2024';
+  activeTab: string = 'personalInfos';
+  emailVerif: boolean = true; // Default value assuming email is valid
+
+  checkEmailValidity(): void {
+    if(this.loggedUser.email)
+    {
+    if (!this.loggedUser.email.includes('.') && !this.loggedUser.email.includes('@')) {
+      this.emailVerif = false;
+    } else {
+      this.emailVerif = true;
+    }}
+  }
+  activateTab(tab: string) {
+    this.activeTab = tab;
+  }
   constructor(private userProfileService: UserprofileService,
               private router:Router,
               private userStore:UserstoreService,
@@ -161,6 +175,8 @@ this.userStore.getUser()
         const roleFromToken = this.authService.getRoleFromToken();
         this.role = val || roleFromToken;
       })
+
+    this.checkEmailValidity();
   }
 
   logout(){

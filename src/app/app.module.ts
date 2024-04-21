@@ -32,6 +32,9 @@ import {FooterFrontComponent} from "./FrontOffice/footer-front/footer-front.comp
 import {HeaderFrontComponent} from "./FrontOffice/header-front/header-front.component";
 import {AllTemplateFrontComponent} from "./FrontOffice/all-template-front/all-template-front.component";
 import { LockusersComponent } from './BackOffice/user/lockusers/lockusers.component';
+import { TestComponent } from './test/test/test.component';
+import { RegisterSimpleComponent } from './FrontOffice/pages/register-simple/register-simple.component';
+import { RegisterimgComponent } from './FrontOffice/pages/registerimg/registerimg.component';
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
@@ -55,7 +58,10 @@ const Validators = () => {
     AllTemplateFrontComponent,
     FooterFrontComponent,
     HeaderFrontComponent,
-    LockusersComponent
+    LockusersComponent,
+    TestComponent,
+    RegisterSimpleComponent,
+    RegisterimgComponent
   ],
   imports: [
     BrowserModule,

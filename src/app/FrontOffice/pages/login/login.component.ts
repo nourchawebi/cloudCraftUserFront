@@ -29,7 +29,7 @@ export class LoginComponent {
               private formBuilder: FormBuilder
   ) {
     this.authForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       password:['', Validators.required]
     });
     this. resetPasswordForm = this.formBuilder.group({

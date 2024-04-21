@@ -12,6 +12,9 @@ import {EditProfilePageComponent} from "./FrontOffice/pages/edit-profile-page/ed
 import {ForgotPasswordComponent} from "./FrontOffice/pages/forgot-password/forgot-password.component";
 import {ResetPasswordComponent} from "./FrontOffice/pages/reset-password/reset-password.component";
 import {LockusersComponent} from "./BackOffice/user/lockusers/lockusers.component";
+import {TestComponent} from "./test/test/test.component";
+import {RegisterSimpleComponent} from "./FrontOffice/pages/register-simple/register-simple.component";
+import {RegisterimgComponent} from "./FrontOffice/pages/registerimg/registerimg.component";
 
 
 const routes: Routes = [
@@ -20,6 +23,10 @@ const routes: Routes = [
   component : LoginComponent},
   { path:'register',
     component : RegisterComponent},
+  { path:'registersimple',
+    component : RegisterSimpleComponent},
+  { path:'registerimg',
+    component : RegisterimgComponent},
   { path:'welcome',
     component : WelcomeComponent,
     canActivate:[authGuard]
@@ -27,6 +34,10 @@ const routes: Routes = [
   {
     path:'home',
     component:HomeComponent
+  },
+  {
+    path:'test',
+    component:TestComponent
   },
   {
     path:'profile',

@@ -1,20 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterRequest} from "../../models/register-request";
 import {AuthenticationResponse} from "../../models/authentication-response";
+import {MyErrorStateMatcher} from "../register/MyErrorStateMatcher";
 import {AuthenticationService} from "../../services/auth/authentication.service";
 import {Router} from "@angular/router";
 import {VerificationRequest} from "../../models/verification-request";
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {ErrorStateMatcher} from "@angular/material/core";
-import {MyErrorStateMatcher} from "./MyErrorStateMatcher";
-import {passwordValidator} from "./passwordValidator";
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-register-simple',
+  templateUrl: './register-simple.component.html',
+  styleUrls: ['./register-simple.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterSimpleComponent {
+
 
   stepOneForm: FormGroup;
   stepThreeForm: FormGroup;
@@ -25,7 +24,7 @@ export class RegisterComponent implements OnInit{
   error:string='';
   otpCode:string='';
   matcher = new MyErrorStateMatcher();
- StrongPasswordRegx: RegExp =
+  StrongPasswordRegx: RegExp =
     /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   constructor(private authService: AuthenticationService,
               private router:Router,
@@ -45,9 +44,9 @@ export class RegisterComponent implements OnInit{
     this.stepThreeForm = this.formBuilder.group({
 
       password: ['', Validators.required, //Validators.pattern(this.StrongPasswordRegx),
-       // Validators.minLength(8)
+        // Validators.minLength(8)
 
-         ],
+      ],
 
 
       mfaEnabled: [false]
@@ -61,7 +60,7 @@ export class RegisterComponent implements OnInit{
       {
         next:(response)=>{
           this.classeType=response;
-  }}
+        }}
     )
   }
   ngOnInit(): void {
@@ -81,18 +80,18 @@ export class RegisterComponent implements OnInit{
       .subscribe({
         next:(response)=>{
           this.message="";
-        // next will have the response
-            if(response)
-            { this.error = '';
-              this.authResponse=response;
-            }
-            else {
-              this.error = '';
-              this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
-              setTimeout(()=>{
-this.router.navigate(['login'])
-              },5000)
-            }
+          // next will have the response
+          if(response)
+          { this.error = '';
+            this.authResponse=response;
+          }
+          else {
+            this.error = '';
+            this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
+            setTimeout(()=>{
+              this.router.navigate(['login'])
+            },5000)
+          }
         },
         error: (error) => { if (error.status === 409) {
           this.message='';
@@ -139,13 +138,13 @@ this.router.navigate(['login'])
     }
     this.authService.verifyCode(verificationRequest)
       .subscribe({
-        next:(response)=>{
-          this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
-          setTimeout(()=>{
-            localStorage.setItem('token',response.accessToken as string);
-            this.router.navigate(['login'])
-          },3000)
-        }
+          next:(response)=>{
+            this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
+            setTimeout(()=>{
+              localStorage.setItem('token',response.accessToken as string);
+              this.router.navigate(['login'])
+            },3000)
+          }
         }
 
       )

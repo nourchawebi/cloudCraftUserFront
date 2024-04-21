@@ -115,37 +115,16 @@ export class AuthenticationService {
   }
 
   changeEmailAndUpdateToken(newEmail: string): void {
-    // Get the decoded token from getLogedUser() method
-   /* const decodedToken = this.decodedToken();
-    if (decodedToken) {
-      // Update the email in the decoded token payload
-      decodedToken.email = newEmail;
 
-      // Set the new expiration date (current date + 10 minutes)
-      const expirationDate = new Date();
-      expirationDate.setMinutes(expirationDate.getMinutes() + 10);
-      decodedToken.exp = Math.floor(expirationDate.getTime() / 1000); // Convert to UNIX timestamp
-
-      // Encode the updated payload back into a JWT token
-
-      // Save the updated token
-      localStorage.setItem('token', decodedToken);
-
-      // Schedule automatic sign out if expiration date is reached
-      const timeToExpiration = expirationDate.getTime() - new Date().getTime();
-      setTimeout(() => {
-        const user = this.getLogedUser();
-        this.getEnabled(user.email).subscribe(enabled => {
-          if (user &&!enabled) {
-            this.signOut(); // Call signOut method if user is not enabled
-          }
-        });
-
-      }, timeToExpiration);
-    }*/
     this.signOut()
   }
 
 
+  recognizeText(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<any>(`${this.baseUrl}/ocr`, formData);
+  }
 
 }

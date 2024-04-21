@@ -55,31 +55,34 @@
               <img src="/assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo">
 
             </div>
-            <div class="alert alert-link" role="alert">
-
-
-
-
-                <h6>if you want a simple registration  <button class="learn-more">
-    <span class="circle" aria-hidden="true">
-      <span class="icon arrow"></span>
-    </span>
-                  <a routerLink="/registersimple" class="button-text">click here </a>
-                </button></h6>
-
-                <hr>
-                <h6>if you want to register with your student card <button class="learn-more">
-    <span class="circle" aria-hidden="true">
-      <span class="icon arrow"></span>
-    </span>
-                  <a routerLink="/registerimg" class="button-text">click here</a>
-                </button></h6>
-
-
-
+            <div class="alert alert-warning" role="alert">
+              <h5 class="alert-heading">Warning!</h5>
+              <p>registering with OCR requires compliting your registration after logging by updating your birthDate</p>
+              <hr>
+              <p class="mb-0">Registering with OCR does not require an Email</p>
+              <p class="mb-0">Your Login infos are your college identification  </p>
             </div>
             <!-- Image upload space -->
+            <div class="upload-image">
+              <label >Upload Card Image:</label>
+              <input type="file" (change)="onFileSelected($event)" [(ngModel)]="imageModel.file">
+              <br> <br>
+              <button (click)="registerWithOCR()">Register with OCR</button>
 
+            </div>
+            <br>
+            <div class="alert alert-primary" role="alert" *ngIf="message">
+
+
+
+              <div class="success-message">{{ message }}</div>
+            </div>
+
+
+            <div class="alert alert-danger" role="alert" *ngIf="error">
+
+              <div class="error-message">{{ error }}</div>
+            </div>
           </div>
 
         </div>

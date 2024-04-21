@@ -42,33 +42,30 @@
 
           </ul>
         </div>
-        <div *ngIf="isLoggedIn()" class="user-info-container" >
-
-
-            <ul class="main-nav">
-
-              <li class="has-submenu">
-
-                    <span class="user-img">
-                   {{loggedUser.firstName}}
-                      <img src="assets/FrontOffice/img/user/user11.jpg" alt>
-          <span class="status online"></span>
-        </span>
-                  <i class="fas fa-chevron-down"></i>
-                <ul class="submenu">
-                  <li><a (click)="logout()">LogOut</a></li>
-
-                </ul>
-              </li>
-
-
-
-
-
-
-
+        <div *ngIf="isLoggedIn()" class="user-info-container">
+          <ul class="main-nav">
+            <li class="has-submenu">
+      <span class="user-img">
+        {{loggedUser.firstName}}
+        <img src="assets/FrontOffice/img/user/user11.jpg" alt>
+        <span class="status online" style=" position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+  border: 2px solid white;"></span>
+      </span>
+              <i class="fas fa-chevron-down"></i>
+              <ul class="submenu">
+                <li><a routerLink="/user/profile">Profile</a></li>
+                <li><a (click)="logout()"  style="color: darkred">LogOut</a></li>
+              </ul>
+            </li>
           </ul>
         </div>
+
 
         <div *ngIf="!isLoggedIn()" >
           <!-- Buttons for not logged-in user -->
