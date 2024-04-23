@@ -19,6 +19,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { AjouterEventComponent } from './evenement/ajouter-event/ajouter-event.component';
 import { UpdateEventComponent } from './evenement/update-event/update-event.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TesteComponent } from './evenement/teste/teste.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 
@@ -36,7 +39,8 @@ import { UpdateEventComponent } from './evenement/update-event/update-event.comp
     EventComponent,
     CalendarComponent,
     AjouterEventComponent,
-    UpdateEventComponent
+    UpdateEventComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
@@ -45,11 +49,13 @@ import { UpdateEventComponent } from './evenement/update-event/update-event.comp
     FormsModule ,
     HttpClientModule,
     ReactiveFormsModule,
+    QRCodeModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -29,6 +29,12 @@
       <label for="capacity" class="form-label">Capacité</label>
       <input type="number" class="form-control" id="capacity" [(ngModel)]="newEvent.capacity" name="capacity" required>
     </div>
+
+    <div class="mb-3">
+      <label class="add-course-label" for="picture">Choose book cover image</label>
+      <input type="file" class="form-control" id="picture" (change)="onFileSelected($event)"
+             formControlName="picture">
+    </div>
     <div class="mb-3">
       <button type="submit" class="btn btn-success btn-space">Create</button>
       <button type="button" class="btn btn-secondary" routerLink="/Home">Retour</button>

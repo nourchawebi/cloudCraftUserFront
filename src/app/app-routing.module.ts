@@ -7,6 +7,7 @@ import {EventComponent} from "./evenement/event/event.component";
 import {CalendarComponent} from "./evenement/calendar/calendar.component";
 import {AjouterEventComponent} from "./evenement/ajouter-event/ajouter-event.component";
 import {UpdateEventComponent} from "./evenement/update-event/update-event.component";
+import {TesteComponent} from "./evenement/teste/teste.component";
 
 const routes: Routes = [
   {
@@ -35,6 +36,8 @@ const routes: Routes = [
     ]
 
   },
+  {path:'teste' , component : TesteComponent}
+
 
 ];
 

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {EventService} from "../../service/event/event.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-event',
@@ -10,16 +11,25 @@ export class EventComponent implements OnInit {
   items: any[] = [];
   // qrCodeData!: string;
   qrCodeImageSrc!: string;
+  @ViewChild('content') content!: TemplateRef<any>;
+  public myAngularxQrCode!: string;
 
 
-  constructor(private sampleService: EventService) { }
+  constructor(private sampleService: EventService,private modalService: NgbModal) {
+
+    this.myAngularxQrCode = 'Your QR code data string';
+  }
 
   ngOnInit() {
-
     this.sampleService.getAllEvents().subscribe(data => {
       this.items = data;
       this.items.forEach(event => {
-        //       this.generateQRCode(event.idEvent.toString(), 'qrCodeCanvas_' + event.idEvent);
+        // Generate QR code data for each event (assuming event.idEvent is the relevant data)
+        const qrCodeData = JSON.stringify({ eventId: event.idEvent });
+        // Assign the QR code data to myAngularxQrCode
+        this.myAngularxQrCode = qrCodeData;
+        // Now you can use qrCodeData to generate QR code image or send it to be displayed in the UI
+        // You can also assign qrCodeData to a property of event if needed
       });
     });
   }
@@ -41,59 +51,35 @@ export class EventComponent implements OnInit {
 
   participate(id:number):void{
     this.sampleService.participate(id);
-    // this.generateAndDisplayQRCode(id);
 
-    // this.generateQRCode(id);
-//    this.convertDataToQRImage();
+    this.openModal()
+
   }
 
 
-  generateAndDisplayQRCode(eventInfo: any): void {
-    // Generate QR code using event information
-    const qrCodeData = JSON.stringify(eventInfo);
-
-    // Check if qrCodeData is not empty
-    if (qrCodeData) {
-      // Display QR code
-      // You need to have a method or library to display QR code
-      // For example, if you are using ngx-qrcode, you can use it to display the QR code
-      // Import ngx-qrcode library and use it here
-      // Example:
-      // <qrcode [qrdata]="qrCodeData"></qrcode>
-    } else {
-      console.error('QR Code data is empty.');
-    }
-  }
-
-
-  generateQRCode(id: number): void {
-    const eventDetails = `Event ID: ${id}`;
-    //this.qrCodeData = eventDetails;
-
-    this.convertDataToQRImage();
-  }
-
-
-
-  convertDataToQRImage(): void {
-    let qr: any;
-    // @ts-ignore
-    qr = qrcode(this.qrCodeData); // Use qrcode function directly
-    qr.createSvgTag({ cellSize: 8 }, (err: any, qrImage: string) => {
-      if (err) {
-        console.error('Error converting data to QR image:', err);
-      } else {
-        // Cast the element to HTMLImageElement to access the 'src' property
-        const qrCodeImage = document.getElementById('qrcode-image') as HTMLImageElement;
-        if (qrCodeImage) {
-          qrCodeImage.src = 'data:image/svg+xml;base64,' + btoa(qrImage);
-        }
-      }
+  openModal() {
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      // Handle close or dismiss
+    }, (reason) => {
+      // Handle dismiss
     });
   }
 
 
 
+
+
+// Method to handle QR code scanning
+  onQRCodeScanned(qrCodeData: string) {
+    // Parse the scanned QR code data
+    const eventData = JSON.parse(qrCodeData);
+    // Retrieve the event details using the parsed data
+    const eventId = eventData.eventId;
+    // Now you can use eventId to fetch the event details from the backend or wherever they are stored
+    console.log('Scanned event ID:', eventId);
+    // You can then open a modal or display the event details as needed
+    // this.modalService.open(this.content);
+  }
 
 
 

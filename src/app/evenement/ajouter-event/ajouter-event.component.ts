@@ -12,6 +12,7 @@ import {Event} from "../../models/event";
 })
 export class AjouterEventComponent {
   newEvent: Event = new Event(0, '', new Date(), new Date(), '', '', '', 0);
+  selectedFile!: File;
 
   constructor(private eventService: EventService , private router: Router) { }
 
@@ -28,6 +29,11 @@ export class AjouterEventComponent {
       }
 
     );
+  }
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 }
 
