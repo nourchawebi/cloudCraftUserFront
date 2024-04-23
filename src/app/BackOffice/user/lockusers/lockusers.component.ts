@@ -30,7 +30,7 @@ export class LockusersComponent implements OnInit  {
     this.lockusersService.getusers().subscribe(
       {
         next:(response)=>{
-          this.message="getting user successfully";
+
           this.users = response;
 
 
@@ -42,7 +42,14 @@ export class LockusersComponent implements OnInit  {
   lockUser(email: string) {
     this.lockusersService.lockUser(email).subscribe({
       next: (response) => {
-        this.message = "user locked"; // response is the plain text message
+        this.message = "user locked";
+        // Find the user object in the users array by email
+        const userIndex = this.users.findIndex((r: any) => r.email === email);
+
+        if (userIndex !== -1) {
+          // Update the notLocker property of the user object
+          this.users[userIndex].notLocker = ! this.users[userIndex].notLocker ;
+        }
       },
       error: (error) => {
         console.error('Error:', error);

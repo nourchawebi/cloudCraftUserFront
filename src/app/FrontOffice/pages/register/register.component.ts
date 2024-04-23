@@ -68,43 +68,7 @@ export class RegisterComponent implements OnInit{
     this.getClasseType();
 
   }
-  registerUser()
-  { this.message='wait we are sending a verif email';
-    this.registerRequest.firstName = this.stepOneForm.get('firstName')?.value;
-    this.registerRequest.lastName = this.stepOneForm.get('lastName')?.value;
-    this.registerRequest.classType = this.stepOneForm.get('classType')?.value;
-    this.registerRequest.birthDate = this.stepOneForm.get('birthDate')?.value;
-    this.registerRequest.email = this.stepTwoForm.get('email')?.value;
-    this.registerRequest.password = this.stepThreeForm.get('password')?.value;
-    this.registerRequest.mfaEnabled = this.stepThreeForm.get('mfaEnabled')?.value;
-    this.authService.register(this.registerRequest)
-      .subscribe({
-        next:(response)=>{
-          this.message="";
-        // next will have the response
-            if(response)
-            { this.error = '';
-              this.authResponse=response;
-            }
-            else {
-              this.error = '';
-              this.message='account created  successfully verify your email \n you will be redirected to the login page in 3 seconds';
-              setTimeout(()=>{
-this.router.navigate(['login'])
-              },5000)
-            }
-        },
-        error: (error) => { if (error.status === 409) {
-          this.message='';
-          this.error = 'User already exists';
-        } else {
-          this.message='';
-          this.error = 'Error occurred during registration';
-        }
-          console.error(error);
-        }
-      });
-  }
+
 
   onOtpInput(index: number, event: any) {
     // Get the input element by ID

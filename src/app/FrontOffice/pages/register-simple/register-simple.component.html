@@ -67,6 +67,12 @@
                 <form [formGroup]="stepOneForm" class="step-form">
                   <div class="input-row">
                     <div class="input-block">
+                      <label >Upload profile Image:</label>
+                      <input type="file"    accept=".jpg,.jpeg,.png">
+
+
+                    </div>
+                    <div class="input-block">
                       <mat-form-field  class="custom-input-width">
                         <mat-label>First Name</mat-label>
                         <input type="text" matInput  [errorStateMatcher]="matcher" formControlName="firstName"

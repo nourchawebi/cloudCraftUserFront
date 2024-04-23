@@ -7,6 +7,7 @@ export class RegisterRequest{
   role?: string;
   birthDate?: Date;
   classType?:string;
+  picture?: File;
 
 
 }

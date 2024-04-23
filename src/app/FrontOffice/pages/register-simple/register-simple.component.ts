@@ -35,7 +35,8 @@ export class RegisterSimpleComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       classType: ['', Validators.required],
-      birthDate: ['', Validators.required]
+      birthDate: ['', Validators.required],
+
     });
     this.stepTwoForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
