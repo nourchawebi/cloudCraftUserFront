@@ -15,6 +15,10 @@ import { ReactiveFormsModule} from "@angular/forms";
 import { BookCategoryComponent } from './BackOffice/book-category/book-category.component';
 import {FormsModule} from "@angular/forms";
 import { AddBookComponent } from './FrontOffice/add-book/add-book.component';
+import { BookListComponent } from './FrontOffice/book/book-list/book-list.component';
+import { BookAddComponent } from './FrontOffice/book/book-add/book-add.component';
+import { BookDetailsComponent } from './FrontOffice/book/book-details/book-details.component';
+import { BookCardComponent } from './FrontOffice/book/book-card/book-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { AddBookComponent } from './FrontOffice/add-book/add-book.component';
     HeaderFrontComponent,
     CategoryListComponent,
     BookCategoryComponent,
-    AddBookComponent
+    AddBookComponent,
+    BookListComponent,
+    BookAddComponent,
+    BookDetailsComponent,
+    BookCardComponent
   ],
   imports: [
     BrowserModule,

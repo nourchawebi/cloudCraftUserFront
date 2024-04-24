@@ -5,6 +5,7 @@ import {AllTemplateFrontComponent} from "./FrontOffice/all-template-front/all-te
 import {CategoryListComponent} from "./BackOffice/category-list/category-list.component";
 import { BookCategoryComponent} from "./BackOffice/book-category/book-category.component";
 import {AddBookComponent} from "./FrontOffice/add-book/add-book.component";
+import {BookListComponent} from "./FrontOffice/book/book-list/book-list.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'addbook',
         component: AddBookComponent
+      },
+      {
+        path: 'books',
+        component: BookListComponent
       }
     ]
 
