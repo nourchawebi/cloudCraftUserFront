@@ -31,6 +31,8 @@ export class BookListComponent implements OnInit{
       .subscribe({
         next: (books) => {
           this.bookResponse = books;
+          console.log(this.bookResponse);
+          console.log(books);
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)
             .map((x, i) => i);

@@ -3,7 +3,7 @@ export interface BookResponse{
   title?: string ;
   description? : string ;
   author? : string ;
-  cover?: Array<string>;
+  coverPicture?: string;
   category? : string;
   availability? : string ;
 }

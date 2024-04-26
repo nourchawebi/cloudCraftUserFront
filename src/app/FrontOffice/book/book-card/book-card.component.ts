@@ -1,22 +1,31 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BookResponse} from "../../../models/book-response";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-card',
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.css']
 })
-export class BookCardComponent {
-  private _book: BookResponse = {};
+export class BookCardComponent implements OnInit{
+
+  public _book: BookResponse = {};
   private _manage : number= 1;
   private _bookCover: string | undefined;
 
   get bookCover(): string | undefined {
-    if (this._book.cover) {
-      return 'data:image/jpg;base64,' + this._book.cover
+    if (this._book.coverPicture) {
+      return  this._book.coverPicture;
     }
-    return 'https://source.unsplash.com/user/c_v_r/1900x800';
+   return "asma"
   }
+
+  constructor(private router: Router) {}
+  showDetails(bookId: number) {
+    this.router.navigate(['/books', bookId]);
+  }
+
+
 
   get book(): BookResponse {
     return this._book;
@@ -35,5 +44,11 @@ export class BookCardComponent {
   @Input()
   set manage(value: number) {
     this._manage = value;
+  }
+
+  @Output() private details: EventEmitter<BookResponse> = new EventEmitter<BookResponse>();
+
+  ngOnInit(): void {
+    console.log(this._book)
   }
 }
