@@ -48,7 +48,7 @@
           <div class="col-md-12 col-12  ">
             <div class="profile-info-blk  ">
               <a href="javascript:void(0);" class="profile-info-img">
-                <img src="assets/FrontOffice/img/user/nour.jpg"  alt="Profile Avatar" class="img-fluid" style="height: 90px;width:150px">
+                <img  [src]="imageUrl"  alt="Profile Avatar" class="img-fluid" style="height: 90px;width:150px">
               </a>
               <h4><a href="javascript:void(0);">{{loggedUser.firstName}} </a></h4>
               <h4><span>{{loggedUser.classeType}}</span></h4>
@@ -91,26 +91,24 @@
             <div class="settings-menu">
 
 
-              <div class="instructor-title">
-                <h3>ACCOUNT SETTINGS</h3>
-              </div>
+
               <div class="settings-menu">
                 <div class="instructor-title">
                   <h3>ACCOUNT SETTINGS</h3>
                 </div>
                 <ul>
                   <li [class.active]="activeTab === 'personalInfos'" class="nav-item">
-                    <a (click)="activateTab('personalInfos')" class="nav-link">
+                    <a (click)=" activatePersonalInfos('personalInfos')" class="nav-link">
                       <i class="feather-settings"></i> Edit Profile
                     </a>
                   </li>
                   <li [class.active]="activeTab === 'securityPassword'" class="nav-item">
-                    <a (click)="activateTab('securityPassword')" class="nav-link">
+                    <a (click)="acrivateSecurityPassword('securityPassword')" class="nav-link">
                       <i class="feather-user"></i> Security:password
                     </a>
                   </li>
                   <li   *ngIf="emailVerif" [class.active]="activeTab === 'editEmail'" class="nav-item">
-                    <a (click)="activateTab('editEmail')" class="nav-link">
+                    <a (click)="activateEmail('editEmail')" class="nav-link">
                       <i class="feather-refresh-cw"></i> Edit Email
                     </a>
                   </li>
@@ -133,17 +131,27 @@
               </div>
               <div class="course-group mb-0 d-flex">
                 <div class="course-group-img d-flex align-items-center">
-                  <a><img src="assets/img/user/user11.jpg" alt class="img-fluid"></a>
+
                   <div class="course-name">
-                    <h4><a >Your avatar</a></h4>
-                    <p>PNG or JPG no bigger than 800px wide and tall.</p>
+                    <h4><a >Update your profile picture</a></h4>
+                    <div class="input-block" >
+
+                      <input type="file" class="form-control" id="pictures" (change)="onFileSelected($event)"
+                             [formControl]="pictureControl"
+                      >
+                    </div>
+                    <button  class="btn btn-success"(click)="updateimg()">update image</button>
+                  </div>
+                  <div class="alert alert-primary" role="alert" *ngIf="imgmessage">
+                    <div class="success-message">{{ imgmessage }}</div>
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="imgerror">
+                    <div class="error-message">{{ imgerror }}</div>
                   </div>
                 </div>
-                <div class="profile-share d-flex align-items-center justify-content-center">
-                  <a href="javascript:void(0);" class="btn btn-success">Update</a>
-                  <a href="javascript:void(0);" class="btn btn-danger">Delete</a>
-                </div>
+
               </div>
+
               <div class="checkout-form personal-address add-course-info">
                 <div class="personal-info-head">
                   <h4>Personal Details</h4>

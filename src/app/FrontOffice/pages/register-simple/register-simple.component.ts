@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegisterRequest} from "../../models/register-request";
 import {AuthenticationResponse} from "../../models/authentication-response";
@@ -6,6 +6,9 @@ import {MyErrorStateMatcher} from "../register/MyErrorStateMatcher";
 import {AuthenticationService} from "../../services/auth/authentication.service";
 import {Router} from "@angular/router";
 import {VerificationRequest} from "../../models/verification-request";
+import {ImageModel} from "../../models/ImageOCR";
+import {WebcameraComponent} from "../webcamera/webcamera.component";
+import {WebcamImage} from "ngx-webcam";
 
 @Component({
   selector: 'app-register-simple',
@@ -28,7 +31,8 @@ export class RegisterSimpleComponent {
     /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   constructor(private authService: AuthenticationService,
               private router:Router,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder,
+
   )
   {
     this.stepOneForm = this.formBuilder.group({
@@ -36,6 +40,7 @@ export class RegisterSimpleComponent {
       lastName: ['', Validators.required],
       classType: ['', Validators.required],
       birthDate: ['', Validators.required],
+      picture: ['', Validators.required],
 
     });
     this.stepTwoForm = this.formBuilder.group({
@@ -44,8 +49,9 @@ export class RegisterSimpleComponent {
 
     this.stepThreeForm = this.formBuilder.group({
 
-      password: ['', Validators.required, //Validators.pattern(this.StrongPasswordRegx),
-        // Validators.minLength(8)
+      password: ['', [Validators.required,
+        Validators.minLength(8),   Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/),
+        Validators.maxLength(11)]
 
       ],
 
@@ -64,6 +70,7 @@ export class RegisterSimpleComponent {
         }}
     )
   }
+
   ngOnInit(): void {
     this.getClasseType();
 
@@ -77,7 +84,9 @@ export class RegisterSimpleComponent {
     this.registerRequest.email = this.stepTwoForm.get('email')?.value;
     this.registerRequest.password = this.stepThreeForm.get('password')?.value;
     this.registerRequest.mfaEnabled = this.stepThreeForm.get('mfaEnabled')?.value;
-    this.authService.register(this.registerRequest)
+
+
+    this.authService.register(this.registerRequest,this.imageModel)
       .subscribe({
         next:(response)=>{
           this.message="";
@@ -150,7 +159,36 @@ export class RegisterSimpleComponent {
 
       )
   }
+  imageModel: ImageModel = new ImageModel();
+  onFileSelected(event: any) {
+    this.imageModel= event.target.files[0];
+  }
+  isCameraMode = false;
+  toggleCameraMode(): void {
+    this.isCameraMode = !this.isCameraMode;
+  }
+  @ViewChild('myModal') myModal!: ElementRef;
 
+  openModal(): void {
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      modalElement.classList.add('show');
+      modalElement.style.display = 'block';
+      this.isCameraMode = !this.isCameraMode;
+    }
+  }
+
+  closeModal(): void {
+    const modalElement = document.getElementById('exampleModal');
+    if (modalElement) {
+      modalElement.classList.remove('show');
+      modalElement.style.display = 'none';
+      this.isCameraMode = !this.isCameraMode;
+
+
+
+    }
+  }
 
 
 }

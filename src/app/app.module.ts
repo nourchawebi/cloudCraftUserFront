@@ -35,6 +35,11 @@ import { LockusersComponent } from './BackOffice/user/lockusers/lockusers.compon
 import { TestComponent } from './test/test/test.component';
 import { RegisterSimpleComponent } from './FrontOffice/pages/register-simple/register-simple.component';
 import { RegisterimgComponent } from './FrontOffice/pages/registerimg/registerimg.component';
+import { WebcameraComponent } from './FrontOffice/pages/webcamera/webcamera.component';
+import {WebcamModule} from "ngx-webcam";
+import { UnothorizedComponent } from './FrontOffice/pages/unothorized/unothorized.component';
+import { UserstaticsComponent } from './BackOffice/user/userstatics/userstatics.component';
+import {BaseChartDirective, ChartsModule} from "ng2-charts";
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
@@ -61,9 +66,13 @@ const Validators = () => {
     LockusersComponent,
     TestComponent,
     RegisterSimpleComponent,
-    RegisterimgComponent
+    RegisterimgComponent,
+    WebcameraComponent,
+    UnothorizedComponent,
+    UserstaticsComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -81,6 +90,8 @@ const Validators = () => {
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    WebcamModule,
+
    // NgToastModule
 
   ],

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {RegisterRequest} from "../../models/register-request";
 import {AuthenticationResponse} from "../../models/authentication-response";
 import {VerificationRequest} from "../../models/verification-request";
@@ -10,6 +10,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {Router} from "@angular/router";
 import {TokenInfos} from "../../models/token-infos";
 import {ChangePasswordRequest} from "../../models/change-password-request";
+import {BehaviorSubject} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +21,9 @@ export class AuthenticationService {
   private baseUrl3 : string ='http://localhost:8081/getclasstypes'
   private userPayload:any;
   private loggedUser:any;
-  constructor( private http: HttpClient, private router: Router) {
+  constructor( private http: HttpClient, private router: Router
+
+  ) {
     this.userPayload = this.decodedToken();
 
 
@@ -30,12 +33,28 @@ export class AuthenticationService {
 
     return this.http.get<any>(`${this.baseUrl3}`);
   }
+
    register(
      registerRequest:RegisterRequest
-   )
+ , image:any )
    {
-     return this.http.post<AuthenticationResponse>
-     (`${this.baseUrl}`, registerRequest)
+     const formData = new FormData();
+     formData.append('firstName', registerRequest.firstName|| '');
+     formData.append('lastName', registerRequest.lastName|| '');
+     formData.append('email', registerRequest.email|| '');
+     formData.append('password', registerRequest.password|| '');
+     if (registerRequest.mfaEnabled !== undefined) {
+       formData.append('mfaEnabled', registerRequest.mfaEnabled.toString());
+     }
+
+
+     if (registerRequest.birthDate !== undefined) {
+         formData.append('birthDate', registerRequest.birthDate.toString());
+     }// Ensure proper date format
+     formData.append('classType', registerRequest.classType|| '');
+     formData.append('picture', image);
+
+     return this.http.post<AuthenticationResponse>(`${this.baseUrl}`, formData)
    }
    login(authRequest:AuthenticationRequest)
    {
@@ -107,11 +126,19 @@ export class AuthenticationService {
 
       return this.userPayload;
   }
+  createAuthorization(): HttpHeaders {
+    let authHeader = new HttpHeaders();
+    const token = this.getToken();
+    if (token) {
+      authHeader = authHeader.set('Authorization', 'Bearer ' + token);
+    }
+    return authHeader;
+  }
   signOut(){
-    localStorage.clear();
-    return this.http.get(
-      `http://localhost:8081/logout`);
-    this.router.navigate(['login'])
+    const headers = this.createAuthorization();
+    return this.http.post(
+      `http://localhost:8081/logouts`,null, {headers});
+
   }
 
   changeEmailAndUpdateToken(newEmail: string): void {
@@ -126,5 +153,13 @@ export class AuthenticationService {
 
     return this.http.post<any>(`${this.baseUrl}/ocr`, formData);
   }
+  private previewImageSource = new BehaviorSubject<string>('');
+  previewImage$ = this.previewImageSource.asObservable();
+
+  setPreviewImage(image: string) {
+    this.previewImageSource.next(image);
+  }
+  getimg()
+  {return this.previewImageSource}
 
 }

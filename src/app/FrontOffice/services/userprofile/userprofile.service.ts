@@ -7,6 +7,7 @@ import {catchError, throwError} from "rxjs";
 import {AuthenticationService} from "../auth/authentication.service";
 import {ChangeEmailRequest} from "../../models/change-email-request";
 import {ChangeInfosRequest} from "../../models/change-infos-request";
+import {ImageModel} from "../../models/ImageOCR";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class UserprofileService {
     }
     return authHeader;
   }
+
   changePassword(changePasswordRequest: ChangePasswordRequest)
   {  const headers = this.createAuthorization();
     return this.http.patch<any>(`${this.baseUrl}/updatepassword`, changePasswordRequest, {headers})
@@ -39,5 +41,17 @@ export class UserprofileService {
     return this.http.patch<any>(`${this.baseUrl}/updatePersonalData`, changeInfosRequest, {headers})
 
   }
+  private apiUrl = 'http://localhost:8081/user/image';
+  getImageUrl(){
+    const headers = this.createAuthorization();
+ return   this.http.get('http://localhost:8081/user/image', { headers, responseType: 'blob' });
 
+  }
+  changeimage(img:any)
+  {  const headers = this.createAuthorization();
+    const formData = new FormData();
+    formData.append('image', img);
+    return this.http.post<any>(`http://localhost:8081/user/update-image`,formData, {headers})
+
+  }
 }

@@ -3,7 +3,7 @@ export class RegisterRequest{
   lastName?:string;
   email?:string; // ? means optional
   password?:string;
-  mfaEnabled?:string;
+  mfaEnabled?:boolean;
   role?: string;
   birthDate?: Date;
   classType?:string;

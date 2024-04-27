@@ -66,12 +66,32 @@
 
                 <form [formGroup]="stepOneForm" class="step-form">
                   <div class="input-row">
-                    <div class="input-block">
-                      <label >Upload profile Image:</label>
-                      <input type="file"    accept=".jpg,.jpeg,.png">
 
-
+                    <div class="input-block" >
+                      <label class="add-course-label" for="picture">Choose image</label>
+                      <input type="file" class="form-control" id="picture" (change)="onFileSelected($event)"
+                             formControlName="picture">
                     </div>
+
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+
+                          <div class="modal-body" *ngIf="isCameraMode">
+                            <app-webcamera ></app-webcamera>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <div class="input-block">
                       <mat-form-field  class="custom-input-width">
                         <mat-label>First Name</mat-label>
@@ -84,7 +104,9 @@
                         </mat-error>
 
 
+
                       </mat-form-field>
+
 
                     </div>
                     <div class="input-block">
@@ -175,12 +197,26 @@
 
 
 
-                      <mat-error *ngIf="stepThreeForm.controls['password'].hasError('required')">
+                      <mat-error *ngIf="stepThreeForm.controls['password'].hasError('required') ">
                         password is <strong>required</strong>
                       </mat-error>
-                      <mat-error *ngIf="stepThreeForm.controls['password'].hasError('pattern')">
-                        pattern
+
+
+                        <mat-error *ngIf="stepThreeForm.get('password')?.touched&&stepThreeForm.controls['password'].hasError('minlength')
+
+">
+                          password min length is 8 !
+                        </mat-error>
+
+                      <mat-error *ngIf="stepThreeForm.get('password')?.touched&&stepThreeForm.controls['password'].hasError('pattern')&&
+!stepThreeForm.controls['password'].hasError('minlength')  && !stepThreeForm.controls['password'].hasError('maxlength')">
+                        you must enter at least 1 majuscule caracter 1 miniscule caracter and 1 number
                       </mat-error>
+                      <mat-error *ngIf="stepThreeForm.get('password')?.touched&&stepThreeForm.controls['password'].hasError('maxlength')&&!stepThreeForm.controls['password'].hasError('minlength')&&
+                         !stepThreeForm.controls['password'].hasError('pattern')">
+                        password max length is 11 !
+                      </mat-error>
+
 
 
 

@@ -6,7 +6,7 @@ import {AllTemplateBackComponent} from "./BackOffice/all-template-back/all-templ
 import {LoginComponent} from "./FrontOffice/pages/login/login.component";
 import {RegisterComponent} from "./FrontOffice/pages/register/register.component";
 import {WelcomeComponent} from "./FrontOffice/pages/welcome/welcome.component";
-import {authGuard} from "./FrontOffice/services/auth/auth.guard";
+import {adminAuthGuard, authGuard} from "./FrontOffice/services/auth/auth.guard";
 import {HomeComponent} from "./FrontOffice/pages/home/home.component";
 import {EditProfilePageComponent} from "./FrontOffice/pages/edit-profile-page/edit-profile-page.component";
 import {ForgotPasswordComponent} from "./FrontOffice/pages/forgot-password/forgot-password.component";
@@ -15,22 +15,25 @@ import {LockusersComponent} from "./BackOffice/user/lockusers/lockusers.componen
 import {TestComponent} from "./test/test/test.component";
 import {RegisterSimpleComponent} from "./FrontOffice/pages/register-simple/register-simple.component";
 import {RegisterimgComponent} from "./FrontOffice/pages/registerimg/registerimg.component";
+import {WebcameraComponent} from "./FrontOffice/pages/webcamera/webcamera.component";
+import {UnothorizedComponent} from "./FrontOffice/pages/unothorized/unothorized.component";
+import {UserstaticsComponent} from "./BackOffice/user/userstatics/userstatics.component";
 
 
 const routes: Routes = [
 
+
   { path:'login',
   component : LoginComponent},
+  { path:'webcam',
+    component : WebcameraComponent},
   { path:'register',
     component : RegisterComponent},
   { path:'registersimple',
     component : RegisterSimpleComponent},
   { path:'registerimg',
     component : RegisterimgComponent},
-  { path:'welcome',
-    component : WelcomeComponent,
-    canActivate:[authGuard]
-  },
+
   {
     path:'home',
     component:HomeComponent
@@ -44,7 +47,11 @@ const routes: Routes = [
     component:EditProfilePageComponent,
     canActivate:[authGuard]
   },
+  {
+    path:'unothorized',
+    component:UnothorizedComponent,
 
+  },
   { path:'forgotpassword',
     component:ForgotPasswordComponent
 
@@ -60,8 +67,13 @@ const routes: Routes = [
       {
         path:'lockuser',
         component:LockusersComponent,
-        canActivate:[authGuard]
-      } ]
+
+      } ,
+      { path:'userstat',
+        component : UserstaticsComponent,
+        canActivate:[adminAuthGuard]
+      },
+    ]
 
 
   },
@@ -73,7 +85,12 @@ const routes: Routes = [
         path:'profile',
         component:EditProfilePageComponent,
         canActivate:[authGuard]
-      }
+      },
+      { path:'welcome',
+        component : WelcomeComponent,
+
+
+      },
     ]
 
   }

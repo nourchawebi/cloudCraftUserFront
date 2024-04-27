@@ -17,7 +17,18 @@ export class HeaderFrontComponent  implements OnInit   {
   ) {
   }
   public loggedUser:TokenInfos={};
+  imageUrl: string="";
   ngOnInit() {
+
+
+      this.userProfileService.getImageUrl()
+        .subscribe(response => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.imageUrl = reader.result as string;
+          };
+          reader.readAsDataURL(response);
+        });
 
     this.userStore.getUser()
       .subscribe(
@@ -38,8 +49,18 @@ export class HeaderFrontComponent  implements OnInit   {
   logout() {
     // Perform logout actions here, such as deleting the token
     // Example code to delete the token from localStorage:
-    localStorage.removeItem('token');
-    // Redirect to the logout page or perform any other necessary actions
+
+
+    this.authService.signOut().subscribe(
+      {
+        next:()=>{
+        localStorage.removeItem('token');
+        this.router.navigate(['login'])
+      }}
+
+    );
+
+   // window.location.reload(); // Refresh the page
   }
   public fullName : string = "";
 

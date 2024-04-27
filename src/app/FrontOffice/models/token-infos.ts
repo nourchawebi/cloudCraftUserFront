@@ -10,6 +10,7 @@
    iat?: number;
    exp?: number;
    classeType?:string;
+   picture?:string;
 
 
  }

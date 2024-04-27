@@ -8,7 +8,7 @@ import {AuthenticationService} from "../../FrontOffice/services/auth/authenticat
   providedIn: 'root'
 })
 export class LockuserserviceService {
-  private baseUrl : string ='http://localhost:8081/user';
+
   private baseUrl2: string ='http://localhost:8081/admin';
   constructor(private http: HttpClient, private router: Router,
               private authService: AuthenticationService,
@@ -23,7 +23,7 @@ export class LockuserserviceService {
   }
   getusers()
   {  const headers = this.createAuthorization();
-    return this.http.get(`${this.baseUrl}/allusers`, {headers})
+    return this.http.get(`${this.baseUrl2}/allusers`, {headers})
       .pipe(
         catchError(error => {
           if (error.status === 0) {

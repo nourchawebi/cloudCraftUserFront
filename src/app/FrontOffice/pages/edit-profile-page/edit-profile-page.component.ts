@@ -7,10 +7,11 @@ import {TokenInfos} from "../../models/token-infos";
 import {AuthenticationRequest} from "../../models/authentication-request";
 import {ResetPasswordRequest} from "../../models/reset-password-request";
 import {ChangePasswordRequest} from "../../models/change-password-request";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ChangeEmailRequest} from "../../models/change-email-request";
 import {ChangeInfosRequest} from "../../models/change-infos-request";
 import {formatDate} from "@angular/common";
+import {ImageModel} from "../../models/ImageOCR";
 
 
 @Component({
@@ -31,9 +32,7 @@ export class EditProfilePageComponent  implements OnInit  {
       this.emailVerif = true;
     }}
   }
-  activateTab(tab: string) {
-    this.activeTab = tab;
-  }
+
   constructor(private userProfileService: UserprofileService,
               private router:Router,
               private userStore:UserstoreService,
@@ -84,22 +83,32 @@ public fullName:string='';
  public securityPassword:boolean=false;
  public  email:boolean=false;
  public curentEmail:string="";
- activatePersonalInfos()
+ activatePersonalInfos(tab: string)
  {
    this.personalInfos=true;
    this.securityPassword=false;
    this.email=false;
+   this.message="";
+   this.error="";
+   this.activeTab = tab;
+
  }
- acrivateSecurityPassword()
+ acrivateSecurityPassword(tab: string)
  {
    this.personalInfos=false;
    this.securityPassword=true;
    this.email=false;
+   this.message="";
+   this.error="";
+   this.activeTab = tab;
  }
- activateEmail(){
+ activateEmail(tab: string){
    this.personalInfos=false;
    this.securityPassword=false;
    this.email=true;
+   this.activeTab = tab;
+   this.message="";
+   this.error="";
 }
   classeType: string[] = [];
   getClasseType()
@@ -115,8 +124,22 @@ public fullName:string='';
     const parts = dateString.split('/');
     return new Date(Number(parts[2]), Number(parts[1]) - 1, Number(parts[0]));
   }
+  picture:string="";
+  imageUrl: string="";
+
   ngOnInit() {
     this. getClasseType();
+    this.userProfileService.getImageUrl()
+      .subscribe(response => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imageUrl = reader.result as string;
+        };
+        reader.readAsDataURL(response);
+      });
+
+
+
 
 
 this.userStore.getUser()
@@ -125,7 +148,9 @@ this.userStore.getUser()
       const user = this.authService.getLogedUser()
       this.loggedUser = val || user  as TokenInfos
       console.log(this.loggedUser.birthDate)
-
+      if(this.loggedUser.picture!=null)
+      {
+this.picture="http://localhost:8081/nour/cin.jpg";}
       const birthDateValue = this.loggedUser.birthDate
         ? this.parseDate(this.loggedUser.birthDate)
         : new Date();
@@ -251,6 +276,8 @@ this.userStore.getUser()
       {
         next:(response)=>{
           this.error="";
+          this.imgmessage="";
+          this.imgerror="";
 
           this.message="personal infos changed success !"
           localStorage.setItem('token',response.accessToken as string);
@@ -264,6 +291,8 @@ this.userStore.getUser()
         error:(error)=>{
           this.error=error.error;
           this.message="";
+          this.imgmessage="";
+          this.imgerror="";
 
         }
 
@@ -340,5 +369,29 @@ this.userStore.getUser()
     this.editMode = false; // Disable edit mode after saving changes
   }
 
+  imageModel: ImageModel = new ImageModel();
+  pictureControl = new FormControl('', Validators.required);
+imgmessage:string='';
+  imgerror:string='';
+  onFileSelected(event: any) {
+    this.imageModel= event.target.files[0];
 
+  }
+  updateimg()
+  {
+    if (this.pictureControl.valid) {
+    this.userProfileService.changeimage(this.imageModel).subscribe({
+      next:()=>{
+        this.message="image chnaged"
+        window.location.reload();
+        this.imgmessage="image chnaged !"
+
+        this.imgerror='';
+      }
+    })
+  }
+   else {
+  this.imgerror="img required"
+      this.imgmessage=""
 }
+  } }

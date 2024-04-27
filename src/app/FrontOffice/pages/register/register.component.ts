@@ -44,8 +44,8 @@ export class RegisterComponent implements OnInit{
 
     this.stepThreeForm = this.formBuilder.group({
 
-      password: ['', Validators.required, //Validators.pattern(this.StrongPasswordRegx),
-       // Validators.minLength(8)
+      password: ['', Validators.required, Validators.pattern(this.StrongPasswordRegx),
+       Validators.minLength(8)
 
          ],
 

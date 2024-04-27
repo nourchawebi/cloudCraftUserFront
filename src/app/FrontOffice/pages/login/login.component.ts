@@ -61,7 +61,13 @@ export class LoginComponent {
     this.message="u will redirected to welcome page"
    // this.toast.success({detail:"SUCCESS", summary:response.accessToken, duration: 5000});
 
-    this.router.navigate(['welcome'])
+    if(tokenPayload.role=='USER')
+    {
+      this.router.navigate(['user/welcome'])}
+
+
+    else {
+      this.router.navigate(['admin'])}
 
   }
 
@@ -103,7 +109,7 @@ export class LoginComponent {
                localStorage.setItem('token',response.accessToken as string);
                this.error="";
                this.message="success!"
-               this.router.navigate(['welcome']);
+               this.router.navigate(['user/welcome']);
 
           },
         error:()=>{
