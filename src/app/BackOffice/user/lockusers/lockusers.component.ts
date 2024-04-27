@@ -63,10 +63,18 @@ export class LockusersComponent implements OnInit  {
       {
         next:(response)=>{
           this.message="user unlocked successfully"
-        }
-      }
+          const userIndex = this.users.findIndex((r: any) => r.email === email);
 
-    )
+          if (userIndex !== -1) {
+            // Update the notLocker property of the user object
+            this.users[userIndex].notLocker = ! this.users[userIndex].notLocker ;
+          }
+        },
+        error: (error) => {
+          console.error('Error:', error);
+          this.message = 'Failed to lock user. User may already be locked or not found.';
+        }
+      });
   }
 
 }
