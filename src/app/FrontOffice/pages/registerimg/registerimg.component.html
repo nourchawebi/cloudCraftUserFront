@@ -65,7 +65,7 @@
             <!-- Image upload space -->
             <div class="upload-image">
               <label >Upload Card Image:</label>
-              <input type="file" (change)="onFileSelected($event)" [(ngModel)]="imageModel.file">
+              <input type="file" (change)="onFileSelected($event)" [(ngModel)]="imageModel.file" accept="image/*">
               <br> <br>
               <button (click)="registerWithOCR()">Register with OCR</button>
 

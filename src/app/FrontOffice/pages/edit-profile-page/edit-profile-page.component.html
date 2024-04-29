@@ -48,32 +48,11 @@
           <div class="col-md-12 col-12  ">
             <div class="profile-info-blk  ">
               <a href="javascript:void(0);" class="profile-info-img">
-                <img  [src]="imageUrl"  alt="Profile Avatar" class="img-fluid" style="height: 90px;width:150px">
+                <img  [src]="imageUrl"  alt="Profile Avatar" class="img-fluid" style="height: 190px;width:190px">
               </a>
-              <h4><a href="javascript:void(0);">{{loggedUser.firstName}} </a></h4>
-              <h4><span>{{loggedUser.classeType}}</span></h4>
-              <ul class="list-unstyled inline-inline profile-info-social">
-                <li class="list-inline-item">
-                  <a href="javascript:void(0);">
-                    <i class="fa-brands fa-facebook"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="javascript:void(0);">
-                    <i class="fa-brands fa-twitter"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="javascript:void(0);">
-                    <i class="fa-brands fa-instagram"></i>
-                  </a>
-                </li>
-                <li class="list-inline-item">
-                  <a href="javascript:void(0);">
-                    <i class="fa-brands fa-linkedin"></i>
-                  </a>
-                </li>
-              </ul>
+              <h4><a href="javascript:void(0);">  {{loggedUser.firstName}}  {{loggedUser.lastName}}</a></h4>
+              <h4  ><h4 style="color: white"> </h4><span>{{loggedUser.classeType}}</span></h4>
+
             </div>
           </div>
         </div>
@@ -136,7 +115,7 @@
                     <h4><a >Update your profile picture</a></h4>
                     <div class="input-block" >
 
-                      <input type="file" class="form-control" id="pictures" (change)="onFileSelected($event)"
+                      <input type="file" class="form-control" id="pictures" (change)="onFileSelected($event)" accept="image/*"
                              [formControl]="pictureControl"
                       >
                     </div>
