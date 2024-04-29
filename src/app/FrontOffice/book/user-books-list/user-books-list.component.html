@@ -1,0 +1,119 @@
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="breadcrumb-list">
+          <nav aria-label="breadcrumb" class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a>Home</a></li>
+              <li class="breadcrumb-item" aria-current="page">Library</li>
+              <li class="breadcrumb-item active" aria-current="page">My Books</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <app-book-card
+          *ngFor="let book of bookResponse.content"
+          [book]="book"
+          (details)="displayBookDetails($event)"
+        ></app-book-card>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="pagination lms-page">
+              <li class="page-item prev">
+                <a (click)="goToPreviousPage()" class="page-link" href="javascript:void(0)"
+                   [class.disabled]="page === 0"><i class="fas fa-angle-left"></i></a>
+              </li>
+              <li *ngFor="let pageIndex of pages" class="page-item" >
+                <a
+                  (click)="gotToPage(pageIndex)"
+                  [class.active]="page === pageIndex" class="page-link" href="javascript:void(0)">
+                  {{ pageIndex + 1 }}
+                </a>
+              </li>
+              <li class="page-item next">
+                <a (click)="goToNextPage()" class="page-link" href="javascript:void(0)"
+                   [class.disabled]="isLastPage" ><i class="fas fa-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-3 theiaStickySidebar">
+        <div class="filter-clear">
+          <div class="clear-filter d-flex align-items-center">
+            <h4><i class="feather-filter"></i>Filters</h4>
+          </div>
+
+          <div class="card search-filter categories-filter-blk">
+            <div class="card-body">
+              <div class="filter-widget mb-0">
+                <div class="categories-head d-flex align-items-center">
+                  <h4>Book categories</h4>
+                  <i class="fas fa-angle-down"></i>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> Backend (3)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> CSS (2)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> Frontend (2)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist" checked>
+                    <span class="checkmark"></span> General (2)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist" checked>
+                    <span class="checkmark"></span> IT & Software (2)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> Photography (2)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> Programming Language (3)
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_check mb-0">
+                    <input type="checkbox" name="select_specialist">
+                    <span class="checkmark"></span> Technology (2)
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

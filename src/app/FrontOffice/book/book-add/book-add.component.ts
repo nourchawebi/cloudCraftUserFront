@@ -13,13 +13,6 @@ import {CategoryService} from "../../../services/category.service";
 export class BookAddComponent {
   bookForm!: FormGroup;
   categories: Category[] = [];
-  staticUser: User = {
-    id: 1,
-    firstName : 'asma',
-    lastName : 'Choueibi',
-    email : 'asma.choueibi@gmai.com',
-    password :'asma'
-  };
   selectedFile!: File;
   constructor(    private formBuilder: FormBuilder,
                   private bookService: BookService,
@@ -37,8 +30,8 @@ export class BookAddComponent {
   }
 
 
-  addBook(user: User, bookData:FormData, category: Category): void {
-    const dto={userId:user.id, bookData, categoryId:category};
+  addBook( bookData:FormData, category: Category): void {
+    const dto={bookData, categoryId:category};
     console.log(dto);
     this.bookService.addBook(dto).subscribe(
       result => {
@@ -75,7 +68,7 @@ export class BookAddComponent {
       bookData.append("picture",this.selectedFile);
       bookData.append("title",this.bookForm.value.title);
       bookData.append("description",this.bookForm.value.description);
-      this.addBook(this.staticUser, bookData ,this.bookForm.value.category);
+      this.addBook( bookData ,this.bookForm.value.category);
     } else {
       console.error('Invalid Form please Check again');
     }

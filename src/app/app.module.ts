@@ -19,6 +19,9 @@ import { BookListComponent } from './FrontOffice/book/book-list/book-list.compon
 import { BookAddComponent } from './FrontOffice/book/book-add/book-add.component';
 import { BookDetailsComponent } from './FrontOffice/book/book-details/book-details.component';
 import { BookCardComponent } from './FrontOffice/book/book-card/book-card.component';
+import { UserBooksListComponent } from './FrontOffice/book/user-books-list/user-books-list.component';
+import { BooksBorrowListComponent } from './FrontOffice/book/books-borrow-list/books-borrow-list.component';
+import { MyBookDetailsComponent } from './FrontOffice/book/my-book-details/my-book-details.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { BookCardComponent } from './FrontOffice/book/book-card/book-card.compon
     BookListComponent,
     BookAddComponent,
     BookDetailsComponent,
-    BookCardComponent
+    BookCardComponent,
+    UserBooksListComponent,
+    BooksBorrowListComponent,
+    MyBookDetailsComponent
   ],
   imports: [
     BrowserModule,

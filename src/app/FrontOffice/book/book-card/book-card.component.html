@@ -10,21 +10,22 @@
   </div>
   <div class="product-content">
     <div class="head-course-title">
-      <h3 class="title"><a >&nbsp;{{book.title}}</a></h3>
+      <h5 class="title"><a>&nbsp;{{book.title}}</a></h5>
     </div>
     <div class="course-info border-bottom-0 pb-0 d-flex align-items-center">
+      <h6 class="title"><a>&nbsp;Category : {{book.category}}</a></h6>
     </div>
     <div class="course-group d-flex mb-0">
       <div class="course-group-img d-flex">
         <div class="course-name">
-          <p>&nbsp;{{book.author}}</p>
+          <p><i class="fa-solid fa-user"></i>&nbsp;Author : {{book.author}}</p>
         </div>
       </div>
     </div>
 
   </div>
   <div class="all-btn all-category d-flex align-items-center">
-    <a href="checkout.html" class="btn btn-primary">Show Details</a>
+    <a (click)="onShowDetails()" class="btn btn-primary">Show Details</a>
   </div>
 </div>
 

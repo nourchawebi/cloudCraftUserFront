@@ -1,43 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {PageResponseBookResponse} from "../../../models/page-response-book-response";
-import {Router} from "@angular/router";
 import {BookService} from "../../../services/book.service";
+import {Router} from "@angular/router";
 import {BookResponse} from "../../../models/book-response";
 import {User} from "../../../models/user";
-import {CategoryService} from "../../../services/category.service";
-import {Category} from "../../../models/category";
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  selector: 'app-user-books-list',
+  templateUrl: './user-books-list.component.html',
+  styleUrls: ['./user-books-list.component.css']
 })
-export class BookListComponent implements OnInit{
-
+export class UserBooksListComponent implements OnInit{
   bookResponse: PageResponseBookResponse = {};
   page = 0;
-  size = 5;
+  size = 2;
   pages: any = [];
   message = '';
   level: 'success' |'error' = 'success';
-  categories: Category[] = [];
-  filteredBooks: BookResponse[] = [];
-
-
   constructor(
     private bookService: BookService,
-    private router: Router,
-    private categoryService: CategoryService
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
     this.findAllBooks();
-    this.loadCategories();
   }
 
   private findAllBooks() {
-    this.bookService.findAll(this.page, this.size)
+    this.bookService.findAllByUser(this.page, this.size)
       .subscribe({
         next: (books) => {
           this.bookResponse = books;
@@ -46,32 +37,9 @@ export class BookListComponent implements OnInit{
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)
             .map((x, i) => i);
-          this.filteredBooks = this.bookResponse.content ? this.bookResponse.content : [];        }
+        }
       });
   }
-  loadCategories() {
-    this.categoryService.getAllCategories().subscribe(categories => {
-      this.categories = categories;
-    });
-  }
-
-
-  filterBooksByCategory(categoryName: string) {
-    if (this.bookResponse.content) {
-      if (categoryName === 'All') {
-        this.filteredBooks = this.bookResponse.content;
-      } else {
-        this.filteredBooks = this.bookResponse.content.filter(book => book.category === categoryName);
-      }
-    } else {
-      this.filteredBooks = [];
-    }
-    // Actualiser les livres affichés en appelant à nouveau findAllBooks
-    //this.findAllBooks();
-  }
-
-
-
 
   gotToPage(page: number) {
     this.page = page;
@@ -103,8 +71,7 @@ export class BookListComponent implements OnInit{
   }
 
   displayBookDetails(book: BookResponse) {
-    this.router.navigate(['user', 'bookDetails', book.id]);
+    this.router.navigate(['user', 'mybookDetails', book.id]);
   }
-
 
 }

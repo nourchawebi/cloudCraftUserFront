@@ -51,4 +51,7 @@ export class BookCardComponent implements OnInit{
   ngOnInit(): void {
     console.log(this._book)
   }
+  onShowDetails() {
+    this.details.emit(this._book);
+  }
 }

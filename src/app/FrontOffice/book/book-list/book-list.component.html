@@ -5,7 +5,7 @@
         <div class="breadcrumb-list">
           <nav aria-label="breadcrumb" class="page-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a>Home</a></li>
               <li class="breadcrumb-item" aria-current="page">Library</li>
               <li class="breadcrumb-item active" aria-current="page">All Books</li>
             </ol>
@@ -20,10 +20,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
-              <app-book-card
-                *ngFor="let book of bookResponse.content"
-                [book]="book"
-              ></app-book-card>
+        <app-book-card
+          *ngFor="let book of filteredBooks"
+          [book]="book"
+          (details)="displayBookDetails($event)"
+        ></app-book-card>
         <div class="row">
           <div class="col-md-12">
             <ul class="pagination lms-page">
@@ -49,65 +50,29 @@
       </div>
       <div class="col-lg-3 theiaStickySidebar">
         <div class="filter-clear">
-          <div class="clear-filter d-flex align-items-center">
-            <h4><i class="feather-filter"></i>Filters</h4>
-          </div>
+
 
           <div class="card search-filter categories-filter-blk">
             <div class="card-body">
               <div class="filter-widget mb-0">
                 <div class="categories-head d-flex align-items-center">
-                  <h4>Course categories</h4>
+                  <h4>Book categories</h4>
                   <i class="fas fa-angle-down"></i>
                 </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Backend (3)
+                <!-- Catégorie statique "All" -->
+                <label class="custom_radio">
+                  <input type="radio" name="category_radio" (change)="filterBooksByCategory('All')" checked>
+                  <span class="checkmark"></span> All
+                </label>
+                <div *ngFor="let category of categories">
+                  <label class="custom_radio">
+                    <input type="radio" name="category_radio" (change)="filterBooksByCategory(category.name)">
+                    <span class="checkmark"></span> {{ category.name }}
                   </label>
                 </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> CSS (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Frontend (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist" checked>
-                    <span class="checkmark"></span> General (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist" checked>
-                    <span class="checkmark"></span> IT & Software (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Photography (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Programming Language (3)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check mb-0">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Technology (2)
-                  </label>
-                </div>
+
+
+
               </div>
             </div>
           </div>

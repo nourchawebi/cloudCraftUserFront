@@ -1,4 +1,4 @@
- <div class="breadcrumb-bar">
+<div class="breadcrumb-bar">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
@@ -14,8 +14,8 @@
       </div>
     </div>
   </div>
- </div>
- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 <div class="container">
@@ -27,20 +27,24 @@
         </div>
         <div class="col-lg-7 col-md-7 col-sm-6">
           <h3 class="card-title" style="font-weight: bold;">{{book.title}}</h3>
-          <h6 class="card-subtitle"><i class="fa-solid fa-user"></i>&nbsp;By {{book.author}}</h6>
+          <h6 class="card-subtitle"><i class="fa-solid fa-user"></i>&nbsp; By {{book.author}}</h6>
           <p>Category : {{book.category}}</p>
           <p>{{book.description}}</p>
           <div class="action">
             <div class="d-flex">
-              <table style="border-collapse: separate; border-spacing: 1cm;">
+              <table style="border-collapse: separate; border-spacing: 0.5cm;">
                 <tr>
-                 <td>
-                   <a class="btn btn-success-dark" >
-                     <i class="fa-solid fa-heart"></i>&nbsp; Borrow </a>
-                 </td>
                   <td>
-                    <a routerLink="/user/books" class="btn btn-black" >
-                      <i class="fa-solid fa-book-open-reader"></i>&nbsp; Back To All Books </a>
+                    <a class="btn btn-success-dark" >
+                      <i class="fa-solid fa-pen-to-square"></i>&nbsp; Edit </a>
+                  </td>
+                  <td>
+                    <a (click)="OndeleteBook(book.id)" class="btn btn-black" >
+                      <i class="fa-solid fa-trash-can"></i>&nbsp; Delete </a>
+                  </td>
+                  <td>
+                    <a routerLink="/user/userBooks" class="btn btn-black" >
+                      <i class="fa-solid fa-book-open-reader"></i>&nbsp; Back To My Books </a>
                   </td>
                 </tr>
               </table>

@@ -6,6 +6,10 @@ import {CategoryListComponent} from "./BackOffice/category-list/category-list.co
 import { BookCategoryComponent} from "./BackOffice/book-category/book-category.component";
 import {AddBookComponent} from "./FrontOffice/add-book/add-book.component";
 import {BookListComponent} from "./FrontOffice/book/book-list/book-list.component";
+import {BookDetailsComponent} from "./FrontOffice/book/book-details/book-details.component";
+import {UserBooksListComponent} from "./FrontOffice/book/user-books-list/user-books-list.component";
+import {BooksBorrowListComponent} from "./FrontOffice/book/books-borrow-list/books-borrow-list.component";
+import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book-details.component";
 
 const routes: Routes = [
   {
@@ -34,6 +38,22 @@ const routes: Routes = [
       {
         path: 'books',
         component: BookListComponent
+      },
+      {
+        path: 'bookDetails/:bookId',
+        component: BookDetailsComponent
+      },
+      {
+        path: 'userBooks',
+        component: UserBooksListComponent
+      },
+      {
+        path: 'borrows',
+        component: BooksBorrowListComponent
+      },
+      {
+        path: 'mybookDetails/:bookId',
+        component: MyBookDetailsComponent
       }
     ]
 
