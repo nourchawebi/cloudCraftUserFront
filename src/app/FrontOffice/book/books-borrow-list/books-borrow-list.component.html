@@ -1,8 +1,72 @@
+<div class="breadcrumb-bar">
+  <!-- breadcrumb HTML -->
+</div>
 
-      <p class="card-text">
-        This is a longer card with supporting text below as a natural lead-in to additional content.
-        This content is a little bit longer.
-      </p>
+<section class="course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <app-book-borrow-card
+          *ngFor="let book of filteredBooks"
+        [book]="book"
+        (return)="returnBook($event)"
+        ></app-book-borrow-card>
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="pagination lms-page">
+              <!-- Pagination HTML -->
+              <li class="page-item prev">
+                <a (click)="goToPreviousPage()" class="page-link" href="javascript:void(0)"
+                   [class.disabled]="page === 0"><i class="fas fa-angle-left"></i></a>
+              </li>
+              <li *ngFor="let pageIndex of pages" class="page-item" >
+                <a
+                  (click)="gotToPage(pageIndex)"
+                  [class.active]="page === pageIndex" class="page-link" href="javascript:void(0)">
+                  {{ pageIndex + 1 }}
+                </a>
+              </li>
+              <li class="page-item next">
+                <a (click)="goToNextPage()" class="page-link" href="javascript:void(0)"
+                   [class.disabled]="isLastPage" ><i class="fas fa-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-
-
+      </div>
+      <div class="col-lg-3 theiaStickySidebar">
+        <div class="filter-clear">
+          <div class="card search-filter categories-filter-blk">
+            <div class="card-body">
+              <div class="filter-widget mb-0">
+                <div class="categories-head d-flex align-items-center">
+                  <h4>Book Status</h4>
+                  <i class="fas fa-angle-down"></i>
+                </div>
+                <div>
+                  <label class="custom_radio">
+                    <input type="radio" name="filterReturned" (click)="applyFilter(null)">
+                    <span class="checkmark"></span> All
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_radio">
+                    <input type="radio" name="filterReturned" (click)="applyFilter(true)">
+                    <span class="checkmark"></span> Returned
+                  </label>
+                </div>
+                <div>
+                  <label class="custom_radio">
+                    <input type="radio" name="filterReturned" (click)="applyFilter(false)">
+                    <span class="checkmark"></span> Not Returned
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

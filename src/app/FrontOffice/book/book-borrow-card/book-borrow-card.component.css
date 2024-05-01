@@ -1,0 +1,13 @@
+.info-high {
+  background-color: green;
+  color: white; /* Optional: adjust text color for better visibility */
+  font-size: 0.75rem; /* Adjust the font size as needed */
+  padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+}
+
+.info-low {
+  background-color: red;
+  color: white; /* Optional: adjust text color for better visibility */
+  font-size: 0.75rem; /* Adjust the font size as needed */
+  padding: 0.25rem 0.5rem; /* Adjust padding as needed */
+}

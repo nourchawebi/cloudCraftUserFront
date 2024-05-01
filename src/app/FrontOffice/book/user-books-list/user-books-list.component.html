@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-lg-9">
         <app-book-card
-          *ngFor="let book of bookResponse.content"
+          *ngFor="let book of filteredBooks"
           [book]="book"
           (details)="displayBookDetails($event)"
         ></app-book-card>
@@ -50,63 +50,22 @@
       </div>
       <div class="col-lg-3 theiaStickySidebar">
         <div class="filter-clear">
-          <div class="clear-filter d-flex align-items-center">
-            <h4><i class="feather-filter"></i>Filters</h4>
-          </div>
-
           <div class="card search-filter categories-filter-blk">
             <div class="card-body">
               <div class="filter-widget mb-0">
                 <div class="categories-head d-flex align-items-center">
                   <h4>Book categories</h4>
-                  <i class="fas fa-angle-down"></i>
+                  <i class="fa-solid fa-list"></i>
                 </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Backend (3)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> CSS (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Frontend (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist" checked>
-                    <span class="checkmark"></span> General (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist" checked>
-                    <span class="checkmark"></span> IT & Software (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Photography (2)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Programming Language (3)
-                  </label>
-                </div>
-                <div>
-                  <label class="custom_check mb-0">
-                    <input type="checkbox" name="select_specialist">
-                    <span class="checkmark"></span> Technology (2)
+                <!-- Catégorie statique "All" -->
+                <label class="custom_radio">
+                  <input type="radio" name="category_radio" (change)="filterBooksByCategory('All')" checked>
+                  <span class="checkmark"></span> All
+                </label>
+                <div *ngFor="let category of categories">
+                  <label class="custom_radio">
+                    <input type="radio" name="category_radio" (change)="filterBooksByCategory(category.name)">
+                    <span class="checkmark"></span> {{ category.name }}
                   </label>
                 </div>
               </div>

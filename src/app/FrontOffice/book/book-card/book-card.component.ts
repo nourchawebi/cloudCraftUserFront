@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BookResponse} from "../../../models/book-response";
+import {BookResponse} from "../../../models/book/book-response";
 import {Router} from "@angular/router";
 
 @Component({

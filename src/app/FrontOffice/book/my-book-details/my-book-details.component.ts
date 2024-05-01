@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BookResponse} from "../../../models/book-response";
+import {BookResponse} from "../../../models/book/book-response";
 import {ActivatedRoute, Router} from "@angular/router";
-import {BookService} from "../../../services/book.service";
+import {BookService} from "../../../services/bookService/book.service";
 
 @Component({
   selector: 'app-my-book-details',
@@ -45,4 +45,14 @@ export class MyBookDetailsComponent implements OnInit {
       );
     }
   }
+
+  OnEditBook(book: BookResponse|undefined)
+  {
+    this.router.navigate(['user', 'edit',book?.id]);
+  }
+
 }
+
+
+
+

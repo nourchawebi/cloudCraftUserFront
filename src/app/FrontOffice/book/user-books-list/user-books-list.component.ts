@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {PageResponseBookResponse} from "../../../models/page-response-book-response";
-import {BookService} from "../../../services/book.service";
+import {PageResponseBookResponse} from "../../../models/book/page-response-book-response";
+import {BookService} from "../../../services/bookService/book.service";
 import {Router} from "@angular/router";
-import {BookResponse} from "../../../models/book-response";
+import {BookResponse} from "../../../models/book/book-response";
 import {User} from "../../../models/user";
+import {CategoryService} from "../../../services/bookService/category.service";
+import {Category} from "../../../models/book/category";
 
 @Component({
   selector: 'app-user-books-list',
@@ -17,14 +19,18 @@ export class UserBooksListComponent implements OnInit{
   pages: any = [];
   message = '';
   level: 'success' |'error' = 'success';
+  categories: Category[] = [];
+  filteredBooks: BookResponse[] = [];
   constructor(
     private bookService: BookService,
-    private router: Router
+    private router: Router,
+    private categoryService: CategoryService
   ) {
   }
 
   ngOnInit(): void {
     this.findAllBooks();
+    this.loadCategories();
   }
 
   private findAllBooks() {
@@ -37,9 +43,11 @@ export class UserBooksListComponent implements OnInit{
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)
             .map((x, i) => i);
+          this.filteredBooks = this.bookResponse.content ? this.bookResponse.content : [];
         }
       });
   }
+
 
   gotToPage(page: number) {
     this.page = page;
@@ -72,6 +80,24 @@ export class UserBooksListComponent implements OnInit{
 
   displayBookDetails(book: BookResponse) {
     this.router.navigate(['user', 'mybookDetails', book.id]);
+  }
+
+  loadCategories() {
+    this.categoryService.getAllCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
+  filterBooksByCategory(categoryName: string) {
+    if (this.bookResponse.content) {
+      if (categoryName === 'All') {
+        this.filteredBooks = this.bookResponse.content;
+      } else {
+        this.filteredBooks = this.bookResponse.content.filter(book => book.category === categoryName);
+      }
+    } else {
+      this.filteredBooks = [];
+    }
   }
 
 }

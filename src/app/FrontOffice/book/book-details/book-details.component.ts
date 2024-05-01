@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BookResponse} from "../../../models/book-response";
-import {BookService} from "../../../services/book.service";
-import {ActivatedRoute} from "@angular/router";
+import {BookResponse} from "../../../models/book/book-response";
+import {BookService} from "../../../services/bookService/book.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-book-details',
@@ -14,7 +14,8 @@ export class BookDetailsComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +29,21 @@ export class BookDetailsComponent implements OnInit{
           console.error('Error loading book details:', error);
         }
       });
+    }
+  }
+
+  onBorrowBook(id:number|undefined)
+  {
+    if(id!= null){
+      this.bookService.borrowBook(id).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['user', 'books']);
+        },
+        error => {
+          console.error('Error borroing book:', error);
+        }
+      );
     }
   }
 

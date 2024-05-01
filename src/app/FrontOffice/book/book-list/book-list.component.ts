@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {PageResponseBookResponse} from "../../../models/page-response-book-response";
+import {PageResponseBookResponse} from "../../../models/book/page-response-book-response";
 import {Router} from "@angular/router";
-import {BookService} from "../../../services/book.service";
-import {BookResponse} from "../../../models/book-response";
+import {BookService} from "../../../services/bookService/book.service";
+import {BookResponse} from "../../../models/book/book-response";
 import {User} from "../../../models/user";
-import {CategoryService} from "../../../services/category.service";
-import {Category} from "../../../models/category";
+import {CategoryService} from "../../../services/bookService/category.service";
+import {Category} from "../../../models/book/category";
 
 @Component({
   selector: 'app-book-list',
@@ -66,12 +66,7 @@ export class BookListComponent implements OnInit{
     } else {
       this.filteredBooks = [];
     }
-    // Actualiser les livres affichés en appelant à nouveau findAllBooks
-    //this.findAllBooks();
   }
-
-
-
 
   gotToPage(page: number) {
     this.page = page;

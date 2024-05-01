@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Category} from "../../../models/category";
+import { Component, OnInit } from '@angular/core';
+import {BookService} from "../../../services/bookService/book.service";
 import {User} from "../../../models/user";
-import {BookService} from "../../../services/book.service";
-import {CategoryService} from "../../../services/category.service";
+import {Category} from "../../../models/book/category";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {CategoryService} from "../../../services/bookService/category.service";
 
 @Component({
-  selector: 'app-book-add',
-  templateUrl: './book-add.component.html',
-  styleUrls: ['./book-add.component.css']
+  selector: 'app-add-book',
+  templateUrl: './add-book.component.html',
+  styleUrls: ['./add-book.component.css']
 })
-export class BookAddComponent {
+export class AddBookComponent implements OnInit{
+
   bookForm!: FormGroup;
   categories: Category[] = [];
+
   selectedFile!: File;
   constructor(    private formBuilder: FormBuilder,
                   private bookService: BookService,
@@ -30,13 +32,14 @@ export class BookAddComponent {
   }
 
 
-  addBook( bookData:FormData, category: Category): void {
+  addBook(bookData:FormData, category: Category): void {
     const dto={bookData, categoryId:category};
     console.log(dto);
     this.bookService.addBook(dto).subscribe(
       result => {
         if (result) {
           console.log('Book added successfully');
+          this.bookForm.reset();
 
         } else {
           console.error('Failed to add book');
@@ -60,18 +63,18 @@ export class BookAddComponent {
   }
 
   onSubmit() {
-
-
     if (this.bookForm.valid && this.selectedFile) {
       const bookData =new FormData();
       bookData.append("author",this.bookForm.value.author);
       bookData.append("picture",this.selectedFile);
       bookData.append("title",this.bookForm.value.title);
       bookData.append("description",this.bookForm.value.description);
-      this.addBook( bookData ,this.bookForm.value.category);
+      this.addBook(bookData ,this.bookForm.value.category);
+      this.bookForm.reset();
     } else {
       console.error('Invalid Form please Check again');
     }
   }
+
 
 }
