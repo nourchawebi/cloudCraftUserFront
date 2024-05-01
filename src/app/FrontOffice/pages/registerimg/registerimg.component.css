@@ -1,0 +1,216 @@
+
+/* Style the scrollbar for the box container */
+.form-container::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+/* Track styles (the area behind the scrollbar) */
+.form-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background */
+}
+
+
+/* Handle styles (the draggable part of the scrollbar) */
+.form-container::-webkit-scrollbar-thumb {
+  background:lightpink; /* Dark gray color for the scrollbar handle */
+  border-radius: 5px; /* Rounded corners for the scrollbar handle */
+}
+
+/* On hover, make the scrollbar handle darker */
+.box::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.stepper-container {
+  width: 90%; /* Adjust as needed */
+  margin: 20px auto; /* Adjust as needed */
+}
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.otp-inputs {
+  display: flex;
+  margin-bottom:10px;
+  gap: 5px; /* Adjust the gap between inputs as needed */
+}
+
+.otp-input {
+  width: 20px; /* Adjust the width of each input as needed */
+  height: 30px; /* Adjust the height of each input as needed */
+  text-align: center; /* Center the text within each input */
+  font-size: 16px; /* Adjust the font size of the text within each input */
+
+}
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Make items stretch vertically */
+  width: 90%;
+  background-color: #fff;
+  margin: 40px auto;
+  box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  -webkit-box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  -moz-box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  border-radius: 20px;
+
+}
+
+.box-content {
+  font-size: 1.2rem;
+  color: #333;
+  width: 30%;
+}
+
+.form-container {
+  overflow-y: auto;
+  width:70%;
+  padding-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.additional-box {
+  /* Adjust the width of the new box */
+  background-color: lightblue; /* Example background color */
+  padding: 20px;
+}
+
+
+.input-block {
+  flex: 1;
+  margin-right: 20px; /* Add margin between input blocks */
+}
+.custom-input-width {
+  width: 100%; /* Adjust the width as needed */
+}
+@media (max-width: 768px) {
+  .input-row {
+    flex-direction: column; /* Change to a column layout on smaller screens */
+  }
+
+  .input-block {
+    flex: none; /* Remove flex behavior to allow inputs to stack vertically */
+    width: 100%; /* Take up full width on smaller screens */
+    margin-right: 0; /* Remove margin to prevent extra space */
+  }}
+
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+h2 {
+  text-align: center;
+  color: #333333;
+}
+form {
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555555;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 93%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+a {
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.button-disabled {
+  background-color: #cccccc;
+  color: #777777;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
+input[type="file"] {
+  position: relative;
+}
+
+input[type="file"]::file-selector-button {
+  width: 136px;
+  color: transparent;
+}
+
+/* Faked label styles and icon */
+input[type="file"]::before {
+  position: absolute;
+  pointer-events: none;
+  top: 10px;
+  left: 16px;
+  height: 20px;
+  width: 20px;
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230964B0'%3E%3Cpath d='M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zM7 9l1.41 1.41L11 7.83V16h2V7.83l2.59 2.58L17 9l-5-5-5 5z'/%3E%3C/svg%3E");
+}
+
+input[type="file"]::after {
+  position: absolute;
+  pointer-events: none;
+  top: 11px;
+  left: 40px;
+  color: #0964b0;
+  content: "Upload File";
+}
+
+/* ------- From Step 1 ------- */
+
+/* file upload button */
+input[type="file"]::file-selector-button {
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 40px;
+  cursor: pointer;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+  margin-right: 16px;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+  background-color: #e5e7eb;
+}
+
+/* ------------------------ */
+
