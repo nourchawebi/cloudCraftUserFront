@@ -1,0 +1,160 @@
+
+/* Style the scrollbar for the box container */
+.form-container::-webkit-scrollbar {
+  width: 5px; /* Width of the scrollbar */
+}
+
+/* Track styles (the area behind the scrollbar) */
+.form-container::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Light gray background */
+}
+
+
+/* Handle styles (the draggable part of the scrollbar) */
+.form-container::-webkit-scrollbar-thumb {
+  background:lightpink; /* Dark gray color for the scrollbar handle */
+  border-radius: 5px; /* Rounded corners for the scrollbar handle */
+}
+
+/* On hover, make the scrollbar handle darker */
+.box::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.otp-inputs {
+  display: flex;
+  margin-bottom:10px;
+  gap: 5px; /* Adjust the gap between inputs as needed */
+}
+
+.otp-input {
+  width: 20px; /* Adjust the width of each input as needed */
+  height: 30px; /* Adjust the height of each input as needed */
+  text-align: center; /* Center the text within each input */
+  font-size: 16px; /* Adjust the font size of the text within each input */
+
+}
+.box {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* Make items stretch vertically */
+  width: 90%;
+  background-color: #fff;
+  margin: 40px auto;
+  box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  -webkit-box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  -moz-box-shadow: 0px 2px 31px 7px rgba(214,139,192,0.32);
+  border-radius: 20px;
+
+}
+
+.box-content {
+  font-size: 1.2rem;
+  color: #333;
+  width: 30%;
+}
+
+.form-container {
+  overflow-y: auto;
+  width:80%;
+
+  padding-top: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.additional-box {
+  /* Adjust the width of the new box */
+  background-color: lightblue; /* Example background color */
+  padding: 20px;
+}
+
+
+.input-block {
+  flex: 1;
+  margin-right: 20px; /* Add margin between input blocks */
+}
+.custom-input-width {
+  width: 100%; /* Adjust the width as needed */
+}
+@media (max-width: 768px) {
+  .input-row {
+    flex-direction: column; /* Change to a column layout on smaller screens */
+  }
+
+  .input-block {
+    flex: none; /* Remove flex behavior to allow inputs to stack vertically */
+    width: 100%; /* Take up full width on smaller screens */
+    margin-right: 0; /* Remove margin to prevent extra space */
+  }}
+
+
+.containers {
+  height: 600px;
+  width: 500px;
+  background-color: white;
+  box-shadow: 8px 8px 20px rgb(128, 128, 128);
+  position: relative;
+  overflow: hidden;
+}
+
+h2 {
+  text-align: center;
+  color: #333333;
+}
+form {
+  text-align: center;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555555;
+  text-align: left;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 93%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+a {
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.button-disabled {
+  background-color: #cccccc;
+  color: #777777;
+  cursor: not-allowed;
+  opacity: 0.6;
+  pointer-events: none;
+}
