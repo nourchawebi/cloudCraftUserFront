@@ -12,24 +12,15 @@ import {Event} from "../../models/event";
 })
 export class UpdateEventComponent implements OnInit {
   id!: number;
-  updateForm: FormGroup; // Initialisation ici sans le '!'
+  updateForm!: FormGroup;
   currentEvent!: Event;
+  selectedFile!: File;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private eventService: EventService,
     private router: Router
   ) {
-    // Initialisez le FormGroup ici dans le constructeur
-    this.updateForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      dateBegin: new FormControl('', Validators.required),
-      dateEnd: new FormControl('', Validators.required),
-      location: new FormControl('', Validators.required),
-      details: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      capacity: new FormControl(0, [Validators.required, Validators.min(1)])
-    });
   }
 
   ngOnInit() {
@@ -37,15 +28,16 @@ export class UpdateEventComponent implements OnInit {
     this.eventService.getEventById(this.id).subscribe(eventData => {
       this.currentEvent = eventData;
       console.log('Current Event:', this.currentEvent); // Add this line to debug
-      // Utilisez patchValue pour mettre à jour les valeurs du formulaire
-      this.updateForm.patchValue({
-        title: this.currentEvent.title,
-        dateBegin: this.currentEvent.dateBegin,
-        dateEnd: this.currentEvent.dateEnd,
-        location: this.currentEvent.location,
-        details: this.currentEvent.details,
-        description: this.currentEvent.description,
-        capacity: this.currentEvent.capacity
+     // Utilisez patchValue pour mettre à jour les valeurs du formulaire
+     this.updateForm = new FormGroup({
+        title: new FormControl(this.currentEvent.title, Validators.required),
+        dateBegin: new FormControl(this.currentEvent.dateBegin, Validators.required),
+        dateEnd: new FormControl('', Validators.required),
+        location: new FormControl(this.currentEvent.location, Validators.required),
+        details: new FormControl('', Validators.required),
+        description: new FormControl('', Validators.required),
+        capacity: new FormControl(0, [Validators.required, Validators.min(1)]),
+        picture: new FormControl('', Validators.required)
       });
     });
   }
@@ -53,10 +45,10 @@ export class UpdateEventComponent implements OnInit {
 
   updateEvent() {
     if (this.updateForm.valid) {
-      this.eventService.updateEvent(this.id, this.updateForm.value).subscribe(
+      this.eventService.updateEvent(this.id, this.updateForm.value, this.selectedFile).subscribe(
         () => {
           console.log('Événement mis à jour avec succès');
-          this.router.navigate(['/Home']); // Redirection vers la page d'accueil ou la liste des événements
+          this.router.navigate(['/admin/event-admin']);
         },
         error => {
           console.error('Erreur lors de la mise à jour de l\'événement', error);
@@ -66,5 +58,12 @@ export class UpdateEventComponent implements OnInit {
       console.error('Le formulaire n\'est pas valide');
     }
   }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+
+
 }
 

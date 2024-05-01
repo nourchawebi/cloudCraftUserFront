@@ -11,13 +11,13 @@ import {Event} from "../../models/event";
   styleUrls: ['./ajouter-event.component.css']
 })
 export class AjouterEventComponent {
-  newEvent: Event = new Event(0, '', new Date(), new Date(), '', '', '', 0);
+ newEvent: Event = new Event(0, '', new Date(), new Date(), '', '', '', 0);
   selectedFile!: File;
-
+ // newEvent!: Event;
   constructor(private eventService: EventService , private router: Router) { }
 
   createEvent() {
-    this.eventService.createEvent(this.newEvent).subscribe(
+    this.eventService.AddEvent(this.newEvent,this.selectedFile).subscribe(
       (response) => {
         console.log('Événement créé avec succès', response);
         this.router.navigate(['/Home']);
@@ -34,6 +34,7 @@ export class AjouterEventComponent {
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
+ //   this.newEvent.picture=this.selectedFile;
   }
 }
 

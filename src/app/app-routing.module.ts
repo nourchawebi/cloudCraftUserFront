@@ -8,8 +8,10 @@ import {CalendarComponent} from "./evenement/calendar/calendar.component";
 import {AjouterEventComponent} from "./evenement/ajouter-event/ajouter-event.component";
 import {UpdateEventComponent} from "./evenement/update-event/update-event.component";
 import {TesteComponent} from "./evenement/teste/teste.component";
+import {ChatComponent} from "./evenement/chat/chat.component";
+import {EventDetailsComponent} from "./evenement/event-details/event-details.component";
 
-const routes: Routes = [
+const routes: Routes = [ { path: '', pathMatch: 'full', redirectTo: 'user' },
   {
 
  path: 'admin',
@@ -29,15 +31,15 @@ const routes: Routes = [
     path: 'user',
     component: AllTemplateFrontComponent,
     children : [
-      {
-      path:'event' , component : EventComponent
-      },
-      {path: 'calendar', component: CalendarComponent}
+      {path:'event' , component : EventComponent},
+      {path: 'calendar', component: CalendarComponent},
+      { path: 'event-detail/:id', component: EventDetailsComponent }
+
     ]
 
   },
-  {path:'teste' , component : TesteComponent}
-
+  {path:'teste' , component : TesteComponent},
+  {path:'chat', component: ChatComponent}
 
 ];
 

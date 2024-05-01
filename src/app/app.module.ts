@@ -23,6 +23,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TesteComponent } from './evenement/teste/teste.component';
 import { QRCodeModule } from 'angularx-qrcode';
 
+import { ChatComponent } from './evenement/chat/chat.component';
+import {ChatService} from "./service/chat.service";
+import { EventDetailsComponent } from './evenement/event-details/event-details.component';
+
 
 
 @NgModule({
@@ -40,7 +44,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     CalendarComponent,
     AjouterEventComponent,
     UpdateEventComponent,
-    TesteComponent
+    TesteComponent,
+    ChatComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,

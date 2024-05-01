@@ -1,6 +1,9 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {EventService} from "../../service/event/event.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Event} from "../../models/event";
+import {HttpErrorResponse} from "@angular/common/http";
+import {EventDetailsComponent} from "../event-details/event-details.component";
 
 @Component({
   selector: 'app-event',
@@ -11,6 +14,9 @@ export class EventComponent implements OnInit {
   items: any[] = [];
   // qrCodeData!: string;
   qrCodeImageSrc!: string;
+  isParticipating = false; // Track participation status
+
+
   @ViewChild('content') content!: TemplateRef<any>;
   public myAngularxQrCode!: string;
 
@@ -24,37 +30,59 @@ export class EventComponent implements OnInit {
     this.sampleService.getAllEvents().subscribe(data => {
       this.items = data;
       this.items.forEach(event => {
-        // Generate QR code data for each event (assuming event.idEvent is the relevant data)
-        const qrCodeData = JSON.stringify({ eventId: event.idEvent });
-        // Assign the QR code data to myAngularxQrCode
-        this.myAngularxQrCode = qrCodeData;
-        // Now you can use qrCodeData to generate QR code image or send it to be displayed in the UI
-        // You can also assign qrCodeData to a property of event if needed
+        const qrCodeData = JSON.stringify({
+          message: "Thanks for participating for this event!",
+          title: event.title,
+          date: event.date,
+          location: event.location
+
+        });        this.myAngularxQrCode = qrCodeData;
+
       });
     });
   }
 
 
-  deleteEvent(id: number): void {
-    this.sampleService.deleteEvent(id).subscribe(() => {
-      this.items = this.items.filter(event => event.id !== id);
-      window.location.reload();
-    });
-  }
+
 
 
 
   cancelparticipate(id:number):void{
-    this.sampleService.cancelparticipate(id);}
-
-
-
-  participate(id:number):void{
-    this.sampleService.participate(id);
-
-    this.openModal()
-
+    this.sampleService.cancelparticipate(id);
   }
+
+
+  participate(id: number): void {
+    this.sampleService.participates(id).subscribe(
+      () => {
+        // Subscription success callback: open the modal
+        this.openModal();
+      },
+      (error: HttpErrorResponse) => {
+        // Subscription error callback: handle error
+        if (error.status === 400 && error.error === 'User is already participating in the event.') {
+          // Show an alert if the user is already participating
+          alert('You are already participating in this event.');
+        }
+        else if
+        (error.error === 'Event capacity has been reached. Cannot participate.') {
+          //           // Show an alert if the event capacity is full
+                    alert('Event capacity has been reached. Cannot participate.');
+        }
+
+        else {
+          console.error('Error:', error);
+
+          if (!(error.status === 400 && error.error === 'User is already participating in the event.')) {
+            this.openModal();
+          }
+        }
+      }
+    );
+  }
+
+
+
 
 
   openModal() {
@@ -64,8 +92,6 @@ export class EventComponent implements OnInit {
       // Handle dismiss
     });
   }
-
-
 
 
 

@@ -7,6 +7,7 @@ export class Event {
   details: string;
   description: string;
   capacity: number;
+ // picture: File
   // Ajoutez d'autres propriétés nécessaires qui correspondent à votre entité Event backend
 
   constructor(
@@ -17,7 +18,8 @@ export class Event {
     location: string,
     details: string,
     description: string,
-    capacity: number
+    capacity: number,
+  //  picture: File,
   ) {
     this.idEvent = idEvent;
     this.title = title;
@@ -27,5 +29,6 @@ export class Event {
     this.details = details;
     this.description = description;
     this.capacity = capacity;
+  //  this.picture =picture;
   }
 }
