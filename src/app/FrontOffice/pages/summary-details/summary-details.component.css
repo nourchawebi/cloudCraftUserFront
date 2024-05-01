@@ -1,0 +1,30 @@
+.summary-basic-info-cont{
+  padding-left: 1.5rem;
+}
+.card-file:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  .summary-pdf-item{
+    width: 100%;
+    border:1px solid gray;
+    padding :.7rem 1rem;
+    border-radius: 1rem; 
+  }
+  .summary-title{
+    margin: 1rem 0;
+  }
+  h5{
+    margin: 0;
+  }
+  h6.summary-desc-title{
+    margin-bottom:.7rem ;
+  }
+  .containerSp{
+    margin-top: 7rem;
+  }
+  .rating-container{
+    padding-left: 1rem;
+    margin-top: 1rem;
+  }

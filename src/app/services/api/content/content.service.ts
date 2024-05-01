@@ -13,6 +13,6 @@ export class ContentService {
 
   deleteContent(contentID:number,chapterId:number):Observable<any>{
     let contentUrl:string = `${ApiConstants.BASE_URL}/chapters/${chapterId}/contents/${contentID}`;
-      return this.http.delete(contentUrl);
+      return this.http.delete(contentUrl,{headers:ApiConstants.headers});
   }
 }

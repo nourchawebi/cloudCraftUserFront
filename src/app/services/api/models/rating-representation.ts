@@ -1,7 +1,10 @@
+import { UserRepresentation } from "./user-representation";
+
 export interface RatingRepresentation{
     id:number;
-    description:string;
-    title:string;
+    content:string;
+    value:number;
+    owner:UserRepresentation;
     createdAt:Date;
     
 }

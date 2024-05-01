@@ -8,4 +8,5 @@ export interface SummaryRepresentation{
     ratings:Array<RatingRepresentation>;
     // private User owner;
     description:string;
+    owner:string
 }

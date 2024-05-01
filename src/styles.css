@@ -34,3 +34,31 @@ background-color:#ff3e1d ;
 color: #fff !important;
 }
 
+.containerSp{
+    margin-top: 3rem;
+}
+
+ .header-border +.containerSp {
+    border-bottom: none;
+}
+
+ngb-rating{
+    color: #FFC107 !important;
+    font-size: 3.5rem;
+}
+ngb-rating.d-inline-flex  span{
+    color: #FFC107 !important;
+    font-size: 1.8rem;
+}
+.d-flex span.visually-hidden{
+    color: #FFC107;
+    font-size: 1.8rem;
+}
+
+.input-block > .multiline-input.form-control   {
+    height: auto;
+    display: flex;
+    min-height: 100px; /* Adjust as needed */ 
+    align-items: start;
+    
+}

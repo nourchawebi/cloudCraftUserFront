@@ -1,0 +1,102 @@
+<div class="card content-sec containerSp">
+    <app-show-ratings *ngIf="isRatingsDisplayed" [ratings]="ratingsRep" [courseId]="courseId"
+    (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl"></app-show-ratings>
+<div class="container">
+    <section class="page-content course-sec">
+        <div class="container">
+            <app-error [errorMessage]="error"></app-error>
+            <div class="row" *ngIf="chapter">
+                <div class="col">
+                    <div class="blog-content blog-read mb-3 d-flex justify-content-between px-3">
+
+                        <a *ngIf="isActionAllowd(chapter)" href="javascript:void(0)" (click)="navigateToUpdateChapter(chapter.id)"
+                            class="read-more btn btn-primary">Update Chapter</a>
+                            <a href="javascript:void(0)" (click)="navigateToCourse()"
+                            class="read-more btn btn-primary">Back to Course</a>
+                    </div>
+
+                    <div class="card overview-sec">
+                        <div class="chapter-details-container">
+                            <h3 class="chapter-details-title">{{chapter.title}}</h3>
+                            <div>
+                                <h4>description</h4>
+                                <p class="chapter-details-desc">{{chapter.description}}</p>
+                            </div>   
+                        </div>
+                        <div class="card-body">
+                            <div style="display: flex;align-items: center;cursor: pointer;"
+                            *ngIf="chapter.ratings.length!=0" (click)="showRatings(chapter.ratings)">
+                            <div style="width: 7rem;display: flex;align-items: center;">
+                                <div style="width: 2rem;">
+                                    <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon"
+                                        style="padding-right: .3rem;">
+                                </div>
+                                <span style="color: blue;font-size: 1rem;">{{chapter.ratings.length}} ratings</span>
+                            </div>
+                            <app-rating [readonly]="true" [initialRate]="chapterRating"></app-rating>
+                        </div>
+                        <div *ngIf="chapter.ratings.length==0"
+                            style="padding-left: 1.7rem;color: blue;cursor: pointer;"
+                            (click)="navigateToAddRatingToChapter(chapter.id)">
+                            <a>rate >> </a>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row" style="height: 600px;overflow-y: scroll;">
+                        <div class="course-card col">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="subs-title">Chapter Content</h5>
+                                </div>
+                                <div class="blog-content blog-read">
+
+                                    <a href="javascript:void(0)" (click)="navigateToAddContent(chapter.id)"
+                                        class="read-more btn btn-primary">Add Content</a>
+                                </div>
+                            </div>
+                            <div *ngFor="let content of chapter.chapterContent" class="content-item">
+                                <h5 class="content-title">{{content.title}} <span *ngIf="content.category"
+                                        class="badge bg-primary">{{content.category}}</span></h5>
+                                <div *ngFor="let file of content.files" class="file-item">
+                                    <h6 class="file-title">
+                                        <a class="pdf-link" data-bs-toggle="collapse" href={{file.url}}
+                                            aria-expanded="false">{{file.fileName}}</a>
+                                    </h6>
+
+                                </div>
+                                <button class="btn btn-danger" (click)="deleteContent(content.id)">Delete</button>
+                            </div>
+
+                        </div>
+                        <div class="course-card col">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h5 class="subs-title">Chapter Summaries</h5>
+                                </div>
+                                <div class="blog-content blog-read">
+
+                                    <a href="javascript:void(0)" (click)="navigateToAddSummaryToChapter(chapter.id)"
+                                        class="read-more btn btn-primary">Add Summary</a>
+                                </div>
+                            </div>
+                            <div *ngFor="let summary of chapter.summaries" class="content-item card-item">
+                                <div  (click)="navigateToSummaryDetails(summary.id)">
+                                <h5 class="content-title">{{summary.title}}</h5>
+                                <div *ngFor="let file of summary.files" class="file-item">
+                                    <h6 class="file-title">
+                                        <a class="pdf-link"  href={{file.url}}
+                                            aria-expanded="false">{{file.fileName}}</a>
+                                    </h6>
+                                </div>
+                            </div>
+                                <!-- <button class="btn btn-danger" (click)="deleteSummary(summary.id)">Delete</button> -->
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>
