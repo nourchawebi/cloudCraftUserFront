@@ -1,0 +1,14 @@
+.user-info-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.user-info-container p {
+  margin-right: 10px; /* Adjust as needed for spacing */
+}
+
+.user-info-container .logout-icon {
+  margin-left: 10px; /* Adjust as needed for spacing */
+}
+
+

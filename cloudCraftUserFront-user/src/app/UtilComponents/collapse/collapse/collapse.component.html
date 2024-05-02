@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="collapse-controll-container">
+        <div class="title">
+            {{title||null}}
+        </div>
+        <div>
+            <img src="/assets/BackOffice/assets/img/icons/unicons/colUp.png" (click)="toggleCollapse()"
+                class="collapse-controll" *ngIf="!isCollapsed" />
+            <img src="/assets/BackOffice/assets/img/icons/unicons/colDown.png" (click)="toggleCollapse()"
+                class="collapse-controll" *ngIf="isCollapsed" />
+        </div>
+
+    </div>
+    <div class="collapse" [ngClass]="{ 'show': isCollapsed }">
+        <!-- Content to be collapsed -->
+        <p><ng-content></ng-content></p>
+    </div>
+</div>
