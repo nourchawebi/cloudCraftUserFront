@@ -1,0 +1,63 @@
+/* Style for the table */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style for table headers */
+  .table th {
+    font-weight: bold;
+    text-align: left;
+    background-color: #f2f2f2;
+    padding: 10px;
+  }
+  
+  /* Style for table rows */
+  .table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style for alternating row background color */
+  .table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for images in cells */
+  .table img {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Style for card container */
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for card header */
+  .card-header {
+    background-color: #dc262c;
+    color: #fff;
+    padding: 10px;
+    border-bottom: none;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  /* Style for card body */
+  .card-body {
+    padding: 20px;
+  }
+  
+  /* Style for container */
+  .container-xxl {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  
+  /* Style for responsive tables */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  

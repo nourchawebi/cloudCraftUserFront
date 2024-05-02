@@ -1,0 +1,43 @@
+
+<div class="container-xxl flex-grow-1 container-p-y" id="mainC">
+    <!-- Hoverable Table rows -->
+    <div class="card">
+      <h5 class="card-header"><strong> Posts details</strong></h5>
+      <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Post type</th>
+                    <th>Likes</th>
+                    <th>Dislikes</th>
+                    <th>Number of Comments</th>
+                    <th>Image</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let annonce of annonces;let i = index">
+                    <td>{{ annonce.title }}</td>
+                    <td>{{ annonce.annonce_description }}</td>
+                    <td>{{ annonce.typeAnnonce }}</td>
+                    <td>{{ annonce.likes }}</td>
+                    <td>{{ annonce.dislikes }}</td>
+                    <td>{{ commentCount[i] }}</td>
+                    <td>
+                      <!-- Check if the type of annonce is LOST_AND_FOUND -->
+                      <ng-container *ngIf="annonce.typeAnnonce === 'LOST_AND_FOUND'">
+                        <img [src]="getImageUrl(annonce.image)" alt="Annonce Image" width="100">
+                      </ng-container>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+      
+            </div>
+    </div>
+</div>
+
+

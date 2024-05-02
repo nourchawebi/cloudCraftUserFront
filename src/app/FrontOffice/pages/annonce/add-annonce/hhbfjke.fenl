@@ -1,0 +1,25 @@
+<div class="table-container">
+    <h2>Annonces</h2>
+    <button class="btn btn-primary ml-2" routerLink="/add-annonce" style="margin: 10px;">Add New Annonce</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Annonce Type</th>
+                <th>Publish Date </th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let annonce of annonces">
+                <td>{{ annonce.annonce_description }}</td>
+                <td>{{ annonce.typeAnnonce }}</td>
+                <td>{{ annonce.annonce_date | date:'shortDate' }}</td>
+                <td>
+                    <button class="btn btn-primary">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

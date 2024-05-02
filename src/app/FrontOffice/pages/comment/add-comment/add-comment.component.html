@@ -1,0 +1,23 @@
+<div class="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Submit a Comment</h5>
+          <button type="button" class="close" (click)="onClose()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <button (click)="toggleRecognition()">
+            {{ isRecognizing ? 'End' : 'Start' }} Recognition
+          </button> <!-- Button to toggle recognition -->
+          <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+              <label for="description">Description Comment</label>
+            
+              <textarea formControlName="comment_description"  class="form-control" id="comment_description" placeholder="Write down here" rows="4"></textarea>
+              <small class="text-danger" *ngIf="commentForm.get('comment_description')?.errors && commentForm.get('comment_description')?.touched">Description is required</small>
+  
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
