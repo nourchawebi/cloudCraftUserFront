@@ -1,0 +1,86 @@
+<section class="page-content course-sec containerSp">
+    <div class="container">
+        <app-error [errorMessage]="error"></app-error>
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="add-course-header">
+                    <h2>Add New Content</h2>
+                    <div class="add-course-btns">
+                        <ul class="nav">
+                            <li>
+                                <a href="javascript:void(0)" (click)="navigateToChapter()" class="btn btn-black">Back to Chapter</a>
+                            </li>
+                            <li>
+                                <a (click)="onSubmit()" href="javascript:void(0);" class="btn btn-success-dark">Save</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="widget-set">
+
+                        <div class="widget-content multistep-form">
+                            <fieldset id="first">
+                                <div class="add-course-info">
+                                    <div class="add-course-inner-header">
+                                        <h4>Basic Information</h4>
+                                    </div>
+                                    <div class="add-course-form"> 
+                                        <form [formGroup]=" addContentForm">
+                                            <div class="input-block">
+                                                <label class="add-course-label" for="title">Content Title</label>
+                                                <input type="text" class="form-control" id="title" formControlName="title"
+                                                    placeholder="Content Title">
+                                                    <small  *ngIf="addContentForm.get('title')?.invalid && addContentForm.get('title')?.touched && addContentForm.get('title')?.errors?.['required']!=null ">
+                                                        Content title is required.
+                                                    </small>
+                                                    <small *ngIf="addContentForm.get('title')?.invalid && addContentForm.get('title')?.touched && addContentForm.get('title')?.errors?.['minlength']!=null ">
+                                                        Content title length should be > 3.
+                                                    </small>
+                                            </div>
+                                            <div class="input-block" >
+                                                <label class="add-course-label" for="description">Content description</label>
+                                                <input type="text" class="form-control" id="description" formControlName="description"
+                                                    placeholder="Content Description">
+                                                    <small  *ngIf="addContentForm.get('description')?.invalid && addContentForm.get('description')?.touched && addContentForm.get('description')?.errors?.['required']!=null ">
+                                                        Content description is required.
+                                                    </small>
+                                                    <small *ngIf="addContentForm.get('description')?.invalid && addContentForm.get('description')?.touched && addContentForm.get('description')?.errors?.['minlength']!=null ">
+                                                        Content description length should be > 3.
+                                                    </small>
+                                            </div>
+                                            <div class="input-block">
+                                                <label class="add-course-label" for="contentCategory">Content Category</label>
+                                                <select class="form-control select" formControlName="contentCategory" id="contentCategory">
+                                                    <option *ngFor="let category of categories" [selected]="category === defaultOption" >{{category}}</option>
+                                                   
+                                                </select>
+                                            </div>
+                                            <div class="input-block" >
+                                                <label class="add-course-label" for="contentFiles">Content Files</label>
+                                                <input type="file" class="form-control" id="contentFiles" formControlName="contentFiles" multiple (change)="onFileSelected($event)"
+                                                    placeholder="Content Files">
+                                                    <small *ngIf="addContentForm.get('contentFiles')?.invalid && addContentForm.get('contentFiles')?.touched && addContentForm.get('contentFiles')?.errors?.['minlength']!=null ">
+                                                        you have to select at least one file .
+                                                    </small>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </fieldset>
+                          
+                
+                         
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+.chart-grid {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+}
+
+
+
+
+
+@media screen and (min-width: 600px) {
+  .chart-grid > div {
+    min-width: 400px;
+    min-height: 200px;
+  }
+}

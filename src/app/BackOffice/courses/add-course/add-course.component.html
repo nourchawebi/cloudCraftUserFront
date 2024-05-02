@@ -1,0 +1,93 @@
+<div class="container">
+    <app-error [errorMessage]="error"></app-error>
+    <!-- <div class="row align-items-center">
+        <div class="col-md-12">
+            <div class="add-course-header">
+                <h2>Add New Course</h2>
+                <div class="add-course-btns">
+                    <ul class="nav">
+                        <li>
+                            <a href="javascript:void(0)" (click)="navigateToCourses()" class="btn btn-black">Back to Courses</a>
+                        </li>
+                        <li>
+                            <a (click)="onSubmit()" href="javascript:void(0);" class="btn btn-success-dark" >Save</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="d-flex justify-content-end py-3 px-2">
+        <button type="button" class="btn btn-dark" (click)="navigateToCourses()">Back</button>
+        <span class="px-1"></span>
+        <button type="button" class="btn btn-danger" (click)="onSubmit()">save</button>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="widget-set">
+
+                    <div class="widget-content multistep-form">
+                        <fieldset id="first">
+                            <div class="add-course-info">
+                                <div class="add-course-inner-header">
+                                    <h4>Basic Information</h4>
+                                </div>
+                                <div class="add-course-form"> 
+                                    <form [formGroup]="courseForm">
+                                        <div class="input-block">
+                                            <label class="add-course-label" for="title">Course Title</label>
+                                            <input type="text" class="form-control" id="title" formControlName="title"
+                                                placeholder="Course Title">
+                                                <small  *ngIf="courseForm.get('title')?.invalid && courseForm.get('title')?.touched && courseForm.get('title')?.errors?.['required']!=null ">
+                                                    Course title is required.
+                                                </small>
+                                                <small *ngIf="courseForm.get('title')?.invalid && courseForm.get('title')?.touched && courseForm.get('title')?.errors?.['minlength']!=null ">
+                                                    Course title length should be > 3.
+                                                </small>
+                                        </div>
+                                        <div class="input-block" >
+                                            <label class="add-course-label" for="description">Course description</label>
+                                            <input type="text" class="form-control" id="description" formControlName="description"
+                                                placeholder="Course Description">
+                                                <small *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched ">
+                                                    Course description is required.
+                                                </small>
+                                                <small *ngIf="courseForm.get('description')?.invalid && courseForm.get('description')?.touched && courseForm.get('description')?.errors?.['minlength']!=null ">
+                                                    Course description length should be > 3.
+                                                </small>
+                                        </div>
+                                        <div class="input-block">
+                                            <label class="add-course-label" for="uneversityYear">Course level</label>
+                                            <select class="form-control select" formControlName="uneversityYear" id="uneversityYear">
+                                                <option>FRESHMAN</option>
+                                                <option>SOPHOMORE</option>
+                                                <option>JUNIOR</option>
+                                                <option>SENIOR</option>
+                                            </select>
+                                            <small *ngIf="courseForm.get('uneversityYear')?.invalid && courseForm.get('uneversityYear')?.touched ">
+                                                Course level is required.
+                                            </small>
+                                        </div>
+                                        <div class="input-block mb-0">
+                                            <label class="add-course-label" for="image">Course Image</label>
+                                            <div id="editor"></div>
+                                            <input type="file" (change)="onFileChanged($event)" class="form-control" formControlName="image" id="image"
+                                                placeholder="Course Image">
+                                                <small *ngIf="courseForm.get('image')?.invalid && courseForm.get('image')?.touched ">
+                                                    Course image is required.
+                                                </small>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

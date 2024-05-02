@@ -1,0 +1,7 @@
+.col-class{
+    height: 150px;overflow-y: hidden;
+    cursor: pointer;
+}
+.grid-gap{
+    grid-row-gap:1rem;
+}

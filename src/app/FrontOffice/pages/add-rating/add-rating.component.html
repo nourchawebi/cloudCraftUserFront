@@ -1,0 +1,103 @@
+
+
+
+<section class="page-content course-sec containerSp">
+    <div class="container">
+        <app-error [errorMessage]="error"></app-error>
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="add-course-header">
+                    <h2>Add New Rating</h2>
+                    <div class="add-course-btns">
+                        <ul class="nav">
+                            <li>
+                                <a href="javascript:void(0)" (click)="navigateToResource()" class="btn btn-black">Back to {{backResource}}</a>
+                            </li>
+                            <li>
+                                <a (click)="onSubmit()" href="javascript:void(0);" class="btn btn-success-dark" >Save</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="widget-set">
+
+                        <div class="widget-content multistep-form">
+                            <fieldset id="first">
+                                <div class="add-course-info">
+                                    <div class="add-course-inner-header">
+                                        <h4>Basic Information</h4>
+                                    </div>
+                                    <div class="add-course-form"> 
+                                        <form [formGroup]="ratingForm">
+                                            <div class="input-block" >
+                                                <label class="add-course-label" for="content">Rating content</label>
+                                                <textarea class="form-control multiline-input" id="content" formControlName="content"
+                                                    placeholder="Rating content" ></textarea>
+                                                    <small *ngIf="ratingForm.get('content')?.invalid && ratingForm.get('content')?.touched ">
+                                                        Rating content is required.
+                                                    </small>
+                                                    <small *ngIf="ratingForm.get('content')?.invalid && ratingForm.get('content')?.touched && ratingForm.get('content')?.errors?.['minlength']!=null ">
+                                                        Rating content length should be > 3.
+                                                    </small>
+                                            </div>
+                                            <div class="input-block" style="display: flex;align-items: center; ">
+                                                <label class="add-course-label" style="margin-right: .5rem;margin-bottom: 0;">Course Rating</label>
+                                               <app-rating [initialRate]="0" (ratingResult)="getRatingResult($event)"></app-rating>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="field-card">
+                                <div class="add-course-info">
+                                    <div class="add-course-inner-header">
+                                        <h4>Courses Media</h4>
+                                    </div>
+                                    <div class="add-course-form">
+                                        <form action="#">
+                                            <div class="input-block">
+                                                <label class="add-course-label">Course cover image</label>
+                                                <div class="relative-form">
+                                                    <span>No File Selected</span>
+                                                    <label class="relative-file-upload">
+                                                        Upload File <input type="file">
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="input-block">
+                                                <div class="add-image-box">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="far fa-image"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="input-block">
+                                                <input type="text" class="form-control" placeholder="Video URL">
+                                            </div>
+                                            <div class="input-block">
+                                                <div class="add-image-box add-video-box">
+                                                    <a href="javascript:void(0);">
+                                                        <i class="fas fa-circle-play"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

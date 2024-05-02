@@ -1,0 +1,189 @@
+<div >
+
+  <div class="containers" >
+    <div class="row">
+
+      <div class="col-md-5 login-bg">
+        <div>
+
+          <div class="welcome-login">
+            <div class="login-banner">
+              <img src="../../../../assets/FrontOffice/img/login-img.png" class="img-fluid" alt="Logo">
+            </div>
+            <div class="mentor-course text-center">
+              <h2>Welcome to <br>EduHub ESPRIT</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="col-md-7 login-wrap-bg" *ngIf="!authResponse.mfaEnabled">
+
+        <div class="login-wrapper">
+          <div class="loginbox">
+            <div >
+              <div class="img-logo">
+
+                <div class="back-home">
+                  <h1>Sign up</h1>
+                </div>
+                <img src="../../../../assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo">
+
+              </div>
+
+              <mat-vertical-stepper [linear]="true" #stepper>
+                <!-- Step 1: First Name, Last Name, Class Type, Birthdate -->
+                <mat-step [stepControl]="stepOneForm">
+                  <ng-template matStepLabel>Step 1</ng-template>
+                  <form [formGroup]="stepOneForm" >
+                    <div class="input-block">
+                      <label for="firstname" class="form-control-label">First name</label>
+                      <input formControlName="firstName" id="firstname" required type="text" class="form-control"
+                             placeholder="Enter your First Name"
+                             [(ngModel)]="registerRequest.firstName"
+                      >
+                    </div>
+                    <div class="input-block">
+                      <label for="lastname" class="form-control-label">Last name</label>
+                      <input formControlName="lastName" id="lastname" required type="text" class="form-control"
+                             placeholder="Enter your Last Name"
+                             [(ngModel)]="registerRequest.lastName"
+                      >
+                    </div>
+                    <div class="input-block">
+                      <label for="classtype" class="form-control-label">Class type</label>
+                      <mat-select formControlName="classType" id="classtype"  [(ngModel)]="registerRequest.classType" placeholder="Select your class type">
+                        <mat-option value="FIRSTYEAR">First Year</mat-option>
+                        <mat-option value="SECONDYEAR">Second Year</mat-option>
+                        <mat-option value="THIRDYEAR">Third Year</mat-option>
+                      </mat-select>
+                    </div>
+                    <div class="input-block">
+                      <label for="birthdate" class="form-control-label">Date of Birth</label>
+                      <input formControlName="birthDate" id="birthdate" required type="date" class="form-control"
+                             placeholder="Select your Date of Birth"
+                             [(ngModel)]="registerRequest.birthDate"
+                      >
+                    </div>
+                    <button mat-button matStepperNext>Next</button>
+                  </form>
+                </mat-step>
+
+                <!-- Step 2: Email -->
+                <mat-step [stepControl]="stepTwoForm">
+                  <ng-template matStepLabel>Step 2</ng-template>
+                  <form [formGroup]="stepTwoForm">
+                    <div class="input-block">
+                      <label for="email" class="form-control-label">Email</label>
+                      <input formControlName="email" id="email" required type="email" class="form-control"
+                             placeholder="Enter your Email"
+                             [(ngModel)]="registerRequest.email"
+                      >
+                    </div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext>Next</button>
+                  </form>
+                </mat-step>
+
+                <!-- Step 3: Password, MFA Enabled -->
+                <mat-step [stepControl]="stepThreeForm">
+                  <ng-template matStepLabel>Step 3</ng-template>
+                  <form [formGroup]="stepThreeForm">
+                    <div class="input-block">
+                      <label for="password" class="form-control-label">Password</label>
+                      <input formControlName="password" id="password" required type="password" class="form-control"   [(ngModel)]="registerRequest.password" placeholder="Enter your Password">
+                    </div>
+                    <div class="input-block">
+                      <mat-slide-toggle  [(ngModel)]="registerRequest.mfaEnabled" id="mfaEnabled">Enable 2FA (Two Factors Authentication)</mat-slide-toggle>
+                    </div>
+
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button type="submit" (click)="registerUser()" [disabled]="stepThreeForm.invalid">Register</button>
+                  </form>
+                </mat-step>
+              </mat-vertical-stepper>
+
+              <div class="success-message-panel" *ngIf="message">
+                <div class="input-block" *ngIf="message === 'wait we are sending a verif email'">
+                  <mat-progress-spinner diameter="32" mode="indeterminate"></mat-progress-spinner>
+                </div>
+                <mat-spinner></mat-spinner>
+                <div class="success-message">{{ message }}</div>
+              </div>
+              <div class="error-message-panel" *ngIf="error">
+                <div class="error-icon">&#10008;</div>
+                <div class="error-message">{{ error }}</div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="google-bg text-center">
+            <span><a href="#">Or sign in with</a></span>
+            <div class="sign-google">
+              <ul>
+                <li><a href="#"><img src="../../../../assets/FrontOffice/img/net-icon-01.png" class="img-fluid" alt="Logo"> Sign In using Google</a></li>
+                <li><a href="#"><img src="../../../../assets/FrontOffice/img/net-icon-02.png" class="img-fluid" alt="Logo">Sign In using Facebook</a></li>
+              </ul>
+            </div>
+            <p class="mb-0">Already have an account? <a routerLink="/login">Sign in</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-6 login-wrap-bg"  *ngIf="authResponse.mfaEnabled">
+      <div class="success-message-panel" *ngIf="message">
+        <div class="success-icon">&#10004;</div>
+        <div class="success-message">{{message}}</div>
+      </div>
+      <div class="login-wrapper">
+        <div class="loginbox">
+          <div class="w-100">
+            <div class="img-logo">
+              <img src="../../../../assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo">
+
+            </div>
+            <h2>Set Up Two-Factor Authentication</h2>
+            <div class="qr-code">
+              <img [src]="authResponse.secretImageUri" alt="QR Code">
+            </div>
+            <div class="form-group">
+              <label for="validationCode">Enter 6 digits Validation Code Generated by the app</label>
+              <input
+                type="text"
+                id="validationCode"
+                name="validationCode"
+                required
+                [(ngModel)]="otpCode"
+              >
+            </div>
+            <button
+              type="button"
+              (click)="verifyTfa()"
+              [class.button-disabled]="otpCode.length<6"
+              class="btn btn-primary btn-start"
+            >Verify code</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+

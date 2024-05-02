@@ -1,0 +1,50 @@
+<div class="breadcrumb-bar containerSp">
+    <div class="container">
+      <app-error [errorMessage]="error"></app-error>
+    <div class="row">
+    <div class="col-md-12 col-12">
+    <div class="breadcrumb-list">
+    <nav aria-label="breadcrumb" class="page-breadcrumb">
+    <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+    <li class="breadcrumb-item" aria-current="page">Pages</li>
+    <li class="breadcrumb-item" aria-current="page">Courses</li>
+    </ol>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+    <section class="course-content container p-4">
+        <div class="row">
+            <div class="col-lg-4 col-md-6" *ngFor="let course of courses">
+              <div class="blog grid-blog">
+                <div class="blog-image">
+                  <a href="course-details.html"><img class="img-fluid" [src]="course.imageUrl" alt="Course Image"></a>
+                </div>
+                <div class="blog-grid-box masonry-box">
+                  <div class="blog-info clearfix">
+                    <div class="post-left">
+                      <ul>
+                        <!-- <li><img class="img-fluid" src="assets/img/icon/icon-22.svg" alt>{{ course.imageName }}</li> -->
+                        <li><img class="img-fluid" src="assets/img/icon/icon-23.svg" alt>{{ course.courseCategory||"WEB" }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <h3 class="blog-title"><a href="course-details.html">{{ course.name }}</a></h3>
+                  <div class="blog-content blog-read">
+                    <p>{{ course.description }}</p>
+                    <a href="javascript:void(0)" (click)="navigateToCourseDetails(course.id)" class="read-more btn btn-primary">Read More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+
+    </section>
+    
+    

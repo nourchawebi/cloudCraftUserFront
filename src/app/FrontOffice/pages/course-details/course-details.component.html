@@ -1,0 +1,106 @@
+<section  class="page-content course-sec course-lesson containerSp" style="position: relative;">
+    <div class="w-100" style="position: absolute;top:0;left: 0;display: inline-block;height: 50px;">
+    <app-error [errorMessage]="error"></app-error>
+</div>
+    <app-show-ratings *ngIf="isRatingsDisplayed" [ratings]="ratingsRep" [courseId]="courseId"
+        (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl"></app-show-ratings>
+        
+        <div class="container" *ngIf="course">
+       
+        <div class="blog-content blog-read mb-3 text-end">
+
+            <a href="javascript:void(0)" (click)="navigateToCoursesList()" class="read-more btn btn-primary">Courses
+                List</a>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+
+                <div class="lesson-group ">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="blog-content blog-read">
+                            <a href="javascript:void(0)" (click)="navigateToAddChapter(course.id)"
+                                class="read-more btn btn-primary ">Add Chapter</a>
+
+                        </div>
+                        <span class="badge text-bg-warning">Chapters</span>
+                    </div>
+                    <div class="mt-3" *ngIf="course?.chapters?.length&&course.chapters.length > 0">
+                        <div class="course-card d-flex justify-content-between align-items-center"
+                            *ngFor="let chapter of course?.chapters;let i=index">
+                            <h6 class="cour-title">
+                                <a href="javascript:void(0)"
+                                    (click)="navigateToChapterDetail(chapter.id)">{{chapter.title}} </a>
+                            </h6>
+                            <span *ngIf="isActionAllowd(chapter)" class="icon-container" (click)="deleteChapterFromCourse(chapter?.id)"><img class="icon"
+                                    src="assets/FrontOffice/img/delete.png" /></span>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="lesson-group">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="blog-content blog-read">
+                            <a href="javascript:void(0)" (click)="navigateToAddSummary(course.id)"
+                                class="read-more btn btn-primary ">Add Summary</a>
+
+                        </div>
+                        <span class="badge text-bg-warning">Summaries</span>
+                    </div>
+                    <div class="mt-3" *ngIf="course?.summaries?.length&&course.summaries.length > 0">
+                        <div class="course-card d-flex justify-content-between align-items-center"
+                            *ngFor="let summary of course.summaries">
+                            <h6 class="cour-title">
+                                <a data-bs-toggle="collapse" href="javascript:void(0)"
+                                    (click)="navigateToSummaryDetail(summary.id)"
+                                    aria-expanded="false">{{summary.title}} </a>
+                            </h6>
+                            <span *ngIf="isActionAllowd(summary)" class="icon-container"  (click)="deleteSummaryFromCourse(summary.id)"><img class="icon"
+                                    src="assets/FrontOffice/img/delete.png" /></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="col-lg-8">
+
+                <div class="student-widget lesson-introduction" style="position: relative;">
+                    <div class="lesson-widget-group">
+                        <h4 class="tittle">{{course.name}}</h4>
+                        <div class="introduct-video">
+                            <a>
+                                <img class src={{course.imageUrl}} alt>
+                            </a>
+                        </div>
+                        <p class="p-4 description text-muted fs-5">{{course.description}} </p>
+                        <div class="d-flex justify-content-between align-items-center mb-2 px-2">
+                            <div style="display: flex;align-items: center;cursor: pointer;"
+                                *ngIf="course.ratings.length!=0" (click)="showRatings(course.ratings)">
+                                <div style="width: 7rem;display: flex;align-items: center;">
+                                    <div style="width: 2rem;">
+                                        <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon"
+                                            style="padding-right: .3rem;">
+                                    </div>
+                                    <span style="color: blue;font-size: 1rem;">{{course.ratings.length}} ratings</span>
+                                </div>
+                                <app-rating [readonly]="readOnly" [initialRate]="courseRating"></app-rating>
+                            </div>
+                            <div *ngIf="course.ratings.length==0"
+                                style="padding-left: 1.7rem;color: blue;cursor: pointer;"
+                                (click)="navigateToAddRatingToCourse(course.id)">
+                                <a>rate >> </a>
+                            </div>
+
+                            <span class="badge-front-category badge bg-primary"
+                                style="margin-left: auto;margin-right: 1rem; ">{{course.courseCategory||"WEB"}}</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
