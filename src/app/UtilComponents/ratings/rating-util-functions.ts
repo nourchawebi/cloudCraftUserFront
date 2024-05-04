@@ -1,4 +1,4 @@
-import { RatingRepresentation } from "../../../../../../cloudCraftUserFront-user/src/app/services/api/models/rating-representation";
+import { RatingRepresentation } from "src/app/services/api/models/rating-representation";
 
 export class RatingUtilFunction{
     static calcRating(ratings:Array<RatingRepresentation> ):number{

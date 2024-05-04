@@ -65,3 +65,33 @@
     font-size: 1.2rem;
 
 }
+
+.tooltipSp {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: #f9f9f9;
+    border: 1px solid black;
+    padding: 10px;
+    color: black;
+    border-radius: 5px;
+    z-index: 1;
+    
+   
+}
+
+/* Style for the element to trigger the hover */
+.hover-element {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+.hover-element:hover{
+    transform: scale(1.2);
+}
+
+/* Show the tooltip when hovering */
+.hover-element:hover span.tooltipSp {
+    display: block; /* Show when hovering */
+    top: -1rem;
+    left: 1rem;
+}

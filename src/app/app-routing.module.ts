@@ -183,6 +183,14 @@ const routes: Routes = [
         // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
       },
       {
+        path : 'courses/add', component : AddCourseComponent
+        // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
+      },
+      {
+        path : 'courses/:courseId', component : CoursesDetailsComponentBack
+        // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
+      },
+      {
         path : 'event-admin', component : EventAdminComponent
         // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
       },

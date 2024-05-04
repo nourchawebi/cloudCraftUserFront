@@ -95,7 +95,7 @@ export class PayloadSerialization{
           // private User owner;
           files:this.getFilesRepresentaionFromApi(summary.files),
           description:summary.description,
-          owner:summary.owner
+          owner:this.getUserRepresentation(summary.owner)
         }
       }
         static getContentReresentationArray(content:Array<any>){

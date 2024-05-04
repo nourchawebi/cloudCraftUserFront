@@ -1,25 +1,43 @@
 <div class="overlay" (click)="setDisplayRatings()"  >
 <div class="overlay-content"> 
-    <div class="blog-content blog-read mb-3 text-end">
+  <div class="all-btn all-category d-flex align-items-center" style="border-radius: .3rem;margin-bottom: 1rem;flex-direction: row-reverse;" >
+    <a href="javascript:void(0)" (click)="navigateToAddRatingToCourse()" style="border-radius: .3rem;"  class="btn btn-primary">Rate >></a>
+    </div>
 
-        <a href="javascript:void(0)" (click)="navigateToAddRatingToCourse()" class="read-more btn btn-primary">rate >></a>
+  <div class="notify-sec" *ngFor="let rating of ratings" >
+    <div class="row" style="border: 1px solid rgba(0, 0, 0, 0.203);border-radius: 1rem;margin-bottom: 1rem;">
+    <div class="col-md-12">
+    <div class="notify-item">
+    <div class="row align-items-center">
+    <div class="col-md-9">
+    <div class="notify-content">
+    <a href="instructor-profile.html">
+      <img src="assets/FrontOffice/img/user.png" class="user-icon" alt="user-icon"/>    </a>
+    <div class="notify-detail">
+    <h6><a href="instructor-profile.html">{{rating.owner.email}}</a></h6>
+    <p>{{rating.content}}</p>
     </div>
-<div class="rating-item" *ngFor="let rating of ratings" >
-    <div class="rating-card">
-      <div class="content">
-        <!-- Content of the rating item -->
-        <span class="user-info-container">
-            <img src="assets/FrontOffice/img/user.png" class="user-icon" alt="user-icon"/>
-            <span class="user-name"> {{rating.owner.email}}</span>
-        </span>
-        <p class="rating-content">{{ rating.content }}</p>
-        <div class="border-sp"></div>
-      </div>
+   
     </div>
-    <div class="stars">
-      <!-- Display existing stars -->
-    <app-rating [readonly]="true" [initialRate]="rating.value"></app-rating>  
     </div>
-  </div>
+    <div class="col-md-3">
+    <div class="text-md-end">
+    <a href="javascript:void(0);"  class="btn">Delete</a>
+    </div>
+ 
+    </div>
+   
 </div>
+<div style="margin-top: 1.2rem;margin-left: 1rem;">
+  <app-rating [readonly]="true" [initialRate]="rating.value"></app-rating>  
+  
+</div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+</div>
+
+
 </div>

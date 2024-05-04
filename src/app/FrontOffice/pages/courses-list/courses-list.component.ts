@@ -4,6 +4,8 @@ import { CourseService } from '../../../services/api/courses/course.service';
 import { CourseRepresentation } from '../../../services/api/models/course-representation';
 import { PayloadSerialization } from '../../../services/api/models/payload-serialization';
 import { NavigationService } from '../../../services/navigation/navigation.service';
+import { CourseDetails } from 'src/app/services/api/models/course-details-representation';
+import { RatingRepresentation } from 'src/app/services/api/models/rating-representation';
 
 
 @Component({
@@ -13,8 +15,14 @@ import { NavigationService } from '../../../services/navigation/navigation.servi
 })
 export class CoursesListComponent implements OnInit{
 
-  courses:Array<CourseRepresentation>=[];
+
+
+  courses:Array<CourseDetails>=[];
   error:string|null=null;
+  
+  
+  
+  
   constructor(private coursesService:CourseService,private navigationService:NavigationService ){
 
   }
@@ -29,7 +37,7 @@ export class CoursesListComponent implements OnInit{
       console.log(courses);
       courses.forEach(course=>{
         console.log(course)
-        this.courses.push(PayloadSerialization.createCourseRepresentation(course));
+        this.courses.push(PayloadSerialization.getDetailedCourse(course));
       })
       console.log(this.courses);
     },
@@ -50,6 +58,13 @@ export class CoursesListComponent implements OnInit{
     this.navigationService.navigateToCoursesList();
   }
 
+
+  countRating(ratings:Array<RatingRepresentation>){
+    let sum=0;
+    ratings.forEach(rating=>sum=+rating.value);
+    console.log(sum/(ratings.length))
+    return (sum/(ratings.length));
+  }
 
 
 

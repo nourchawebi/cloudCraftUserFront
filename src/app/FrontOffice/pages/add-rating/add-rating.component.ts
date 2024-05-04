@@ -94,7 +94,9 @@ export class AddRatingComponent {
 
           this.navigateToResource();
         },
-        error:err=>{this.error=err?.error?.message||err?.error?.detail|| "Something went Wrong :(";}
+        error:err=>{
+          console.log(err)
+          this.error=err?.error?.message||err?.error?.detail|| "Something went Wrong :(";}
       })
     }
 
@@ -107,6 +109,7 @@ export class AddRatingComponent {
         },
         error:err=>{
           console.log(err)
+          
           this.error=err?.error?.message||err?.error?.detail||"Something went Wrong :(";}
       })
     }
@@ -118,7 +121,9 @@ export class AddRatingComponent {
 
           this.navigateToResource();
         },
-        error:err=>{this.error=err?.error?.message||err?.error?.detail||"Something went Wrong :(";}
+        error:err=>{
+          console.log(err)
+          this.error=err?.error?.message||err?.error?.detail||"Something went Wrong :(";}
       })
     }
 
@@ -129,7 +134,9 @@ export class AddRatingComponent {
 
           this.navigateToResource();
         },
-        error:err=>{this.error=err?.error?.message||err?.error?.detail||"Something went Wrong :(";}
+        error:err=>{
+          console.log(err)
+          this.error=err?.error?.message||err?.error?.detail||"Something went Wrong :(";}
       })
     }
 

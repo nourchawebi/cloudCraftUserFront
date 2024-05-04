@@ -3,11 +3,12 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {ResetPasswordRequest} from "../../models/reset-password-request";
 import {ChangePasswordRequest} from "../../models/change-password-request";
-import {catchError, throwError} from "rxjs";
+import {Observable, catchError, throwError} from "rxjs";
 import {AuthenticationService} from "../auth/authentication.service";
 import {ChangeEmailRequest} from "../../models/change-email-request";
 import {ChangeInfosRequest} from "../../models/change-infos-request";
 import {ImageModel} from "../../models/ImageOCR";
+import { UserRepresentation } from 'src/app/services/api/models/user-representation';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,17 @@ export class UserprofileService {
     return authHeader;
   }
 
+
   changePassword(changePasswordRequest: ChangePasswordRequest)
   {  const headers = this.createAuthorization();
     return this.http.patch<any>(`${this.baseUrl}/updatepassword`, changePasswordRequest, {headers})
 
+  }
+
+  getConnectedUser(){
+    const headers = this.createAuthorization();
+    console.log(headers)
+    return this.http.get<any>(`${this.baseUrl}/me`, {headers})
   }
   changeEmail(changeEmailRequest: ChangeEmailRequest)
   {  const headers = this.createAuthorization();

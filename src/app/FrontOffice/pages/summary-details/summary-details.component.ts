@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RatingUtilFunction } from '../../../../../../cloudCraftUserFront-courses-management-front/cloudCraftUserFront-courses-management-front/src/app/UtilComponents/ratings/rating-util-functions';
 import { PayloadSerialization } from '../../../services/api/models/payload-serialization';
 import { RatingRepresentation } from '../../../services/api/models/rating-representation';
 import { SummaryRepresentation } from '../../../services/api/models/summary-representation';
-import { SecurityActions } from '../../../services/api/security-functions';
 import { SummaryService } from '../../../services/api/summary/summary.service';
 import { NavigationService } from '../../../services/navigation/navigation.service';
+import { RatingUtilFunction } from 'src/app/UtilComponents/ratings/rating-util-functions';
+import { UserRepresentation } from 'src/app/services/api/models/user-representation';
+import { UserprofileService } from '../../services/userprofile/userprofile.service';
 
 @Component({
   selector: 'app-summary-details',
@@ -20,6 +21,8 @@ export class SummaryDetailsComponent implements OnInit {
   summaryrating=0;
   ratings!:Array<RatingRepresentation>;
 
+  connectedUser:UserRepresentation|null=null;
+
 
   error:string|null=null;
 
@@ -29,11 +32,11 @@ export class SummaryDetailsComponent implements OnInit {
 
   isRatingsDisplayed=false;
   ratingsRep:Array<RatingRepresentation>=[];
-  ratingUrl=`user/courses/${this.courseId}/summaries/${this.summaryId}/ratings/add`
+  ratingUrl=`home/courses/${this.courseId}/summaries/${this.summaryId}/ratings/add`
 
 
 
-  constructor(private summaryService:SummaryService,private route:ActivatedRoute ,private navigationService:NavigationService){
+  constructor(private summaryService:SummaryService,private route:ActivatedRoute ,private navigationService:NavigationService,     private up:UserprofileService){
 
   }
   ngOnInit(): void {
@@ -50,11 +53,28 @@ export class SummaryDetailsComponent implements OnInit {
       error:err=>{
         console.log(err);
       }
+
+      
     });
+
+
+    this.up.getConnectedUser().subscribe({
+      next:user=>{
+        this.connectedUser=user;
+      },error:err=>{
+        console.log(err);
+      }
+    })
   }
   isActionAllowd(object:any):boolean{
-    console.log(SecurityActions.isActionsAllowed(object,1))
-    return SecurityActions.isActionsAllowed(object,2);
+    console.log(this?.connectedUser?.email)
+    if(this?.connectedUser?.email==object.owner.email)return true;
+    return false;
+    
+  }
+
+  calcRating(ratings:Array<RatingRepresentation>){
+    return RatingUtilFunction.calcRating(ratings);
   }
 
 

@@ -1,14 +1,15 @@
 {
   "name": "cloud-craft-user",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-  "private": true,
+
   "dependencies": {
     "@angular/common": "^15.2.0",
     "@angular/compiler": "^15.2.0",

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { RatingUtilFunction } from '../../../../../../cloudCraftUserFront-courses-management-front/cloudCraftUserFront-courses-management-front/src/app/UtilComponents/ratings/rating-util-functions';
 import { ChapterService } from '../../../services/api/chapter/chapter.service';
 import { CourseService } from '../../../services/api/courses/course.service';
 import { ChapterRepresentation } from '../../../services/api/models/chapter-representation';
@@ -65,7 +64,7 @@ error:string|null=null;
       this.chapterService.updateChapter(this.chapterId,chapterData).subscribe({
         next:result=>{
           console.log(result);
-          this.navigateToCourse();
+          this.navigationService.navigate(`/home/courses/${this.courseId}/chapters/${this.chapterId}`);
         },
         error:err=>{
           console.log(err)
