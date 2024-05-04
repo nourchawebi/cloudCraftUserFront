@@ -16,12 +16,20 @@ export class LockusersComponent implements OnInit  {
 
     this.getUsers();}
   public u:[]=[];
+  unlockDate: string;
   constructor(private userProfileService: UserprofileService,
               private router:Router,
             private lockusersService: LockuserserviceService
 
   ){
 
+    const today = new Date();
+
+    // Add 3 days to today's date
+    today.setDate(today.getDate() + 3);
+
+    // Convert the date object to a formatted string (YYYY-MM-DD)
+    this.unlockDate = today.toISOString().slice(0, 10);
   }
   message:any='';
   error:string='';
@@ -38,9 +46,10 @@ export class LockusersComponent implements OnInit  {
       }
     )
   };
-
   lockUser(email: string) {
-    this.lockusersService.lockUser(email).subscribe({
+
+
+    this.lockusersService.lockUser(email,this.unlockDate).subscribe({
       next: (response) => {
         this.message = "user locked";
         // Find the user object in the users array by email

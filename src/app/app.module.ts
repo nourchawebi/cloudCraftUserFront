@@ -48,6 +48,7 @@ import {MapComponent} from "./FrontOffice/pages/map/map.component";
 import {ListJourneyComponent} from "./FrontOffice/pages/journey/list-journey/list-journey.component";
 import {JourneyComponent} from "./FrontOffice/pages/journey/journey.component";
 import { ParticipationsComponent } from './FrontOffice/pages/journey/list-journey/participations/participations.component';
+import {CanActivate} from "@angular/router";
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {

@@ -24,13 +24,135 @@
   <link rel="stylesheet" href="/assets/FrontOffice/css/style.css">
 </head>
 <body>
-
 <div class="main-wrapper">
 
-  <h1>home page</h1>
+  <header class="header">
+    <div class="header-fixed">
+      <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+        <div class="container">
+          <div class="navbar-header">
+            <a id="mobile_btn" href="javascript:void(0);">
+<span class="bar-icon">
+<span></span>
+<span></span>
+<span></span>
+</span>
+            </a>
+            <a  class="navbar-brand logo" style="margin-top: -40px;">
+              <img src="/assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo" >
+            </a>
+          </div>
+          <div class="main-menu-wrapper"    *ngIf="isLoggedIn()">
+            <div class="menu-header">
+              <a  class="menu-logo">
+                <img src="/assets/FrontOffice/img/logo.svg" class="img-fluid" alt="Logo">
+              </a>
+              <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                <i class="fas fa-times"></i>
+              </a>
+            </div>
+            <ul class="main-nav"  style="margin-top: -40px;">
+              <li class="has-submenu">
+                <a routerLink="/user/welcome">Home <i class="fas fa-chevron-down"></i></a>
+
+              </li>
+              <li class="has-submenu">
+                <a href>Events <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                  <li><a >Dashboard</a></li>
+
+                </ul>
+              </li>
+              <li class="has-submenu active">
+                <a href>Carpooling <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu first-submenu">
+                  <li class="has-submenu ">
+                    <a href="students-list.html">Journeys</a>
+                    <ul class="submenu">
+                      <li><a href="/home/add_journey">Add Journey</a></li>
+                      <li><a href="/home/list_journey">List of Journeys</a></li>
+                    </ul>
+                  </li>
+                  <li  class="has-submenu">
+                    <a href="setting-edit-profile.html">Motorized</a>
+                    <ul class="submenu">
+                      <li><a href="/home/add_car">Add Car</a></li>
+                      <li><a href="/home/cars">List Car</a></li>
+
+                    </ul>
+                  </li>
+                  <li><a href="/home/location">Location</a></li>
+                </ul>
+              </li>
+
+
+
+            </ul>
+          </div>
+          <div *ngIf="isLoggedIn()" class="user-info-container"  style="margin-top: -40px;">
+            <ul class="main-nav">
+              <li class="has-submenu">
+      <span class="user-img">
+        {{loggedUser.firstName}}
+        <img  [src]="imageUrl"  alt>
+        <span class="status online" style=" position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  background-color: green;
+  border-radius: 50%;
+  border: 2px solid white;"></span>
+      </span>
+                <i class="fas fa-chevron-down"></i>
+                <ul class="submenu">
+                  <li><a routerLink="/user/profile">Profile</a></li>
+                  <li><a (click)="logout()"  style="color: darkred">LogOut</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
+
+          <div *ngIf="!isLoggedIn()" >
+            <!-- Buttons for not logged-in user -->
+            <ul class="nav header-navbar-rht">
+              <li class="nav-item login-link">
+                <a class="nav-link header-sign" routerLink="/login">Sign in</a>
+              </li>
+              <li class="nav-item login-link">
+                <a  class="nav-link header-login" routerLink="/register">Sign up</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+
+<section class="home-slide d-flex align-items-center">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6" style="margin-top: -20px">
+        <h5 style="color: grey" >  Dive into a world of</h5>
+        <h6 class="text-center text-md-start custom-heading">
+         knowledge & opportunities</h6>
+      <h5  style="color: grey"> from courses to books, events, and carpooling solutions, all in one place!</h5>
+    </div>
+    <div class="col-md-5">
+        <img src="/assets/FrontOffice/img/object.png" class="img-fluid" alt="Logo">
+      </div>
+    </div>
+  </div>
+</section>
 
 
 </div>
+
+
+
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../../../../assets/FrontOffice/js/jquery-3.7.1.min.js" type="18ff9ee43dff0a85569f8a89-text/javascript"></script>
 

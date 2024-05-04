@@ -1,9 +1,10 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from "@angular/core";
 import { AuthenticationService } from './authentication.service';
-import {TokenInfos} from "../../models/token-infos"; // Import your AuthenticationService
+import {TokenInfos} from "../../models/token-infos";
+import {JwtHelperService} from "@auth0/angular-jwt"; // Import your AuthenticationService
 
-export const authGuard: CanActivateFn = () => {
+export  const  authGuard: CanActivateFn = () => {
   const router = inject(Router);
   const authService = inject(AuthenticationService);
 
@@ -11,6 +12,7 @@ export const authGuard: CanActivateFn = () => {
   const token = localStorage.getItem('token');
 
   if (!token) {
+
     router.navigate(['login']);
     return false;
   }
@@ -19,7 +21,9 @@ export const authGuard: CanActivateFn = () => {
   var loggedUser= user  as TokenInfos
   // Decode the token to get the user role
 
-  const userRole =  loggedUser.role;
+  const jwtHelper = new JwtHelperService();
+  const userAll =  jwtHelper.decodeToken(token);
+  const userRole= userAll.role;
   // Check if the user role is "USER"
   if (userRole === 'USER') {
     return true;
@@ -44,7 +48,9 @@ export const adminAuthGuard: CanActivateFn = () => {
 var loggedUser= user  as TokenInfos
   // Decode the token to get the user role
 
-  const userRole =  loggedUser.role; // Assuming the role is stored in the token as "role"
+  const jwtHelper = new JwtHelperService();
+  const userAll =  jwtHelper.decodeToken(token);
+  const userRole= userAll.role;
 
   // Check if the user role is "Admin"
   if (userRole === 'ADMIN') {

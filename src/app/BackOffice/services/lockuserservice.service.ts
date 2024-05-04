@@ -39,9 +39,12 @@ export class LockuserserviceService {
   }
 
 
-  lockUser(email: string) {
+  lockUser(email: string,unlockdate: string) {
     const headers = this.createAuthorization();
-    const params = new HttpParams().set('email', email);
+    const params = new HttpParams()
+      .set('email', email)
+      .set('unlockdate',unlockdate);
+
 
     return this.http.patch<any>(`${this.baseUrl2}/lock`, null, { params, headers });
   }
@@ -49,7 +52,6 @@ export class LockuserserviceService {
     const headers = this.createAuthorization();
     const params = new HttpParams()
       .set('email', email)
-
 
     ;
     return  this.http.patch<any>(`${this.baseUrl2}/unlock`, null,{params,headers }); // Replace with your API endpoint

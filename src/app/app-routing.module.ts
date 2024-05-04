@@ -63,7 +63,7 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
-    path:'unothorized',
+    path:'unauthorized',
     component:UnothorizedComponent,
 
   },
@@ -82,6 +82,7 @@ const routes: Routes = [
       {
         path:'lockuser',
         component:LockusersComponent,
+        canActivate:[adminAuthGuard]
 
       } ,
       { path:'userstat',
@@ -101,15 +102,16 @@ const routes: Routes = [
         component:EditProfilePageComponent,
         canActivate:[authGuard]
       },
-      { path:'welcome',
-        component : WelcomeComponent,
 
-
-      },
     ]
 
   },
+  { path:'user/welcome',
+    component : WelcomeComponent,
 
+
+
+  },
 ];
 
 @NgModule({
