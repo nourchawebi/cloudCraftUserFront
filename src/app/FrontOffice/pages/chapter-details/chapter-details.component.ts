@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RatingRepresentation } from '../../../services/api/models/rating-representation';
-import { RatingUtilFunction } from '../../../../../../cloudCraftUserFront-courses-management-front/cloudCraftUserFront-courses-management-front/src/app/UtilComponents/ratings/rating-util-functions';
-import { SecurityActions } from '../../../services/api/security-functions';
 import { ChapterRepresentation } from '../../../services/api/models/chapter-representation';
 import { NavigationService } from '../../../services/navigation/navigation.service';
 import { ChapterService } from '../../../services/api/chapter/chapter.service';
 import { ContentService } from '../../../services/api/content/content.service';
 import { SummaryService } from '../../../services/api/summary/summary.service';
 import { PayloadSerialization } from '../../../services/api/models/payload-serialization';
+import { RatingUtilFunction } from 'src/app/UtilComponents/ratings/rating-util-functions';
+import { UserprofileService } from '../../services/userprofile/userprofile.service';
+import { UserRepresentation } from 'src/app/services/api/models/user-representation';
 
 @Component({
   selector: 'app-chapter-details',
@@ -25,15 +26,17 @@ export class ChapterDetailsComponent implements OnInit{
 
   isRatingsDisplayed=false;
   ratingsRep:Array<RatingRepresentation>=[];
-  ratingUrl=`/user/courses/${this.courseId}/chapters/${this.chapterId}/ratings/add`;
+  ratingUrl=`/home/courses/${this.courseId}/chapters/${this.chapterId}/ratings/add`;
   chapterRating:number=0;
+  connectedUser:UserRepresentation|null=null;
 
   constructor(
     private route:ActivatedRoute,
     private navigationService:NavigationService,
     private chapterService:ChapterService,
     private contentService:ContentService ,
-    private summaryService:SummaryService
+    private summaryService:SummaryService,
+    private up:UserprofileService
     ){
 
   }
@@ -53,6 +56,13 @@ export class ChapterDetailsComponent implements OnInit{
         this.error=err?.error?.message||"Something went Wrong :(";
       }
     });
+    this.up.getConnectedUser().subscribe({
+      next:user=>{
+        this.connectedUser=user;
+      },error:err=>{
+        console.log(err);
+      }
+    })
   }
   deleteContent(contentId:number){
     const result = window.confirm('Are you sure you want to delete this entity?');
@@ -66,7 +76,21 @@ export class ChapterDetailsComponent implements OnInit{
         }
       });
 }
-
+deleteChapterFromCourse(chapterId:number|undefined){
+  if(chapterId==undefined) return;
+  const result = window.confirm('Are you sure you want to delete this entity?');
+  if(!result) return;
+  this.chapterService.deleteChapterFromCourse(this.courseId,chapterId).subscribe({next:result=>{
+    if(result)
+    this.navigateToCourse();
+  },
+  error:err=>{
+    if(err.status==403) this.error="you can not delete this chapter (Unauthorized action)"
+    else
+    this.error=err?.error?.message||"Something went Wrong :(";
+  }
+});
+}
 
 deleteSummary(summaryId:number)
 {
@@ -83,11 +107,23 @@ deleteSummary(summaryId:number)
 })
 }
 isActionAllowd(object:any):boolean{
-  console.log(SecurityActions.isActionsAllowed(object,1))
-  return SecurityActions.isActionsAllowed(object,2);
+  if(this?.connectedUser?.email==object.owner.email)return true;
+  return false;
+  
 }
 
 
+calcRating(ratings:Array<RatingRepresentation>){
+return RatingUtilFunction.calcRating(ratings);
+}
+
+  getChapterTypeColor(type:string){
+    console.log(type)
+    if(type.toUpperCase()=="LESSON") return "primary"
+    if(type.toUpperCase()=="EXERCICE") return "danger"
+    return "info"
+
+  }
   navigateToAddContent(chapterId:number){
 
     this.navigationService.navigateToAddContentToChapter(chapterId,this.courseId);
@@ -97,7 +133,7 @@ isActionAllowd(object:any):boolean{
   }
   navigateToSummaryChapterDetails(summaryId:number){
     console.log("what2");
-    this.navigationService.navigateToSummaryChapterDetails(summaryId,this.chapterId,this.courseId);
+    this.navigationService.navigateToSummaryChapterDetails(this.courseId,this.chapterId,summaryId);
   }
   navigateToCourse(){
     this.navigationService.navigateToCourseDetails(this.courseId);

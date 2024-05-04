@@ -15,10 +15,11 @@ export class UpdateSummaryComponent implements OnInit {
   error:string|null=null;
   resource=this.activeRoute.snapshot.params["chapterId"]==null?"courses":"chapters";
   resourceId=this.resource=="chapters"? this.activeRoute.snapshot.params["chapterId"]:this.activeRoute.snapshot.params["courseId"];
-  backrUrl=this.resource=="chapters"?`/user/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}`:
-  `/user/courses/${this.activeRoute.snapshot.params["courseId"]}`;
-
   summaryId=this.activeRoute.snapshot.params["summaryId"];
+  backrUrl=this.resource=="chapters"?`/home/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}/summaries/${this.summaryId}`:
+  `/home/courses/${this.activeRoute.snapshot.params["courseId"]}/summaries/${this.summaryId}`;
+
+  
 
   summary!:SummaryRepresentation;
   updateSummaryForm!:FormGroup;

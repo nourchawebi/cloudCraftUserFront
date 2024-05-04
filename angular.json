@@ -2,6 +2,13 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve -o",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
   "projects": {
     "cloudCraftUser": {
       "projectType": "application",
@@ -32,6 +39,7 @@
 
             ],
             "scripts": [       "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            
 
             ]
           },

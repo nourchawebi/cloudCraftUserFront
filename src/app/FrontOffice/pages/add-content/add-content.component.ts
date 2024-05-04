@@ -14,7 +14,7 @@ export class AddContentComponent {
   defaultOption=this.categories[0];
   chapterId=this.activeRoute.snapshot.params["chapterId"];
   courseId=this.activeRoute.snapshot.params["courseId"];
-  chapterUrl=`/user/courses/${this.courseId}/chapters/${this.chapterId}`;
+  chapterUrl=`/home/courses/${this.courseId}/chapters/${this.chapterId}`;
 
   addContentForm:FormGroup=new FormGroup({
     title:new FormControl("",[Validators.required,Validators.minLength(3)]),

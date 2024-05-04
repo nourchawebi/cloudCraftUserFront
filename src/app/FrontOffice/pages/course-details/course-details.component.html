@@ -1,106 +1,182 @@
-<section  class="page-content course-sec course-lesson containerSp" style="position: relative;">
-    <div class="w-100" style="position: absolute;top:0;left: 0;display: inline-block;height: 50px;">
+<section>
     <app-error [errorMessage]="error"></app-error>
-</div>
     <app-show-ratings *ngIf="isRatingsDisplayed" [ratings]="ratingsRep" [courseId]="courseId"
         (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl"></app-show-ratings>
-        
-        <div class="container" *ngIf="course">
-       
-        <div class="blog-content blog-read mb-3 text-end">
-
-            <a href="javascript:void(0)" (click)="navigateToCoursesList()" class="read-more btn btn-primary">Courses
-                List</a>
+<div class="breadcrumb-bar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-12">
+          <div class="breadcrumb-list">
+            <nav aria-label="breadcrumb" class="page-breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">Course</li>
+              </ol>
+            </nav>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4">
+      </div>
+    </div>
+   </div>
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  
+  <div class="container">
+    <div  class="card">
+      <div class="card-body">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-6">
+            <div class="white-box text-center"><img style="width: 430px;height: 490px"   src={{course.imageUrl}}  class="img-responsive"></div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-6">
+            <h3 class="card-title" style="font-weight: bold;">
+                {{course.name}}
+            </h3>
+            <p>Level : {{course.uneversityYear}}
+            </p>
 
-                <div class="lesson-group ">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="blog-content blog-read">
-                            <a href="javascript:void(0)" (click)="navigateToAddChapter(course.id)"
-                                class="read-more btn btn-primary ">Add Chapter</a>
-
-                        </div>
-                        <span class="badge text-bg-warning">Chapters</span>
-                    </div>
-                    <div class="mt-3" *ngIf="course?.chapters?.length&&course.chapters.length > 0">
-                        <div class="course-card d-flex justify-content-between align-items-center"
-                            *ngFor="let chapter of course?.chapters;let i=index">
-                            <h6 class="cour-title">
-                                <a href="javascript:void(0)"
-                                    (click)="navigateToChapterDetail(chapter.id)">{{chapter.title}} </a>
-                            </h6>
-                            <span *ngIf="isActionAllowd(chapter)" class="icon-container" (click)="deleteChapterFromCourse(chapter?.id)"><img class="icon"
-                                    src="assets/FrontOffice/img/delete.png" /></span>
-                        </div>
-                    </div>
-
-                </div>
-                <hr>
-                <div class="lesson-group">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="blog-content blog-read">
-                            <a href="javascript:void(0)" (click)="navigateToAddSummary(course.id)"
-                                class="read-more btn btn-primary ">Add Summary</a>
-
-                        </div>
-                        <span class="badge text-bg-warning">Summaries</span>
-                    </div>
-                    <div class="mt-3" *ngIf="course?.summaries?.length&&course.summaries.length > 0">
-                        <div class="course-card d-flex justify-content-between align-items-center"
-                            *ngFor="let summary of course.summaries">
-                            <h6 class="cour-title">
-                                <a data-bs-toggle="collapse" href="javascript:void(0)"
-                                    (click)="navigateToSummaryDetail(summary.id)"
-                                    aria-expanded="false">{{summary.title}} </a>
-                            </h6>
-                            <span *ngIf="isActionAllowd(summary)" class="icon-container"  (click)="deleteSummaryFromCourse(summary.id)"><img class="icon"
-                                    src="assets/FrontOffice/img/delete.png" /></span>
-
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-            <div class="col-lg-8">
-
-                <div class="student-widget lesson-introduction" style="position: relative;">
-                    <div class="lesson-widget-group">
-                        <h4 class="tittle">{{course.name}}</h4>
-                        <div class="introduct-video">
-                            <a>
-                                <img class src={{course.imageUrl}} alt>
-                            </a>
-                        </div>
-                        <p class="p-4 description text-muted fs-5">{{course.description}} </p>
-                        <div class="d-flex justify-content-between align-items-center mb-2 px-2">
-                            <div style="display: flex;align-items: center;cursor: pointer;"
-                                *ngIf="course.ratings.length!=0" (click)="showRatings(course.ratings)">
-                                <div style="width: 7rem;display: flex;align-items: center;">
-                                    <div style="width: 2rem;">
-                                        <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon"
-                                            style="padding-right: .3rem;">
-                                    </div>
-                                    <span style="color: blue;font-size: 1rem;">{{course.ratings.length}} ratings</span>
-                                </div>
-                                <app-rating [readonly]="readOnly" [initialRate]="courseRating"></app-rating>
+            <p><span class="badge-front-category badge bg-primary"
+                style="margin-left: auto;margin-right: 1rem; ">{{course.courseCategory||"WEB"}}</span></p>
+            
+            <p>
+                 {{course.description}}
+            </p>
+            <div class="action">
+              <div class="d-flex">
+                <div class="d-flex justify-content-between align-items-center mb-0 px-2">
+                    <div style="display: flex;align-items: center;cursor: pointer;"
+                        *ngIf="course.ratings.length!=0" (click)="showRatings(course.ratings)">
+                        <div style="width: 7rem;display: flex;align-items: center;">
+                            <div style="width: 2rem;">
+                                <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon"
+                                    style="padding-right: .3rem;">
                             </div>
-                            <div *ngIf="course.ratings.length==0"
-                                style="padding-left: 1.7rem;color: blue;cursor: pointer;"
-                                (click)="navigateToAddRatingToCourse(course.id)">
-                                <a>rate >> </a>
-                            </div>
-
-                            <span class="badge-front-category badge bg-primary"
-                                style="margin-left: auto;margin-right: 1rem; ">{{course.courseCategory||"WEB"}}</span>
+                            <span style="color: blue;font-size: 1rem;">{{course.ratings.length}} ratings</span>
                         </div>
+                        <app-rating [readonly]="readOnly" [initialRate]="courseRating"></app-rating>
                     </div>
+                    <div *ngIf="course.ratings.length==0" class="all-btn all-category d-flex align-items-center" style="border-radius: .3rem;margin-bottom: 0;" >
+                        <a href="javascript:void(0)" (click)="navigateToAddRatingToCourse(course.id)" style="border-radius: .3rem;"  class="btn btn-primary">Rate</a>
+                        </div>
 
                 </div>
+                <table style="border-collapse: separate; border-spacing: 1cm;">
+                  <tr>
+                    <td>
+                      <a href="javascript:void(0)" (click)="navigateToCoursesList()" class="btn btn-black" >
+                        <i class="fa-solid fa-list"></i>&nbsp; Back To All Courses </a>
+                    </td>
+                  </tr>
+                </table>
+  
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card container">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-header">Chapters</h5>
+        <div class="all-btn all-category d-flex align-items-center" style="padding: 1rem 2rem;"
+            (click)="navigateToAddChapter(course.id)">
+            <a href="javascript:void(0)" class="btn btn-primary">Add Chapter</a>
         </div>
     </div>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Creator</th>
+            <th>Rating</th>
+            <th><div style="display: flex;justify-content: center;"> Actions</div></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr  *ngFor="let chapter of course?.chapters;let i=index">
+            <td> <strong>{{chapter.title}}</strong></td>
+            <td style="width: 250px;"><div style="display: flex;align-items: center;height: 48px;">{{chapter.owner.email}}</div></td>
+            <td>
+                <div class="d-flex justify-content-between align-items-center mb-0">
+                    <div style="display: flex;align-items: center;cursor: pointer;"
+                       >
+                        <app-rating [readonly]="readOnly" [initialRate]="calcRating(chapter.ratings)"></app-rating>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="display: flex;justify-content: center; align-items: center;">
+                <button type="submit" class="btn btn-success-dark" style="margin-right: .2rem;" (click)="navigateToChapterDetail(chapter.id)">
+                   &nbsp; SHOW DETAILS
+                  </button>
+
+                 </div>
+                <!-- <div style="display: flex;justify-content: start; align-items: center;" *ngIf="isActionAllowd(chapter)">
+                <button type="submit" class="btn btn-success-dark" style="margin-right: .2rem;">
+                   &nbsp; Update
+                  </button>
+                  <button class="btn btn-black">
+                    <i class="fas fa-times"></i>&nbsp; Delete
+                  </button>
+                 </div> -->
+            </td>                
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card container">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+        <h5 class="card-header">Summaries</h5>
+        <div class="all-btn all-category d-flex align-items-center" style="padding: 1rem 2rem;"
+        (click)="navigateToAddSummary(course.id)">
+            <a href="javascript:void(0)" class="btn btn-primary">Add Summary</a>
+        </div>
+    </div>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Creator</th>
+            <th>Rating</th>
+            <th><div style="display: flex;justify-content: center;"> Actions</div></th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+          <tr  *ngFor="let summary of course?.summaries;let i=index">
+            <td> <strong>{{summary.title}}</strong></td>
+            <td ><div style="display: flex;align-items: center;height: 48px;">{{summary.owner.email}}</div></td>
+            <td>
+                <div class="d-flex justify-content-between align-items-center mb-0">
+                    <div style="display: flex;align-items: center;cursor: pointer;"
+                      >
+                        <app-rating [readonly]="readOnly" [initialRate]="calcRating(summary.ratings)"></app-rating>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div style="display: flex;justify-content: center; align-items: center;">
+                <button type="submit" class="btn btn-success-dark" style="margin-right: .2rem;" (click)="navigateToSummaryDetail(summary.id)">
+                   &nbsp; SHOW DETAILS
+                  </button>
+
+                 </div>
+                <!-- <div style="display: flex;justify-content: start; align-items: center;" *ngIf="isActionAllowd(chapter)">
+                <button type="submit" class="btn btn-success-dark" style="margin-right: .2rem;">
+                   &nbsp; Update
+                  </button>
+                  <button class="btn btn-black">
+                    <i class="fas fa-times"></i>&nbsp; Delete
+                  </button>
+                 </div> -->
+            </td>                
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>

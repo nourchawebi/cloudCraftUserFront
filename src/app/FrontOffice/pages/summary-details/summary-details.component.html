@@ -1,56 +1,110 @@
-<div class="container containerSp">
+
+<section>
   <app-error [errorMessage]="error"></app-error>
   <app-show-ratings *ngIf="isRatingsDisplayed" [ratings]="ratingsRep" [courseId]="courseId"
   (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl"></app-show-ratings>
-  <div class="blog-content blog-read mb-3 text-end" style="display: flex; justify-content: space-between;align-items: center;padding: 2px .5rem;">
-    <div *ngIf="isActionAllowd(summary)">
-      <button type="button" style="margin-right: 1rem;" class="btn btn-danger" (click)="deleteSuummary(summary.id)">Delete</button>
-      <button type="button" class="btn btn-success" (click)="navigateToUpdateSummary(summaryId)">Update</button>
-    </div>
-    <a href="javascript:void(0)" (click)="navigateToResourse()" class="read-more btn btn-primary" style="margin-left: auto;">Back to {{resourse}}</a>
+
+
+<div class="breadcrumb-bar">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12 col-12">
+              <div class="breadcrumb-list">
+                  <nav aria-label="breadcrumb" class="page-breadcrumb">
+                      <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                          <li class="breadcrumb-item"><a href="index.html">Course</a></li>
+                          <li class="breadcrumb-item" aria-current="page" *ngIf="resourse=='Chapter'">Chapter</li>
+                          <li class="breadcrumb-item active" aria-current="page">Summary Details</li>
+                      </ol>
+                  </nav>
+              </div>
+          </div>
+      </div>
   </div>
-  <div *ngIf="summary" class="card overview-sec">
-    <div class="card-body">
-      <div class="summary-basic-info-cont">
-        <h5 class="subs-title summary-title">{{summary.title}}</h5>
-        <h6 class="summary-desc-title">Summary Description</h6>
-        <p>
-          {{summary.description}}
-        </p>
-      </div>
+</div>
 
-      <div class="container mt-3">
-        <div class="summary-pdf-item" *ngFor="let file of summary.files">
-          <div>
-            <div class="">
-              <a href={{file.url}}>
-                <h5 class="card-title">{{ file.fileName }}</h5>
-                <!-- Additional content if needed -->
-              </a>
-            </div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<div class="container">
+  <table style="border-collapse: separate; border-spacing: 0.5cm;">
+    <tr>
+        <td *ngIf="isActionAllowd(summary)">
+            <a class="btn btn-success-dark"
+                (click)="navigateToUpdateSummary(summary.id)">
+                <i class="fa-solid fa-pen-to-square"></i>&nbsp; Edit </a>
+        </td>
+        <td *ngIf="isActionAllowd(summary)" (click)="deleteSuummary(summary.id)">
+            <a class="btn btn-black">
+                <i class="fa-solid fa-trash-can"></i>&nbsp; Delete </a>
+        </td>
+        <td>
+            <a  class="btn btn-black"
+                (click)="navigateToResourse()">
+                <i class="fa-solid fa-book-open-reader"></i>&nbsp; Back To {{resourse}}
+            </a>
+        </td>
+    </tr>
+</table>
+  <div class="card">
+      <div class="card-body">
+          <div class="row gx-4 gx-lg-5 align-items-center">
+              <div class="col-lg-7 col-md-7 col-sm-6">
+                  <h3 class="card-title" style="font-weight: bold;">
+                      {{summary.title}}
+                  </h3>
+                  <h6 class="card-subtitle"><i class="fa-solid fa-user"></i>&nbsp;
+                      By {{summary.owner.email}}
+                  </h6>
+                  <p>
+                      {{summary.description}}
+                  </p>
+                  <div class="action"
+                      style="align-items: center; justify-content: space-between;width: 100%;">
+
+                      
+                      <div class="card-body">
+                          <div style="display: flex;align-items: center;cursor: pointer;"
+                              *ngIf="summary.ratings.length!=0" (click)="showRatings(summary.ratings)">
+                              <div style="width: 7rem;display: flex;align-items: center;">
+                                  <div style="width: 2rem;">
+                                      <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon"
+                                          style="padding-right: .3rem;">
+                                  </div>
+                                  <span style="color: blue;font-size: 1rem;">{{summary.ratings.length}}
+                                      ratings</span>
+                              </div>
+                              <app-rating [readonly]="true" [initialRate]="calcRating(summary.ratings)"></app-rating>
+                          </div>
+                          <div *ngIf="summary.ratings.length==0"
+                              style="padding-left: 1.7rem;color: blue;cursor: pointer;"
+                              (click)="navigateToAddRatingToSummary(courseId, summary.id)">
+                              <div class="all-btn all-category d-flex align-items-center"  >
+                                <a href="javascript:void(0)" style="border-radius: .3rem;"  class="btn btn-primary">Rate >></a>
+                                </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-        </div>
       </div>
-
-
-      <div class="rating-container">
-        <div style="display: flex;align-items: center;cursor: pointer;" *ngIf="summary.ratings.length!=0"
-          (click)="showRatings(summary.ratings)">
-          <div style="width: 7rem;display: flex;align-items: center;">
-            <div style="width: 2rem;margin-right: .5rem;">
-              <img src="/assets/FrontOffice/img/user.png" alt="user icon" class="icon" style="padding-right: .3rem;">
-            </div>
-            <span style="color: blue;font-size: 1rem;">{{summary.ratings.length}} ratings</span>
-          </div>
-          <app-rating [readonly]="true" [initialRate]="summaryrating" *ngIf="summary.ratings.length!=0"></app-rating>
-         
+  </div>
+</div>
+<div>
+  <div class="container mt-3 card">
+    <h5 class="card-header">Files</h5>
+    <div class="summary-pdf-item" *ngFor="let file of summary.files" style="margin-bottom: .5rem;">
+      <div>
+        <div>
+          <a href={{file.url}} style="display: flex;align-items: center;justify-content: space-between;">
+            <h5 class="card-title">{{ file.fileName }}</h5>
+            <i class="fa-solid fa-file-pdf" style="font-size: 1.5rem;"></i>
+            <!-- Additional content if needed -->
+          </a>
         </div>
-        <div *ngIf="summary.ratings.length==0" style="padding-left: 1.3rem;color: blue;cursor: pointer;"
-        (click)="navigateToAddRatingToSummary(courseId,summary.id)">
-        <a>rate >> </a>
-      </div>
-
       </div>
     </div>
   </div>
 </div>
+</section>

@@ -3,15 +3,15 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { RatingRepresentation } from '../../../services/api/models/rating-representation';
-import { RatingUtilFunction } from '../../../../../../cloudCraftUserFront-courses-management-front/cloudCraftUserFront-courses-management-front/src/app/UtilComponents/ratings/rating-util-functions';
-import { UserService } from '../../../services/api/user/user.service';
-import { SecurityActions } from '../../../services/api/security-functions';
 import { CourseDetails } from '../../../services/api/models/course-details-representation';
 import { CourseService } from '../../../services/api/courses/course.service';
 import { ChapterService } from '../../../services/api/chapter/chapter.service';
 import { SummaryService } from '../../../services/api/summary/summary.service';
 import { NavigationService } from '../../../services/navigation/navigation.service';
 import { PayloadSerialization } from '../../../services/api/models/payload-serialization';
+import { RatingUtilFunction } from 'src/app/UtilComponents/ratings/rating-util-functions';
+import { UserprofileService } from '../../services/userprofile/userprofile.service';
+import { UserRepresentation } from 'src/app/services/api/models/user-representation';
 
 @Component({
   selector: 'app-course-details',
@@ -28,15 +28,18 @@ export class CourseDetailsComponent implements OnInit{
 
   isRatingsDisplayed=false;
   ratingsRep:Array<RatingRepresentation>=[];
-  ratingUrl=`/user/courses/${this.courseId}/ratings/add`;
+  ratingUrl=`/home/courses/${this.courseId}/ratings/add`;
 
+
+  connectedUser:UserRepresentation|null=null;
   constructor(
     private route: ActivatedRoute,
      private courseService:CourseService,
      private chapterService:ChapterService,
      private summaryService:SummaryService,
      private navigationService:NavigationService,
-     private cdr: ChangeDetectorRef
+     private cdr: ChangeDetectorRef,
+     private up:UserprofileService
      ){
 
   }
@@ -118,8 +121,9 @@ export class CourseDetailsComponent implements OnInit{
 
 
   isActionAllowd(object:any):boolean{
-    console.log(SecurityActions.isActionsAllowed(object,2))
-    return SecurityActions.isActionsAllowed(object,2);
+    if(this?.connectedUser?.email==object.owner.email)return true;
+    return false;
+    
   }
   showRatings(ratings:any){
     this.isRatingsDisplayed=true;
@@ -135,6 +139,9 @@ export class CourseDetailsComponent implements OnInit{
     this.isRatingsDisplayed=false;
   }
 
+  calcRating(ratings:Array<RatingRepresentation>){
+    return RatingUtilFunction.calcRating(ratings);
+  }
 
 
 

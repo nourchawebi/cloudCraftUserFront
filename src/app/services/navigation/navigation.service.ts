@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 })
 export class NavigationService {
 
-  userUrl="/user";
+  userUrl="/home";
   adminUrl="/admin"
 
   constructor(private router:Router) { }

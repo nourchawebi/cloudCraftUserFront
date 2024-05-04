@@ -14,8 +14,8 @@ export class AddSummaryComponent {
   error:string|null=null;
   resource=this.activeRoute.snapshot.params["chapterId"]==null?"courses":"chapters";
   resourceId=this.resource=="chapters"? this.activeRoute.snapshot.params["chapterId"]:this.activeRoute.snapshot.params["courseId"];
-  backrUrl=this.resource=="chapters"?`/user/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}`:
-  `/user/courses/${this.activeRoute.snapshot.params["courseId"]}`;
+  backrUrl=this.resource=="chapters"?`/home/courses/${this.activeRoute.snapshot.params["courseId"]}/chapters/${this.resourceId}`:
+  `/home/courses/${this.activeRoute.snapshot.params["courseId"]}`;
 
   addSummaryForm:FormGroup=new FormGroup({
     title:new FormControl("",[Validators.required,Validators.minLength(3)]),
