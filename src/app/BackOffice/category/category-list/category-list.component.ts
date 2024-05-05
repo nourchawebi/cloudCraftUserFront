@@ -35,7 +35,7 @@ ngOnInit() {
   onDeleteCategory(categoryId: number): void {
     this.categoryService.deleteCategory(categoryId).subscribe(
       () => {
-        this.categories = this.categories.filter(category => category.idCategory !== categoryId);
+        this.getAllCategories(); // Reload data
       }
     );
   }
@@ -45,17 +45,19 @@ ngOnInit() {
     this.categoryForm.patchValue(category);
   }
 
-    OnEditCategory(){
-      if (this.categoryForm.valid) {
-        const updatedCategory: Category = this.categoryForm.value;
-        this.categoryService.updateCategory(updatedCategory).subscribe(
-          (resp) => {
-            console.log(resp);
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      }
+  OnEditCategory(): void {
+    if (this.categoryForm.valid) {
+      const updatedCategory: Category = this.categoryForm.value;
+      this.categoryService.updateCategory(updatedCategory).subscribe({
+        next: (resp) => {
+          console.log(resp);
+          this.getAllCategories();
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
     }
+  }
+
 }

@@ -24,6 +24,7 @@ import { MyBookDetailsComponent } from './FrontOffice/book/my-book-details/my-bo
 import { BookBorrowCardComponent } from './FrontOffice/book/book-borrow-card/book-borrow-card.component';
 import { UpdateBookComponent } from './FrontOffice/book/update-book/update-book.component';
 import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
+import {ChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { BookDashboardComponent } from './BackOffice/category/book-dashboard/boo
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

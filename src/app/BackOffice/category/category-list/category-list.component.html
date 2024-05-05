@@ -1,82 +1,72 @@
+<style>
+  .table td {
+    white-space: normal; /* or white-space: pre-wrap; */
+  }
+</style>
 
 <div class="container-xxl flex-grow-1 container-p-y" id="mainC">
-<!-- Hoverable Table rows -->
-<div class="card">
-  <h5 class="card-header"><strong> Book Categories</strong></h5>
-  <div class="table-responsive text-nowrap">
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th>Refrence</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th colspan="2">Actions</th>
-      </tr>
-      </thead>
-      <tbody class="table-border-bottom-0">
-      <tr *ngFor="let category of categories">
-        <td>{{ category.idCategory }}</td>
-        <td>{{ category.name }}</td>
-        <td>{{ category.description }}</td>
-        <td> <button
-          type="button"
-          class="btn rounded-pill btn-primary"
-          data-bs-toggle="modal"
-          data-bs-target="#modalCenter"
-          (click)="onOpenModel(category)"
-        >
-           Edit
-        </button>
-        </td>
-        <td><button (click)="onDeleteCategory(category.idCategory)" type="button" class="btn rounded-pill btn-danger">
-        Delete
-        </button></td>
-      </tr>
-      </tbody>
-    </table>
+  <!-- Hoverable Table rows -->
+  <div class="card">
+    <h5 class="card-header"><strong> Book Categories</strong></h5>
+    <div class="table-responsive text-nowrap">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Refrence</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th colspan="2">Actions</th>
+        </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+        <tr *ngFor="let category of categories">
+          <td>{{ category.idCategory }}</td>
+          <td>{{ category.name }}</td>
+          <td>{{ category.description }}</td>
+          <td>
+            <button type="button" class="btn rounded-pill btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter" (click)="onOpenModel(category)">Edit</button>
+          </td>
+          <td>
+            <button (click)="onDeleteCategory(category.idCategory)" type="button" class="btn rounded-pill btn-danger">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <!--/ Hoverable Table rows -->
 </div>
-<!--/ Hoverable Table rows -->
-</div>
-
 
 <!-- Vertically Centered Modal -->
-    <!-- Modal -->
-    <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true" >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalCenterTitle">Edit Category</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+<!-- Modal -->
+<div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCenterTitle">Edit Category</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="categoryForm" (ngSubmit)="OnEditCategory()">
+          <div class="row">
+            <div class="col mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" formControlName="name">
+            </div>
           </div>
-          <div class="modal-body">
-            <form [formGroup]="categoryForm" (ngSubmit)="OnEditCategory()">
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="name" class="form-label">Name</label>
-                      <input type="text" class="form-control" id="name" formControlName="name">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="description" class="form-label">Description</label>
-                      <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
-
-                    </div>
-                  </div>
-
-                <div class="modal-footer">
-                  <button type="button" class="btn rounded-pill btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="submit" class="btn rounded-pill btn-primary">Save changes</button>
-                </div>
-            </form>
+          <div class="row">
+            <div class="col mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea class="form-control" id="description" formControlName="description" rows="3"></textarea>
+            </div>
           </div>
-        </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn rounded-pill btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn rounded-pill btn-primary">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
-
+  </div>
+</div>

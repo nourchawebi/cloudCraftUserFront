@@ -34,25 +34,40 @@
                       <div class="input-block">
                         <label class="add-course-label">Title</label>
                         <input type="text" class="form-control" placeholder="Book title" id="title" formControlName="title">
+                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['title'].invalid && (bookForm.controls['title'].dirty || bookForm.controls['title'].touched)">
+                          <i class="fa-solid fa-triangle-exclamation"></i> Book title is required !
+                        </div>
                       </div>
                       <div class="input-block">
                         <label class="add-course-label">Author</label>
                         <input type="text" class="form-control" placeholder="Book author name" id="author" formControlName="author">
+                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)">
+                          <i class="fa-solid fa-triangle-exclamation"></i> Book author is required !
+                        </div>
                       </div>
                       <div class="input-block">
                         <label class="add-course-label">Description</label>
                         <textarea type="text" class="form-control" placeholder="Book Description" id="description" formControlName="description"></textarea>
+                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['description'].invalid && (bookForm.controls['description'].dirty || bookForm.controls['description'].touched)">
+                          <i class="fa-solid fa-triangle-exclamation"></i> Book description is required !
+                        </div>
                       </div>
                       <div class="input-block">
                         <label class="add-course-label">Category</label>
-                        <select class="form-control select" id="category" formControlName="category" required >
+                        <select class="form-control select" id="category" formControlName="category" required>
+                          <option value="" disabled selected>Select a category</option> <!-- Added disabled and selected attributes -->
                           <option *ngFor="let category of categories" [value]="category.idCategory">{{ category.name }}</option>
                         </select>
+                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['category'].invalid && (bookForm.controls['category'].dirty || bookForm.controls['category'].touched)">
+                          <i class="fa-solid fa-triangle-exclamation"></i> Book category is required !
+                        </div>
                       </div>
                       <div class="input-block">
-                        <label class="add-course-label" for="picture">Choose book cover image</label>
-                        <input type="file" class="form-control" id="picture" (change)="onFileSelected($event)"
-                               formControlName="picture">
+                        <label class="add-course-label" for="picture">Choose book cover image (PNG or JPEG only)</label>
+                        <input type="file" class="form-control" id="picture" accept="image/png, image/jpeg" (change)="onFileSelected($event)" formControlName="picture">
+                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['picture'].invalid && (bookForm.controls['picture'].dirty || bookForm.controls['picture'].touched)">
+                          <i class="fa-solid fa-triangle-exclamation"></i> Book cover picture is required !
+                        </div>
                       </div>
                       <div class="widget-btn">
                         <button type="submit" class="btn btn-info-light next_btn">Save</button>

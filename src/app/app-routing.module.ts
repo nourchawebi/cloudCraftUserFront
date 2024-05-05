@@ -11,6 +11,7 @@ import {UserBooksListComponent} from "./FrontOffice/book/user-books-list/user-bo
 import {BooksBorrowListComponent} from "./FrontOffice/book/books-borrow-list/books-borrow-list.component";
 import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book-details.component";
 import {UpdateBookComponent} from "./FrontOffice/book/update-book/update-book.component";
+import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
 
 const routes: Routes = [
   {
@@ -18,12 +19,16 @@ const routes: Routes = [
  component: AllTemplateBackComponent,
     children: [
       {
-        path: 'list',
+        path: 'listBooks',
         component: CategoryListComponent
       },
       {
-        path: 'add',
+        path: 'addBook',
         component: BookCategoryComponent
+      },
+      {
+        path: 'bookDashboard',
+        component: BookDashboardComponent
       }
 
     ]
