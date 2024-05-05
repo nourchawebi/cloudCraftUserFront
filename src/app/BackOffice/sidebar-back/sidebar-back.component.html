@@ -31,25 +31,11 @@
         <div data-i18n="Analytics"> lock users </div>
       </a>
     </li>
-    <li [class.active]="activeTab === 'carpoolingstat'" class="menu-item">
-      <a    (click)=" setActiveItem('carpoolingstat')"
-            routerLink="/admin/carpoolingstat" class="menu-link">
-        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
-        <div data-i18n="Analytics"> carpooling stat </div>
-      </a>
-    </li>
-
-    <li [class.active]="activeTab === 'courses'" class="menu-item">
-      <a    (click)=" setActiveItem('courses')"
-            routerLink="/admin/carpoolingstat" class="menu-link">
-        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
-        <div data-i18n="Analytics"> Courses </div>
-      </a>
-    </li>
 
 
-
-    <li><a (click)="logout()"  style="color: darkred">LogOut</a></li>
+    <li class="menu-item"><a (click)="logout()" class="menu-link" >
+      <i class="menu-icon tf-icons bx bx-log-out"></i>
+      LogOut</a></li>
 
   </ul>
 </aside>

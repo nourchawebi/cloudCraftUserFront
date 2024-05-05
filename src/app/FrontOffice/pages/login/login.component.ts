@@ -63,11 +63,13 @@ export class LoginComponent {
 
     if(tokenPayload.role=='USER')
     {
-      this.router.navigate(['user/welcome'])}
+      this.router.navigate(['user/welcome']);
+
+    }
 
 
     else {
-      this.router.navigate(['admin'])}
+      this.router.navigate(['admin/userstat'])}
 
   }
 
