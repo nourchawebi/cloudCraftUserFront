@@ -23,16 +23,10 @@
           </div>
           <ul class="main-nav"   style="margin-top: -40px;">
             <li class="has-submenu">
-              <a routerLink="/user/welcome">Home <i class="fas fa-chevron-down"></i></a>
+              <a routerLink="/user/welcome">Home</a>
 
             </li>
-            <li class="has-submenu">
-              <a href>Events <i class="fas fa-chevron-down"></i></a>
-              <ul class="submenu">
-                <li><a >Dashboard</a></li>
 
-              </ul>
-            </li>
             <li class="has-submenu active">
               <a href>Carpooling <i class="fas fa-chevron-down"></i></a>
               <ul class="submenu first-submenu">
@@ -55,7 +49,16 @@
               </ul>
             </li>
 
-
+            <li class="has-submenu">
+              <a href="/home/courses">Courses </a>
+            </li>
+            <li class="has-submenu">
+              <a [routerLink]="'/home /event'">Events <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu first-submenu">
+                <li class="has-submenu ">
+                <li><a [routerLink]="'/home/calendar'">Calendar</a></li>
+              </ul>
+            </li>
 
           </ul>
         </div>
