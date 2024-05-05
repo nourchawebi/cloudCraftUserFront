@@ -51,7 +51,7 @@ export class JourneyComponent {
   }
 
   addJourney(){
-//    this.http.post("http://localhost:8081/journey",this.journey).subscribe();
+    console.log(this.journey)
     this.journeyService.createData(this.journey).subscribe()
     this.router.navigate(["/list_journey"])
   }

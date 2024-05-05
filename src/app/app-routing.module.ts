@@ -54,6 +54,9 @@ import {
 
   CourseDetailsComponent as CourseDetailsComponentFront
 } from "./FrontOffice/pages/course-details/course-details.component";
+import {
+  JourneyDetailsComponent
+} from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
 
 const routes: Routes = [
 
@@ -79,6 +82,8 @@ const routes: Routes = [
       {path: 'location', component:LocationComponent},
       {path: 'add_journey', component: JourneyComponent},
       {path: 'list_journey', component: ListJourneyComponent},
+      { path: 'journey/:id', component: JourneyDetailsComponent },
+
       {path:'event' , component : EventComponent},
       {path: 'calendar', component: CalendarComponent},
       { path: 'event-detail/:id', component: EventDetailsComponent },

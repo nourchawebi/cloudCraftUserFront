@@ -20,22 +20,14 @@ export class ListJourneyComponent {
   constructor(private userProfileService:UserprofileService,private dataService: DataService,private locationService:LocationService,private router:Router,private crudApi:JourneyService, private formBuilder:FormBuilder, private journeyService:JourneyService) {
   }
 
-
-
-
-  participate(journeyId:Number){
-    this.dataService.addParticipation(1,journeyId).subscribe(
-      value => this.ngOnInit()
-    );
-  }
-
   showTraject(journey:Journey){
     this.journeyService.selectedJourney=journey
     this.router.navigate(['/map'])
   }
 
-  searchPrice={
-    maximumPrice:30
+  searchCriteria={
+    maximumPrice:30,
+    day:"all"
   }
 
   locationNames:string[] = [];
@@ -67,14 +59,6 @@ export class ListJourneyComponent {
     this.search();
   }
 
-  checkParticipation(journey: Journey) {
-    let i;
-    for( i=0;i<journey.participations.length;i++)
-      if (journey.participations[i].carpooled.id==1)
-        return true
-    return false;
-  }
-
   search() {
     this.fmotorized = []
     this.journey = []
@@ -91,7 +75,9 @@ export class ListJourneyComponent {
         }
       }));
 
-    this.journey = this.journey.filter(journey => journey.price < this.searchPrice.maximumPrice)
+    this.journey = this.journey.filter(journey => journey.price < this.searchCriteria.maximumPrice)
+    if(this.searchCriteria.day!="all")
+      this.journey = this.journey.filter(journey => journey.day == this.searchCriteria.day)
   }
 
   showCalendar(motorized: Motorized) {

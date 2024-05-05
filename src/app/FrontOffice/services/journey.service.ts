@@ -15,9 +15,14 @@ export class JourneyService {
   public dataForm!: FormGroup ;
   constructor(private http: HttpClient , private up:UserprofileService) { }
 
-  getData(id:number): Observable<Object> {
+  getData(id:number): Observable<any> {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/${id}`,{headers})
+  }
+
+  getMotorized(id:number): Observable<any> {
+    const headers = this.up.createAuthorization();
+    return this.http.get(`${this.baseUrl}/${id}/motorized`,{headers})
   }
 
   createData(info: Object): Observable<Object> {

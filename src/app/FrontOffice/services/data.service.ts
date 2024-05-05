@@ -42,13 +42,13 @@ export class DataService {
     return this.http.get<Location>("http://localhost:8081/location/1",{headers});
   }
 
-  addParticipation(idCarpooled:Number,idJourney:Number){
+    addParticipation(idCarpooled: Number, idJourney: number | undefined){
     const headers = this.up.createAuthorization();
     return this.http.post("http://localhost:8081/participation/"+idCarpooled+"/"+idJourney,null,{headers});
   }
 
-  checkParticipation(journeyId: number) {
+  checkParticipation(journeyId: number | undefined) {
     const headers = this.up.createAuthorization();
-    this.http.post(`http://localhost:8081/journey/${journeyId}`,null,{headers}).subscribe();
+    this.http.post(`http://localhost:8081/participation/journey/${journeyId}`,null,{headers}).subscribe();
   }
 }

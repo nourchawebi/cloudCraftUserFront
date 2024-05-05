@@ -81,6 +81,7 @@ import {UpdateSummaryComponent} from "./FrontOffice/pages/update-summary/update-
 import {UpdateChapterComponent} from "./FrontOffice/pages/update-chapter/update-chapter.component";
 import {ChapterDetailsComponent} from "./FrontOffice/pages/chapter-details/chapter-details.component";
 import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
+import { JourneyDetailsComponent } from './FrontOffice/pages/journey/list-journey/journey-details/journey-details.component';
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
@@ -156,7 +157,8 @@ const Validators = () => {
     CourseDetailsComponentFront,
     CoursesDetailsComponentBack,
     SummaryDetailsComponent,
-    UpdateSummaryComponent
+    UpdateSummaryComponent,
+    JourneyDetailsComponent
 
 
 

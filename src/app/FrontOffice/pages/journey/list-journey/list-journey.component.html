@@ -28,11 +28,16 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-item">
                       <div class="input-block select-form mb-0">
-                        <select class="form-select select" name="sellist1">
-                          <option>Newly published </option>
-                          <option>published 1</option>
-                          <option>published 2</option>
-                          <option>published 3</option>
+                        <select class="form-select select" name="sellist1" (change)="search()" [(ngModel)]="searchCriteria.day">
+                          <option value="all"> All </option>
+                          <option value="monday"> Monday </option>
+                          <option value="tuesday"> Tuesday </option>
+                          <option value="wednesday">wednesday</option>
+                          <option value="thursday">thursday</option>
+                          <option value="friday">friday</option>
+                          <option value="saturday">saturday</option>
+                          <option value="sunday">sunday</option>
+
                         </select>
                       </div>
                     </div>
@@ -59,7 +64,7 @@
                   <div class="head-course-title">
                     <h3 class="title"><a href="course-details.html">Esprit  on {{journey.day}}</a></h3>
                     <div class="all-btn all-category d-flex align-items-center">
-                      <button  (click)="participate(journey.journeyId)" class="btn btn-primary">PARTICIPATE</button>
+                      <button [routerLink]="['/home/journey',journey.journeyId]" class="btn btn-primary">Show Details</button>
                     </div>
                   </div>
                   <div class="course-info border-bottom-0 pb-0 d-flex align-items-center">
@@ -191,8 +196,8 @@
                 </div>
 
                 <div>
-                  <h6>Maximum Price : {{searchPrice.maximumPrice}} dt</h6>
-                  <input type="range" class="form-range" (ngModelChange)="search()" [(ngModel)]="searchPrice.maximumPrice" min="5" max="50">
+                  <h6>Maximum Price : {{searchCriteria.maximumPrice}} dt</h6>
+                  <input type="range" class="form-range" (ngModelChange)="search()" [(ngModel)]="searchCriteria.maximumPrice" min="5" max="50">
                 </div>
                 <div>
                   <label class="custom_check custom_one">
