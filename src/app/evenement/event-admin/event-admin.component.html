@@ -9,14 +9,14 @@
     <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Titre</th>
-      <th scope="col">Début</th>
-      <th scope="col">Fin</th>
-      <th scope="col">Lieu</th>
-      <th scope="col">Détails</th>
+      <th scope="col">Title</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+      <th scope="col">lolcation</th>
+      <th scope="col">Details</th>
       <th scope="col">Description</th>
+      <th scope="col">Capacity</th>
       <th scope="col">image</th>
-      <th scope="col">Capacité</th>
     </tr>
     </thead>
     <tbody>
@@ -29,13 +29,14 @@
       <td>{{ event.details }}</td>
       <td>{{ event.description }}</td>
       <td>{{ event.capacity }}</td>
-
+<td>  <img [src]="event.imageURL" alt="Event Thumbnail" class="thumbnail-image">
+</td>
 
 <!--      <td>-->
 <!--        <button type="button" class="btn btn-danger" (click)="participate(event.idEvent)">participate</button>-->
 <!--      </td>-->
       <td>
-        <button type="button" class="btn btn-danger" (click)="deleteEvent(event.idEvent)">Supprimer</button>
+        <button type="button" class="btn btn-danger" (click)="deleteEvent(event.idEvent)">Delete</button>
       </td>
 
       <td>

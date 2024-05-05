@@ -18,6 +18,7 @@ export class EventAdminComponent {
   ngOnInit() {
     this.sampleService.getAllEvents().subscribe(data => {
       this.items = data;
+      console.log(data)
       this.items.forEach(event => {
         this.generateQRCode(event.idEvent.toString(), 'qrCodeCanvas_' + event.idEvent);
       });

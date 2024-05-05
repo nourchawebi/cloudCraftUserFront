@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ChatService, Message} from "../../service/chat.service";
 import {EventService} from "../../service/event/event.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-chat',
@@ -11,8 +12,8 @@ export class ChatComponent implements OnInit {
 
   messages: Message[] = [];
   value!: string;
-
-  constructor(public chatService: ChatService,private eventService: EventService) { }
+  @ViewChild('contents') contents!: TemplateRef<any>;
+  constructor(public chatService: ChatService,private eventService: EventService,private modalService: NgbModal) { }
 
   ngOnInit() {
     this.chatService.conversation.subscribe((val) => {
@@ -34,6 +35,24 @@ export class ChatComponent implements OnInit {
       popup.style.display = "block";
     }
   }
+
+
+
+
+  openModals() {
+    this.modalService.open(this.contents, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      // Handle close or dismiss
+    }, (reason) => {
+      // Handle dismiss
+    });
+  }
+
+
+
+
+
+
+
 
 
 }

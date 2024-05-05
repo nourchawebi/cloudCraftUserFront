@@ -1,18 +1,85 @@
-<h1>JSExpert Angular Chat Bot</h1>
 
-<ng-container *ngFor="let message of messages">
-  <div class="message" [ngClass]="{ 'from': message.author === 'bot', 'to': message.author === 'user' }">
-    {{ message.content }}
+<!--<ng-container *ngFor="let message of messages">-->
+<!--  <div class="message" [ngClass]="{ 'from': message.author === 'bot', 'to': message.author === 'user' }">-->
+<!--    {{ message.contents }}-->
+<!--  </div>-->
+<!--</ng-container>-->
+
+<!--<label *ngIf="messages.length == 0; else dialogInfo">Your message</label>-->
+<!--<input [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text">-->
+<!--<button (click)="sendMessage()">Send</button>-->
+
+<!--&lt;!&ndash; Button for Current Events &ndash;&gt;-->
+<!--<button (click)="getCurrentEvents()">Current Events</button>-->
+
+<!--<ng-template #dialogInfo>-->
+<!--  <span class="float-right">Total messages: {{ messages.length }}</span>-->
+<!--</ng-template>-->
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+
+
+   <button type="button" class="btn btn-primary" (click)="openModals()">Mr.Chat</button>
+
+
+<!--&lt;!&ndash; Modal &ndash;&gt;-->
+<!--<ng-template #contents let-modal>-->
+<!--  <div class="modal-header">-->
+<!--    <h5 class="modal-title">Modal title</h5>-->
+<!--    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">-->
+<!--      <span aria-hidden="true">&times;</span>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <div class="modal-footer">-->
+<!--    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Close</button>-->
+<!--    <button type="button" class="btn btn-primary">Save changes</button>-->
+<!--  </div>-->
+<!--</ng-template>-->
+<ng-template #contents let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Mr.Chat</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-</ng-container>
-
-<label *ngIf="messages.length == 0; else dialogInfo">Your message</label>
-<input [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text">
-<button (click)="sendMessage()">Send</button>
-
-<!-- Button for Current Events -->
-<button (click)="getCurrentEvents()">Current Events</button>
-
-<ng-template #dialogInfo>
-  <span class="float-right">Total messages: {{ messages.length }}</span>
+  <div class="modal-body">
+    <ng-container *ngFor="let message of messages">
+      <div class="message" [ngClass]="{ 'from': message.author === 'bot', 'to': message.author === 'user' }">
+        {{ message.content }}
+      </div>
+    </ng-container>
+    <label *ngIf="messages.length == 0">Your message</label>
+    <input [(ngModel)]="value" (keyup.enter)="sendMessage()" type="text">
+    <button (click)="sendMessage()">Send</button>
+  </div>
+  <div class="modal-footer">
+    <span class="float-right">Total messages: {{ messages.length }}</span>
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('Close click')">Close</button>
+  </div>
 </ng-template>
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+  <div class="left">
+
+    <div class="ticket-info">
+      <p class="date">
+        <span>TUESDAY</span>
+        <span class="june-29">JUNE 29TH</span>
+        <span>2021</span>
+      </p>
+      <div class="show-name">
+        <h1>SOUR Prom</h1>
+        <h2>Olivia Rodrigo</h2>
+      </div>
+      <div class="time">
+        <p>8:00 PM <span>TO</span> 11:00 PM</p>
+        <p>DOORS <span>@</span> 7:00 PM</p>
+      </div>
+      <p class="location"><span>East High School</span>
+        <span class="separator"><i class="far fa-smile"></i></span><span>Salt Lake City, Utah</span>
+      </p>
+    </div>
+  </div>
+

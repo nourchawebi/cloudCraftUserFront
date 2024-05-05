@@ -20,7 +20,7 @@ export class AjouterEventComponent {
     this.eventService.AddEvent(this.newEvent,this.selectedFile).subscribe(
       (response) => {
         console.log('Événement créé avec succès', response);
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/admin/event-admin']);
 
       },
 
@@ -36,5 +36,19 @@ export class AjouterEventComponent {
     this.selectedFile = event.target.files[0];
  //   this.newEvent.picture=this.selectedFile;
   }
+
+
+
+
+  getCurrentDate(): string {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+
+
 }
 

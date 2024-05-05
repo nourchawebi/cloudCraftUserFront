@@ -2,23 +2,21 @@
   <h2>Créer un événement</h2>
   <form (ngSubmit)="createEvent()">
     <div class="mb-3">
-      <label for="title" class="form-label">Titre</label>
+      <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control" id="title" [(ngModel)]="newEvent.title" name="title" required>
     </div>
     <div class="mb-3">
-      <label for="dateBegin" class="form-label">Date de début</label>
-      <input type="date" class="form-control" id="dateBegin" [(ngModel)]="newEvent.dateBegin" name="dateBegin" required>
-    </div>
+      <label for="dateBegin" class="form-label">Begin Date</label>
+      <input type="date" class="form-control" id="dateBegin" [(ngModel)]="newEvent.dateBegin" name="dateBegin" min="{{ getCurrentDate() }}" required>    </div>
     <div class="mb-3">
-      <label for="dateEnd" class="form-label">Date de fin</label>
-      <input type="date" class="form-control" id="dateEnd" [(ngModel)]="newEvent.dateEnd" name="dateEnd" required>
-    </div>
+      <label for="dateEnd" class="form-label">End Date</label>
+      <input type="date" class="form-control" id="dateEnd" [(ngModel)]="newEvent.dateEnd" name="dateEnd" min="{{ newEvent.dateBegin}}" required>    </div>
     <div class="mb-3">
-      <label for="location" class="form-label">Lieu</label>
+      <label for="location" class="form-label">Location</label>
       <input type="text" class="form-control" id="location" [(ngModel)]="newEvent.location" name="location" required>
     </div>
     <div class="mb-3">
-      <label for="details" class="form-label">Détails</label>
+      <label for="details" class="form-label">Details</label>
       <textarea class="form-control" id="details" [(ngModel)]="newEvent.details" name="details" required></textarea>
     </div>
     <div class="mb-3">
@@ -26,18 +24,18 @@
       <textarea class="form-control" id="description" [(ngModel)]="newEvent.description" name="description" required></textarea>
     </div>
     <div class="mb-3">
-      <label for="capacity" class="form-label">Capacité</label>
-      <input type="number" class="form-control" id="capacity" [(ngModel)]="newEvent.capacity" name="capacity" required>
+      <label for="capacity" class="form-label">Capacity</label>
+      <input type="number" class="form-control" id="capacity" [(ngModel)]="newEvent.capacity" name="capacity" pattern="[0-9]+" required>
     </div>
 
     <div class="mb-3">
-      <label class="add-course-label" for="picture">Choose book cover image</label>
+      <label class="add-course-label" for="picture">Choose an event image</label>
       <input type="file" class="form-control" id="picture" (change)="onFileSelected($event)"
              formControlName="picture">
     </div>
     <div class="mb-3">
       <button type="submit" class="btn btn-success btn-space">Create</button>
-      <button type="button" class="btn btn-secondary" routerLink="/Home">Retour</button>
+      <button type="button" class="btn btn-secondary" routerLink="/admin/event-admin">Back</button>
 
 
     </div>

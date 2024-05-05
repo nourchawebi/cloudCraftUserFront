@@ -13,7 +13,13 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
+  findMostEvents(){
+    return this.http.get<any>(`${this.baseUrl}/count-by-month`);
+  }
 
+  findMostParticipatedEvent() {
+    return this.http.get<any>(`${this.baseUrl}/most-participated-event`);
+  }
 
   getAllEvents(): Observable<Event[]> {
     return this.http.get<Event[]>(`${this.baseUrl}/getAll`);
@@ -29,12 +35,11 @@ export class EventService {
     forumdata.append("dateBegin",event.dateBegin.toString());
     forumdata.append("dateEnd",event.dateEnd.toString());
    forumdata.append("picture",file);
-    forumdata.append("description",event.description);
-    forumdata.append("capacity",event.capacity.toString());
+    forumdata.append("description",event.description)
+    forumdata.append("capacity",event.capacity.toString())
     forumdata.append("details",event.details);
     return  this.http.post<Event>(`${this.baseUrl}/addEvent`, forumdata);
   }
-
 
   deleteEvent(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
@@ -52,10 +57,19 @@ export class EventService {
     return this.http.put<Event>(`${this.baseUrl}/update/${id}`, forumdata);
   }
 
-
     getEventById(id: number): Observable<Event> {
       return this.http.get<Event>(`${this.baseUrl}/events/${id}`);
     }
+  findEventById(id: number): Observable<Event> {
+    return this.http.get<Event>(`${this.baseUrl}/findevents/${id}`);
+  }
+
+  selectEventById(id: number): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}/events/${id}`);
+  }
+
+
+
 
   participate(id: number): void {
     this.http.post(`${this.baseUrl}/${id}/issparticipate/${2}`, null).subscribe(
@@ -99,6 +113,7 @@ export class EventService {
     );
   }
 
+  /////////////////////////////////////////////for the chat
 
   async getCurrentEventsFormatted(): Promise<string> {
     const events = await this.getAllEvents().toPromise();

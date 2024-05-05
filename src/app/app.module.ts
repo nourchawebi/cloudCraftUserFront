@@ -26,6 +26,8 @@ import { QRCodeModule } from 'angularx-qrcode';
 import { ChatComponent } from './evenement/chat/chat.component';
 import {ChatService} from "./service/chat.service";
 import { EventDetailsComponent } from './evenement/event-details/event-details.component';
+import { ChartEventComponent } from './evenement/chart-event/chart-event.component';
+import {ChartsModule} from "ng2-charts";
 
 
 
@@ -46,13 +48,14 @@ import { EventDetailsComponent } from './evenement/event-details/event-details.c
     UpdateEventComponent,
     TesteComponent,
     ChatComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    ChartEventComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule ,
-    FormsModule ,
+    BrowserModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     QRCodeModule,
@@ -62,6 +65,7 @@ import { EventDetailsComponent } from './evenement/event-details/event-details.c
       useFactory: adapterFactory,
     }),
     NgbModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

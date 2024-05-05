@@ -10,6 +10,7 @@ import {UpdateEventComponent} from "./evenement/update-event/update-event.compon
 import {TesteComponent} from "./evenement/teste/teste.component";
 import {ChatComponent} from "./evenement/chat/chat.component";
 import {EventDetailsComponent} from "./evenement/event-details/event-details.component";
+import {ChartEventComponent} from "./evenement/chart-event/chart-event.component";
 
 const routes: Routes = [ { path: '', pathMatch: 'full', redirectTo: 'user' },
   {
@@ -23,7 +24,7 @@ const routes: Routes = [ { path: '', pathMatch: 'full', redirectTo: 'user' },
       },
       {path : 'CreateEvent' , component : AjouterEventComponent},
       {path : 'updateEvent/:id' , component :UpdateEventComponent},
-
+      {path : 'chart-event' , component : ChartEventComponent},
     ]
   },
 
