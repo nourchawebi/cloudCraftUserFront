@@ -1,0 +1,54 @@
+
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Library/</span>Add Book</h4>
+
+  <!-- Basic Layout & Basic with Icons -->
+  <div class="row">
+
+<div class="col-xxl">
+  <div class="card mb-4">
+    <div class="card-header d-flex align-items-center justify-content-between">
+      <h5 class="mb-0">Category Details</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="categoryForm" (ngSubmit)="addCategory()">
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+          <div class="col-sm-10">
+            <input type="text" formControlName="name" class="form-control" id="basic-default-name" placeholder="Category Name" />
+            <div style="margin-top: 10px" class="alert alert-danger" *ngIf="categoryForm.controls['name'].invalid && (categoryForm.controls['name'].dirty || categoryForm.controls['name'].touched)">
+              Category name is required !
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="col-sm-2 col-form-label" for="basic-default-message">Description</label>
+          <div class="col-sm-10">
+                            <textarea
+                              id="basic-default-message"
+                              class="form-control"
+                              formControlName="description"
+                              placeholder="Category Description"
+                              aria-label="Category Description"
+                              aria-describedby="basic-icon-default-message2"
+                            ></textarea>
+            <div style="margin-top: 10px" class="alert alert-danger" *ngIf="categoryForm.controls['description'].invalid && (categoryForm.controls['description'].dirty || categoryForm.controls['description'].touched)">
+              Category description is required !
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-end">
+          <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Add</button>
+            <button routerLink="/admin/list" class="btn btn-primary m-lg-2">Back to all categories</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+  </div>
+</div>

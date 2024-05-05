@@ -1,0 +1,130 @@
+<div >
+  <div   >
+
+
+    <div class="row"  style="margin-left: 20px;margin-bottom: 20px" >
+      <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Library/</span>Dashboard</h4>
+
+      <div class="col-md-4 d-flex" style="margin-top: 30px" >
+        <div class="card instructor-card w-100">
+          <div class="card-body">
+            <div class="instructor-inner">
+              <h6>Total Number of Books</h6>
+              <h4 class="instructor-text-success"  style="color: DarkBlue ">
+                <strong>
+                  {{ numberOfBooks }}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                  </svg>
+                </strong>
+              </h4>
+              <p>Books</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex" style="margin-top: 30px">
+        <div class="card instructor-card w-100" >
+          <div class="card-body">
+            <div class="instructor-inner">
+              <h6>Number Of Available Books</h6>
+              <h4 class="instructor-text-info" style="color: DeepPink ">  <strong>
+                {{ numberOfAvailableBooks }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"  viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+                </svg>
+              </strong></h4>
+              <p>Books</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 d-flex" style="margin-top: 30px">
+        <div class="card instructor-card w-100">
+          <div class="card-body">
+            <div class="instructor-inner">
+              <h6>Number Of Unavailable Books</h6>
+              <h4 class="instructor-text-warning"  style="color: Red">
+                <strong>
+                  {{numberOfUnavailableBooks}}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                    <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
+                  </svg>
+                </strong></h4>
+              <p>Books</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" style="margin-left: 20px; margin-bottom: 20px;">
+    <!-- Third Chart -->
+    <div class="col-md-4 d-flex" style="margin-bottom: 10px;">
+      <div class="card instructor-card w-100">
+        <div class="card-body">
+          <div class="instructor-inner">
+            <h6>Number Of Available Vs Unavailable Books</h6>
+            <div style="max-width: 500px; max-height: 250px;">
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabel"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="'bar'"
+                      [colors]="barChartColors">>
+
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- First Chart (Pie Chart) -->
+    <div class="col-md-4 d-flex" style="margin-bottom: 10px;">
+      <div class="card instructor-card w-100">
+        <div class="card-body">
+          <div class="instructor-inner">
+            <h6>Number Of Books By Category</h6>
+            <div style="max-width: 500px; max-height: 300px;">
+              <canvas class="pie-chart" baseChart
+                      [data]="pieChartData"
+                      [labels]="pieChartLabels"
+                      [chartType]="pieChartType"
+                      [options]="pieChartOptions"
+                      [colors]="pieChartColors">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second Chart-->
+    <div class="col-md-4 d-flex" style="margin-bottom: 10px;">
+      <div class="card instructor-card w-100">
+        <div class="card-body">
+          <div class="instructor-inner">
+            <h6>Created Books Per Month</h6>
+            <div style="max-width: 500px; max-height: 250px;">
+              <canvas baseChart
+                      [datasets]="areaChartData"
+                      [labels]="areaChartLabels"
+                      [chartType]="areaChartType"
+                      [legend]="areaChartLegend"
+                      [options]="areaChartOptions"
+                      [colors]="booksPerCategoryColor">
+              </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>

@@ -16,6 +16,9 @@
   <div class="menu-inner-shadow"></div>
 
   <ul class="menu-inner py-1">
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">User</span>
+    </li>
     <!-- Dashboard -->
     <li [class.active]="activeTab === 'userDashboard'" class="menu-item">
       <a  (click)=" setActiveItem('userDashboard')"
@@ -31,14 +34,20 @@
         <div data-i18n="Analytics"> lock users </div>
       </a>
     </li>
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Carpooling</span>
+    </li>
     <li [class.active]="activeTab === 'carpoolingstat'" class="menu-item">
       <a    (click)=" setActiveItem('carpoolingstat')"
             routerLink="/admin/carpoolingstat" class="menu-link">
         <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
-        <div data-i18n="Analytics"> carpooling stat </div>
+        <div data-i18n="Analytics"> carpooling Dashboard </div>
       </a>
     </li>
 
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Courses</span>
+    </li>
     <li [class.active]="activeTab === 'courses'" class="menu-item">
       <a    (click)=" setActiveItem('courses')"
             routerLink="/admin/carpoolingstat" class="menu-link">
@@ -47,9 +56,30 @@
       </a>
     </li>
 
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Library</span>
+    </li>
+    <li [class.active]="activeTab === 'lb'" class="menu-item">
+      <a (click)=" setActiveItem('lb')" routerLink="/admin/bookDashboard" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+        <div data-i18n="Analytics">Library Dashboard</div>
+      </a>
+    </li>
+    <li [class.active]="activeTab === 'cat'" class="menu-item">
+      <a (click)=" setActiveItem('cat')" routerLink="/admin/listBooks" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-collection"></i>
+        <div>All Categories</div>
+      </a>
+    </li>
+    <li [class.active]="activeTab === 'ad'" class="menu-item">
+      <a (click)=" setActiveItem('ad')" routerLink="/admin/addBook" class="menu-link">
+        <i class="menu-icon tf-icons bx bx-copy"></i>
+        <div>Add Category</div>
+      </a>
+    </li>
+
     <li class="menu-item"><a (click)="logout()" class="menu-link" >
       <i class="menu-icon tf-icons bx bx-log-out"></i>
       LogOut</a></li>
-
   </ul>
 </aside>

@@ -54,6 +54,16 @@ import {
 
   CourseDetailsComponent as CourseDetailsComponentFront
 } from "./FrontOffice/pages/course-details/course-details.component";
+import {AddBookComponent} from "./FrontOffice/book/add-book/add-book.component";
+import {BookListComponent} from "./FrontOffice/book/book-list/book-list.component";
+import {BookDetailsComponent} from "./FrontOffice/book/book-details/book-details.component";
+import {UserBooksListComponent} from "./FrontOffice/book/user-books-list/user-books-list.component";
+import {BooksBorrowListComponent} from "./FrontOffice/book/books-borrow-list/books-borrow-list.component";
+import {UpdateBookComponent} from "./FrontOffice/book/update-book/update-book.component";
+import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book-details.component";
+import {BookCategoryComponent} from "./BackOffice/category/book-category/book-category.component";
+import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
+import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
 
 const routes: Routes = [
 
@@ -147,6 +157,35 @@ const routes: Routes = [
         path:"courses/:courseId/chapters/:chapterId/ratings/add",
         component:AddRatingComponent
       },
+      {
+        path: 'addbook',
+        component: AddBookComponent
+      },
+      {
+        path: 'books',
+        component: BookListComponent
+      },
+      {
+        path: 'bookDetails/:bookId',
+        component: BookDetailsComponent
+      },
+      {
+        path: 'userBooks',
+        component: UserBooksListComponent
+      },
+      {
+        path: 'borrows',
+        component: BooksBorrowListComponent
+      },
+      {
+        path: 'mybookDetails/:bookId',
+        component: MyBookDetailsComponent
+      },
+      {
+        path: 'edit/:bookId',
+        component: UpdateBookComponent
+      }
+
 
 
     ]
@@ -211,6 +250,18 @@ const routes: Routes = [
         component : JourneystatisticsComponent,
         canActivate:[adminAuthGuard]
       },
+      {
+        path: 'listBooks',
+        component: CategoryListComponent
+      },
+      {
+        path: 'addBook',
+        component: BookCategoryComponent
+      },
+      {
+        path: 'bookDashboard',
+        component: BookDashboardComponent
+      }
     ]
 
 

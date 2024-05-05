@@ -1,0 +1,54 @@
+ <div class="breadcrumb-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="breadcrumb-list">
+          <nav aria-label="breadcrumb" class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item" aria-current="page">Library</li>
+              <li class="breadcrumb-item active" aria-current="page">Book Details</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+ <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<div class="container">
+  <div  class="card">
+    <div class="card-body">
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-lg-5 col-md-5 col-sm-6">
+          <div class="white-box text-center"><img style="width: 430px;height: 490px" [src]="book.coverPicture" class="img-responsive"></div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-6">
+          <h3 class="card-title" style="font-weight: bold;">{{book.title}}</h3>
+          <h6 class="card-subtitle"><i class="fa-solid fa-user"></i>&nbsp;By {{book.author}}</h6>
+          <p>Category : {{book.category}}</p>
+          <p>{{book.description}}</p>
+          <div class="action">
+            <div class="d-flex">
+              <table style="border-collapse: separate; border-spacing: 1cm;">
+                <tr>
+                 <td>
+                   <a (click)="onBorrowBook(book.id)" class="btn btn-success-dark" >
+                     <i class="fa-solid fa-heart"></i>&nbsp; Borrow </a>
+                 </td>
+                  <td>
+                    <a routerLink="/home/books" class="btn btn-black" >
+                      <i class="fa-solid fa-book-open-reader"></i>&nbsp; Back To All Books </a>
+                  </td>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

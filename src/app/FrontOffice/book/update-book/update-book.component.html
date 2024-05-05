@@ -1,0 +1,104 @@
+<div class="breadcrumb-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-12">
+        <div class="breadcrumb-list">
+          <nav aria-label="breadcrumb" class="page-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a>Home</a></li>
+              <li class="breadcrumb-item" aria-current="page">Library</li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Book</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-content">
+  <div class="container">
+    <div class="row">
+      <div class="page-content-full">
+        <div class="settings-widget profile-details">
+          <div class="settings-menu p-0">
+            <div class="profile-heading">
+              <h3>Edit Book </h3>
+              <p>Add the book details in the form below</p>
+            </div>
+            <table>
+              <tr>
+                <td>
+                  <div class="col-md-3" style="margin: 30px">
+                    <img class="rounded-1" width="400" height="400px" [src]="selectedPicture" alt="">
+                  </div>
+                </td>
+                <td>
+                  <div class="col-md-9">
+                    <div class="checkout-form personal-address">
+                      <form [formGroup]="bookRequestForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                          <div class="col-lg-12" style="display: none;">
+                            <!-- Champ id caché -->
+                            <div class="input-block">
+                              <input type="hidden" formControlName="id">
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="input-block">
+                              <label for="title" class="form-control-label">Title</label>
+                              <input type="text" class="form-control" placeholder="Enter the book title" formControlName="title" id="title">
+                              <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookRequestForm.controls['title'].invalid && (bookRequestForm.controls['title'].dirty || bookRequestForm.controls['title'].touched)">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Book title is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="input-block">
+                              <label for="author" class="form-control-label">Author</label>
+                              <input type="text" class="form-control" placeholder="Enter the book author name" formControlName="author" id="author">
+                              <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookRequestForm.controls['author'].invalid && (bookRequestForm.controls['author'].dirty || bookRequestForm.controls['author'].touched)">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Book author name is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-12">
+                            <div class="input-block">
+                              <label for="description" class="form-control-label">Description</label>
+                              <textarea class="form-control" placeholder="Enter the book description" formControlName="description" id="description"></textarea>
+                              <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookRequestForm.controls['description'].invalid && (bookRequestForm.controls['description'].dirty || bookRequestForm.controls['description'].touched)">
+                                <i class="fa-solid fa-triangle-exclamation"></i> Book description is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="update-profile save-social">
+                            <div class="row">
+                              <div class="col">
+                                <button type="submit" class="btn btn-success-dark">
+                                  <i class="fas fa-save"></i>&nbsp; Save
+                                </button>
+                              </div>
+                              <div class="col">
+                                <button (click)="cancelUpdate()" class="btn btn-black">
+                                  <i class="fas fa-times"></i>&nbsp; Cancel
+                                </button>
+                              </div>
+                              <div class="col">
+                                <a routerLink="/home/userBooks" class="btn btn-black">
+                                  <i class="fa-solid fa-book-open-reader"></i>&nbsp;My Books
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
