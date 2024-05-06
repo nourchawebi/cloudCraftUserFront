@@ -64,8 +64,11 @@ export class PayloadSerialization{
       }
 
       static getRatingRepresentation(rating:any):RatingRepresentation{
+        console.log("ratings from get")
+        console.log(rating)
+
             return {
-            id:rating.id,
+            id:rating.ratingId||rating.id,
            content:rating.content,
             value:rating.value,
             createdAt:rating.createdAt,

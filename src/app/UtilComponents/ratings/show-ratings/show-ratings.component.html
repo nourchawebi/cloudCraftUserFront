@@ -20,7 +20,7 @@
    
     </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" *ngIf="isActionAllowd(rating)" (click)="deleteRating(rating.id)">
     <div class="text-md-end">
     <a href="javascript:void(0);"  class="btn">Delete</a>
     </div>
