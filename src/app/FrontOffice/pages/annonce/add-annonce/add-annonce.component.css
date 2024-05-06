@@ -1,0 +1,120 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+  position: relative;
+  max-width: 500px;
+  width: 80%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.modal-header {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #f6697b;
+}
+
+.close {
+  font-size: 1.5rem;
+  color: #ea2c2c;
+  cursor: pointer;
+  transition: color 0.3s;
+  background-color: #fff;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.close:hover {
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #f6697b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.text-danger {
+  color: #f6697b;
+  font-size: 0.875rem;
+}
+
+/* Style pour le bouton de téléchargement de fichier */
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Choose file'; /* Texte du bouton */
+  display: inline-block;
+  background: #324FA2; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte */
+  padding: 8px 12px; /* Espacement interne */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur de souris */
+}
+
+.custom-file-input:hover::before {
+  background: #324FA2; /* Couleur de fond au survol */
+}
+
+.custom-file-input:active::before {
+  background: #324FA2; /* Couleur de fond au clic */
+}
+.image-preview {
+  margin-bottom: 20px;
+}
+
+/* Image prévisualisée */
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px; /* Ajustez la hauteur comme vous le souhaitez */
+  display: inline-block;
+  margin-bottom: 10px;
+}
+

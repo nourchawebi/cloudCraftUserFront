@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="form-group">
+      <label for="selectedDate">Today's date :</label>
+      <input type="date" class="form-control" id="selectedDate" [(ngModel)]="selectedDate" readonly>
+    </div>
+    <button class="btn btn-primary" (click)="searchAnnonceByDate()">Search for posts</button>
+  </div>
+  
+  <div class="container mt-4" *ngIf="annoncesByDate.length > 0">
+    <h3>Posts for today's date :</h3>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let annonce of annoncesByDate">
+        <div class="card mb-3">
+          <img [src]="annonce.picture" class="card-img-top" alt="Image de l'annonce">
+          <div class="card-body">
+            <h5 class="card-title">{{ annonce.title }}</h5>
+            <p class="card-text">{{ annonce.annonce_description }}</p>
+            <p class="card-text"><small class="text-muted">Date  : {{ annonce.annonce_date }}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

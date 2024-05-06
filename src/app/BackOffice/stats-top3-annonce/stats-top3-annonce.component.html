@@ -1,0 +1,14 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Top 3 posts by likes </h3>
+      </div>
+    </div>
+  
+    <div *ngIf="top3Annonces$ | async as top3Annonces" class="row">
+      <div class="col-md-12">
+        <canvas #barChart width="400" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+  

@@ -65,6 +65,16 @@ import {BookCategoryComponent} from "./BackOffice/category/book-category/book-ca
 import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
 import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
 import {ChartEventComponent} from "./BackOffice/event/chart-event/chart-event.component";
+import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
+import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find-annonce-by-date.component";
+import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
+import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
+import {AddAnnonceComponent} from "./FrontOffice/pages/annonce/add-annonce/add-annonce.component";
+import {
+  GetAnnonceByIDUserComponent
+} from "./FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component";
+import {UpdateAnonnceComponent} from "./FrontOffice/pages/annonce/update-anonnce/update-anonnce.component";
+import {GetAnnonceComponent} from "./FrontOffice/pages/annonce/get-annonce/get-annonce.component";
 
 const routes: Routes = [
 
@@ -94,6 +104,11 @@ const routes: Routes = [
       {path: 'calendar', component: CalendarComponent},
       { path: 'event-detail/:id', component: EventDetailsComponent },
       {path:'chat', component: ChatComponent},
+      {path: "add-annonce", component: AddAnnonceComponent},
+      {path: "get-annonce", component: GetAnnonceComponent},
+      {path: "get-annonceUser/:userId", component: GetAnnonceByIDUserComponent},
+      { path: "UpdateAnonce/:id", component: UpdateAnonnceComponent },
+
       {
         path:"courses",
         component:CoursesListComponentFront
@@ -263,7 +278,24 @@ const routes: Routes = [
       {
         path: 'bookDashboard',
         component: BookDashboardComponent
-      }
+      },
+      {
+        path:'all-annonces',
+        component:AllAnnoncesComponent
+      },
+      {
+        path:'findByDate',
+        component:FindAnnonceByDateComponent
+      },
+      {
+        path:'Top3Annonce',
+        component:StatsTop3AnnonceComponent
+      },
+      {
+        path:'pourcentage',
+        component:StatsCountTypeAnnonceComponent
+      },
+
     ]
 
 
@@ -285,6 +317,8 @@ const routes: Routes = [
   { path:'user/welcome',
     component : WelcomeComponent,
   },
+  {path: '', redirectTo: 'user/welcome', pathMatch: 'full'},
+  {path: '**', component: WelcomeComponent}
 
 ];
 

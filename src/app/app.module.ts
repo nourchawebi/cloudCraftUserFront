@@ -16,7 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
-import {DatePipe} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {LoginComponent} from "./FrontOffice/pages/login/login.component";
 import {RegisterComponent} from "./FrontOffice/pages/register/register.component";
 import {WelcomeComponent} from "./FrontOffice/pages/welcome/welcome.component";
@@ -94,6 +94,19 @@ import { BookCategoryComponent } from './BackOffice/category/book-category/book-
 import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
 import { CategoryListComponent } from './BackOffice/category/category-list/category-list.component';
 import {ChartEventComponent} from "./BackOffice/event/chart-event/chart-event.component";
+import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
+import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find-annonce-by-date.component";
+import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
+import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
+import {AddAnnonceComponent} from "./FrontOffice/pages/annonce/add-annonce/add-annonce.component";
+import {GetAnnonceComponent} from "./FrontOffice/pages/annonce/get-annonce/get-annonce.component";
+import {
+  GetAnnonceByIDUserComponent
+} from "./FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component";
+import {GetTargetAnnonceComponent} from "./FrontOffice/pages/annonce/get-target-annonce/get-target-annonce.component";
+import {UpdateAnonnceComponent} from "./FrontOffice/pages/annonce/update-anonnce/update-anonnce.component";
+import {AddCommentComponent} from "./FrontOffice/pages/comment/add-comment/add-comment.component";
+import {AddReactComponent} from "./FrontOffice/pages/react/add-react/add-react.component";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -183,7 +196,18 @@ const Validators = () => {
     AddBookComponent,
     BookCategoryComponent,
     BookDashboardComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    AllAnnoncesComponent,
+    FindAnnonceByDateComponent,
+    StatsCountTypeAnnonceComponent,
+    StatsTop3AnnonceComponent,
+    AddAnnonceComponent,
+    GetAnnonceComponent,
+    GetAnnonceByIDUserComponent,
+    GetTargetAnnonceComponent,
+    UpdateAnonnceComponent,
+    AddCommentComponent,
+    AddReactComponent
 
 
 
@@ -205,6 +229,7 @@ const Validators = () => {
         MatInputModule,
         MatFormFieldModule,
         ReactiveFormsModule,
+        CommonModule,
         MatProgressSpinnerModule,
         MatCardModule,
         WebcamModule,
