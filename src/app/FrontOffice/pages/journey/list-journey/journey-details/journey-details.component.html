@@ -8,9 +8,9 @@
               <a href="instructor-profile.html"><img src="assets/FrontOffice/img/user/user1.jpg" alt="img" class="img-fluid"></a>
             </div>
             <div class="instructor-detail me-3">
-              <h5><a href="instructor-profile.html">{{motorized?.firstName}} {{motorized?.lastName}}</a></h5>
+              <h5><a href="instructor-profile.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{motorized?.firstName}} {{motorized?.lastName}}</a></h5>
               <p>{{ motorized?.email }}</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"> Send Mail</button>
+<!--              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"> Send Mail</button>-->
             </div>
             <div class="rating mb-0">
               <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=1"></i>
@@ -24,20 +24,20 @@
           <span class="web-badge mb-3">{{ motorized?.role }}</span>
         </div>
         <h2>A journey to esprit</h2>
-        <p>Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!</p>
+<!--        <p>Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!</p>-->
         <div class="course-info d-flex align-items-center border-bottom-0 m-0 p-0">
           <div class="cou-info">
             <img src="assets/img/icon/icon-01.svg" alt>
-            <p>12+ Lesson</p>
+            <p>At {{journey?.day?.substr(0,10)}}</p>
           </div>
-          <div class="cou-info">
+          <!--<div class="cou-info">
             <img src="assets/img/icon/timer-icon.svg" alt>
-            <p>9hr 30min</p>
+            <p>leaving at {{journey?.leavingTime?.substr(0,2)}}hr {{journey?.leavingTime?.substr(3,5)}}min</p>
           </div>
           <div class="cou-info">
             <img src="assets/img/icon/people.svg" alt>
-            <p>32 students enrolled</p>
-          </div>
+            <p>return at {{journey?.returnTime?.substr(0,2)}}hr {{journey?.returnTime?.substr(3,5)}}min</p>
+          </div>-->
         </div>
       </div>
     </div>
@@ -142,7 +142,7 @@
             <div class="card">
               <div class="card-body">
                 <div style="background-color: #0B0B0Bef" class="video-thumbnail" data-fancybox>
-                  <a href="https://www.youtube.com/embed/1trvO6dqQUI">
+                  <a class="btn" (click)="showTraject()">
                   <div class="play-icon">
                     <i class="fa-solid fa-play"></i>
                   </div>

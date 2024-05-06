@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {JourneyService} from "../../../../services/journey.service";
 import {Journey} from "../../../../models/journey";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
 import {DataService} from "../../../../services/data.service";
 import {Motorized} from "../../../../models/motorized";
@@ -18,7 +18,7 @@ import {ParticipationService} from "../../../../services/participation.service";
   styleUrls: ['./journey-details.component.css']
 })
 export class JourneyDetailsComponent implements OnInit{
- constructor(private js:JourneyService, private act:ActivatedRoute, private dataService:DataService, private fb:FeedbackService, private participationService:ParticipationService) {
+ constructor(private js:JourneyService, private act:ActivatedRoute, private dataService:DataService, private fb:FeedbackService, private participationService:ParticipationService, private router:Router) {
  }
   id:number=0;
   journey: Journey | undefined;
@@ -103,5 +103,10 @@ export class JourneyDetailsComponent implements OnInit{
     this.participationService.deleteData(journeyId).subscribe(
       value => this.ngOnInit()
     );
+  }
+
+  showTraject(){
+    this.js.selectedJourney=this.journey!
+    this.router.navigate(['/home/map'])
   }
 }

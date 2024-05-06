@@ -22,7 +22,7 @@ export class ListJourneyComponent {
 
   showTraject(journey:Journey){
     this.journeyService.selectedJourney=journey
-    this.router.navigate(['/map'])
+    this.router.navigate(['/home/map'])
   }
 
   searchCriteria={

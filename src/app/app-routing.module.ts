@@ -58,6 +58,7 @@ import {
   JourneyDetailsComponent
 } from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
 import {CalendarJourneyComponent} from "./FrontOffice/pages/journey/calendar-journey/calendar-journey.component";
+import {MapComponent} from "./FrontOffice/pages/map/map.component";
 
 const routes: Routes = [
 
@@ -83,7 +84,7 @@ const routes: Routes = [
       {path: 'location', component:LocationComponent},
       {path: 'add_journey', component: JourneyComponent},
       {path: 'calendar_journey', component: CalendarJourneyComponent},
-
+      {path: 'map', component: MapComponent},
       {path: 'list_journey', component: ListJourneyComponent},
       { path: 'journey/:id', component: JourneyDetailsComponent },
 
