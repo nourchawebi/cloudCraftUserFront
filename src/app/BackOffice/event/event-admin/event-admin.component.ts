@@ -18,6 +18,7 @@ export class EventAdminComponent {
   ngOnInit() {
     this.sampleService.getAllEvents().subscribe(data => {
       this.items = data;
+      console.log(data)
       this.items.forEach(event => {
         this.generateQRCode(event.idEvent.toString(), 'qrCodeCanvas_' + event.idEvent);
       });
@@ -60,13 +61,13 @@ export class EventAdminComponent {
       context.clearRect(0, 0, qrCodeElement.width, qrCodeElement.height);
 
       // Render the QR code onto the canvas
-   /*   QRCode.toCanvas(qrCodeElement, text, (error) => {
-        if (error) {
-          console.error('Error generating QR code:', error);
-        } else {
-          console.log('QR code generated successfully');
-        }
-      }); */
+      /*   QRCode.toCanvas(qrCodeElement, text, (error) => {
+           if (error) {
+             console.error('Error generating QR code:', error);
+           } else {
+             console.log('QR code generated successfully');
+           }
+         }); */
     });
   }
 

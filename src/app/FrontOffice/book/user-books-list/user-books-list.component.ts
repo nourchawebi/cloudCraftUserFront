@@ -5,8 +5,8 @@ import {Router} from "@angular/router";
 import {PageResponseBookResponse} from "../../../models/book/page-response-book-response";
 import {Category} from "../../../models/book/category";
 import {BookResponse} from "../../../models/book/book-response";
-import { BookService } from 'src/app/services/bookService/book.service';
-import { CategoryService } from 'src/app/services/bookService/category.service';
+import { BookService } from 'src/app/services/api/book/book.service';
+import { CategoryService } from 'src/app/services/api/book/category.service';
 
 
 

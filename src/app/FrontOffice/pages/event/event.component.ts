@@ -2,6 +2,9 @@ import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {EventService} from "../../services/event/event.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {HttpErrorResponse} from "@angular/common/http";
+import * as htmlToImage from 'html-to-image';
+import {ChatService, Message} from "../../services/chat.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-event',
@@ -13,18 +16,24 @@ export class EventComponent implements OnInit {
   // qrCodeData!: string;
   qrCodeImageSrc!: string;
   isParticipating = false; // Track participation status
-
-
   @ViewChild('content') content!: TemplateRef<any>;
   public myAngularxQrCode!: string;
+///////chat
+  messages: Message[] = [];
+  value!: string;
+  @ViewChild('contents') contents!: TemplateRef<any>;
+  eventId!: number;
+  eventDetails: any[] = [];
 
+  constructor(private route: ActivatedRoute,private sampleService: EventService,private modalService: NgbModal,public chatService: ChatService) {
 
-  constructor(private sampleService: EventService,private modalService: NgbModal) {
-
-    this.myAngularxQrCode = 'Your QR code data string';
+    this.myAngularxQrCode = ' QR code data string';
   }
 
   ngOnInit() {
+    this.chatService.conversation.subscribe((val) => {
+      this.messages = this.messages.concat(val);
+    });
     this.sampleService.getAllEvents().subscribe(data => {
       this.items = data;
       this.items.forEach(event => {
@@ -38,10 +47,23 @@ export class EventComponent implements OnInit {
 
       });
     });
+
+
+    this.route.paramMap.subscribe(params => {
+
+      // @ts-ignore
+      this.eventId = +params.get('id');
+      this.sampleService.selectEventById(this.eventId).subscribe(data => {
+          this.eventDetails = data;
+        },
+        (error) => {
+          console.error('Error fetching event details:', error);
+        }
+      );
+    });
+
+
   }
-
-
-
 
 
 
@@ -65,7 +87,7 @@ export class EventComponent implements OnInit {
         else if
         (error.error === 'Event capacity has been reached. Cannot participate.') {
           //           // Show an alert if the event capacity is full
-                    alert('Event capacity has been reached. Cannot participate.');
+          alert('Event capacity has been reached. Cannot participate.');
         }
 
         else {
@@ -105,8 +127,69 @@ export class EventComponent implements OnInit {
     // this.modalService.open(this.content);
   }
 
+//////////////////////////////////////////chat
+  sendMessage() {
+    this.chatService.getBotAnswer(this.value);
+    this.value = '';
+  }
+  getCurrentEvents() {
+    this.chatService.getBotAnswer('Current Events');
+  }
+
+  openChatPopup() {
+    var popup = document.getElementById("chatPopup");
+    if (popup) {
+      popup.style.display = "block";
+    }
+  }
 
 
+
+
+  openModals() {
+    this.modalService.open(this.contents, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      // Handle close or dismiss
+    }, (reason) => {
+      // Handle dismiss
+    });
+  }
+
+
+
+  generateImage() {
+    const node: any = document.getElementById('image-section');
+
+    // Using html-to-image
+    htmlToImage.toPng(node)
+      .then((dataUrl) => {
+        // Create a temporary link to trigger the download
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'my_image.png'; // Set the desired filename
+        link.click();
+      })
+      .catch((error) => {
+        console.error('Oops, something went wrong!', error);
+      });
+  }
+  downloadImage() {
+    const element = document.getElementById('yourHtmlElementId');
+
+    if (element) {
+      htmlToImage.toPng(element)
+        .then((dataUrl: string) => {
+          const link = document.createElement('a');
+          link.download = 'page_image.png';
+          link.href = dataUrl;
+          link.click();
+        })
+        .catch((error: any) => {
+          console.error('Error:', error);
+        });
+    } else {
+      console.error('Element with id "yourHtmlElementId" not found.');
+    }
+  }
 
 }
 

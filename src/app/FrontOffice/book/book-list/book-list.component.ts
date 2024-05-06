@@ -3,8 +3,8 @@ import {Router} from "@angular/router";
 import {PageResponseBookResponse} from "../../../models/book/page-response-book-response";
 import {Category} from "../../../models/book/category";
 import {BookResponse} from "../../../models/book/book-response";
-import {BookService} from "../../../services/bookService/book.service";
-import {CategoryService} from "../../../services/bookService/category.service";
+import {BookService} from "../../../services/api/book/book.service";
+import {CategoryService} from "../../../services/api/book/category.service";
 
 
 @Component({

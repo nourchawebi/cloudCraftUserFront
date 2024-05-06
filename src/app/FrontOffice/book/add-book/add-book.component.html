@@ -65,9 +65,6 @@
                       <div class="input-block">
                         <label class="add-course-label" for="picture">Choose book cover image (PNG or JPEG only)</label>
                         <input type="file" class="form-control" id="picture" accept="image/png, image/jpeg" (change)="onFileSelected($event)" formControlName="picture">
-                        <div style="margin-top: 10px" class="alert alert-danger" *ngIf="bookForm.controls['picture'].invalid && (bookForm.controls['picture'].dirty || bookForm.controls['picture'].touched)">
-                          <i class="fa-solid fa-triangle-exclamation"></i> Book cover picture is required !
-                        </div>
                       </div>
                       <div class="widget-btn">
                         <button type="submit" class="btn btn-info-light next_btn">Save</button>

@@ -21,7 +21,7 @@ export class ChatService {
     Hi: "Hello",
     "Who are you": "My name is Agular Bot",
     "What is Angular": "Angular is the best framework ever",
-    "Current Events": "", // To be updated with actual events on click
+    "what are the current events": "",
 
     default: "hello welcome to EduHub! how can i help you"
   };

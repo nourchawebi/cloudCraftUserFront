@@ -1,0 +1,18 @@
+.tags-box {
+  padding: 5px;
+  display: inline-block;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.tag {
+  display: inline-block;
+  background-color: rgba(128, 128, 128, 0.2); /* Gris très transparent */
+  padding: 3px 8px;
+  border-radius: 15px; /* More rounded corners */
+  margin-right: 5px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.description-section {
+  margin-top: 30px; /* Adjust this value as needed */
+}

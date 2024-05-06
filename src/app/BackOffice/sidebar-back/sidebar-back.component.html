@@ -44,6 +44,27 @@
         <div data-i18n="Analytics"> carpooling Dashboard </div>
       </a>
     </li>
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Event</span>
+    </li>
+    <li [class.active]="activeTab === 'event-admin'" class="menu-item">
+      <a    (click)=" setActiveItem('event-admin')"
+            routerLink="/admin/event-admin" class="menu-link">
+        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
+        <div data-i18n="Analytics"> Event </div>
+      </a>
+    </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Chart Event</span>
+    </li>
+    <li [class.active]="activeTab === 'chart-event'" class="menu-item">
+      <a    (click)=" setActiveItem('chart-event')"
+            routerLink="/admin/chart-event" class="menu-link">
+        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
+        <div data-i18n="Analytics"> Event </div>
+      </a>
+    </li>
 
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Courses</span>
@@ -77,6 +98,42 @@
         <div>Add Category</div>
       </a>
     </li>
+    <!-- Components -->
+    <!-- malek -->
+
+    <li class="menu-item">
+      <a routerLink="/admin/findByDate" class="menu-link d-flex align-items-center">
+        <i class="menu-icon tf-icons bx bx-collection me-2"></i>
+        <div class="d-flex flex-column">
+          <span class="fw" data-i18n="Basic">Today's posts</span>
+        </div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/admin/Top3Annonce" class="menu-link d-flex align-items-center">
+        <i class="menu-icon tf-icons bx bx-collection me-2"></i>
+        <div class="d-flex flex-column">
+          <span class="fw" data-i18n="Basic">Top 3 posts</span>
+        </div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/admin/all-annonces" class="menu-link d-flex align-items-center">
+        <i class="menu-icon tf-icons bx bx-collection me-2"></i>
+        <div class="d-flex flex-column">
+          <span class="fw" data-i18n="Basic">All posts</span>
+        </div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a routerLink="/admin/pourcentage" class="menu-link d-flex align-items-center">
+        <i class="menu-icon tf-icons bx bx-collection me-2"></i>
+        <div class="d-flex flex-column">
+          <span class="fw" data-i18n="Basic">Posts statistics</span>
+        </div>
+      </a>
+    </li>
+    <!-- malek -->
 
     <li class="menu-item"><a (click)="logout()" class="menu-link" >
       <i class="menu-icon tf-icons bx bx-log-out"></i>

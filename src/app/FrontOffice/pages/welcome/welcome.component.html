@@ -79,6 +79,16 @@
                 </ul>
               </li>
               <li class="has-submenu">
+                <a href="/home/courses">Courses</a>
+              </li>
+              <li class="has-submenu">
+                <a [routerLink]="'/home /event'">Events <i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu first-submenu">
+                  <li class="has-submenu ">
+                  <li><a [routerLink]="'/home/calendar'">Calendar</a></li>
+                </ul>
+              </li>
+              <li class="has-submenu">
                 <a href>Library <i class="fas fa-chevron-down"></i></a>
                 <ul class="submenu">
                   <li><a routerLink="/home/books" >All Books</a></li>
@@ -88,13 +98,11 @@
                 </ul>
               </li>
               <li class="has-submenu">
-                <a href="/home/courses">Courses</a>
-              </li>
-              <li class="has-submenu">
-                <a [routerLink]="'/home /event'">Events <i class="fas fa-chevron-down"></i></a>
-                <ul class="submenu first-submenu">
-                  <li class="has-submenu ">
-                  <li><a [routerLink]="'/home/calendar'">Calendar</a></li>
+                <a href>Posts<i class="fas fa-chevron-down"></i></a>
+                <ul class="submenu">
+                  <li><a routerLink="/home/get-annonce" >All Posts</a></li>
+                  <li><a routerLink="/home/get-annonceUser/:userId">My Posts</a></li>
+                  <li><a routerLink="/home/add-annonce">Add a Post</a></li>
                 </ul>
               </li>
             </ul>

@@ -14,6 +14,15 @@ export class EventService {
   constructor(private http: HttpClient, private up:UserprofileService) { }
 
 
+  findMostEvents(){
+    const headers = this.up.createAuthorization();
+    return this.http.get<any>(`${this.baseUrl}/count-by-month`,{headers});
+  }
+
+  findMostParticipatedEvent() {
+    const headers = this.up.createAuthorization();
+    return this.http.get<any>(`${this.baseUrl}/most-participated-event`,{headers});
+  }
 
   getAllEvents(): Observable<Event[]> {
     const headers = this.up.createAuthorization();
@@ -67,6 +76,16 @@ export class EventService {
 
       return this.http.get<Event>(`${this.baseUrl}/events/${id}`,{headers});
     }
+  findEventById(id: number): Observable<Event> {
+    const headers = this.up.createAuthorization();
+
+    return this.http.get<Event>(`${this.baseUrl}/findevents/${id}`,{headers});
+  }
+  selectEventById(id: number): Observable<Event[]> {
+    const headers = this.up.createAuthorization();
+
+    return this.http.get<Event[]>(`${this.baseUrl}/events/${id}`,{headers});
+  }
 
   participate(id: number): void {
     const headers = this.up.createAuthorization();

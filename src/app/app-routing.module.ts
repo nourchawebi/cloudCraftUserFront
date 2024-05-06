@@ -65,6 +65,11 @@ import {BookCategoryComponent} from "./BackOffice/category/book-category/book-ca
 import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
 import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
 import { CoursesDashboardComponent } from './BackOffice/courses/courses-dashboard/courses-dashboard.component';
+import { AddAnnonceComponent } from './FrontOffice/pages/annonce/add-annonce/add-annonce.component';
+import { GetAnnonceComponent } from './FrontOffice/pages/annonce/get-annonce/get-annonce.component';
+import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
+import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
+import { ChartEventComponent } from './BackOffice/event/chart-event/chart-event.component';
 
 const routes: Routes = [
 
@@ -94,6 +99,11 @@ const routes: Routes = [
       {path: 'calendar', component: CalendarComponent},
       { path: 'event-detail/:id', component: EventDetailsComponent },
       {path:'chat', component: ChatComponent},
+      {path: "add-annonce", component: AddAnnonceComponent},
+      {path: "get-annonce", component: GetAnnonceComponent},
+      {path: "get-annonceUser/:userId", component: GetAnnonceByIDUserComponent},
+      { path: "UpdateAnonce/:id", component: UpdateAnonnceComponent },
+
       {
         path:"courses",
         component:CoursesListComponentFront
@@ -236,6 +246,7 @@ const routes: Routes = [
       },
       {path : 'CreateEvent' , component : AjouterEventComponent},
       {path : 'updateEvent/:id' , component :UpdateEventComponent},
+      {path : 'chart-event' , component : ChartEventComponent},
 
       {
         path:'lockuser',
@@ -288,6 +299,8 @@ const routes: Routes = [
   { path:'user/welcome',
     component : WelcomeComponent,
   },
+  {path: '', redirectTo: 'user/welcome', pathMatch: 'full'},
+  {path: '**', component: WelcomeComponent}
 
 ];
 

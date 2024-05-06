@@ -16,7 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
-import {DatePipe} from "@angular/common";
+import {CommonModule, DatePipe} from "@angular/common";
 import {LoginComponent} from "./FrontOffice/pages/login/login.component";
 import {RegisterComponent} from "./FrontOffice/pages/register/register.component";
 import {WelcomeComponent} from "./FrontOffice/pages/welcome/welcome.component";
@@ -94,6 +94,13 @@ import { BookCategoryComponent } from './BackOffice/category/book-category/book-
 import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
 import { CategoryListComponent } from './BackOffice/category/category-list/category-list.component';
 import { CoursesDashboardComponent } from './BackOffice/courses/courses-dashboard/courses-dashboard.component';
+import { ChartEventComponent } from './BackOffice/event/chart-event/chart-event.component';
+import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
+import { GetAnnonceComponent } from './FrontOffice/pages/annonce/get-annonce/get-annonce.component';
+import { AddAnnonceComponent } from './FrontOffice/pages/annonce/add-annonce/add-annonce.component';
+import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
+import { AddCommentComponent } from './FrontOffice/pages/comment/add-comment/add-comment.component';
+import { GetTargetAnnonceComponent } from './FrontOffice/pages/annonce/get-target-annonce/get-target-annonce.component';
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -104,10 +111,17 @@ const Validators = () => {
 @NgModule({
   declarations: [
     AppComponent,
+    GetAnnonceByIDUserComponent,
     LoginComponent,
+    AddCommentComponent,
     RegisterComponent,
     WelcomeComponent,
+    AddAnnonceComponent,
+    GetAnnonceComponent,
     HomeComponent,
+    GetAnnonceComponent,
+    GetTargetAnnonceComponent,
+    UpdateAnonnceComponent,
     EditProfilePageComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
@@ -143,6 +157,7 @@ const Validators = () => {
     CalendarComponent,
     EventDetailsComponent,
     ChatComponent,
+    ChartEventComponent,
     AddCourseComponent,
     CoursesListComponentBack,
     CoursesListComponentFront,
@@ -180,6 +195,7 @@ const Validators = () => {
     BookCardComponent,
     BookBorrowCardComponent,
     AddBookComponent,
+
     BookCategoryComponent,
     BookDashboardComponent,
     CategoryListComponent,
@@ -205,9 +221,11 @@ const Validators = () => {
         MatInputModule,
         MatFormFieldModule,
         ReactiveFormsModule,
+        CommonModule,
         MatProgressSpinnerModule,
         MatCardModule,
         WebcamModule,
+        
         QRCodeModule,
         CalendarModule.forRoot({
             provide: DateAdapter,

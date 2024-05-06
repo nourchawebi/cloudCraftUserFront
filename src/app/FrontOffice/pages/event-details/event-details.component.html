@@ -1,9 +1,46 @@
-<!-- event-details.component.html -->
-<div *ngIf="eventDetails">
-  <h2>{{ eventDetails.title }}</h2>
-  <p><strong>Event ID:</strong> {{ eventDetails.idEvent }}</p>
-  <p><strong>Date Begin:</strong> {{ eventDetails.dateBegin }}</p>
-  <p><strong>Date End:</strong> {{ eventDetails.dateEnd }}</p>
-  <p><strong>Location:</strong> {{ eventDetails.location }}</p>
-  <!-- Add more properties as needed -->
-</div>
+
+<section class="course-content" *ngFor="let event of eventDetails;">
+  <div class="container">
+    <div class="row ">
+      <div class="col-lg-9 offset-lg-3 col-md-12">
+
+        <div class="blog">
+          <div class="blog-image">
+
+            <img [src]="event.imageURL" alt="Post Image" style="max-width: 600px; max-height: 500px;">
+
+          </div>
+          <div class="blog-info clearfix">
+            <div class="post-left">
+              <ul>
+                <li>
+                  <div class="post-author">
+                    <a href="instructor-profile.html"><img src="/assets/FrontOffice/img/user/user.jpg" alt="Post Author">
+                      <span>{{ event.title }}</span></a>
+                  </div>
+                </li>
+                <li><img class="img-fluid" src="/assets/FrontOffice/img/icon/icon-22.svg" alt>{{ event.dateBegin }}</li>
+                <li><img class="img-fluid" src="/assets/FrontOffice/img/icon/icon-23.svg" alt>{{ event.location }}</li>
+                <li><img class="img-fluid" src="/assets/FrontOffice/img/icon/people.svg" alt>{{ event.capacity }}</li>
+
+              </ul>
+              <div class="description-section">
+                <div> <h2>Description</h2>
+                  <p style="width:600px;text-align: justify;">  {{event.details}}</p></div>
+                <div> <h2>details</h2>
+                  <p   style="width:600px;text-align: justify;">  {{event.description}}</p></div>
+                <div class="tags-box" style="width:600px;text-align: justify;">
+                  <h2>Tags</h2>
+                  <span class="tag">Event</span>
+                  <span class="tag">Esprit</span>
+                  <span class="tag">party</span>
+                  <span class="tag">EduHub</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

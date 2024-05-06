@@ -25,8 +25,8 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import { EventColor } from 'calendar-utils';
-
 import {EventService} from "../../services/event/event.service";
+
 
 const colors: Record<string, EventColor> = {
   red: {

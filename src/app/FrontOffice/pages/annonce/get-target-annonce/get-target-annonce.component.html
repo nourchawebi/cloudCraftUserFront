@@ -1,0 +1,29 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="onClose()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="label"><strong>Title:</strong> {{ annonce.title }}</p>
+        <p class="label"><strong>Description:</strong> {{ annonce.annonce_description }}</p>
+        <p class="label"><strong>Post Type:</strong> {{ annonce.typeAnnonce}}</p>
+
+        <div *ngIf="comments && comments.length > 0" class="comments-section">
+          <h4 class="label">Comments:</h4>
+          <ul>
+            <li *ngFor="let comment of annonce.comments">
+              <div class="comment-info">
+                <span class="comment-date">{{ comment.comment_date }}</span>
+                <p>{{ comment.comment_description }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="!comments || comments.length === 0">
+            <p class="label">No comments available.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

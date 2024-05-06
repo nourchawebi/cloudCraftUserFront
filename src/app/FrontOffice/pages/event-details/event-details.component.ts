@@ -10,17 +10,17 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class EventDetailsComponent {
   eventId!: number;
-  eventDetails!: Event;
+  eventDetails: any[] = [];
 
   constructor(private route: ActivatedRoute, private eventService: EventService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
+
       // @ts-ignore
       this.eventId = +params.get('id');
-      this.eventService.getEventById(this.eventId).subscribe(
-        (event: Event) => {
-          this.eventDetails = event;
+      this.eventService.selectEventById(this.eventId).subscribe(data => {
+          this.eventDetails = data;
         },
         (error) => {
           console.error('Error fetching event details:', error);
@@ -28,4 +28,10 @@ export class EventDetailsComponent {
       );
     });
   }
+
+
+
+
+
+
 }
