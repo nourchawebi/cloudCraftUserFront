@@ -10,6 +10,10 @@ import { GetTargetAnnonceComponent } from './FrontOffice/pages/annonce/get-targe
 import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
 import { AllAnnoncesComponent } from './BackOffice/annonce/all-annonces/all-annonces.component';
 import { Path } from 'leaflet';
+import { FindAnnonceByDateComponent } from './BackOffice/find-annonce-by-date/find-annonce-by-date.component';
+import { StatsTop3AnnonceComponent } from './BackOffice/stats-top3-annonce/stats-top3-annonce.component';
+import { StatsCountTypeAnnonceComponent } from './BackOffice/stats-count-type-annonce/stats-count-type-annonce.component';
+import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
 
 
 const routes: Routes = [
@@ -17,6 +21,8 @@ const routes: Routes = [
   {path: "get-annonce", component: GetAnnonceComponent},
   {path: "get-annonceUser/:userId", component: GetAnnonceByIDUserComponent},
   {path: "all-annonces", component:  AllAnnoncesComponent},
+  { path: "UpdateAnonce/:id", component: UpdateAnonnceComponent },
+
   //{path: "annonce-statics", component:  AnnonceStaticsComponent},
   
   //{path: "add-comment", component:AddCommentComponent},
@@ -31,6 +37,19 @@ const routes: Routes = [
         path:'all-annonces',
         component:AllAnnoncesComponent
       },
+      {
+        path:'findByDate',
+        component:FindAnnonceByDateComponent
+      },
+      {
+        path:'Top3Annonce',
+        component:StatsTop3AnnonceComponent
+      },
+      {
+        path:'pourcentage',
+        component:StatsCountTypeAnnonceComponent
+      },
+  
      
     ]
 

@@ -4,7 +4,7 @@ export class Annonce {
   id_annonce!: number;
   title!: string;
   annonce_description!: string;
-  image!: string;
+  picture!: File;
   annonce_date!: Date;
   startDate!: Date;
   typeAnnonce!: TypeAnnonce;

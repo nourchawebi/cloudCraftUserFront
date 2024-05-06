@@ -82,9 +82,11 @@ export class GetAnnonceComponent implements OnInit {
   }
   
 
-getImageUrl(image: string): string {
-  return `C:/xampp/htdocs/Upload/AnnonceImage/${image}`;
-}
+
+  getImageUrl(image: any): string {
+    // Remplacez 'C:/xamp/htdocs/uploads/AnnonceImage' par votre chemin correct
+    return `http://localhost:8081/image/${image}`;
+  }
 
 toggleTypeAnnonceSelection(type: string) {
   if (this.isSelected(type)) {

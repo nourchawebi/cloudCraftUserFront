@@ -3,66 +3,23 @@
 <br>
 <br>
 <div class="container">
-
-   
-
-
     <h2>My Posts</h2>
     <hr>
-  
-    <!--<div *ngIf="annonces.length > 0; else noAnnonces">
-      <div *ngFor="let annonce of annonces">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">{{ annonce.title }}</h5>
-            <p class="card-text">Description: {{ annonce.annonce_description }}</p>
-            <p class="card-text">Type: {{ annonce.typeAnnonce }}</p>
-            <p class="card-text">Date: {{ annonce.annonce_date | date: 'medium' }}</p>
-           
-          </div>
-          <button class="btn btn-danger" (click)="deleteAnnonce(annonce.id_annonce)">Delete</button>
-
-        </div>
-      </div>
-    </div>
-  
-    <ng-template #noAnnonces>
-      <p>No annonces found for this user.</p>
-    </ng-template>
-  </div>
-  </div>-->
-  <div class="wishlist-item" *ngFor="let annonce of annonces">
-    <div class="row align-items-center">
-      <div class="col-md-9">
-        <div class="wishlist-detail">
-          <div class="wishlist-img">
-            <a >
-            <img alt="Img" [src]="getImageUrl(annonce.image)">
-            </a>
-            <div class="price-amt">
-              <h4>{{annonce.startDate}}</h4>
-            </div>
-          </div>
-          <div class="wishlist-info">
-            <h5><a >{{annonce.title}}</a></h5>
-              <div class="course-info d-flex align-items-center border-bottom-0 pb-0">
-                <div class="rating-img d-flex align-items-center">
-                  <p>{{annonce.annonce_description}}</p>
+    <div class="row">
+        <div *ngFor="let annonce of annonces" class="col-md-6">
+            <div class="card mb-3">
+                <img class="card-img-top" [src]="getImageUrl(annonce.picture)" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ annonce.title }}</h5>
+                    <p class="card-text">{{ annonce.annonce_description }}</p>
+                    <p class="card-text"><small class="text-muted">{{ annonce.startDate }}</small></p>
+                    <button class="btn btn-danger" (click)="deleteAnnonce(annonce.id_annonce)">Delete</button>
+                    <a [routerLink]="['/UpdateAnonce', annonce.id_annonce]" class="btn btn-primary">Edit</a>
                 </div>
-                <div class="course-view d-flex align-items-center">
-                  <p>{{annonce.typeAnnonce}}</p>
-                </div>
-              </div>
             </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-             <div class="remove-btn">
-                <a href="javascript:void(0);" class="btn" (click)="deleteAnnonce(annonce.id_annonce)">Remove</a>
-              </div>
-          </div>
         </div>
-      </div>
     </div>
-  
-  
+    <div *ngIf="!annonces.length" class="alert alert-info" role="alert">
+        No annonces found for this user.
+    </div>
+</div>

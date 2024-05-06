@@ -25,6 +25,12 @@ import { GetTargetAnnonceComponent } from './FrontOffice/pages/annonce/get-targe
 import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
 import { AddReactComponent } from './FrontOffice/pages/react/add-react/add-react.component';
 import { AllAnnoncesComponent } from './BackOffice/annonce/all-annonces/all-annonces.component';
+import { FindAnnonceByDateComponent } from './BackOffice/find-annonce-by-date/find-annonce-by-date.component';
+import { StatsTop3AnnonceComponent } from './BackOffice/stats-top3-annonce/stats-top3-annonce.component';
+import {ChartsModule} from "ng2-charts";
+
+import { StatsCountTypeAnnonceComponent } from './BackOffice/stats-count-type-annonce/stats-count-type-annonce.component';
+import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +52,10 @@ import { AllAnnoncesComponent } from './BackOffice/annonce/all-annonces/all-anno
       GetAnnonceByIDUserComponent,
       AddReactComponent,
       AllAnnoncesComponent,
+      FindAnnonceByDateComponent,
+      StatsTop3AnnonceComponent,
+      StatsCountTypeAnnonceComponent,
+      UpdateAnonnceComponent
       
   ],
   imports: [
@@ -55,6 +65,7 @@ import { AllAnnoncesComponent } from './BackOffice/annonce/all-annonces/all-anno
     ReactiveFormsModule,
     CommonModule,
     FormsModule,
+    ChartsModule,
    
    
   
@@ -81,4 +92,6 @@ import { AllAnnoncesComponent } from './BackOffice/annonce/all-annonces/all-anno
   providers: [HttpClient,HttpParams,DatePipe],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {constructor() {
+  // Enregistrement des échelles
+}}

@@ -11,6 +11,8 @@ import { AnnonceService } from 'src/app/FrontOffice/services/Annonce/annonce.ser
 export class GetAnnonceByIDUserComponent {
   userId = 1;
   annonces: Annonce[] = [];
+  annonce!:Annonce;
+  id!:number;
 
   constructor(
     private route: ActivatedRoute,
@@ -21,6 +23,7 @@ export class GetAnnonceByIDUserComponent {
         console.log("liste des annonces")
         console.log(data)
         this.annonces= data 
+        console.log(this.annonce)
       });
     }
     getAnnoncesByUser(userId: number): void {
@@ -37,23 +40,45 @@ export class GetAnnonceByIDUserComponent {
        
       );
     }
+    
+  
 
-    getImageUrl(image: string): string {
+   getImageUrl(image: any): string {
       // Remplacez 'C:/xamp/htdocs/uploads/AnnonceImage' par votre chemin correct
-      return `http://localhost/uploads/AnnonceImage/${image}`;
+      return `http://localhost:8081/image/${image}`;
     }
     
     deleteAnnonce(id: number): void {
-      console.log("mosh");
+      console.log("Deleting...");
       this.annonceService.deleteAnnonce(id).subscribe(
         () => {
           console.log('Announcement deleted successfully');
-          this.getAnnoncesByUser(this.userId);
+          // Supprimer l'annonce de la liste des annonces affichées
+          this.annonces = this.annonces.filter(annonce => annonce.id_annonce !== id);
         },
         (error) => {
           console.error('Error deleting announcement:', error);
-          // Optionally, handle errors
+          // Gérer les erreurs si nécessaire
         }
       );
-    }
-}
+    }}
+  
+  
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+

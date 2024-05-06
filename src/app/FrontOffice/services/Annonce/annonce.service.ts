@@ -24,7 +24,12 @@ export class AnnonceService {
   addOther(formData: FormData): Observable<Annonce> {
     return this.http.post<Annonce>(`${this.baseUrl}/addPost`, formData);
   }
-
+  
+  updateAnnonce(id: number,annonce :any): Observable<Annonce> {
+    const url = `${this.baseUrl}/updateAnnonce/${id}`;
+  
+    return this.http.put<Annonce>(url,annonce);
+  }
 
   getAllAnnonces():Observable<Annonce[]>{
     return this.http.get<Annonce[]>(`${this.baseUrl}`);
@@ -39,6 +44,20 @@ export class AnnonceService {
   deleteAnnonce(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+  /*updateJob(id: number, updatedAnnonce: Annonce): Observable<Annonce> {
+    return this.http.put<Annonce>(`${this.baseUrl}/job/${id}`, updatedAnnonce);
+  }
+
+  updateOther(id: number, updatedAnnonce: Annonce): Observable<Annonce> {
+    return this.http.put<Annonce>(`${this.baseUrl}/other/${id}`, updatedAnnonce);
+  }
+
+  updateLostAndFound(id: number, updatedAnnonce: Annonce): Observable<Annonce> {
+    return this.http.put<Annonce>(`${this.baseUrl}/lostandfound/${id}`, updatedAnnonce);
+  }
+  updateAnnonceInternship(id: number, updatedAnnonce: Annonce): Observable<Annonce> {
+    return this.http.put<Annonce>(`${this.baseUrl}/${id}`, updatedAnnonce);
+  }*/
 
   filterAnnonces(typeAnnonces: string[]): Observable<Annonce[]> {
     let params = new HttpParams();
@@ -51,8 +70,23 @@ export class AnnonceService {
   searchProduct(title: string): Observable<Annonce[]> {
     return this.http.get<Annonce[]>(`${this.baseUrl}/search/${title}`);
   }
-  addAnnonceSimple(annonce: Annonce): Observable<Annonce> {
-    return this.http.post<Annonce>(`${this.baseUrl}/addAnnonceSimple`, annonce);
+  retrieveAnnonceByType(): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.baseUrl}/retrieve-Annonce`);
+  }
+  
+
+  retrieveAnnonceByNbrLikes(): Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(`${this.baseUrl}/retrieve-MustLike`);
+  }
+
+  retrieveAnnonceByDate(date: string): Observable<Annonce[]> {
+    return this.http.get<Annonce[]>(`${this.baseUrl}/retrieve-AnnonceDate/${date}`);
+  }
+  updateAnnonceee(annonce: Annonce): Observable<Annonce> {
+    return this.http.put<Annonce>(`${this.baseUrl}/updateAnnonceee`, annonce);
+  }
+  getAnnonceById(id: number): Observable<Annonce> {
+    return this.http.get<Annonce>(`${this.baseUrl}/annonce/${id}`);
   }
 }
 

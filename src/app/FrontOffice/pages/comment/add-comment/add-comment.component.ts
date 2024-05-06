@@ -64,7 +64,9 @@ export class AddCommentComponent {
      this.commentService.addComment(formData).subscribe(()=> {
         alert("Comment added successfully!");
         this.commentForm.reset();
+      
         this.close.emit();
+        window.location.reload();
       }, err => {
         
         alert("An error occurred while adding Comment.");
@@ -85,6 +87,8 @@ export class AddCommentComponent {
           alert("Comment added successfully!");
           this.commentForm.reset();
           this.close.emit();
+          window.location.reload();
+
         }, err => {
           alert("An error occurred while adding Comment.");
           console.log(err);
