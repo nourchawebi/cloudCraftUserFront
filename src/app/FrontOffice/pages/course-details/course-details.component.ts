@@ -119,7 +119,13 @@ export class CourseDetailsComponent implements OnInit{
   });
   }
 
+  receiveId($event:number){
 
+    this.ratingsRep=this.ratingsRep.filter(rating=>rating.id!==$event)
+    this.course.ratings=this.course.ratings.filter(rating=>rating.id!==$event)
+    console.log(this.ratingsRep)
+    this.cdr.detectChanges();
+  }
   isActionAllowd(object:any):boolean{
     if(this?.connectedUser?.email==object.owner.email)return true;
     return false;

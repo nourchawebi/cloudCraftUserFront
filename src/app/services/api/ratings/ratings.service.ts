@@ -32,4 +32,32 @@ export class RatingsService {
     return this.http.post<any>(addRatingUrl, ratingData,{headers});
 
   }
+
+  deleteRatingFromCourse(courseId:number,ratingId:number):Observable<any>{
+    const headers = this.up.createAuthorization();
+
+    let deleteRatingUrl:string=`${ApiConstants.BASE_URL}/courses/${courseId}/ratings/${ratingId}`
+    return this.http.delete<any>(deleteRatingUrl,{headers});
+
+  }
+
+  deleteRatingFromChapter(chapterId:number,ratingId:number):Observable<any>{
+    console.log("SENDING REQUEST")
+    const headers = this.up.createAuthorization();
+
+    let deleteRatingUrl:string=`${ApiConstants.BASE_URL}/chapters/${chapterId}/ratings/${ratingId}`
+    return this.http.delete<any>(deleteRatingUrl,{headers});
+
+  }
+  deleteRatingFromSummary(summaryId:number,ratingId:number):Observable<any>{
+    const headers = this.up.createAuthorization();
+
+    let deleteRatingUrl:string=`${ApiConstants.BASE_URL}/summaries/${summaryId}/ratings/${ratingId}`
+    
+    console.log(headers)
+  
+    return this.http.delete<any>(deleteRatingUrl,{headers});
+
+  }
+
 }

@@ -112,6 +112,14 @@ isActionAllowd(object:any):boolean{
   
 }
 
+receiveId($event:number){
+
+  this.ratingsRep=this.ratingsRep.filter(rating=>rating.id!==$event)
+  this.chapter.ratings=this.chapter.ratings.filter(rating=>rating.id!==$event)
+  console.log(this.ratingsRep)
+  
+}
+
 
 calcRating(ratings:Array<RatingRepresentation>){
 return RatingUtilFunction.calcRating(ratings);

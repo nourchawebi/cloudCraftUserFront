@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PayloadSerialization } from '../../../services/api/models/payload-serialization';
 import { RatingRepresentation } from '../../../services/api/models/rating-representation';
@@ -36,7 +36,7 @@ export class SummaryDetailsComponent implements OnInit {
 
 
 
-  constructor(private summaryService:SummaryService,private route:ActivatedRoute ,private navigationService:NavigationService,     private up:UserprofileService){
+  constructor(private summaryService:SummaryService,private cdr: ChangeDetectorRef,private route:ActivatedRoute ,private navigationService:NavigationService,     private up:UserprofileService){
 
   }
   ngOnInit(): void {
@@ -45,6 +45,8 @@ export class SummaryDetailsComponent implements OnInit {
       next:summary=>{
           this.summary=PayloadSerialization.getSummaryRepresentation(summary);
           this.ratings=PayloadSerialization.getRatingsRepresentation(summary.ratings)
+          
+          console.log("RESULT");
           console.log(summary);
           console.log(this.summary);
           this.summaryrating= RatingUtilFunction.calcRating(this.summary.ratings);
@@ -67,11 +69,19 @@ export class SummaryDetailsComponent implements OnInit {
     })
   }
   isActionAllowd(object:any):boolean{
-    console.log(this?.connectedUser?.email)
+    // console.log(this?.connectedUser?.email)
     if(this?.connectedUser?.email==object.owner.email)return true;
     return false;
     
   }
+  receiveId($event:number){
+
+    this.ratingsRep=this.ratingsRep.filter(rating=>rating.id!==$event)
+    this.summary.ratings=this.summary.ratings.filter(rating=>rating.id!==$event)
+    console.log(this.ratingsRep)
+    this.cdr.detectChanges();
+  }
+
 
   calcRating(ratings:Array<RatingRepresentation>){
     return RatingUtilFunction.calcRating(ratings);

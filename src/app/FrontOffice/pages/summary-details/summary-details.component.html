@@ -2,7 +2,9 @@
 <section>
   <app-error [errorMessage]="error"></app-error>
   <app-show-ratings *ngIf="isRatingsDisplayed" [ratings]="ratingsRep" [courseId]="courseId"
-  (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl"></app-show-ratings>
+  (hide)="hideDisplayRatings()" [ratingUrl]="ratingUrl" 
+  (idRating)="receiveId($event)"
+  ></app-show-ratings>
 
 
 <div class="breadcrumb-bar">
