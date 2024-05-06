@@ -93,6 +93,7 @@ import { AddBookComponent } from './FrontOffice/book/add-book/add-book.component
 import { BookCategoryComponent } from './BackOffice/category/book-category/book-category.component';
 import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
 import { CategoryListComponent } from './BackOffice/category/category-list/category-list.component';
+import { CoursesDashboardComponent } from './BackOffice/courses/courses-dashboard/courses-dashboard.component';
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -181,7 +182,8 @@ const Validators = () => {
     AddBookComponent,
     BookCategoryComponent,
     BookDashboardComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CoursesDashboardComponent
 
 
 

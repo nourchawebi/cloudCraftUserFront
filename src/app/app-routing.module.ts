@@ -64,6 +64,7 @@ import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book
 import {BookCategoryComponent} from "./BackOffice/category/book-category/book-category.component";
 import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
 import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
+import { CoursesDashboardComponent } from './BackOffice/courses/courses-dashboard/courses-dashboard.component';
 
 const routes: Routes = [
 
@@ -261,6 +262,10 @@ const routes: Routes = [
       {
         path: 'bookDashboard',
         component: BookDashboardComponent
+      },
+      {
+        path: 'courseDashboard',
+        component: CoursesDashboardComponent
       }
     ]
 
