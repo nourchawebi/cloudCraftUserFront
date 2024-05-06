@@ -93,6 +93,7 @@ import { AddBookComponent } from './FrontOffice/book/add-book/add-book.component
 import { BookCategoryComponent } from './BackOffice/category/book-category/book-category.component';
 import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
 import { CategoryListComponent } from './BackOffice/category/category-list/category-list.component';
+import {ChartEventComponent} from "./BackOffice/event/chart-event/chart-event.component";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -142,6 +143,7 @@ const Validators = () => {
     CalendarComponent,
     EventDetailsComponent,
     ChatComponent,
+    ChartEventComponent,
     AddCourseComponent,
     CoursesListComponentBack,
     CoursesListComponentFront,

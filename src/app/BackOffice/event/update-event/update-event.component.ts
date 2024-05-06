@@ -25,18 +25,18 @@ export class UpdateEventComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.params['id'];
-    this.eventService.getEventById(this.id).subscribe(eventData => {
+    this.eventService.findEventById(this.id).subscribe(eventData => {
       this.currentEvent = eventData;
       console.log('Current Event:', this.currentEvent); // Add this line to debug
-     // Utilisez patchValue pour mettre à jour les valeurs du formulaire
-     this.updateForm = new FormGroup({
+      // Utilisez patchValue pour mettre à jour les valeurs du formulaire
+      this.updateForm = new FormGroup({
         title: new FormControl(this.currentEvent.title, Validators.required),
         dateBegin: new FormControl(this.currentEvent.dateBegin, Validators.required),
-        dateEnd: new FormControl('', Validators.required),
+        dateEnd: new FormControl(this.currentEvent.dateEnd, Validators.required),
         location: new FormControl(this.currentEvent.location, Validators.required),
-        details: new FormControl('', Validators.required),
-        description: new FormControl('', Validators.required),
-        capacity: new FormControl(0, [Validators.required, Validators.min(1)]),
+        details: new FormControl(this.currentEvent.details, Validators.required),
+        description: new FormControl(this.currentEvent.description, Validators.required),
+        capacity: new FormControl(this.currentEvent.capacity, [Validators.required, Validators.min(1)]),
         picture: new FormControl('', Validators.required)
       });
     });
@@ -63,6 +63,12 @@ export class UpdateEventComponent implements OnInit {
     this.selectedFile = event.target.files[0];
   }
 
+  currentDate = new Date(); // Get the current date
+
+  validateDates(dateBegin: Date, dateEnd: Date): boolean {
+    // Compare start and end dates
+    return dateBegin <= dateEnd;
+  }
 
 
 }

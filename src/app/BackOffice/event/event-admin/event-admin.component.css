@@ -1,0 +1,6 @@
+/* update-event.component.css */
+.thumbnail-image {
+  max-width: 100px; /* Set the maximum width */
+  max-height: 100px; /* Set the maximum height */
+  /* You can adjust these values as needed */
+}

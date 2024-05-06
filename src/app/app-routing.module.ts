@@ -64,6 +64,7 @@ import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book
 import {BookCategoryComponent} from "./BackOffice/category/book-category/book-category.component";
 import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
 import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
+import {ChartEventComponent} from "./BackOffice/event/chart-event/chart-event.component";
 
 const routes: Routes = [
 
@@ -235,6 +236,7 @@ const routes: Routes = [
       },
       {path : 'CreateEvent' , component : AjouterEventComponent},
       {path : 'updateEvent/:id' , component :UpdateEventComponent},
+      {path : 'chart-event' , component : ChartEventComponent},
 
       {
         path:'lockuser',

@@ -44,6 +44,27 @@
         <div data-i18n="Analytics"> carpooling Dashboard </div>
       </a>
     </li>
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Event</span>
+    </li>
+    <li [class.active]="activeTab === 'event-admin'" class="menu-item">
+      <a    (click)=" setActiveItem('event-admin')"
+            routerLink="/admin/event-admin" class="menu-link">
+        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
+        <div data-i18n="Analytics"> Event </div>
+      </a>
+    </li>
+
+    <li class="menu-header small text-uppercase">
+      <span class="menu-header-text">Chart Event</span>
+    </li>
+    <li [class.active]="activeTab === 'chart-event'" class="menu-item">
+      <a    (click)=" setActiveItem('chart-event')"
+            routerLink="/admin/chart-event" class="menu-link">
+        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
+        <div data-i18n="Analytics"> Event </div>
+      </a>
+    </li>
 
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Courses</span>
