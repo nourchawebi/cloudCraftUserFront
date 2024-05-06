@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
-import {User} from "../../../../../../../cloudcraft/src/app/models/user";
+
 import {PageResponseBookResponse} from "../../../models/book/page-response-book-response";
 import {Category} from "../../../models/book/category";
 import {BookResponse} from "../../../models/book/book-response";
-import {BookService} from "../../../services/bookService/book.service";
-import {CategoryService} from "../../../services/bookService/category.service";
+import { BookService } from 'src/app/services/bookService/book.service';
+import { CategoryService } from 'src/app/services/bookService/category.service';
+
 
 
 @Component({

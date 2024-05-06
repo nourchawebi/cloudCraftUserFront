@@ -81,18 +81,19 @@ import {UpdateSummaryComponent} from "./FrontOffice/pages/update-summary/update-
 import {UpdateChapterComponent} from "./FrontOffice/pages/update-chapter/update-chapter.component";
 import {ChapterDetailsComponent} from "./FrontOffice/pages/chapter-details/chapter-details.component";
 import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
-import {MyBookDetailsComponent} from "./FrontOffice/book/my-book-details/my-book-details.component";
-import {UserBooksListComponent} from "./FrontOffice/book/user-books-list/user-books-list.component";
-import {UpdateBookComponent} from "./FrontOffice/book/update-book/update-book.component";
-import {BooksBorrowListComponent} from "./FrontOffice/book/books-borrow-list/books-borrow-list.component";
-import {BookListComponent} from "./FrontOffice/book/book-list/book-list.component";
-import {BookDetailsComponent} from "./FrontOffice/book/book-details/book-details.component";
-import {BookCardComponent} from "./FrontOffice/book/book-card/book-card.component";
-import {BookBorrowCardComponent} from "./FrontOffice/book/book-borrow-card/book-borrow-card.component";
-import {AddBookComponent} from "./FrontOffice/book/add-book/add-book.component";
-import {BookCategoryComponent} from "./BackOffice/category/book-category/book-category.component";
-import {BookDashboardComponent} from "./BackOffice/category/book-dashboard/book-dashboard.component";
-import {CategoryListComponent} from "./BackOffice/category/category-list/category-list.component";
+import { MyBookDetailsComponent } from './FrontOffice/book/my-book-details/my-book-details.component';
+import { UserBooksListComponent } from './FrontOffice/book/user-books-list/user-books-list.component';
+import { UpdateBookComponent } from './FrontOffice/book/update-book/update-book.component';
+import { BooksBorrowListComponent } from './FrontOffice/book/books-borrow-list/books-borrow-list.component';
+import { BookListComponent } from './FrontOffice/book/book-list/book-list.component';
+import { BookDetailsComponent } from './FrontOffice/book/book-details/book-details.component';
+import { BookCardComponent } from './FrontOffice/book/book-card/book-card.component';
+import { BookBorrowCardComponent } from './FrontOffice/book/book-borrow-card/book-borrow-card.component';
+import { AddBookComponent } from './FrontOffice/book/add-book/add-book.component';
+import { BookCategoryComponent } from './BackOffice/category/book-category/book-category.component';
+import { BookDashboardComponent } from './BackOffice/category/book-dashboard/book-dashboard.component';
+import { CategoryListComponent } from './BackOffice/category/category-list/category-list.component';
+
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
