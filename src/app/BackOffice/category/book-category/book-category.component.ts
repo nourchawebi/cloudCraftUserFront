@@ -1,6 +1,6 @@
 import { Component , OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {CategoryService} from "../../../services/bookService/category.service";
+import {CategoryService} from "../../../services/api/book/category.service";
 @Component({
   selector: 'app-book-category',
   templateUrl: './book-category.component.html',

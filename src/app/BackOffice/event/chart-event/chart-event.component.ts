@@ -1,8 +1,8 @@
 import { Component, OnInit  } from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from "chart.js";
 import {Label} from "ng2-charts";
-import {EventService} from "../../../../../../eventFront/src/app/service/event/event.service";
 import {Router} from "@angular/router";
+import {EventService} from "../../../FrontOffice/services/event/event.service";
 
 @Component({
   selector: 'app-chart-event',

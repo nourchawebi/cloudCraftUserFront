@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ChartDataSets, ChartType} from "chart.js";
-import {BookstatserviceService} from "../../../services/bookService/bookstatservice.service";
+import {BookstatserviceService} from "../../../services/api/book/bookstatservice.service";
 
 @Component({
   selector: 'app-book-dashboard',

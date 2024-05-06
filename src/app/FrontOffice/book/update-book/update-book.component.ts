@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {BookResquest} from "../../../models/book/book-resquest";
-import {BookService} from "../../../services/bookService/book.service";
+import {BookService} from "../../../services/api/book/book.service";
 
 
 

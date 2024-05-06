@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {BookBorrowResonse} from "../../../models/book/book-borrow-resonse";
-import {BookService} from "../../../services/bookService/book.service";
+import {BookService} from "../../../services/api/book/book.service";
 
 @Component({
   selector: 'app-book-borrow-card',

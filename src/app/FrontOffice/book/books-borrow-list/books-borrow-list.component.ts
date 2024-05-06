@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {PageResponseBookBorrowResponse} from "../../../models/book/page-response-book-borrow-response";
 import {BookBorrowResonse} from "../../../models/book/book-borrow-resonse";
-import {BookService} from "../../../services/bookService/book.service";
+import {BookService} from "../../../services/api/book/book.service";
 
 @Component({
   selector: 'app-books-borrow-list',
