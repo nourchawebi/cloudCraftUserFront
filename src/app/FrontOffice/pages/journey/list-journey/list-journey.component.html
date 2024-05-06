@@ -62,7 +62,7 @@
                 </div>
                 <div class="product-content">
                   <div class="head-course-title">
-                    <h3 class="title"><a href="course-details.html">Esprit  on {{journey.day}}</a></h3>
+                    <h3 class="title"><a href="course-details.html">Esprit  on {{journey.day.substring(0,10)}}</a></h3>
                     <div class="all-btn all-category d-flex align-items-center">
                       <button [routerLink]="['/home/journey',journey.journeyId]" class="btn btn-primary">Show Details</button>
                     </div>

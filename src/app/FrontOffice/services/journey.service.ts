@@ -45,9 +45,13 @@ export class JourneyService {
     return this.http.get(`${this.baseUrl}`,{headers})
   }
 
+  getAllParticipatedAt(): Observable<any> {
+    const headers = this.up.createAuthorization();
+    return this.http.get(`${this.baseUrl}/participated`,{headers})
+  }
+
   getStats(): Observable<any> {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/statistics`,{headers})
   }
-
 }

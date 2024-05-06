@@ -16,6 +16,11 @@ export class FeedbackService {
     return this.http.get(`${this.baseUrl}/${id}`,{headers})
   }
 
+  getAvg(id: number | undefined): Observable<any> {
+    const headers = this.up.createAuthorization();
+    return this.http.get(`${this.baseUrl}/useravg/${id}`,{headers})
+  }
+
   getOne(id:number): Observable<any> {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/user/${id}`,{headers})

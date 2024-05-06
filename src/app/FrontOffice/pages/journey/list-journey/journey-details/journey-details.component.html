@@ -10,14 +10,15 @@
             <div class="instructor-detail me-3">
               <h5><a href="instructor-profile.html">{{motorized?.firstName}} {{motorized?.lastName}}</a></h5>
               <p>{{ motorized?.email }}</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"> Send Mail</button>
             </div>
             <div class="rating mb-0">
-              <i class="fas fa-star filled"></i>
-              <i class="fas fa-star filled"></i>
-              <i class="fas fa-star filled"></i>
-              <i class="fas fa-star filled"></i>
-              <i class="fas fa-star"></i>
-              <span class="d-inline-block average-rating"><span>4.5</span> (15)</span>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=1"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=2"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=3"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=4"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=5"></i>
+              <span class="d-inline-block average-rating"><span>{{ this.avg?.rateAvg }}</span> ({{this.avg?.rateNumber}})</span>
             </div>
           </div>
           <span class="web-badge mb-3">{{ motorized?.role }}</span>
@@ -77,252 +78,6 @@
           </div>
         </div>
 
-
-
-        <div class="card content-sec">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-sm-6">
-                <h5 class="subs-title">Course Content</h5>
-              </div>
-              <div class="col-sm-6 text-sm-end">
-                <h6>92 Lectures 10:56:11</h6>
-              </div>
-            </div>
-            <div class="course-card">
-              <h6 class="cou-title">
-                <a class="collapsed" data-bs-toggle="collapse" href="#collapseOne" aria-expanded="false">In which areas do you operate?</a>
-              </h6>
-              <div id="collapseOne" class="card-collapse collapse" style>
-                <ul>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.5 How to use text layers effectively</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="course-card">
-              <h6 class="cou-title">
-                <a class="collapsed" data-bs-toggle="collapse" href="#course2" aria-expanded="false">The Brief</a>
-              </h6>
-              <div id="course2" class="card-collapse collapse" style>
-                <ul>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.5 How to use text layers effectively</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="course-card">
-              <h6 class="cou-title">
-                <a class="collapsed" data-bs-toggle="collapse" href="#course3" aria-expanded="false">Wireframing Low Fidelity</a>
-              </h6>
-              <div id="course3" class="card-collapse collapse" style>
-                <ul>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.1 Introduction to the User Experience Course</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.2 Exercise: Your first design challenge</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture1.5 How to use text layers effectively</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="course-card">
-              <h6 class="cou-title mb-0">
-                <a class="collapsed" data-bs-toggle="collapse" href="#coursefour" aria-expanded="false">Type, Color & Icon Introduction</a>
-              </h6>
-              <div id="coursefour" class="card-collapse collapse" style>
-                <ul>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture4.1 Introduction to the User Experience Course</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture4.2 Exercise: Your first design challenge</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture4.3 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture4.4 How to solve the previous exercise</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                  <li>
-                    <p><img src="assets/FrontOffice/img/icon/play.svg" alt class="me-2">Lecture4.5 How to use text layers effectively</p>
-                    <div>
-                      <a href="javascript:void(0);">Preview</a>
-                      <span>02:53</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="card instructor-sec">
-          <div class="card-body">
-            <h5 class="subs-title">About the instructor</h5>
-            <div class="instructor-wrap">
-              <div class="about-instructor">
-                <div class="abt-instructor-img">
-                  <a href="instructor-profile.html"><img src="assets/FrontOffice/img/user/user1.jpg" alt="img" class="img-fluid"></a>
-                </div>
-                <div class="instructor-detail">
-                  <h5><a href="instructor-profile.html">Nicole Brown</a></h5>
-                  <p>UX/UI Designer</p>
-                </div>
-              </div>
-              <div class="rating">
-                <i class="fas fa-star filled"></i>
-                <i class="fas fa-star filled"></i>
-                <i class="fas fa-star filled"></i>
-                <i class="fas fa-star filled"></i>
-                <i class="fas fa-star"></i>
-                <span class="d-inline-block average-rating">4.5 Instructor Rating</span>
-              </div>
-            </div>
-            <div class="course-info d-flex align-items-center">
-              <div class="cou-info">
-                <img src="assets/FrontOffice/img/icon/play.svg" alt>
-                <p>5 Courses</p>
-              </div>
-              <div class="cou-info">
-                <img src="assets/FrontOffice/img/icon/icon-01.svg" alt>
-                <p>12+ Lesson</p>
-              </div>
-              <div class="cou-info">
-                <img src="assets/FrontOffice/img/icon/icon-02.svg" alt>
-                <p>9hr 30min</p>
-              </div>
-              <div class="cou-info">
-                <img src="assets/FrontOffice/img/icon/people.svg" alt>
-                <p>270,866 students enrolled</p>
-              </div>
-            </div>
-            <p>UI/UX Designer, with 7+ Years Experience. Guarantee of High Quality Work.</p>
-            <p>Skills: Web Design, UI Design, UX/UI Design, Mobile Design, User Interface Design, Sketch, Photoshop, GUI, Html, Css, Grid Systems, Typography, Minimal, Template, English, Bootstrap, Responsive Web Design, Pixel Perfect, Graphic Design, Corporate, Creative, Flat, Luxury and much more.</p>
-            <p>Available for:</p>
-            <ul>
-              <li>1. Full Time Office Work</li>
-              <li>2. Remote Work</li>
-              <li>3. Freelance</li>
-              <li>4. Contract</li>
-              <li>5. Worldwide</li>
-            </ul>
-          </div>
-        </div>
-
-
         <div class="card review-sec">
           <div class="card-body">
             <h5 class="subs-title">Reviews</h5>
@@ -350,7 +105,7 @@
               </div>
             </div>
             <p class="rev-info">{{fb.comment}}</p>
-            <a href="javascript:void(0);" class="btn btn-reply"><i class="feather-corner-up-left"></i> Reply</a>
+              <br/>
             </ng-container>
           </div>
         </div>
@@ -407,8 +162,8 @@
                       <a href="javascript:void(0);" class="btn btn-wish w-100"><i class="feather-share-2"></i> Share</a>
                     </div>
                   </div>
-                  <a (click)="participate(journey?.journeyId)" class="btn btn-enroll w-100">Participate Now</a>
-<!--                  <a (click)="participate(journey?.journeyId)" class="btn btn-enroll w-100">Decline Participation</a>-->
+                  <a (click)="participate(journey?.journeyId)" *ngIf="!participated" class="btn btn-enroll w-100">Participate Now</a>
+                  <a (click)="declineParticipation(journey?.journeyId)" *ngIf="participated" class="btn btn-enroll w-100">Decline Participation</a>
 
                 </div>
               </div>
@@ -435,14 +190,11 @@
           <div class="card feature-sec">
             <div class="card-body">
               <div class="cat-title">
-                <h4>Includes</h4>
+                <h4>Passengers</h4>
               </div>
               <ul>
-                <li><img src="assets/FrontOffice/img/icon/users.svg" class="me-2" alt> Enrolled: <span>32 students</span></li>
-                <li><img src="assets/FrontOffice/img/icon/timer.svg" class="me-2" alt> Duration: <span>20 hours</span></li>
-                <li><img src="assets/FrontOffice/img/icon/chapter.svg" class="me-2" alt> Chapters: <span>15</span></li>
-                <li><img src="assets/FrontOffice/img/icon/video.svg" class="me-2" alt> Video:<span> 12 hours</span></li>
-                <li><img src="assets/FrontOffice/img/icon/chart.svg" class="me-2" alt> Level: <span>Beginner</span></li>
+
+                <li *ngFor="let p of passengers"><img src="assets/FrontOffice/img/icon/users.svg" class="me-2" alt> Name: <span> {{p.firstName}} {{p.lastName}} </span><br/> <span>({{p.location?.nameLocation}})</span></li>
               </ul>
             </div>
           </div>
@@ -452,3 +204,21 @@
     </div>
   </div>
 </section>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Mail</h5>
+
+      </div>
+      <div class="modal-body">
+        <textarea [(ngModel)]="mail.content"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="close">Close</button>
+        <button type="button" class="btn btn-primary" (close)="sendMail()">Send Mail</button>
+      </div>
+    </div>
+  </div>
+</div>

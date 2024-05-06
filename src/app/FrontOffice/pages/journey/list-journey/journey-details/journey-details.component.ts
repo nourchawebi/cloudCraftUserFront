@@ -10,6 +10,7 @@ import {FeedbackService} from "../../../../services/feedback.service";
 import {Feedback} from "../../../../models/feedback";
 import {toDate} from "date-fns";
 import {th} from "date-fns/locale";
+import {ParticipationService} from "../../../../services/participation.service";
 
 @Component({
   selector: 'app-journey-details',
@@ -17,29 +18,53 @@ import {th} from "date-fns/locale";
   styleUrls: ['./journey-details.component.css']
 })
 export class JourneyDetailsComponent implements OnInit{
- constructor(private js:JourneyService, private act:ActivatedRoute, private dataService:DataService, private fb:FeedbackService) {
+ constructor(private js:JourneyService, private act:ActivatedRoute, private dataService:DataService, private fb:FeedbackService, private participationService:ParticipationService) {
  }
   id:number=0;
   journey: Journey | undefined;
   motorized: User | undefined;
   feedbacks: Feedback[] | undefined;
+  passengers: User[] | undefined;
+  participated:boolean | undefined;
+  avg: {
+    rateNumber:number,
+    rateAvg:number,
+  } | undefined;
+
   ngOnInit(): void {
     this.act.paramMap.subscribe(res=>{
       this.id=Number(res.get("id"))
       this.js.getData(this.id).subscribe((value:Journey) => this.journey=value)
-      this.js.getMotorized(this.id).subscribe((value:User) => this.motorized=value)
+      this.js.getMotorized(this.id).subscribe((value:User) => {
+        this.motorized=value
+        this.fb.getAvg(value.id).subscribe(value1 => this.avg = value1)
+      })
+
       this.fb.getData(this.id).subscribe( value => this.feedbacks = value)
       this.fb.getOne(this.id).subscribe( value => {
-        this.feedback = value
-          if(value.comment!="")
-          this.state="M"
+          if(value.comment!=null){
+            this.feedback = value
+            this.state="M"
+          }
       }
       )
 
+      this.participationService.getData(this.id).subscribe(value => {this.passengers=value})
+      this.dataService.checkParticipation(this.id).subscribe((value :any) => {
+        this.participated = value
+        console.log(this.participated)
+      })
     });
+
   }
 
   state:string="A";
+  stateParticipation:boolean = false;
+  mail={
+    content:"",
+    to:""
+  }
+
   feedback:Feedback={
     id:0,
     rating:0,
@@ -64,14 +89,18 @@ export class JourneyDetailsComponent implements OnInit{
     this.hover=number
   }
 
-  checkParticipation(journey: number | undefined) {
-    return this.dataService.checkParticipation(journey)
+  participate(journeyId: number | undefined){
+    this.dataService.addParticipation(journeyId).subscribe(
+      value => this.ngOnInit()
+    );
   }
 
-  participate(journeyId: number | undefined){
-    this.checkParticipation(journeyId);
+  sendMail() {
+    this.mail.to!=this.motorized?.email
+  }
 
-    this.dataService.addParticipation(1,journeyId).subscribe(
+  declineParticipation(journeyId: number | undefined) {
+    this.participationService.deleteData(journeyId).subscribe(
       value => this.ngOnInit()
     );
   }

@@ -47,7 +47,6 @@ import {LocationComponent} from "./FrontOffice/pages/location/location.component
 import {MapComponent} from "./FrontOffice/pages/map/map.component";
 import {ListJourneyComponent} from "./FrontOffice/pages/journey/list-journey/list-journey.component";
 import {JourneyComponent} from "./FrontOffice/pages/journey/journey.component";
-import { ParticipationsComponent } from './FrontOffice/pages/journey/list-journey/participations/participations.component';
 import { JourneystatisticsComponent } from './BackOffice/journey/journeystatistics/journeystatistics.component';
 import {AjouterEventComponent} from "./BackOffice/event/ajouter-event/ajouter-event.component";
 import {UpdateEventComponent} from "./BackOffice/event/update-event/update-event.component";
@@ -82,6 +81,8 @@ import {UpdateChapterComponent} from "./FrontOffice/pages/update-chapter/update-
 import {ChapterDetailsComponent} from "./FrontOffice/pages/chapter-details/chapter-details.component";
 import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
 import { JourneyDetailsComponent } from './FrontOffice/pages/journey/list-journey/journey-details/journey-details.component';
+import {CalendarJourneyComponent} from "./FrontOffice/pages/journey/calendar-journey/calendar-journey.component";
+import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 //import {NgToastModule} from "ng-angular-popup";
 
 const Validators = () => {
@@ -121,7 +122,6 @@ const Validators = () => {
     MapComponent,
     ListJourneyComponent,
     JourneyComponent,
-    ParticipationsComponent,
     JourneystatisticsComponent,
     AjouterEventComponent,
     UpdateEventComponent,
@@ -158,8 +158,8 @@ const Validators = () => {
     CoursesDetailsComponentBack,
     SummaryDetailsComponent,
     UpdateSummaryComponent,
-    JourneyDetailsComponent
-
+    JourneyDetailsComponent,
+    CalendarJourneyComponent
 
 
   ],
@@ -189,6 +189,7 @@ const Validators = () => {
             useFactory: adapterFactory,
         }),
         NgbRating,
+        ScheduleModule, RecurrenceEditorModule,
         // NgToastModule
 
     ],

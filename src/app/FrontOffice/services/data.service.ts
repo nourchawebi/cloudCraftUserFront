@@ -6,6 +6,7 @@ import {Observable} from "rxjs";
 import {LocationComponent} from "../pages/location/location.component";
 import {Location} from "../models/location";
 import {UserprofileService} from "./userprofile/userprofile.service";
+import {Journey} from "../models/journey";
 
 
 @Injectable({
@@ -42,13 +43,15 @@ export class DataService {
     return this.http.get<Location>("http://localhost:8081/location/1",{headers});
   }
 
-    addParticipation(idCarpooled: Number, idJourney: number | undefined){
+    addParticipation(idJourney: number | undefined){
     const headers = this.up.createAuthorization();
-    return this.http.post("http://localhost:8081/participation/"+idCarpooled+"/"+idJourney,null,{headers});
+    return this.http.post("http://localhost:8081/participation/"+idJourney,null,{headers});
   }
+
+
 
   checkParticipation(journeyId: number | undefined) {
     const headers = this.up.createAuthorization();
-    this.http.post(`http://localhost:8081/participation/journey/${journeyId}`,null,{headers}).subscribe();
+    return this.http.get(`http://localhost:8081/participation/journey/${journeyId}`,{headers});
   }
 }

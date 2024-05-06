@@ -55,17 +55,21 @@
                                                     <input type="number" [(ngModel)]="journey.price" name="availablePlaces" class="form-control" placeholder="Price">
                                                   </div>
 
+<!--                                                  <div class="input-block">-->
+<!--                                                    <label class="add-course-label">Journey Day</label>-->
+<!--                                                    <select name="cars" class="form-control select" [(ngModel)]="journey.day" name="day">-->
+<!--                                                      <option value="monday">monday</option>-->
+<!--                                                      <option value="tuesday">tuesday</option>-->
+<!--                                                      <option value="wednesday">wednesday</option>-->
+<!--                                                      <option value="thursday">thursday</option>-->
+<!--                                                      <option value="friday">friday</option>-->
+<!--                                                      <option value="saturday">saturday</option>-->
+<!--                                                      <option value="sunday">sunday</option>-->
+<!--                                                    </select>-->
+<!--                                                  </div>-->
                                                   <div class="input-block">
                                                     <label class="add-course-label">Journey Day</label>
-                                                    <select name="cars" class="form-control select" [(ngModel)]="journey.day" name="day">
-                                                      <option value="monday">monday</option>
-                                                      <option value="tuesday">tuesday</option>
-                                                      <option value="wednesday">wednesday</option>
-                                                      <option value="thursday">thursday</option>
-                                                      <option value="friday">friday</option>
-                                                      <option value="saturday">saturday</option>
-                                                      <option value="sunday">sunday</option>
-                                                    </select>
+                                                    <input type="date" class="form-control" [(ngModel)]="journey.day" name="day">
                                                   </div>
 
                                                   <div class="input-block">
