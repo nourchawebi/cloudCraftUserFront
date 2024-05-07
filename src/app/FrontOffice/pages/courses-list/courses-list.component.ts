@@ -6,6 +6,7 @@ import { PayloadSerialization } from '../../../services/api/models/payload-seria
 import { NavigationService } from '../../../services/navigation/navigation.service';
 import { CourseDetails } from 'src/app/services/api/models/course-details-representation';
 import { RatingRepresentation } from 'src/app/services/api/models/rating-representation';
+import { ca } from 'date-fns/locale';
 
 
 @Component({
@@ -14,10 +15,11 @@ import { RatingRepresentation } from 'src/app/services/api/models/rating-represe
   styleUrls: ['./courses-list.component.css']
 })
 export class CoursesListComponent implements OnInit{
-
+  courseCategory=["PROGRAMMING","WEB","MATH"]
 
 
   courses:Array<CourseDetails>=[];
+  filtredCourses:Array<CourseDetails>=[];
   error:string|null=null;
   
   
@@ -38,6 +40,7 @@ export class CoursesListComponent implements OnInit{
       courses.forEach(course=>{
         console.log(course)
         this.courses.push(PayloadSerialization.getDetailedCourse(course));
+        this.filtredCourses=this.courses;
       })
       console.log(this.courses);
     },
@@ -65,7 +68,17 @@ export class CoursesListComponent implements OnInit{
     console.log(sum/(ratings.length))
     return (sum/(ratings.length));
   }
-
+  filterCoursessByCategory(category:string){
+    if (this?.courses?.length!==0) {
+      if (category === 'All') {
+        this.filtredCourses = this.courses;
+      } else {
+        this.filtredCourses = this.courses.filter(course => course.courseCategory === category);
+      }
+    } else {
+      this.filtredCourses = [];
+    }
+  }
 
 
 

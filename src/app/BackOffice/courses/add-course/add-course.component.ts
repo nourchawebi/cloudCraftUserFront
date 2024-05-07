@@ -12,6 +12,7 @@ export class AddCourseComponent {
   courseForm: FormGroup=new FormGroup({
     title:new FormControl("",[Validators.required,Validators.minLength(3)]),
     uneversityYear:new FormControl("FRESHMAN",Validators.required),
+    courseCategory:new FormControl("WEB",Validators.required),
     description:new FormControl("",[Validators.required,Validators.minLength(3)]),
     image:new FormControl("",Validators.required),
   });
@@ -47,10 +48,12 @@ export class AddCourseComponent {
       const formData = new FormData();
       formData.append('name',this.courseForm.value.title??"");
 
-      formData.append('universityYear', this.courseForm.value.uneversityYear??"");
+      formData.append('universityYear', this.courseForm.value.uneversityYear??"FRESHMAN");
       if( this.selectedFile)  formData.append('image', this.selectedFile);
 
       formData.append('description',this.courseForm.value.description??"");
+     
+      formData.append('category',this.courseForm.value.courseCategory??"WEB");
       this.coursesService.createCourse(formData).subscribe({
         next:result=>{
           console.log(result);

@@ -70,6 +70,17 @@
                                                 Course level is required.
                                             </small>
                                         </div>
+                                        <div class="input-block">
+                                            <label class="add-course-label" for="courseCategory">Course Category</label>
+                                            <select class="form-control select" formControlName="courseCategory" id="courseCategory">
+                                                <option>WEB</option>
+                                                <option>PROGRAMMING</option>
+                                                <option>MATH</option>
+                                            </select>
+                                            <small *ngIf="courseForm.get('courseCategory')?.invalid && courseForm.get('courseCategory')?.touched ">
+                                                Course category is required.
+                                            </small>
+                                        </div>
                                         <div class="input-block mb-0">
                                             <label class="add-course-label" for="image">Course Image</label>
                                             <div id="editor"></div>
