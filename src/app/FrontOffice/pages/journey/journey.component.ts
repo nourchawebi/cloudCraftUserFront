@@ -52,8 +52,10 @@ export class JourneyComponent {
 
   addJourney(){
     console.log(this.journey)
-    this.journeyService.createData(this.journey).subscribe()
-    this.router.navigate(["/list_journey"])
+    this.journeyService.createData(this.journey).subscribe(
+      value => this.router.navigate(["/home/list_journey"])
+    )
+
   }
 
   currentFieldsetIndex: number = 0;

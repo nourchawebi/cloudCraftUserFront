@@ -61,7 +61,7 @@ export class AddCarComponent implements OnInit{
     if(this.crudApi.dataForm.valid)
     this.crudApi.createData(this.crudApi.dataForm.value).subscribe(data=>{
       this.ResetForm();
-      this.router.navigate(['/cars'])
+      this.router.navigate(['/home/cars'])
     });
   }
 
@@ -69,7 +69,7 @@ export class AddCarComponent implements OnInit{
 
     this.crudApi.updateData(this.crudApi.dataForm.get("carId")?.value,this.crudApi.dataForm.value).subscribe(
       data => {
-        this.router.navigate(['/cars']);
+        this.router.navigate(['/home/cars']);
       }
     )
 

@@ -22,7 +22,9 @@ export class CarGestionComponent {
   constructor(private http:HttpClient, private router:Router) {
   }
   addCar(){
+
     this.http.post("http://localhost:8081/car", this.car).subscribe(
       value =>     this.router.navigate(['/journeys']));
+
   }
 }

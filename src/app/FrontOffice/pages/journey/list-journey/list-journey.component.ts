@@ -54,13 +54,14 @@ export class ListJourneyComponent {
         this.checkedLocation[i] = true;
     });
 
-    this.search();
+
   }
 
   search() {
+
     this.fmotorized = []
     this.journey = []
-    this.journey = this.journey.filter(journey => journey.traject.map(value1 => value1.nameLocation).includes(this.locationNames[5]));
+    //this.journey = this.journey.filter(journey => journey.traject.map(value1 => value1.nameLocation).includes(this.locationNames[5]));
 
     this.fmotorized = this.motorized.filter((value,index) => this.checkedUsers[index])
       this.fmotorized.map(value1 => value1.journeys.map(value =>{
@@ -75,7 +76,12 @@ export class ListJourneyComponent {
 
     this.journey = this.journey.filter(journey => journey.price < this.searchCriteria.maximumPrice)
     if(this.searchCriteria.day!="all")
-      this.journey = this.journey.filter(journey => journey.day == this.searchCriteria.day)
+      this.journey = this.journey.filter(journey => {
+        console.log(new Date(journey.day).toString().substring(0,3))
+        console.log(this.searchCriteria.day)
+        new Date(journey.day).toString().substring(0,3) == this.searchCriteria.day
+      })
+
   }
 
   showCalendar(motorized: Motorized) {

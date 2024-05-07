@@ -25,9 +25,13 @@ export class ListCarComponent implements OnInit{
     this.crudApi.dataForm=this.formBuilder.group(car);
     this.crudApi.dataForm.value.id = car.carId;
     this.crudApi.choixmenu="M";
-    this.router.navigate(['/add_car']);
+    this.router.navigate(['/home/add_car']);
 
 
+  }
+
+  delete(car: Car) {
+    this.crudApi.deleteData(car.carId).subscribe(value => this.ngOnInit())
   }
 
 
