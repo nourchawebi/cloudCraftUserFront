@@ -80,7 +80,7 @@ import {SummaryDetailsComponent} from "./FrontOffice/pages/summary-details/summa
 import {UpdateSummaryComponent} from "./FrontOffice/pages/update-summary/update-summary.component";
 import {UpdateChapterComponent} from "./FrontOffice/pages/update-chapter/update-chapter.component";
 import {ChapterDetailsComponent} from "./FrontOffice/pages/chapter-details/chapter-details.component";
-import {NgbRating} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModule, NgbRating} from "@ng-bootstrap/ng-bootstrap";
 import { MyBookDetailsComponent } from './FrontOffice/book/my-book-details/my-book-details.component';
 import { UserBooksListComponent } from './FrontOffice/book/user-books-list/user-books-list.component';
 import { UpdateBookComponent } from './FrontOffice/book/update-book/update-book.component';
@@ -225,12 +225,13 @@ const Validators = () => {
         MatProgressSpinnerModule,
         MatCardModule,
         WebcamModule,
-        
+
         QRCodeModule,
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory,
         }),
+      NgbModule,
         NgbRating,
         // NgToastModule
 

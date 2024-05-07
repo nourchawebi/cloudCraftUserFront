@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
-
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -9,7 +8,7 @@
 /* You can add global styles to this file, and also import other style files */
 input.ng-invalid.ng-invalid.ng-touched{
     border:red 2px solid;
-    
+
 }
 
 /* small{
@@ -32,7 +31,7 @@ font-weight: bold;
 }
 
 .badge-special{
-    border: gray solid 1px ; 
+    border: gray solid 1px ;
     padding: 3px 4px;
     border-radius: 5px;
 }
@@ -66,7 +65,7 @@ ngb-rating.d-inline-flex  span{
 .input-block > .multiline-input.form-control   {
     height: auto;
     display: flex;
-    min-height: 100px; /* Adjust as needed */ 
+    min-height: 100px; /* Adjust as needed */
     align-items: start;
-    
+
 }

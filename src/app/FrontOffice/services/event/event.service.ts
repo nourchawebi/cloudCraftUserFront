@@ -9,7 +9,7 @@ import {UserprofileService} from "../userprofile/userprofile.service";
   providedIn: 'root'
 })
 export class EventService {
-  private baseUrl = 'http://localhost:8089/api/event';
+  private baseUrl = 'http://localhost:8081/event';
 
   constructor(private http: HttpClient, private up:UserprofileService) { }
 
@@ -90,7 +90,7 @@ export class EventService {
   participate(id: number): void {
     const headers = this.up.createAuthorization();
 
-    this.http.post(`${this.baseUrl}/${id}/issparticipate/${2}`, null,{headers}).subscribe(
+    this.http.post(`${this.baseUrl}/${id}/issparticipate/${5}`, null,{headers}).subscribe(
       (response: any) => {
         console.log('Response:', response);
       },
@@ -107,7 +107,7 @@ export class EventService {
   participates(id: number): Observable<Event> {
     const headers = this.up.createAuthorization();
 
-    return this.http.post<Event>(`${this.baseUrl}/${id}/issparticipate/${2}`, null, {headers});
+    return this.http.post<Event>(`${this.baseUrl}/${id}/issparticipate/${5}`, null, {headers});
   }
 
 

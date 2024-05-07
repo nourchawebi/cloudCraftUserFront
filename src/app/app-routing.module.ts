@@ -97,7 +97,6 @@ const routes: Routes = [
       {path: 'list_journey', component: ListJourneyComponent},
       {path:'event' , component : EventComponent},
       {path: 'calendar', component: CalendarComponent},
-      { path: 'event-detail/:id', component: EventDetailsComponent },
       {path:'chat', component: ChatComponent},
       {path: "add-annonce", component: AddAnnonceComponent},
       {path: "get-annonce", component: GetAnnonceComponent},
@@ -292,13 +291,13 @@ const routes: Routes = [
         component:EditProfilePageComponent,
         canActivate:[authGuard]
       },
+      { path: 'event-detail/:id', component: EventDetailsComponent },
 
     ]
 
   },
-  { path:'user/welcome',
-    component : WelcomeComponent,
-  },
+  { path:'user/welcome', component : WelcomeComponent,},
+
   {path: '', redirectTo: 'user/welcome', pathMatch: 'full'},
   {path: '**', component: WelcomeComponent}
 

@@ -43,7 +43,7 @@ export class UserstatService {
 
   numberofdisabledusers() {
     const headers = this.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/count/users-without-at`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/count/current-year-disabled`, {headers});
   }
   userslogedwithcard() {
     const headers = this.createAuthorization();

@@ -38,7 +38,7 @@ export class BookDetailsComponent implements OnInit{
       this.bookService.borrowBook(id).subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['user', 'books']);
+          this.router.navigate(['home', 'books']);
         },
         error => {
           console.error('Error borroing book:', error);

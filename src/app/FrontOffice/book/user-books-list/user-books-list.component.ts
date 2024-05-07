@@ -18,7 +18,7 @@ import { CategoryService } from 'src/app/services/api/book/category.service';
 export class UserBooksListComponent implements OnInit{
   bookResponse: PageResponseBookResponse = {};
   page = 0;
-  size = 2;
+  size = 5;
   pages: any = [];
   message = '';
   level: 'success' |'error' = 'success';
