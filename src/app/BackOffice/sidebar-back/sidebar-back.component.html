@@ -15,21 +15,22 @@
 
   <div class="menu-inner-shadow"></div>
 
-  <ul class="menu-inner py-1">
+  <ul class="menu-inner py-1 menu-list" style="
+  overflow-y: auto;">
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">User</span>
     </li>
     <!-- Dashboard -->
     <li [class.active]="activeTab === 'userDashboard'" class="menu-item">
       <a  (click)=" setActiveItem('userDashboard')"
-        routerLink="/admin/userstat" class="menu-link">
+          routerLink="/admin/userstat" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics"> user Dashboard</div>
       </a>
     </li>
     <li [class.active]="activeTab === 'lockUser'" class="menu-item">
       <a    (click)=" setActiveItem('lockUser')"
-        routerLink="/admin/lockuser" class="menu-link">
+            routerLink="/admin/lockuser" class="menu-link">
         <i class="menu-icon tf-icons bx bx-lock"></i>
         <div data-i18n="Analytics"> lock users </div>
       </a>
@@ -62,7 +63,7 @@
       <a    (click)=" setActiveItem('chart-event')"
             routerLink="/admin/chart-event" class="menu-link">
         <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
-        <div data-i18n="Analytics"> Event </div>
+        <div data-i18n="Analytics"> Event Dashboard </div>
       </a>
     </li>
 

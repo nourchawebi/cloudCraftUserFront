@@ -29,14 +29,14 @@
 
 
 
-<div *ngIf="emailVerif==false&& loggedUser.birthDate==undefined">
-  <div class="alert alert-warning" role="alert">
-    <h5 class="alert-heading">Warning!</h5>
-    <p>Complete your registration</p>
-    <hr>
+  <div *ngIf="emailVerif==false&& loggedUser.birthDate==undefined">
+    <div class="alert alert-warning" role="alert">
+      <h5 class="alert-heading">Warning!</h5>
+      <p>Complete your registration</p>
+      <hr>
 
+    </div>
   </div>
-</div>
 
 
 
@@ -229,56 +229,92 @@
 
 
 
-       <div class="col-xl-9 col-md-8" *ngIf="securityPassword" >
-        <div class="settings-widget profile-details">
-          <div class="settings-menu p-0">
-            <div class="profile-heading">
-              <h3>Security</h3>
-              <p>Edit your account settings and change your password here.</p>
-            </div>
-
-            <div class="checkout-form personal-address">
-              <div class="personal-info-head">
-                <h4>Change Password</h4>
-
+        <div class="col-xl-9 col-md-8" *ngIf="securityPassword" >
+          <div class="settings-widget profile-details">
+            <div class="settings-menu p-0">
+              <div class="profile-heading">
+                <h3>Security</h3>
+                <p>Edit your account settings and change your password here.</p>
               </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <form [formGroup]="passwordForm">
 
-                    <div class="input-block">
-                      <label class="form-control-label">Current Password</label>
-                      <input type="password" class="form-control" formControlName="currentPassword">
-                    </div>
-                    <div class="input-block">
-                      <label class="form-control-label"> New Password</label>
-                      <div class="pass-group" id="passwordInput">
-                        <input type="password" class="form-control pass-input"
-                               placeholder="Enter your password" formControlName="newPassword">
+              <div class="checkout-form personal-address">
+                <div class="personal-info-head">
+                  <h4>Change Password</h4>
+
+                </div>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <form [formGroup]="passwordForm">
+
+                      <div class="input-block">
+                        <label class="form-control-label">Current Password</label>
+                        <input type="password" class="form-control" formControlName="currentPassword">
                       </div>
 
-                    </div>
-                    <div class="input-block">
-                      <label class="form-control-label">Confirm New Password</label>
-                      <input type="password" class="form-control" formControlName="confirmationPassword">
-                    </div>
-                    <div class="update-profile save-password">
-                      <button type="button" class="btn btn-primary" (click)="changePassword()">Save Password</button>
-                    </div>
-                    <div class="alert alert-primary" role="alert" *ngIf="message">
-                      <div class="success-message">{{ message }}</div>
-                    </div>
-                    <div class="alert alert-danger" role="alert" *ngIf="error">
-                      <div class="error-message">{{ error }}</div>
-                    </div>
-                  </form>
+                      <mat-error *ngIf="passwordForm.controls['currentPassword'].hasError('required') ">
+                        password is <strong>required</strong>
+                      </mat-error>
+
+                      <div class="input-block">
+                        <label class="form-control-label"> New Password</label>
+                        <div class="pass-group" id="passwordInput">
+                          <input type="password" class="form-control pass-input"
+                                 placeholder="Enter your password" formControlName="newPassword">
+                        </div>
+
+
+                        <mat-error *ngIf="passwordForm.controls['newPassword'].hasError('required') ">
+                          password is <strong>required</strong>
+                        </mat-error>
+                        <div
+                          *ngIf="passwordForm.controls['newPassword'].invalid && (passwordForm.controls['newPassword'].dirty ||passwordForm.controls['newPassword'].touched)"
+                        >
+
+                          <mat-error *ngIf="passwordForm.get('newPassword')?.touched&&passwordForm.controls['newPassword'].hasError('minlength')
+
+">
+                            password min length is 8 !
+                          </mat-error>
+
+                          <mat-error *ngIf="passwordForm.get('newPassword')?.touched&&passwordForm.controls['newPassword'].hasError('pattern')&&
+!passwordForm.controls['newPassword'].hasError('minlength')  && !passwordForm.controls['newPassword'].hasError('maxlength')">
+                            you must enter at least 1 majuscule caracter 1 miniscule caracter and 1 number
+                          </mat-error>
+                          <mat-error *ngIf="passwordForm.get('newPassword')?.touched&&passwordForm.controls['newPassword'].hasError('maxlength')&&!passwordForm.controls['newPassword'].hasError('minlength')&&
+                         !passwordForm.controls['newPassword'].hasError('pattern')">
+                            password max length is 11 !
+                          </mat-error>
+
+
+                        </div>
+
+                      </div>
+                      <div class="input-block">
+                        <label class="form-control-label">Confirm New Password</label>
+                        <input type="password" class="form-control" formControlName="confirmationPassword">
+                      </div>
+
+                      <mat-error *ngIf="passwordForm.controls['confirmationPassword'].hasError('required') ">
+                        password is <strong>required</strong>
+                      </mat-error>
+
+                      <div class="update-profile save-password">
+                        <button type="button" class="btn btn-primary" (click)="changePassword()">Save Password</button>
+                      </div>
+                      <div class="alert alert-primary" role="alert" *ngIf="message">
+                        <div class="success-message">{{ message }}</div>
+                      </div>
+                      <div class="alert alert-danger" role="alert" *ngIf="error">
+                        <div class="error-message">{{ error }}</div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          </div>
 
-</div>
+        </div>
 
 
 
@@ -322,7 +358,7 @@
 
                         <div class="input-block" *ngIf="message!='ur email is updated  u have to sign in again !' && error==''">
 
-                        <mat-progress-spinner diameter="32" mode="indeterminate"></mat-progress-spinner>
+                          <mat-progress-spinner diameter="32" mode="indeterminate"></mat-progress-spinner>
                         </div>
 
                         <div class="success-message">{{ message }}</div>

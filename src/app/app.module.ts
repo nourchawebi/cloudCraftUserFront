@@ -101,6 +101,7 @@ import { AddAnnonceComponent } from './FrontOffice/pages/annonce/add-annonce/add
 import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
 import { AddCommentComponent } from './FrontOffice/pages/comment/add-comment/add-comment.component';
 import { GetTargetAnnonceComponent } from './FrontOffice/pages/annonce/get-target-annonce/get-target-annonce.component';
+import { NotfoundComponent } from './FrontOffice/pages/notfound/notfound.component';
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -199,7 +200,8 @@ const Validators = () => {
     BookCategoryComponent,
     BookDashboardComponent,
     CategoryListComponent,
-    CoursesDashboardComponent
+    CoursesDashboardComponent,
+    NotfoundComponent
 
 
 

@@ -299,7 +299,7 @@ const routes: Routes = [
   { path:'user/welcome', component : WelcomeComponent,},
 
   {path: '', redirectTo: 'user/welcome', pathMatch: 'full'},
-  {path: '**', component: WelcomeComponent}
+  {path: '**', component:NotfoundComponent}
 
 ];
 

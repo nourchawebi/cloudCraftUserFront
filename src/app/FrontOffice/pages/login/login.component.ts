@@ -45,59 +45,59 @@ export class LoginComponent {
   authenticate(){
     this.authRequest.email = this.authForm.get('email')?.value;
     this.authRequest.password = this.authForm.get('password')?.value;
- this.authService.login(this. authRequest).
- subscribe(
-   {
-     next:(response)=>{
-  this.authResponse=response;
-  if(!this.authResponse.mfaEnabled)
-  {   localStorage.setItem('token',response.accessToken as string);
-    this.error ="";
-    const tokenPayload = this.authService.decodedToken();
-    this.userStore.setFirstNameForStore(tokenPayload.name);
-    this.userStore.setRoleForStore(tokenPayload.role);
-    this.userStore.setUser(tokenPayload);
-    this.userStore.setEmailForStore(tokenPayload.email);
-    this.message="u will redirected to welcome page"
-   // this.toast.success({detail:"SUCCESS", summary:response.accessToken, duration: 5000});
+    this.authService.login(this. authRequest).
+    subscribe(
+      {
+        next:(response)=>{
+          this.authResponse=response;
+          if(this.authResponse.mfaEnabled==false)
+          {   localStorage.setItem('token',response.accessToken as string);
+            this.error ="";
+            const tokenPayload = this.authService.decodedToken();
+            this.userStore.setFirstNameForStore(tokenPayload.name);
+            this.userStore.setRoleForStore(tokenPayload.role);
+            this.userStore.setUser(tokenPayload);
+            this.userStore.setEmailForStore(tokenPayload.email);
+            this.message="u will redirected to welcome page"
+            // this.toast.success({detail:"SUCCESS", summary:response.accessToken, duration: 5000});
 
-    if(tokenPayload.role=='USER')
-    {
-      this.router.navigate(['user/welcome']);
+            if(tokenPayload.role=='USER')
+            {
+              this.router.navigate(['user/welcome']);
 
-    }
+            }
 
 
-    else {
-      this.router.navigate(['admin/userstat'])}
+            else {
+              this.router.navigate(['admin/userstat'])}
 
-  }
+          }
 
-     },
-     error: (error) => {
-       if (error.status === 404) {
-         this.error=error.error;
+        },
+        error: (error) => {
+          if (error.status === 404) {
+            this.error=error.error;
 
-       }else
-         if(error.status===403)
-         {
-         if (error.error === 'User disabled and token expired') {
-           this.message="";
-           this.error = 'User disabled and token expired';
-           this.sendveriftoken=true;
+          }else
+          if(error.status===403)
+          {
+            if (error.error === 'User disabled and token expired') {
+              this.message="";
+              this.error = 'User disabled and token expired';
+              this.sendveriftoken=true;
 
-         } else if (error.error === 'User disabled') {
-           this.message="";
-           this.error = 'User disabled';
-         }} else {
-         this.message="";
-         this.error = 'Bad credentials';
-       }
-       console.error(error);
-     }
+            } else if (error.error === 'User disabled') {
+              this.message="";
+              this.error = 'User disabled';
+            }} else {
+            this.message="";
+            this.error = 'Bad credentials';
+          }
+          console.error(error);
+        }
 
-   }
- )
+      }
+    )
   }
   verifyCode()
   {
@@ -108,16 +108,22 @@ export class LoginComponent {
     this.authService.verifyCode(verificationRequest)
       .subscribe({
           next:(response)=>{
-               localStorage.setItem('token',response.accessToken as string);
-               this.error="";
-               this.message="success!"
-               this.router.navigate(['user/welcome']);
+            localStorage.setItem('token',response.accessToken as string);
+            this.error ="";
+            const tokenPayload = this.authService.decodedToken();
+            this.userStore.setFirstNameForStore(tokenPayload.name);
+            this.userStore.setRoleForStore(tokenPayload.role);
+            this.userStore.setUser(tokenPayload);
+            this.userStore.setEmailForStore(tokenPayload.email);
+            this.error="";
+            this.message="success!"
+            this.router.navigate(['user/welcome']);
 
           },
-        error:()=>{
+          error:()=>{
             this.message="";
             this.error="verify your code!"
-        }
+          }
         }
 
       )
@@ -131,33 +137,33 @@ export class LoginComponent {
     this.forgotPwdRequest.email = this.resetPasswordForm.get('emailreset')?.value;
 
     this.authService.forgotPassword(this.forgotPwdRequest)
-    .subscribe(
-      {
-        next:(response)=>{
-          if(response)
-          {
-            this.authResponse=response;
+      .subscribe(
+        {
+          next:(response)=>{
+            if(response)
+            {
+              this.authResponse=response;
+            }
+            else {
+              this.message='Email sent! \n you will be redirected to the login page in 3 seconds';
+              setTimeout(()=>{
+                this.message="";
+                this.error="";
+                this.forgotpassword=false;
+              },3000)
+            }
+          },
+          error: (error) => { if (error.status === 401) {
+            this.message="";
+            this.error = 'User not found';
+          } else {
+            this.message="";
+            this.error = 'error has accured';
           }
-          else {
-            this.message='Email sent! \n you will be redirected to the login page in 3 seconds';
-            setTimeout(()=>{
-              this.message="";
-              this.error="";
-             this.forgotpassword=false;
-            },3000)
+            console.error(error);
           }
-        },
-        error: (error) => { if (error.status === 401) {
-          this.message="";
-          this.error = 'User not found';
-        } else {
-          this.message="";
-          this.error = 'error has accured';
         }
-          console.error(error);
-        }
-      }
-    )
+      )
 
   }
   sendverifmail() {
@@ -169,7 +175,7 @@ export class LoginComponent {
         {
           next:(response)=>{
             this.error="";
-         this.message="email sent with success! please verify your emails ^^"
+            this.message="email sent with success! please verify your emails ^^"
           },
           error: (error) => {
             if (error.status === 400) {

@@ -26,11 +26,11 @@ export class EditProfilePageComponent  implements OnInit  {
   checkEmailValidity(): void {
     if(this.loggedUser.email)
     {
-    if (!this.loggedUser.email.includes('.') && !this.loggedUser.email.includes('@')) {
-      this.emailVerif = false;
-    } else {
-      this.emailVerif = true;
-    }}
+      if (!this.loggedUser.email.includes('.') && !this.loggedUser.email.includes('@')) {
+        this.emailVerif = false;
+      } else {
+        this.emailVerif = true;
+      }}
   }
 
   constructor(private userProfileService: UserprofileService,
@@ -70,46 +70,46 @@ export class EditProfilePageComponent  implements OnInit  {
   changeEmailRequest: ChangeEmailRequest= {};
   changeInfosRequest: ChangeInfosRequest= {};
   editMode:boolean = false;
-personaldata: FormGroup;
+  personaldata: FormGroup;
   emailForm: FormGroup;
   passwordForm:FormGroup;
   message:string='';
   error:string='';
   public users:any = [];
   public role!:string;
- public loggedUser:TokenInfos={};
-public fullName:string='';
- public personalInfos:boolean=true;
- public securityPassword:boolean=false;
- public  email:boolean=false;
- public curentEmail:string="";
- activatePersonalInfos(tab: string)
- {
-   this.personalInfos=true;
-   this.securityPassword=false;
-   this.email=false;
-   this.message="";
-   this.error="";
-   this.activeTab = tab;
+  public loggedUser:TokenInfos={};
+  public fullName:string='';
+  public personalInfos:boolean=true;
+  public securityPassword:boolean=false;
+  public  email:boolean=false;
+  public curentEmail:string="";
+  activatePersonalInfos(tab: string)
+  {
+    this.personalInfos=true;
+    this.securityPassword=false;
+    this.email=false;
+    this.message="";
+    this.error="";
+    this.activeTab = tab;
 
- }
- acrivateSecurityPassword(tab: string)
- {
-   this.personalInfos=false;
-   this.securityPassword=true;
-   this.email=false;
-   this.message="";
-   this.error="";
-   this.activeTab = tab;
- }
- activateEmail(tab: string){
-   this.personalInfos=false;
-   this.securityPassword=false;
-   this.email=true;
-   this.activeTab = tab;
-   this.message="";
-   this.error="";
-}
+  }
+  acrivateSecurityPassword(tab: string)
+  {
+    this.personalInfos=false;
+    this.securityPassword=true;
+    this.email=false;
+    this.message="";
+    this.error="";
+    this.activeTab = tab;
+  }
+  activateEmail(tab: string){
+    this.personalInfos=false;
+    this.securityPassword=false;
+    this.email=true;
+    this.activeTab = tab;
+    this.message="";
+    this.error="";
+  }
   classeType: string[] = [];
   getClasseType()
   {
@@ -129,61 +129,68 @@ public fullName:string='';
 
   ngOnInit() {
     this. getClasseType();
-    this.userProfileService.getImageUrl()
-      .subscribe(response => {
-        const reader = new FileReader();
-        reader.onload = () => {
-          this.imageUrl = reader.result as string;
-        };
-        reader.readAsDataURL(response);
-      });
+    if(this.changeEmailRequest.newEmail==null)
+    {
+      this.userProfileService.getImageUrl()
+        .subscribe(response => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.imageUrl = reader.result as string;
+          };
+          reader.readAsDataURL(response);
+        })}
+    ;
 
 
 
 
 
-this.userStore.getUser()
-  .subscribe(
-    val=>{
-      const user = this.authService.getLogedUser()
-      this.loggedUser = val || user  as TokenInfos
-      console.log(this.loggedUser.birthDate)
-      if(this.loggedUser.picture!=null)
-      {
-this.picture="http://localhost:8081/nour/cin.jpg";}
-      const birthDateValue = this.loggedUser.birthDate
-        ? this.parseDate(this.loggedUser.birthDate)
-        : new Date();
-      this.personaldata= this.formBuilder.group({
-        firstName: [{ value: this.loggedUser.firstName, disabled: !this.editMode }, [Validators.required,  Validators.min(5),
-          Validators.max(12),]],
-        lastName:  [{ value: this.loggedUser.lastName, disabled: !this.editMode }, Validators.required],
+    this.userStore.getUser()
+      .subscribe(
+        val=>{
+          const user = this.authService.getLogedUser()
+          this.loggedUser = val || user  as TokenInfos
+          console.log(this.loggedUser.birthDate)
+          if(this.loggedUser.picture!=null)
+          {
+            this.picture="http://localhost:8081/nour/cin.jpg";}
+          const birthDateValue = this.loggedUser.birthDate
+            ? this.parseDate(this.loggedUser.birthDate)
+            : new Date();
+          this.personaldata= this.formBuilder.group({
+            firstName: [{ value: this.loggedUser.firstName, disabled: !this.editMode }, [Validators.required,  Validators.min(5),
+              Validators.max(12),]],
+            lastName:  [{ value: this.loggedUser.lastName, disabled: !this.editMode }, Validators.required],
 
-        classType: [{ value: this.loggedUser.classeType, disabled: !this.editMode }, Validators.required],
-        birthDate: [
-          { value: formatDate(birthDateValue, 'yyyy-MM-dd', 'en'),
-          disabled: !this.editMode},  Validators.required
-        ],
+            classType: [{ value: this.loggedUser.classeType, disabled: !this.editMode }, Validators.required],
+            birthDate: [
+              { value: formatDate(birthDateValue, 'yyyy-MM-dd', 'en'),
+                disabled: !this.editMode},  Validators.required
+            ],
 
 
 
-      });
-      this.emailForm= this.formBuilder.group({
-        email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]],
-        newEmail: ['', [Validators.required, Validators.email]]
+          });
+          this.emailForm= this.formBuilder.group({
+            email: [{ value:  this.loggedUser.email, disabled:true},  [Validators.required]],
+            newEmail: ['', [Validators.required, Validators.email]]
 
-      });
- this.passwordForm=this.formBuilder.group(
-   {
-     currentPassword:['',Validators.required],
-     newPassword:['',Validators.required],
-     confirmationPassword:['',Validators.required],
+          });
+          this.passwordForm=this.formBuilder.group(
+            {
+              currentPassword:['',Validators.required],
+              newPassword:  ['', [Validators.required,
+                Validators.minLength(8),   Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/),
+                Validators.maxLength(11)]
 
-   }
- )
+              ],
+              confirmationPassword:['',Validators.required],
 
-    }
-  );
+            }
+          )
+
+        }
+      );
     this.userStore.getEmailFromStore()
       .subscribe(val=>{
         const emailFromToken = this.authService.getEmailFromToken()
@@ -234,37 +241,47 @@ this.picture="http://localhost:8081/nour/cin.jpg";}
     )
   };
 
- changeEmail()
- { this.changeEmailRequest.currentEmail=this.emailForm.get('email')?.value;
-   this.changeEmailRequest.newEmail=this.emailForm.get("newEmail")?.value;
-   this.changeEmailRequest.confirmationEmail=this.emailForm.get("newEmail")?.value;
-   this.error="";
-   this.message="plase wait we are sending an email"
-   this.userProfileService.changeEmail(this.changeEmailRequest).subscribe(
-     {
-       next:(response)=>{
-         this.error="";
+  changeEmail()
+  { this.changeEmailRequest.currentEmail=this.emailForm.get('email')?.value;
+    this.changeEmailRequest.newEmail=this.emailForm.get("newEmail")?.value;
+    this.changeEmailRequest.confirmationEmail=this.emailForm.get("newEmail")?.value;
+    this.error="";
+    this.message="please wait we are sending an email"  ;
+    if(this.changeEmailRequest.newEmail!=null)
+    {
+      this.userProfileService.changeEmail(this.changeEmailRequest).subscribe(
+        {
+          next:(response)=>{
 
-         this.message="ur email is updated  u have to sign in again !"
+            this.error="";
+
+            this.message="ur email is updated  u have to sign in again !"
+            localStorage.removeItem('token');
+            this.router.navigate(['login'])
 
 
-         if(this.changeEmailRequest.newEmail!=null)
-         {
 
-         this.authService.signOut();}
-         else {
-           this.message="problem";
-         }
-       },
-       error:(error)=>{
-         this.error=error.error;
-         this.message="";
 
-       }
 
-     }
-   )
- };
+          },
+          error: (error) => {
+            if (error && error.error && typeof error.error === 'object') {
+              // If the error object is an object, stringify it for readability
+              this.error = JSON.stringify(error.error);
+            } else if (error && typeof error === 'object') {
+              // If the error itself is an object, stringify it for readability
+              this.error = JSON.stringify(error);
+            } else {
+              // Otherwise, use the error message as is
+              this.error = error;
+            }
+            this.message = "";
+            console.error("Error changing email:", error); // Log the error for debugging
+          }
+
+        }
+      )}
+  };
 
   changeInfos()
   {
@@ -302,36 +319,36 @@ this.picture="http://localhost:8081/nour/cin.jpg";}
   toggleEditMode(): void {
     this.editMode = !this.editMode;
 
-      // Update the disabled status of form controls based on editMode
-      const firstNameControl = this.personaldata.get('firstName');
+    // Update the disabled status of form controls based on editMode
+    const firstNameControl = this.personaldata.get('firstName');
     const lastNameControl = this.personaldata.get('lastName');
     const classTypeControl = this.personaldata.get('classType');
     const birthDateControl = this.personaldata.get('birthDate');
 
-      if (firstNameControl) {
-        if (this.editMode) {
-          firstNameControl.enable();
+    if (firstNameControl) {
+      if (this.editMode) {
+        firstNameControl.enable();
 
-          // Enable other form controls as needed
-        } else {
-          firstNameControl.disable();
+        // Enable other form controls as needed
+      } else {
+        firstNameControl.disable();
 
-          // Disable other form controls as needed
-        }
-
+        // Disable other form controls as needed
       }
 
-        if ( lastNameControl) {
-          if (this.editMode) {
+    }
 
-            lastNameControl.enable();
-            // Enable other form controls as needed
-          } else {
+    if ( lastNameControl) {
+      if (this.editMode) {
 
-            lastNameControl.disable();
-            // Disable other form controls as needed
+        lastNameControl.enable();
+        // Enable other form controls as needed
+      } else {
 
-          }
+        lastNameControl.disable();
+        // Disable other form controls as needed
+
+      }
     }
 
 
@@ -371,7 +388,7 @@ this.picture="http://localhost:8081/nour/cin.jpg";}
 
   imageModel: ImageModel = new ImageModel();
   pictureControl = new FormControl('', Validators.required);
-imgmessage:string='';
+  imgmessage:string='';
   imgerror:string='';
   onFileSelected(event: any) {
     this.imageModel= event.target.files[0];
@@ -380,18 +397,18 @@ imgmessage:string='';
   updateimg()
   {
     if (this.pictureControl.valid) {
-    this.userProfileService.changeimage(this.imageModel).subscribe({
-      next:()=>{
-        this.message="image chnaged"
-        window.location.reload();
-        this.imgmessage="image chnaged !"
+      this.userProfileService.changeimage(this.imageModel).subscribe({
+        next:()=>{
+          this.message="image chnaged"
+          window.location.reload();
+          this.imgmessage="image chnaged !"
 
-        this.imgerror='';
-      }
-    })
-  }
-   else {
-  this.imgerror="img required"
+          this.imgerror='';
+        }
+      })
+    }
+    else {
+      this.imgerror="img required"
       this.imgmessage=""
-}
+    }
   } }

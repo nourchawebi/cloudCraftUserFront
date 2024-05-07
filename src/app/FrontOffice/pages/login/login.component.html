@@ -207,20 +207,20 @@
     </div>
 
 
-          <div *ngIf="forgotpassword">
-            <div class="login-wrapper">
-              <div class="loginbox">
-                <div class="w-100">
-                  <div class="img-logo">
+    <div *ngIf="forgotpassword">
+      <div class="login-wrapper">
+        <div class="loginbox">
+          <div class="w-100">
+            <div class="img-logo">
 
-                    <div class="back-home">
-                      <h1>Forgot Password ?</h1>
-                    </div>
-                    <img src="/assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo">
+              <div class="back-home">
+                <h1>Forgot Password ?</h1>
+              </div>
+              <img src="/assets/FrontOffice/img/logo15.png" class="img-fluid" alt="Logo">
 
-                  </div>
+            </div>
 
-                  <div class="forgot">
+            <div class="forgot">
      <span>
            <button style="display: flex;   justify-content: flex-start;
                max-height: 30px; max-width: 40px; margin-bottom: 10px "title="go back"
@@ -230,47 +230,47 @@
                   </button>
 
    </span>
-                  </div>
-                  <div class="reset-password">
-                    <p>Enter your email to reset your password.</p>
-                  </div>
-
-                  <form [formGroup]="resetPasswordForm">
-                    <div class="input-block">
-                      <mat-form-field class="custom-input-width">
-                        <mat-label>Email</mat-label>
-                        <input type="email" matInput  [errorStateMatcher]="matcher" formControlName="emailreset"
-                               placeholder="Ex. pat@example.com">
-                        <mat-hint>Errors appear instantly!</mat-hint>
-
-                        <mat-error *ngIf="resetPasswordForm.controls['emailreset'].hasError('emailreset') && !resetPasswordForm.controls['emailreset'].hasError('required')">
-                          Please enter a valid email address
-                        </mat-error>
-
-                        <mat-error *ngIf="resetPasswordForm.controls['emailreset'].hasError('required')">
-                          Email is <strong>required</strong>
-                        </mat-error>
-                      </mat-form-field>
-                    </div>
-                    <button mat-button type="submit" (click)="sendResetMail()"
-                            [disabled]="resetPasswordForm.invalid">send </button>
-                  </form>
-
-
-
-
-                  <div class="alert alert-primary" role="alert" *ngIf="message">
-                    <div class="success-message">{{ message }}</div>
-                  </div>
-
-                  <div class="alert alert-danger" role="alert" *ngIf="error">
-                    <div class="error-message">{{ error }}</div>
-                  </div>
-
-
-
             </div>
+            <div class="reset-password">
+              <p>Enter your email to reset your password.</p>
+            </div>
+
+            <form [formGroup]="resetPasswordForm">
+              <div class="input-block">
+                <mat-form-field class="custom-input-width">
+                  <mat-label>Email</mat-label>
+                  <input type="email" matInput  [errorStateMatcher]="matcher" formControlName="emailreset"
+                         placeholder="Ex. pat@example.com">
+                  <mat-hint>Errors appear instantly!</mat-hint>
+
+                  <mat-error *ngIf="resetPasswordForm.controls['emailreset'].hasError('emailreset') && !resetPasswordForm.controls['emailreset'].hasError('required')">
+                    Please enter a valid email address
+                  </mat-error>
+
+                  <mat-error *ngIf="resetPasswordForm.controls['emailreset'].hasError('required')">
+                    Email is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <button mat-button type="submit" (click)="sendResetMail()"
+                      [disabled]="resetPasswordForm.invalid">send </button>
+            </form>
+
+
+
+
+            <div class="alert alert-primary" role="alert" *ngIf="message">
+              <div class="success-message">{{ message }}</div>
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="error">
+              <div class="error-message">{{ error }}</div>
+            </div>
+
+
+
           </div>
+        </div>
 
 
       </div>
