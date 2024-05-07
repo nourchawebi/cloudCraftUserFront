@@ -70,6 +70,7 @@ import { GetAnnonceComponent } from './FrontOffice/pages/annonce/get-annonce/get
 import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-annonce-by-iduser/get-annonce-by-iduser.component';
 import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
 import { ChartEventComponent } from './BackOffice/event/chart-event/chart-event.component';
+import {NotfoundComponent} from "./FrontOffice/pages/notfound/notfound.component";
 
 const routes: Routes = [
 
