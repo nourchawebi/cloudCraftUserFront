@@ -12,9 +12,11 @@ export class CommentService {
   private baseurl :string='http://localhost:8081/api/comments';
 
   addComment(comment:any):Observable<any>{
+
     const headers = this.up.createAuthorization();
     return this.http.post(`${this.baseurl}/addComment`,comment,{headers});
   }
+
 
   getAllComments(annonceId: number): Observable<Comment[]> {
     const headers = this.up.createAuthorization();

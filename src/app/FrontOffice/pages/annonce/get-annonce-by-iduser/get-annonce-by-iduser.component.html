@@ -11,7 +11,7 @@
                     <p class="card-text">{{ annonce.annonce_description }}</p>
                     <p class="card-text"><small class="text-muted">{{ annonce.startDate }}</small></p>
                     <button class="btn btn-danger" (click)="deleteAnnonce(annonce.id_annonce)">Delete</button>
-                    <a [routerLink]="['/UpdateAnonce', annonce.id_annonce]" class="btn btn-primary">Edit</a>
+                    <a [routerLink]="['/home/UpdateAnonce', annonce.id_annonce]" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </div>

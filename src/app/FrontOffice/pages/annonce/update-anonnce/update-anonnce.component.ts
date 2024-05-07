@@ -56,7 +56,7 @@ export class UpdateAnonnceComponent implements OnInit {
     this.service.updateAnnonceee(this.annonce).subscribe(updated => {
       console.log('Annonce mise à jour : ', updated);
       // Rediriger vers une autre page après la mise à jour
-      this.router.navigate(['/get-annonceUser/1']);
+      this.router.navigate(['home/get-annonceUser/1']);
     });
   }
   closeModal(): void {

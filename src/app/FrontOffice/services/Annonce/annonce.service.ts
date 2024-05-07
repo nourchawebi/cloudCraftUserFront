@@ -55,7 +55,7 @@ export class AnnonceService {
   getAnnoncesByUser(userId: number): Observable<Annonce[]> {
     const headers = this.up.createAuthorization();
 
-    return this.http.get<Annonce[]>(`${this.baseUrl}/user/${userId}`,{headers});
+    return this.http.get<Annonce[]>(`${this.baseUrl}/annonceByUser`,{headers});
   }
   deleteAnnonce(id: number): Observable<void> {
     const headers = this.up.createAuthorization();
