@@ -1,0 +1,221 @@
+<div class="inner-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="instructor-wrap border-bottom-0 m-0">
+          <div class="about-instructor align-items-center">
+            <div class="abt-instructor-img">
+              <a href="instructor-profile.html"><img src="assets/FrontOffice/img/user/user1.jpg" alt="img" class="img-fluid"></a>
+            </div>
+            <div class="instructor-detail me-3">
+              <h5><a href="instructor-profile.html" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">{{motorized?.firstName}} {{motorized?.lastName}}</a></h5>
+              <p>{{ motorized?.email }}</p>
+<!--              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"> Send Mail</button>-->
+            </div>
+            <div class="rating mb-0">
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=1"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=2"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=3"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=4"></i>
+              <i class="fas fa-star" [class.filled]="this.avg?.rateAvg!>=5"></i>
+              <span class="d-inline-block average-rating"><span>{{ this.avg?.rateAvg }}</span> ({{this.avg?.rateNumber}})</span>
+            </div>
+          </div>
+          <span class="web-badge mb-3">{{ motorized?.role }}</span>
+        </div>
+        <h2>A journey to esprit</h2>
+<!--        <p>Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python, MySQL & more!</p>-->
+        <div class="course-info d-flex align-items-center border-bottom-0 m-0 p-0">
+          <div class="cou-info">
+            <img src="assets/img/icon/icon-01.svg" alt>
+            <p>At {{journey?.day?.substr(0,10)}}</p>
+          </div>
+          <!--<div class="cou-info">
+            <img src="assets/img/icon/timer-icon.svg" alt>
+            <p>leaving at {{journey?.leavingTime?.substr(0,2)}}hr {{journey?.leavingTime?.substr(3,5)}}min</p>
+          </div>
+          <div class="cou-info">
+            <img src="assets/img/icon/people.svg" alt>
+            <p>return at {{journey?.returnTime?.substr(0,2)}}hr {{journey?.returnTime?.substr(3,5)}}min</p>
+          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="page-content course-sec">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+
+        <div class="card overview-sec">
+          <div class="card-body">
+            <h5 class="subs-title">Overview</h5>
+            <h6>Journey Time</h6>
+            <div class="row">
+              <div class="col-md-6">
+                <ul>
+                  <li>Will start the ride to esprit at {{journey?.leavingTime}}.</li>
+                  <li>ride will take 15 minutes.</li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <ul>
+                  <li class="mb-0">Will return from esprit to home at {{journey?.returnTime}}.</li>
+                  <li>ride will take 15 minutes.</li>
+                </ul>
+              </div>
+            </div>
+            <h6>from where he will pass in his ride</h6>
+            <ul class="mb-0">
+              <ng-container *ngFor="let l of journey?.traject">
+              <li>{{l.nameLocation}}.</li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card review-sec">
+          <div class="card-body">
+            <h5 class="subs-title">Reviews</h5>
+            <ng-container *ngIf="feedbacks?.length==0">
+              no reviews yet
+            </ng-container>
+            <ng-container *ngFor="let fb of feedbacks">
+            <div class="instructor-wrap">
+              <div class="about-instructor">
+                <div class="abt-instructor-img">
+                  <a href="instructor-profile.html"><img src="assets/FrontOffice/img/user/user1.jpg" alt="img" class="img-fluid"></a>
+                </div>
+                <div class="instructor-detail">
+                  <h5><a href="instructor-profile.html">{{fb.user.firstName}} {{fb.user.lastName}}</a></h5>
+                  <p>{{fb.user.role}}</p>
+                </div>
+              </div>
+              <div class="rating">
+                <i class="fas fa-star" [class.filled]="fb.rating>=1"></i>
+                <i class="fas fa-star" [class.filled]="fb.rating>=2"></i>
+                <i class="fas fa-star" [class.filled]="fb.rating>=3"></i>
+                <i class="fas fa-star" [class.filled]="fb.rating>=4"></i>
+                <i class="fas fa-star" [class.filled]="fb.rating>=5"></i>
+                <span class="d-inline-block average-rating">{{fb.rating}} Rating</span>
+              </div>
+            </div>
+            <p class="rev-info">{{fb.comment}}</p>
+              <br/>
+            </ng-container>
+          </div>
+        </div>
+
+
+        <div class="card comment-sec">
+          <div class="card-body">
+            <h5 class="subs-title">Post A review</h5>
+            <form (ngSubmit)="submit()">
+              <div class="input-block">
+                <textarea rows="4" [(ngModel)]="feedback.comment" name="comment" class="form-control" placeholder="Your Comments"></textarea>
+              </div>
+
+              <div class="rating">
+                <i class="fas fa-star" [class.filled]="hover>=1 || feedback.rating>=1&&hover==0" (mouseleave)="setHover(0)" (mouseover)="setHover(1)" (click)="setRating(1)"></i>
+                <i class="fas fa-star" [class.filled]="hover>=2 || feedback.rating>=2&&hover==0" (mouseleave)="setHover(0)" (mouseover)="setHover(2)" (click)="setRating(2)"></i>
+                <i class="fas fa-star" [class.filled]="hover>=3 || feedback.rating>=3&&hover==0" (mouseleave)="setHover(0)" (mouseover)="setHover(3)" (click)="setRating(3)"></i>
+                <i class="fas fa-star" [class.filled]="hover>=4 || feedback.rating>=4&&hover==0" (mouseleave)="setHover(0)" (mouseover)="setHover(4)" (click)="setRating(4)"></i>
+                <i class="fas fa-star" [class.filled]="hover>=5 || feedback.rating>=5&&hover==0" (mouseleave)="setHover(0)" (mouseover)="setHover(5)" (click)="setRating(5)"></i>
+              </div>
+
+              <div class="submit-section">
+                <button class="btn submit-btn" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+        <div class="sidebar-sec">
+
+          <div class="video-sec vid-bg">
+            <div class="card">
+              <div class="card-body">
+                <div style="background-color: #0B0B0Bef" class="video-thumbnail" data-fancybox>
+                  <a class="btn" (click)="showTraject()">
+                  <div class="play-icon">
+                    <i class="fa-solid fa-play"></i>
+                  </div>
+                  </a>
+                  <img class src="/assets/FrontOffice/img/bg/map.png"  alt>
+                </div>
+                <div class="video-details">
+                  <div class="course-fee">
+                    <h2>Price</h2>
+                    <p>{{journey?.price}} dt</p>
+                  </div>
+                  <div class="row gx-2">
+                    <div class="col-md-6">
+                      <a href="course-wishlist.html" class="btn btn-wish w-100"><i class="feather-heart"></i> Add to Favorite</a>
+                    </div>
+                    <div class="col-md-6">
+                      <a href="javascript:void(0);" class="btn btn-wish w-100"><i class="feather-share-2"></i> Share</a>
+                    </div>
+                  </div>
+                  <a (click)="participate(journey?.journeyId)" *ngIf="!participated" class="btn btn-enroll w-100">Participate Now</a>
+                  <a (click)="declineParticipation(journey?.journeyId)" *ngIf="participated" class="btn btn-enroll w-100">Decline Participation</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="card include-sec">
+            <div class="card-body">
+              <div class="cat-title">
+                <h4>Car Informations</h4>
+              </div>
+              <ul>
+                <li><img src="assets/FrontOffice/img/icon/import.svg" class="me-2" alt>{{ journey?.car?.manufacturer }}</li>
+                <li><img src="assets/FrontOffice/img/icon/play.svg" class="me-2" alt>{{ journey?.car?.model }}</li>
+                <li><img src="assets/FrontOffice/img/icon/key.svg" class="me-2" alt>{{ journey?.car?.capacity }} places</li>
+                <li><img src="assets/FrontOffice/img/icon/mobile.svg" class="me-2" alt>{{ journey?.car?.year }}</li>
+                <li><img src="assets/FrontOffice/img/icon/cloud.svg" class="me-2" alt>{{ journey?.car?.registrationNumber }}</li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="card feature-sec">
+            <div class="card-body">
+              <div class="cat-title">
+                <h4>Passengers</h4>
+              </div>
+              <ul>
+
+                <li *ngFor="let p of passengers"><img src="assets/FrontOffice/img/icon/users.svg" class="me-2" alt> Name: <span> {{p.firstName}} {{p.lastName}} </span><br/> <span>({{p.location?.nameLocation}})</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Mail</h5>
+
+      </div>
+      <div class="modal-body">
+        <textarea [(ngModel)]="mail.content"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="close">Close</button>
+        <button type="button" class="btn btn-primary" (close)="sendMail()">Send Mail</button>
+      </div>
+    </div>
+  </div>
+</div>

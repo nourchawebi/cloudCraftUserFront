@@ -1,0 +1,103 @@
+<section class="course-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9 col-md-12">
+
+        <div *ngFor="let car of cars">
+
+
+        <div class="blog">
+          <div class="blog-image">
+            <a href="blog-details.html"><img class="img-fluid" src="assets/FrontOffice/img/blog/blog-05.jpg" alt="Post Image"></a>
+          </div>
+          <div class="blog-info clearfix">
+            <div class="post-left">
+              <ul>
+                <li>
+                  <div class="post-author">
+                    <a href="instructor-profile.html"><img src="assets/FrontOffice/img/icon/users.svg" alt="Post Author"> <span>{{ car.capacity }}</span></a>
+                  </div>
+                </li>
+                <li><img class="img-fluid" src="assets/FrontOffice/img/icon/icon-22.svg" alt>{{car.year}}</li>
+                <li><img class="img-fluid" src="assets/FrontOffice/img/icon/icon-23.svg" alt>{{ car.registrationNumber }}</li>
+              </ul>
+            </div>
+          </div>
+          <h3 class="blog-title"><a href="#">{{ car.manufacturer }} {{ car.model }}</a></h3>
+          <div class="blog-content blog-read">
+            <button (click)="update(car)" class="read-more btn btn-primary" style="margin-right: 10px">Update</button>
+            <button (click)="delete(car)" class="alert-warning btn btn-primary">Delete</button>
+
+          </div>
+        </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-12">
+            <ul class="pagination lms-page">
+              <li class="page-item prev">
+                <a class="page-link" href="javascript:void(0);" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+              </li>
+              <li class="page-item first-page active">
+                <a class="page-link" href="javascript:void(0);">1</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">2</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">3</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">4</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="javascript:void(0);">5</a>
+              </li>
+              <li class="page-item next">
+                <a class="page-link" href="javascript:void(0);"><i class="fas fa-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 col-md-12 sidebar-right theiaStickySidebar">
+
+        <div class="card search-widget blog-search blog-widget">
+          <div class="card-body">
+            <form class="search-form">
+              <div class="input-group">
+                <input type="text" placeholder="Search..." class="form-control">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+
+
+
+
+        <!--<div class="card tags-widget blog-widget tags-card">
+          <div class="card-header">
+            <h4 class="card-title">Latest Tags</h4>
+          </div>
+          <div class="card-body">
+            <ul class="tags">
+              <li><a href="javascript:void(0);" class="tag">HTML</a></li>
+              <li><a href="javascript:void(0);" class="tag">Java Script</a></li>
+              <li><a href="javascript:void(0);" class="tag">Css</a></li>
+              <li><a href="javascript:void(0);" class="tag">Jquery</a></li>
+              <li><a href="javascript:void(0);" class="tag">Java</a></li>
+              <li><a href="javascript:void(0);" class="tag">React</a></li>
+            </ul>
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+  </div>
+</section>
