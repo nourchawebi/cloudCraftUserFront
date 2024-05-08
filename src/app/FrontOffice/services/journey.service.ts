@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validator, } from "@angular/forms";
-import {Journey} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/models/journey";
-import {UserprofileService} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/userprofile/userprofile.service";
+
+import {UserprofileService} from "./userprofile/userprofile.service";
+import {Journey} from "../models/journey";
 
 @Injectable({
   providedIn: 'root'

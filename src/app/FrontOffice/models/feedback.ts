@@ -1,4 +1,4 @@
-import {User} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/models/user";
+import {User} from "./user";
 
 export interface Feedback {
   id:number,

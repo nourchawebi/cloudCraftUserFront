@@ -70,9 +70,16 @@
     <li class="menu-header small text-uppercase">
       <span class="menu-header-text">Courses</span>
     </li>
-    <li [class.active]="activeTab === 'courses'" class="menu-item">
-      <a    (click)=" setActiveItem('courses')"
-            routerLink="/admin/carpoolingstat" class="menu-link">
+    <li [class.active]="activeTab === 'courseDashboard'" class="menu-item">
+      <a    (click)=" setActiveItem('courseDashboard')"
+            routerLink="/admin/courseDashboard" class="menu-link">
+        <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
+        <div data-i18n="Analytics"> Courses Dashboard</div>
+      </a>
+    </li>
+    <li [class.active]="activeTab === 'course'" class="menu-item">
+      <a    (click)=" setActiveItem('course')"
+            routerLink="/admin/courses" class="menu-link">
         <i class="menu-icon tf-icons bx mat-step-icon-state-done"></i>
         <div data-i18n="Analytics"> Courses </div>
       </a>

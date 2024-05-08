@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {UserprofileService} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/userprofile/userprofile.service";
+import {UserprofileService} from "./userprofile/userprofile.service";
 import {Observable} from "rxjs";
 
 @Injectable({

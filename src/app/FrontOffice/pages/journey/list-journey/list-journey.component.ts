@@ -42,6 +42,7 @@ export class ListJourneyComponent {
       this.dataService.getMotorized().subscribe((data:Motorized[])=>
     {
       this.motorized =data
+      console.log(data)
       for (let i=0; i< this.motorized.length;i++)
         this.checkedUsers[i] = true;
     } );

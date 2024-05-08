@@ -1,5 +1,6 @@
 import {Car} from "./car";
 import {Participation} from "./participation";
+import {Location} from "./location";
 
 export interface User {
   id?: number;
@@ -14,4 +15,5 @@ export interface User {
   exp?: number;
   classeType?:string;
   picture?:string;
+  location?:Location;
 }

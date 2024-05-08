@@ -109,6 +109,9 @@ import {LocationComponent} from "./FrontOffice/pages/location/location.component
 import {ListCarComponent} from "./FrontOffice/pages/car-gestion/list-car/list-car.component";
 import {AddCarComponent} from "./FrontOffice/pages/car-gestion/add-car/add-car.component";
 import {CarGestionComponent} from "./FrontOffice/pages/car-gestion/car-gestion.component";
+import {
+  JourneyDetailsComponent
+} from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -211,8 +214,8 @@ const Validators = () => {
     FindAnnonceByDateComponent,
     StatsTop3AnnonceComponent,
     StatsCountTypeAnnonceComponent,
-    AllAnnoncesComponent
-
+    AllAnnoncesComponent,
+    JourneyDetailsComponent
 
 
   ],

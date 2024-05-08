@@ -3,8 +3,8 @@ import * as mapboxgl from "mapbox-gl";
 import * as MapboxDraw from "@mapbox/mapbox-gl-draw";
 import {waitForAsync} from "@angular/core/testing";
 import {Location} from "@angular/common";
-import {DataService} from "../../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/data.service";
 import {LocationService} from "../../services/location.service";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-location',
