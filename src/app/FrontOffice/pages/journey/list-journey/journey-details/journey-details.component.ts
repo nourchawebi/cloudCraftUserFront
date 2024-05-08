@@ -75,10 +75,14 @@ export class JourneyDetailsComponent implements OnInit{
   hover=0
 
   submit(){
+    var feedback={
+      rating:this.feedback.rating,
+      comment:this.feedback.comment,
+    }
     if(this.state === "A")
-      this.fb.createData(this.feedback,this.journey?.journeyId).subscribe()
+      this.fb.createData(this.feedback,this.journey?.journeyId).subscribe(value => this.ngOnInit())
     else
-      this.fb.updateData(this.feedback,this.journey?.journeyId).subscribe()
+      this.fb.updateData(feedback,this.journey?.journeyId).subscribe(value => this.ngOnInit())
   }
 
   setRating(number: number) {

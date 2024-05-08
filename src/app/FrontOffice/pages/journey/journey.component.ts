@@ -20,7 +20,14 @@ export class JourneyComponent {
     leavingTime:"",
     returnTime:"",
     availablePlaces:0,
-    car: {},
+    car: {
+      carId : 0,
+      manufacturer : "",
+      model : "",
+      year: "",
+      capacity: 0,
+      registrationNumber:""
+    },
     traject: [],
   };
 
@@ -66,6 +73,7 @@ export class JourneyComponent {
 
   nextFieldset() {
     if(this.currentFieldsetIndex==1)
+      if(this.journey.availablePlaces<this.journey.car.capacity && this.journey.availablePlaces>=1)
       this.currentFieldsetIndex++;
     if(this.currentFieldsetIndex==0)
       if(this.journey.returnTime!=""&&this.journey.leavingTime!=""&&this.journey.day!=""&&this.journey.price!=0)

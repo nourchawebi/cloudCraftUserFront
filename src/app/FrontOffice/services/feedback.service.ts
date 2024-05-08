@@ -33,6 +33,6 @@ export class FeedbackService {
 
   updateData( info: Object, id: number | undefined): Observable<Object> {
     const headers = this.up.createAuthorization();
-    return this.http.put(`${this.baseUrl}/${id}`,info,{headers})
+    return this.http.post(`${this.baseUrl}/update/${id}`,info,{headers})
   }
 }
