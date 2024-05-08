@@ -60,7 +60,7 @@ export class AnnonceService {
   deleteAnnonce(id: number): Observable<void> {
     const headers = this.up.createAuthorization();
 
-    return this.http.delete<void>(`${this.baseUrl}/${id}`,{headers});
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`,{headers});
   }
 
 
@@ -106,6 +106,14 @@ export class AnnonceService {
     const headers = this.up.createAuthorization();
 
     return this.http.get<Annonce>(`${this.baseUrl}/annonce/${id}`,{headers});
+  }
+
+  getNumberOfLikes(annonceId: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/nbrLikesParAnnonce/${annonceId}`);
+  }
+
+  getNumberOfDislikes(annonceId: number): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/nbrDislikesParAnnonce/${annonceId}`);
   }
 }
 

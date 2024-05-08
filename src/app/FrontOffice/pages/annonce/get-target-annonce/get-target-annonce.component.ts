@@ -43,7 +43,7 @@ export class GetTargetAnnonceComponent implements OnInit {
     );
   }
 
- 
+
 
   getAllComments(annonceId: number): void {
     this.commentService.getAllComments(annonceId).subscribe(

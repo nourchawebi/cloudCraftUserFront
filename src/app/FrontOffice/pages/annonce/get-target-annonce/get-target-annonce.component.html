@@ -16,12 +16,13 @@
               <div class="comment-info">
                 <span class="comment-date">{{ comment.comment_date }}</span>
                 <p>{{ comment.comment_description }}</p>
+
               </div>
             </li>
           </ul>
         </div>
         <div *ngIf="!comments || comments.length === 0">
-            <p class="label">No comments available.</p>
+          <p class="label">No comments available.</p>
         </div>
       </div>
     </div>

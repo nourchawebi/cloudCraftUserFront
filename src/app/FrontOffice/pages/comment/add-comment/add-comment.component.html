@@ -12,9 +12,9 @@
         <form [formGroup]="commentForm" (ngSubmit)="addComment()">
           <textarea formControlName="comment_description"  class="form-control" id="description" placeholder="Write down here" rows="4"></textarea>
 
-            <label for="description">Description Comment</label>
+          <label for="description">Description Comment</label>
 
-            <small class="text-danger" *ngIf="commentForm.get('comment_description')?.errors && commentForm.get('comment_description')?.touched">Description is required</small>
+          <small class="text-danger" *ngIf="commentForm.get('comment_description')?.errors && commentForm.get('comment_description')?.touched">Description is required</small>
 
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

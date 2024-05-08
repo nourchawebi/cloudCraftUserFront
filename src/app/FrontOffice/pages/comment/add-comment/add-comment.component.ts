@@ -12,11 +12,11 @@ declare var webkitSpeechRecognition: any
 export class AddCommentComponent {
   filteredText:any;
   myComment:string='';
-  isRecognizing: boolean = false; 
+  isRecognizing: boolean = false;
   recognition: any;
   transcription: string = '';
   commentForm: FormGroup;
-  id_user:number=1;
+  id_user!:number;
   @Output() close = new EventEmitter<void>();
   @Input() id : any | undefined;
 
@@ -27,7 +27,7 @@ export class AddCommentComponent {
 
     this.recognition = new webkitSpeechRecognition();
     this.recognition.lang = 'en-US';
-  
+
     this.recognition.onresult = (event: any) => {
       const transcript = event.results[0][0].transcript;
       console.log(transcript); // Display recognized text
@@ -44,31 +44,31 @@ export class AddCommentComponent {
       this.recognition.stop(); // Stop recognition
     }
     this.isRecognizing = !this.isRecognizing; // Toggle recognition flag
-  
-  
+
+
   }
-  
+
   addComment():void{
-   
+
     if(this.transcription!=""){
       const commentDescription = this.transcription;
-      
-      
-      
+
+
+
       const formData = new FormData();
       formData.append("comment_text", commentDescription );
       formData.append("annonce_id", this.id.toString());
       formData.append("id_user", this.id.toString());
       //console.log("New 2222222222222222222comment",formData);
-      
-     this.commentService.addComment(formData).subscribe(()=> {
+
+      this.commentService.addComment(formData).subscribe(()=> {
         alert("Comment added successfully!");
         this.commentForm.reset();
-      
+
         this.close.emit();
         window.location.reload();
       }, err => {
-        
+
         alert("An error occurred while adding Comment.");
         console.log(err);
       });
@@ -76,27 +76,27 @@ export class AddCommentComponent {
     }
     if(this.commentForm.valid){
       const commentDescription = this.commentForm.get('comment_description')?.value;
-        const formData = new FormData();
-        formData.append("comment_text", commentDescription );
-        formData.append("annonce_id", this.id.toString());
-        formData.append("id_user", this.id.toString());
- 
-       
+      const formData = new FormData();
+      formData.append("comment_text", commentDescription );
+      formData.append("annonce_id", this.id.toString());
+      formData.append("id_user", this.id.toString());
 
-       this.commentService.addComment(formData).subscribe(()=> {
-          alert("Comment added successfully!");
-          this.commentForm.reset();
-          this.close.emit();
-          window.location.reload();
 
-        }, err => {
-          alert("An error occurred while adding Comment.");
-          console.log(err);
-        });
-      }
+
+      this.commentService.addComment(formData).subscribe(()=> {
+        alert("Comment added successfully!");
+        this.commentForm.reset();
+        this.close.emit();
+        window.location.reload();
+
+      }, err => {
+        alert("An error occurred while adding Comment.");
+        console.log(err);
+      });
     }
-   
-  
+  }
+
+
   onClose(){
     this.close.emit();
   }

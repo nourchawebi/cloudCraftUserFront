@@ -38,80 +38,83 @@
     <!-- Cartes d'annonce à droite -->
     <div class="col-lg-9">
       <div style="padding: 20px;" class="all-btn all-category">
-          <button class="btn btn-primary" (click)="openAddAnnonceModal()">Add New Annonce</button>
+        <button class="btn btn-primary" (click)="openAddAnnonceModal()">Add New Annonce</button>
       </div>
       <div class="row">
-          <ng-container *ngFor="let annonce of getCurrentPageAnnonces(); let i = index">
-              <div class="col-lg-6 col-md-6 d-flex">
-                  <div class="course-box course-design d-flex">
-                      <div class="product">
-                          <div class="product-img">
-                              <img [src]="getImageUrl(annonce.picture)" alt="image" class="avatar-img rounded-circle" />
-                          </div>
-                          <div class="product-content">
-                              <div class="course-group d-flex">
-                                  <div class="course-group-img d-flex">
-                                      <div class="course-name">
-                                          <h4>{{ annonce.title }}</h4>
-                                      </div>
-                                  </div>
-                              </div>
-                              <h3 class="title">{{ annonce.annonce_description }}</h3>
-                              <div class="course-info d-flex align-items-center">
-                                  <div class="rating-img d-flex align-items-center">
-                                      <p>{{ annonce.typeAnnonce }}</p>
-                                  </div>
-                                  <div class="course-view d-flex align-items-center">
-                                      <p>{{ annonce.annonce_date | date: 'medium' }}</p>
-                                  </div>
-                              </div>
-                              <div class="card-container">
-                                  <div class="all-btn all-category d-flex align-items-center">
-                                      <button class="btn btn-primary mr-3" (click)="openAddCommentModal(annonce.id_annonce)">Add Comment</button>
-                                      <div class="like-dislike-comments-wrapper ml-auto d-flex align-items-center">
-                                          <div class="like-dislike-wrapper mr-3">
-                                              <label class="ui-like">
-                                                  <input class="input-like" type="checkbox" (click)="likePost(annonce)" [class.liked]="isLiked">
-                                                  <div class="like">
-                                                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="">
-                                                          <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                                                          <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                                                          <g id="SVGRepo_iconCarrier">
-                                                              <path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path>
-                                                          </g>
-                                                      </svg>
-                                                  </div>
-                                                  {{ annonce.likes }} Likes
-                                              </label>
-                                              <label class="container" style="margin-left: 0;">
-                                                  <input type="checkbox" class="input-dislike" (click)="dislikePost(annonce)">
-                                                  <div>
-                                                      <svg class="dislike" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                          <path d="M2.156,14.901l2.489-8.725C5.012,4.895,6.197,4,7.528,4h13.473C21.554,4,22,4.448,22,5v14  c0,0.215-0.068,0.425-0.197,0.597l-5.392,7.24C15.813,27.586,14.951,28,14.027,28c-1.669,0-3.026-1.357-3.026-3.026V20H5.999  c-1.265,0-2.427-0.579-3.188-1.589C2.047,17.399,1.809,16.12,2.156,14.901z" id="XMLID_259_"></path>
-                                                          <path d="M25.001,20h4C29.554,20,30,19.552,30,19V5c0-0.552-0.446-1-0.999-1h-4c-0.553,0-1,0.448-1,1v14  C24.001,19.552,24.448,20,25.001,20z M27.001,6.5c0.828,0,1.5,0.672,1.5,1.5c0,0.828-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5  C25.501,7.172,26.173,6.5,27.001,6.5z" id="XMLID_260_"></path>
-                                                      </svg>
-                                                  </div>
-                                                  {{ annonce.dislikes }} Dislikes
-                                              </label>
-                                          </div>
-                                          <label class="container">
-                                              <div class="comments-wrapper">
-                                                  <span>{{ commentCount[i] }}</span> <span>Comments</span>
-                                              </div>
-                                          </label>
-                                      </div>
-                                  </div>
-                                  <div class="all-btn all-category d-flex align-items-center">
-                                      <button class="btn btn-primary view-more-btn" (click)="ViewMore(annonce.id_annonce)">View More</button>
-                                  </div>
-                              </div>
-                          </div>
+        <ng-container *ngFor="let annonce of getCurrentPageAnnonces(); let i = index">
+          <div class="col-lg-6 col-md-6 d-flex">
+            <div class="course-box course-design d-flex">
+              <div class="product">
+                <div class="product-img">
+
+                  <img *ngIf="annonce.typeAnnonce === 'LOST_AND_FOUND'" [src]="getImageUrl(annonce.picture)" alt="image" class="avatar-img rounded-circle" />
+
+
+                </div>
+                <div class="product-content">
+                  <div class="course-group d-flex">
+                    <div class="course-group-img d-flex">
+                      <div class="course-name">
+                        <h4>{{ annonce.title }}</h4>
                       </div>
+                    </div>
                   </div>
+                  <h3 class="title">{{ annonce.annonce_description }}</h3>
+                  <div class="course-info d-flex align-items-center">
+                    <div class="rating-img d-flex align-items-center">
+                      <p>{{ annonce.typeAnnonce }}</p>
+                    </div>
+                    <div class="course-view d-flex align-items-center">
+                      <p>{{ annonce.annonce_date | date: 'medium' }}</p>
+                    </div>
+                  </div>
+                  <div class="card-container">
+                    <div class="all-btn all-category d-flex align-items-center">
+                      <button class="btn btn-primary mr-3" (click)="openAddCommentModal(annonce.id_annonce)">Add Comment</button>
+                      <div class="like-dislike-comments-wrapper ml-auto d-flex align-items-center">
+                        <div class="like-dislike-wrapper mr-3">
+                          <label class="ui-like">
+                            <input class="input-like" type="checkbox" (click)="likePost(annonce)" [class.liked]="isLiked">
+                            <div class="like">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="">
+                                <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+                                <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+                                <g id="SVGRepo_iconCarrier">
+                                  <path d="M20.808,11.079C19.829,16.132,12,20.5,12,20.5s-7.829-4.368-8.808-9.421C2.227,6.1,5.066,3.5,8,3.5a4.444,4.444,0,0,1,4,2,4.444,4.444,0,0,1,4-2C18.934,3.5,21.773,6.1,20.808,11.079Z"></path>
+                                </g>
+                              </svg>
+                            </div>
+                            {{ annonce.likes }} Likes
+                          </label>
+                          <label class="container" style="margin-left: 0;">
+                            <input type="checkbox" class="input-dislike" (click)="dislikePost(annonce)">
+                            <div>
+                              <svg class="dislike" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                          <path d="M2.156,14.901l2.489-8.725C5.012,4.895,6.197,4,7.528,4h13.473C21.554,4,22,4.448,22,5v14  c0,0.215-0.068,0.425-0.197,0.597l-5.392,7.24C15.813,27.586,14.951,28,14.027,28c-1.669,0-3.026-1.357-3.026-3.026V20H5.999  c-1.265,0-2.427-0.579-3.188-1.589C2.047,17.399,1.809,16.12,2.156,14.901z" id="XMLID_259_"></path>
+                                <path d="M25.001,20h4C29.554,20,30,19.552,30,19V5c0-0.552-0.446-1-0.999-1h-4c-0.553,0-1,0.448-1,1v14  C24.001,19.552,24.448,20,25.001,20z M27.001,6.5c0.828,0,1.5,0.672,1.5,1.5c0,0.828-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5  C25.501,7.172,26.173,6.5,27.001,6.5z" id="XMLID_260_"></path>
+                                                      </svg>
+                            </div>
+                            {{ annonce.dislikes }} Dislikes
+                          </label>
+                        </div>
+                        <label class="container">
+                          <div class="comments-wrapper">
+                            <span>{{ commentCount[i] }}</span> <span>Comments</span>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="all-btn all-category d-flex align-items-center">
+                      <button class="btn btn-primary view-more-btn" (click)="ViewMore(annonce.id_annonce)">View More</button>
+                    </div>
+                  </div>
+                </div>
               </div>
-          </ng-container>
+            </div>
+          </div>
+        </ng-container>
       </div>
-  </div>
+    </div>
 
 
 
@@ -120,19 +123,19 @@
 
     <div class="row">
       <div class="col-md-12">
-      <ul class="pagination lms-page">
-      <li class="page-item prev" [class.disabled]="currentPage == 1" (click)="onPageChange(currentPage - 1)">
-        <a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-      </li>
-      <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
-      <a class="page-link" href="javascript:void(0)" (click)="onPageChange(page)">{{ page }}</a>
-      </li>
-      <li class="page-item next" [class.disabled]="currentPage == totalPages" (click)="onPageChange(currentPage + 1)">
-      <a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-      </li>
-      </ul>
+        <ul class="pagination lms-page">
+          <li class="page-item prev" [class.disabled]="currentPage == 1" (click)="onPageChange(currentPage - 1)">
+            <a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
+          </li>
+          <li class="page-item" *ngFor="let page of pages" [class.active]="page === currentPage">
+            <a class="page-link" href="javascript:void(0)" (click)="onPageChange(page)">{{ page }}</a>
+          </li>
+          <li class="page-item next" [class.disabled]="currentPage == totalPages" (click)="onPageChange(currentPage + 1)">
+            <a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
+          </li>
+        </ul>
       </div>
-      </div>
+    </div>
   </div>
 </div>
 <app-add-annonce *ngIf="ShowAddAnnonceModal" (close)="closeAddAnnonceModal()"></app-add-annonce>

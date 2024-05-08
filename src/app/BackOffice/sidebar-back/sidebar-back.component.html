@@ -102,32 +102,35 @@
     <!-- Components -->
     <!-- malek -->
 
-    <li class="menu-item">
-      <a routerLink="/admin/findByDate" class="menu-link d-flex align-items-center">
+    <li [class.active]="activeTab === 'ad'" class="menu-item">
+      <a  (click)=" setActiveItem('ad')" routerLink="/admin/findByDate" class="menu-link d-flex align-items-center">
         <i class="menu-icon tf-icons bx bx-collection me-2"></i>
         <div class="d-flex flex-column">
           <span class="fw" data-i18n="Basic">Today's posts</span>
         </div>
       </a>
     </li>
-    <li class="menu-item">
-      <a routerLink="/admin/Top3Annonce" class="menu-link d-flex align-items-center">
+
+    <li [class.active]="activeTab === 'ad'" class="menu-item">
+      <a  (click)=" setActiveItem('ad')" routerLink="/admin/Top3Annonce" class="menu-link d-flex align-items-center">
         <i class="menu-icon tf-icons bx bx-collection me-2"></i>
         <div class="d-flex flex-column">
           <span class="fw" data-i18n="Basic">Top 3 posts</span>
         </div>
       </a>
     </li>
-    <li class="menu-item">
-      <a routerLink="/admin/all-annonces" class="menu-link d-flex align-items-center">
+
+    <li [class.active]="activeTab === 'ad'" class="menu-item">
+      <a  (click)=" setActiveItem('ad')" routerLink="/admin/all-annonces" class="menu-link d-flex align-items-center">
         <i class="menu-icon tf-icons bx bx-collection me-2"></i>
         <div class="d-flex flex-column">
           <span class="fw" data-i18n="Basic">All posts</span>
         </div>
       </a>
     </li>
-    <li class="menu-item">
-      <a routerLink="/admin/pourcentage" class="menu-link d-flex align-items-center">
+
+    <li [class.active]="activeTab === 'ad'" class="menu-item">
+      <a  (click)=" setActiveItem('ad')" routerLink="/admin/pourcentage" class="menu-link d-flex align-items-center">
         <i class="menu-icon tf-icons bx bx-collection me-2"></i>
         <div class="d-flex flex-column">
           <span class="fw" data-i18n="Basic">Posts statistics</span>

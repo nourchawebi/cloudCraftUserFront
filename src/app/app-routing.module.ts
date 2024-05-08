@@ -71,6 +71,10 @@ import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-ann
 import { UpdateAnonnceComponent } from './FrontOffice/pages/annonce/update-anonnce/update-anonnce.component';
 import { ChartEventComponent } from './BackOffice/event/chart-event/chart-event.component';
 import {NotfoundComponent} from "./FrontOffice/pages/notfound/notfound.component";
+import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find-annonce-by-date.component";
+import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
+import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
+import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
 
 const routes: Routes = [
 
@@ -232,6 +236,7 @@ const routes: Routes = [
         path : 'courses', component : CoursesListComponent
         // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
       },
+
       {
         path : 'courses/add', component : AddCourseComponent
         // loadChildren : () => import('./evenement/event-admin/event-admin.component').then(m => m.EventAdminComponent)
@@ -247,7 +252,10 @@ const routes: Routes = [
       {path : 'CreateEvent' , component : AjouterEventComponent},
       {path : 'updateEvent/:id' , component :UpdateEventComponent},
       {path : 'chart-event' , component : ChartEventComponent},
-
+      {path : 'findByDate' , component : FindAnnonceByDateComponent},
+      {path : 'Top3Annonce' , component : StatsTop3AnnonceComponent},
+      {path : 'all-annonces' , component : AllAnnoncesComponent},
+      {path : 'pourcentage' , component : StatsCountTypeAnnonceComponent},
       {
         path:'lockuser',
         component:LockusersComponent,

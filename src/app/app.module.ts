@@ -102,6 +102,10 @@ import { GetAnnonceByIDUserComponent } from './FrontOffice/pages/annonce/get-ann
 import { AddCommentComponent } from './FrontOffice/pages/comment/add-comment/add-comment.component';
 import { GetTargetAnnonceComponent } from './FrontOffice/pages/annonce/get-target-annonce/get-target-annonce.component';
 import { NotfoundComponent } from './FrontOffice/pages/notfound/notfound.component';
+import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find-annonce-by-date.component";
+import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
+import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
+import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -201,7 +205,11 @@ const Validators = () => {
     BookDashboardComponent,
     CategoryListComponent,
     CoursesDashboardComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FindAnnonceByDateComponent,
+    StatsTop3AnnonceComponent,
+    StatsCountTypeAnnonceComponent,
+    AllAnnoncesComponent
 
 
 
