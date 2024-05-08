@@ -7,10 +7,10 @@ import {
   AgendaService,
   EventSettingsModel
 } from '@syncfusion/ej2-angular-schedule';
-import {JourneyService} from "../../../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/journey.service";
 import {ActivatedRoute} from "@angular/router";
-import {Journey} from "../../../../../../../cloudCraftUserFront-user/src/app/FrontOffice/models/journey";
 import {th} from "date-fns/locale";
+import {JourneyService} from "../../../services/journey.service";
+import {Journey} from "../../../models/journey";
 
 @Component({
   selector: 'app-calendar-journey',

@@ -75,6 +75,11 @@ import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find
 import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
 import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
 import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
+import {
+  JourneyDetailsComponent
+} from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
+import {MapComponent} from "./FrontOffice/pages/map/map.component";
+import {CalendarJourneyComponent} from "./FrontOffice/pages/journey/calendar-journey/calendar-journey.component";
 
 const routes: Routes = [
 
@@ -199,8 +204,19 @@ const routes: Routes = [
       {
         path: 'edit/:bookId',
         component: UpdateBookComponent
+      },
+      {
+        path: 'map',
+        component: MapComponent
+      },
+      {
+        path: 'journey/:id',
+        component: JourneyDetailsComponent
+      },
+      {
+        path: 'journey/calendar',
+        component: CalendarJourneyComponent
       }
-
 
 
     ]
@@ -286,6 +302,7 @@ const routes: Routes = [
         path: 'courseDashboard',
         component: CoursesDashboardComponent
       }
+
     ]
 
 

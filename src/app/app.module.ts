@@ -112,6 +112,8 @@ import {CarGestionComponent} from "./FrontOffice/pages/car-gestion/car-gestion.c
 import {
   JourneyDetailsComponent
 } from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
+import {CalendarJourneyComponent} from "./FrontOffice/pages/journey/calendar-journey/calendar-journey.component";
+import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -205,7 +207,7 @@ const Validators = () => {
     BookCardComponent,
     BookBorrowCardComponent,
     AddBookComponent,
-
+    CalendarJourneyComponent,
     BookCategoryComponent,
     BookDashboardComponent,
     CategoryListComponent,
@@ -219,38 +221,39 @@ const Validators = () => {
 
 
   ],
-    imports: [
-        ChartsModule,
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        MatSlideToggleModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatSelectModule,
-        BrowserAnimationsModule,
-        MatStepperModule,
-        MatCheckboxModule,
-        MatButtonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        ReactiveFormsModule,
-        CommonModule,
-        MatProgressSpinnerModule,
-        MatCardModule,
-        WebcamModule,
+  imports: [
+    ChartsModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatProgressSpinnerModule,
+    MatCardModule,
+    WebcamModule,
 
-        QRCodeModule,
-        CalendarModule.forRoot({
-            provide: DateAdapter,
-            useFactory: adapterFactory,
-        }),
-      NgbModule,
-        NgbRating,
-        // NgToastModule
+    QRCodeModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    NgbModule,
+    NgbRating,
+    ScheduleModule,
+    // NgToastModule
 
-    ],
+  ],
   providers: [HttpClient,HttpParams,DatePipe],
   bootstrap: [AppComponent]
 })
