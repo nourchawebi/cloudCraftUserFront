@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validator, } from "@angular/forms";
-import {Journey} from "../models/journey";
-import {UserprofileService} from "./userprofile/userprofile.service";
+import {Journey} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/models/journey";
+import {UserprofileService} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/userprofile/userprofile.service";
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,14 @@ export class JourneyService {
   public dataForm!: FormGroup ;
   constructor(private http: HttpClient , private up:UserprofileService) { }
 
-  getData(id:number): Observable<Object> {
+  getData(id:number): Observable<any> {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/${id}`,{headers})
+  }
+
+  getMotorized(id:number): Observable<any> {
+    const headers = this.up.createAuthorization();
+    return this.http.get(`${this.baseUrl}/${id}/motorized`,{headers})
   }
 
   createData(info: Object): Observable<Object> {
@@ -40,9 +45,13 @@ export class JourneyService {
     return this.http.get(`${this.baseUrl}`,{headers})
   }
 
+  getAllParticipatedAt(): Observable<any> {
+    const headers = this.up.createAuthorization();
+    return this.http.get(`${this.baseUrl}/participated`,{headers})
+  }
+
   getStats(): Observable<any> {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/statistics`,{headers})
   }
-
 }

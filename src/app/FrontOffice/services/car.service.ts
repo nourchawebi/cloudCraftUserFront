@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validator, } from "@angular/forms";
-import {UserprofileService} from "./userprofile/userprofile.service";
+import {UserprofileService} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/userprofile/userprofile.service";
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +24,15 @@ export class CarService {
   }
 
   updateData(id:number, value:any): Observable<Object> {
-    return this.http.put(`${this.baseUrl}/${id}`,value)
+    const headers = this.up.createAuthorization();
+
+    return this.http.put(`${this.baseUrl}/${id}`,value,{headers})
   }
 
   deleteData(id:Number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`,{responseType: 'text'})
+    const headers = this.up.createAuthorization();
+
+    return this.http.delete(`${this.baseUrl}/${id}`,{headers})
   }
 
   getAll(): Observable<any> {

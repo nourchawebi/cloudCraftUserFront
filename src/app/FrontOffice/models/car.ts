@@ -1,8 +1,8 @@
 export interface Car {
-  carId : Number
-  manufacturer : String
-  model : String
-  year: String
-  capacity: Number
-  registrationNumber:String
+  carId : number
+  manufacturer : string
+  model : string
+  year: string
+  capacity: number
+  registrationNumber:string
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule, Validator, } from "@angular/forms";
-import {UserprofileService} from "./userprofile/userprofile.service";
+import {UserprofileService} from "../../../../../cloudCraftUserFront-user/src/app/FrontOffice/services/userprofile/userprofile.service";
 
 @Injectable({
   providedIn: 'root'

@@ -40,14 +40,13 @@ import {WebcamModule} from "ngx-webcam";
 import { UnothorizedComponent } from './FrontOffice/pages/unothorized/unothorized.component';
 import { UserstaticsComponent } from './BackOffice/user/userstatics/userstatics.component';
 import {BaseChartDirective, ChartsModule} from "ng2-charts";
-import {CarGestionComponent} from "./FrontOffice/pages/car-gestion/car-gestion.component";
-import {AddCarComponent} from "./FrontOffice/pages/car-gestion/add-car/add-car.component";
-import {ListCarComponent} from "./FrontOffice/pages/car-gestion/list-car/list-car.component";
-import {LocationComponent} from "./FrontOffice/pages/location/location.component";
+// import {CarGestionComponent} from "./FrontOffice/pages/car-gestion/car-gestion.component";
+// import {AddCarComponent} from "./FrontOffice/pages/car-gestion/add-car/add-car.component";
+// import {ListCarComponent} from "./FrontOffice/pages/car-gestion/list-car/list-car.component";
+// import {LocationComponent} from "./FrontOffice/pages/location/location.component";
 import {MapComponent} from "./FrontOffice/pages/map/map.component";
 import {ListJourneyComponent} from "./FrontOffice/pages/journey/list-journey/list-journey.component";
 import {JourneyComponent} from "./FrontOffice/pages/journey/journey.component";
-import { ParticipationsComponent } from './FrontOffice/pages/journey/list-journey/participations/participations.component';
 import { JourneystatisticsComponent } from './BackOffice/journey/journeystatistics/journeystatistics.component';
 import {AjouterEventComponent} from "./BackOffice/event/ajouter-event/ajouter-event.component";
 import {UpdateEventComponent} from "./BackOffice/event/update-event/update-event.component";
@@ -106,6 +105,10 @@ import {FindAnnonceByDateComponent} from "./BackOffice/find-annonce-by-date/find
 import {StatsTop3AnnonceComponent} from "./BackOffice/stats-top3-annonce/stats-top3-annonce.component";
 import {StatsCountTypeAnnonceComponent} from "./BackOffice/stats-count-type-annonce/stats-count-type-annonce.component";
 import {AllAnnoncesComponent} from "./BackOffice/annonce/all-annonces/all-annonces.component";
+import {LocationComponent} from "./FrontOffice/pages/location/location.component";
+import {ListCarComponent} from "./FrontOffice/pages/car-gestion/list-car/list-car.component";
+import {AddCarComponent} from "./FrontOffice/pages/car-gestion/add-car/add-car.component";
+import {CarGestionComponent} from "./FrontOffice/pages/car-gestion/car-gestion.component";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -153,7 +156,6 @@ const Validators = () => {
     MapComponent,
     ListJourneyComponent,
     JourneyComponent,
-    ParticipationsComponent,
     JourneystatisticsComponent,
     AjouterEventComponent,
     UpdateEventComponent,
