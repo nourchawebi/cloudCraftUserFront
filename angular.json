@@ -35,11 +35,12 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
               "node_modules/angular-calendar/css/angular-calendar.css",
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/@syncfusion/ej2-material-theme/styles/material.css"
 
             ],
             "scripts": [       "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-            
+
 
             ]
           },

@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  DayService,
-  WeekService,
-  WorkWeekService,
-  MonthService,
-  AgendaService,
-  EventSettingsModel
-} from '@syncfusion/ej2-angular-schedule';
-import {ActivatedRoute} from "@angular/router";
-import {th} from "date-fns/locale";
 import {JourneyService} from "../../../services/journey.service";
+import {ActivatedRoute} from "@angular/router";
 import {Journey} from "../../../models/journey";
+import {
+  AgendaService,
+  DayService,
+  EventSettingsModel,
+  MonthService,
+  WeekService,
+  WorkWeekService
+} from "@syncfusion/ej2-angular-schedule";
+
 
 @Component({
   selector: 'app-calendar-journey',
@@ -30,20 +30,19 @@ export class CalendarJourneyComponent implements OnInit{
       this.journeys=value
       if(this.journeys?.length)
         for(let j of this.journeys){
-          console.log(Number(j.returnTime.substring(0,2)))
           this.data.push({
             id: j.journeyId,
             eventName: 'Leaving',
-            startTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7)), Number(j.day.substring(8, 10)), Number(j.leavingTime.substring(0,2)), Number(j.leavingTime.substring(0,2))),
-            endTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7)), Number(j.day.substring(8, 10)), Number(j.leavingTime.substring(0,2)), Number(j.leavingTime.substring(0,2))+30),
+            startTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7))-1, Number(j.day.substring(8, 10)), Number(j.leavingTime.substring(0,2)), Number(j.leavingTime.substring(0,2))),
+            endTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7))-1, Number(j.day.substring(8, 10)), Number(j.leavingTime.substring(0,2)), Number(j.leavingTime.substring(0,2))+30),
             isAllDay: false
           })
 
           this.data.push({
             id: j.journeyId,
             eventName: 'Return',
-            startTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7)), Number(j.day.substring(8, 10)), Number(j.returnTime.substring(0,2)), Number(j.returnTime.substring(0,2))),
-            endTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7)), Number(j.day.substring(8, 10)), Number(j.returnTime.substring(0,2)), Number(j.returnTime.substring(0,2))+30),
+            startTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7))-1, Number(j.day.substring(8, 10)), Number(j.returnTime.substring(0,2)), Number(j.returnTime.substring(0,2))),
+            endTime: new Date(Number(j.day.substring(0, 4)), Number(j.day.substring(5, 7))-1, Number(j.day.substring(8, 10)), Number(j.returnTime.substring(0,2)), Number(j.returnTime.substring(0,2))+30),
             isAllDay: false
           })
         }

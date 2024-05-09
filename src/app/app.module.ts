@@ -113,7 +113,7 @@ import {
   JourneyDetailsComponent
 } from "./FrontOffice/pages/journey/list-journey/journey-details/journey-details.component";
 import {CalendarJourneyComponent} from "./FrontOffice/pages/journey/calendar-journey/calendar-journey.component";
-import {ScheduleModule} from "@syncfusion/ej2-angular-schedule";
+import {ScheduleModule, RecurrenceEditorModule} from "@syncfusion/ej2-angular-schedule";
 
 //import {NgToastModule} from "ng-angular-popup";
 
@@ -251,6 +251,7 @@ const Validators = () => {
     NgbModule,
     NgbRating,
     ScheduleModule,
+    RecurrenceEditorModule
     // NgToastModule
 
   ],

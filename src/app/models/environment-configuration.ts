@@ -3,3 +3,4 @@ export interface EnvironmentConfiguration {
   production: boolean;
   apiKey:string;
 }
+

@@ -177,8 +177,8 @@
                 <li><img src="assets/FrontOffice/img/icon/import.svg" class="me-2" alt>{{ journey?.car?.manufacturer }}</li>
                 <li><img src="assets/FrontOffice/img/icon/play.svg" class="me-2" alt>{{ journey?.car?.model }}</li>
                 <li><img src="assets/FrontOffice/img/icon/key.svg" class="me-2" alt>{{ journey?.car?.capacity }} places</li>
-                <li><img src="assets/FrontOffice/img/icon/mobile.svg" class="me-2" alt>{{ journey?.car?.year }}</li>
-                <li><img src="assets/FrontOffice/img/icon/cloud.svg" class="me-2" alt>{{ journey?.car?.registrationNumber }}</li>
+                <li><img src="assets/FrontOffice/img/icon/timer-start.svg" class="me-2" alt>{{ journey?.car?.year }}</li>
+                <li><img src="assets/FrontOffice/img/icon/icon-23.svg" class="me-2" alt>{{ journey?.car?.registrationNumber }}</li>
               </ul>
             </div>
           </div>
@@ -210,11 +210,11 @@
 
       </div>
       <div class="modal-body">
-        <textarea [(ngModel)]="mail.content"></textarea>
+        <textarea [(ngModel)]="mail.body"></textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="close">Close</button>
-        <button type="button" class="btn btn-primary" (close)="sendMail()">Send Mail</button>
+        <button type="button" class="btn btn-primary" (click)="sendMail()">Send Mail</button>
       </div>
     </div>
   </div>

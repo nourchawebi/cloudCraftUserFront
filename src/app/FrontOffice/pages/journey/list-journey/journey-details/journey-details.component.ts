@@ -60,7 +60,7 @@ export class JourneyDetailsComponent implements OnInit{
   state:string="A";
   stateParticipation:boolean = false;
   mail={
-    content:"",
+    body:"",
     to:""
   }
 
@@ -99,7 +99,9 @@ export class JourneyDetailsComponent implements OnInit{
   }
 
   sendMail() {
-    this.mail.to!=this.motorized?.email
+    this.mail.to=this.motorized?.email!
+    this.js.sendMail(this.mail).subscribe()
+
   }
 
   declineParticipation(journeyId: number | undefined) {

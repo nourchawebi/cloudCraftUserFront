@@ -55,4 +55,14 @@ export class JourneyService {
     const headers = this.up.createAuthorization();
     return this.http.get(`${this.baseUrl}/statistics`,{headers})
   }
+
+  sendMail(info: { body:String,to:String }): Observable<any> {
+    var mail=
+    {
+      to:info.to,
+      body:info.body
+    }
+    const headers = this.up.createAuthorization();
+    return this.http.post(`${this.baseUrl}/mail`,mail,{headers});
+  }
 }

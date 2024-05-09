@@ -210,13 +210,14 @@ const routes: Routes = [
         component: MapComponent
       },
       {
+        path: 'journey/calendar',
+        component: CalendarJourneyComponent
+      },
+      {
         path: 'journey/:id',
         component: JourneyDetailsComponent
       },
-      {
-        path: 'journey/calendar',
-        component: CalendarJourneyComponent
-      }
+
 
 
     ]
