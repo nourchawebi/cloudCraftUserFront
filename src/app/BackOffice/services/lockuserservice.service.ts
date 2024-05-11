@@ -3,13 +3,14 @@ import {catchError, throwError} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../../FrontOffice/services/auth/authentication.service";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LockuserserviceService {
 
-  private baseUrl2: string ='http://localhost:8081/admin';
+  private  readonly baseUrl2 = environment.API_BASE_URL+'/admin';
   constructor(private http: HttpClient, private router: Router,
               private authService: AuthenticationService,
   ) { }

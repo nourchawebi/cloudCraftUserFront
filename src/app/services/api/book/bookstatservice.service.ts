@@ -6,38 +6,38 @@ import {UserprofileService} from "../../../FrontOffice/services/userprofile/user
   providedIn: 'root'
 })
 export class BookstatserviceService {
-  private baseUrl = 'http://localhost:8081/bookstats';
+  private baseUrl = 'http://localhost:8081';
 
   constructor(private http: HttpClient,
               private up:UserprofileService) { }
 
   countTotalBooks() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/totalBooks`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/totalBooks`, {headers});
   }
 
   countBooksByCategory() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/booksByCategory`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/booksByCategory`, {headers});
   }
 
   getAvailableVsUnavailableBooks() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/availableVsUnavailableBooks`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/availableVsUnavailableBooks`, {headers});
   }
 
   countBooksCreationByMonth() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/booksCreationByMonth`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/booksCreationByMonth`, {headers});
   }
 
   countAvailableBooks() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/availableBooks`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/availableBooks`, {headers});
   }
 
   countUnavailableBooks() {
     const headers = this.up.createAuthorization();
-    return this.http.get<any>(`${this.baseUrl}/unavailableBooks`, {headers});
+    return this.http.get<any>(`${this.baseUrl}/bookstats/unavailableBooks`, {headers});
   }
 }

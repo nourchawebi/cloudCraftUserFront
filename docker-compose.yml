@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  frontapp:
+    container_name: frontappcontainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - internelnet
+
+networks:
+  internelnet:
+    driver: bridge

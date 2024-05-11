@@ -9,45 +9,46 @@ import {PageResponseBookBorrowResponse} from "../../../models/book/page-response
 import {Category} from "../../../models/book/category";
 import {BookResquest} from "../../../models/book/book-resquest";
 import {UserprofileService} from "../../../FrontOffice/services/userprofile/userprofile.service";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
-  private baseUrl = 'http://localhost:8081/book';
+  private readonly baseUrl = environment.API_BASE_URL;
   constructor(private http: HttpClient,
               private up:UserprofileService) {}
 /*Book Services*/
   /*Add*/
   addBook(dto: any): Observable<Book> {
     const headers = this.up.createAuthorization();
-    return this.http.post<Book>(`${this.baseUrl}/addBook/${dto.categoryId}`, dto.bookData, {headers});
+    return this.http.post<Book>(`${this.baseUrl}/book/addBook/${dto.categoryId}`, dto.bookData, {headers});
   }
 /*Retrieve by id*/
   findById(id: number): Observable<BookResponse> {
     const headers = this.up.createAuthorization();
-    return this.http.get<BookResponse>(`${this.baseUrl}/findBooksByid/${id}`, {headers});
+    return this.http.get<BookResponse>(`${this.baseUrl}/book/findBooksByid/${id}`, {headers});
   }
 /*Read All*/
   findAll(page: number , size: number): Observable<PageResponseBookResponse> {
     const headers = this.up.createAuthorization();
-    return this.http.get<PageResponseBookResponse>(`${this.baseUrl}/findAll?page=${page}&size=${size}`, {headers});
+    return this.http.get<PageResponseBookResponse>(`${this.baseUrl}/book/findAll?page=${page}&size=${size}`, {headers});
   }
   /*Find all by user*/
   findAllByUser(page: number , size: number): Observable<PageResponseBookResponse> {
     const headers = this.up.createAuthorization();
-    return this.http.get<PageResponseBookResponse>(`${this.baseUrl}/findBooksByUser?page=${page}&size=${size}`, {headers});
+    return this.http.get<PageResponseBookResponse>(`${this.baseUrl}/book/findBooksByUser?page=${page}&size=${size}`, {headers});
   }
 
   /*Delete*/
   deleteBook(id: number): Observable<any> {
     const headers = this.up.createAuthorization();
-    return this.http.delete(`${this.baseUrl}/deleteBook/${id}`, {headers});
+    return this.http.delete(`${this.baseUrl}/book/deleteBook/${id}`, {headers});
   }
   /*Update*/
   updateBook(dto:any) : Observable<any>{
     const headers = this.up.createAuthorization();
-    return this.http.post(`${this.baseUrl}/updateBook`,dto.bookData, {headers} )
+    return this.http.post(`${this.baseUrl}/book/updateBook`,dto.bookData, {headers} )
   }
 
 
@@ -55,7 +56,7 @@ export class BookService {
   /*Add*/
   borrowBook(id: number): Observable<any> {
     const headers = this.up.createAuthorization();
-    const url = `${this.baseUrl}/borrowBook/${id}`;
+    const url = `${this.baseUrl}/book/borrowBook/${id}`;
     return this.http.post<any>(url, {}, {headers}).pipe(
       catchError(this.handleError)
     );
@@ -63,12 +64,12 @@ export class BookService {
   /*Find all by user*/
   findBookBorrowsByUser(page: number , size: number): Observable<PageResponseBookBorrowResponse> {
     const headers = this.up.createAuthorization();
-    return this.http.get<PageResponseBookBorrowResponse>(`${this.baseUrl}/findBookLoansByUser?page=${page}&size=${size}`, {headers});
+    return this.http.get<PageResponseBookBorrowResponse>(`${this.baseUrl}/book/findBookLoansByUser?page=${page}&size=${size}`, {headers});
   }
   /*Return Book*/
   returnBook(idBook: number): Observable<any> {
     const headers = this.up.createAuthorization();
-    return this.http.post<any>(`${this.baseUrl}/returnBook/${idBook}`, {}, {headers});
+    return this.http.post<any>(`${this.baseUrl}/book/returnBook/${idBook}`, {}, {headers});
   }
 
   private handleError(error: HttpResponse<any>) {

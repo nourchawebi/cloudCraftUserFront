@@ -11,12 +11,14 @@ import {Router} from "@angular/router";
 import {TokenInfos} from "../../models/token-infos";
 import {ChangePasswordRequest} from "../../models/change-password-request";
 import {BehaviorSubject} from "rxjs";
+import {environment} from "../../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+ private  readonly baseUrl = environment.API_BASE_URL;
 
-  private baseUrl : string ='http://localhost:8081/register'
+
   private baseUrl2 : string ='http://localhost:8081/login'
   private baseUrl3 : string ='http://localhost:8081/getclasstypes'
   private userPayload:any;
@@ -31,7 +33,7 @@ export class AuthenticationService {
   private jwtHelper: JwtHelperService = new JwtHelperService();
   getClasseType() {
 
-    return this.http.get<any>(`${this.baseUrl3}`);
+    return this.http.get<any>(`${this.baseUrl}/getclasstypes`);
   }
 
    register(
@@ -54,28 +56,28 @@ export class AuthenticationService {
      formData.append('classType', registerRequest.classType|| '');
      formData.append('picture', image);
 
-     return this.http.post<AuthenticationResponse>(`${this.baseUrl}`, formData)
+     return this.http.post<AuthenticationResponse>(`${this.baseUrl}/register`, formData)
    }
    login(authRequest:AuthenticationRequest)
    {
      return this.http.post<AuthenticationResponse>
-     (`${this.baseUrl2}`, authRequest)
+     (`${this.baseUrl}/login`, authRequest)
 
    }
    verifyCode(verificationRequest:VerificationRequest)
    {
      return this.http.post<AuthenticationResponse>
-     (`${this.baseUrl2}/verify`, verificationRequest)
+     (`${this.baseUrl}/login/verify`, verificationRequest)
    }
   sendverifmail(email: string) {
     const params = new HttpParams().set('email', email);
-    return this.http.get<any>(`${this.baseUrl}/resendToken`, { params });
+    return this.http.get<any>(`${this.baseUrl}/register/resendToken`, { params });
   }
    forgotPassword(forgotPwdRequest:ForgotPasswordRequest)
    {    if (forgotPwdRequest.email) {
      const params = new HttpParams().set('email', forgotPwdRequest.email);
 
-     return this.http.get<any>(`${this.baseUrl2}/forgotPassword`, { params });
+     return this.http.get<any>(`${this.baseUrl}/login/forgotPassword`, { params });
    } else {
      // Handle the case when email is undefined or null
      throw new Error('Email is not provided.');
@@ -85,12 +87,12 @@ export class AuthenticationService {
    resetPassword(resetPwdRequest:ResetPasswordRequest)
    {
    return this.http.patch<any>(
-     `${this.baseUrl2}/setnewpassword`,resetPwdRequest)
+     `${this.baseUrl}/login/setnewpassword`,resetPwdRequest)
    }
   getEnabled(email:string)
   { const params = new HttpParams().set('email', email);
     return this.http.get<boolean>(
-      `http://localhost:8081/getenabled`,{params})
+      `${this.baseUrl}/getenabled`,{params})
   }
   getToken(){
     return localStorage.getItem('token')
@@ -137,7 +139,7 @@ export class AuthenticationService {
   signOut(){
     const headers = this.createAuthorization();
     return this.http.post(
-      `http://localhost:8081/logouts`,null, {headers});
+      `${this.baseUrl}/logouts`,null, {headers});
 
   }
 
@@ -151,7 +153,7 @@ export class AuthenticationService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.http.post<any>(`${this.baseUrl}/ocr`, formData);
+    return this.http.post<any>(`${this.baseUrl}/register/ocr`, formData);
   }
   private previewImageSource = new BehaviorSubject<string>('');
   previewImage$ = this.previewImageSource.asObservable();
